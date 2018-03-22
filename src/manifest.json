@@ -1,0 +1,93 @@
+{
+  "manifest_version": 2,
+  "name": "Toshinou",
+  "version": "1.0",
+
+  "description": "Cheat & Tool for DarkOrbit",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.darkorbit.com/indexInternal.es?action=internalMapRevolution"],
+      "js": [
+        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-ui.min.js",
+        "js/libs/konva.min.js",
+        "js/libs/md5.min.js",
+        "js/safety/SafetyChecker.js",
+        "js/safety/JavaScriptChecker.js",
+        "js/utils/ResourcesManager.js",
+        "js/utils/Injector.js",
+        "js/utils/Variables.js",
+        "js/utils/DragAndDrop.js",
+        "js/utils/TabsHelper.js",
+        "js/preferences/Settings.js",
+        "js/preferences/GlobalSettings.js",
+        "js/utils/math/Vector2D.js",
+        "js/utils/math/MathUtils.js",
+        "js/utils/WebClient.js",
+        "js/utils/BoxType.js",
+        "js/utils/ColorConverter.js",
+        "js/utils/TimeHelper.js",
+        "js/WindowFactory.js",
+        "js/windows/Minimap.js",
+        "js/windows/AttackWindow.js",
+        "js/windows/GeneralSettingsWindow.js",
+        "js/windows/AutolockWindow.js",
+        "js/windows/NpcSettingsWindow.js",
+        "js/windows/StatisticWindow.js",
+        "js/objects/Movable.js",
+        "js/objects/Box.js",
+        "js/objects/Hero.js",
+        "js/objects/Ship.js",
+        "js/objects/Gate.js",
+        "js/objects/CBS/Battlestation.js",
+        "js/objects/CBS/BattlestationModule.js",
+        "js/handlers/HandlersManager.js",
+        "js/handlers/events/MovementDoneEventHandler.js",
+        "js/handlers/events/HeroPositionUpdateEventHandler.js",
+        "js/handlers/commands/BoxInitHandler.js",
+        "js/handlers/commands/ResourseBoxInitHandler.js",
+        "js/handlers/commands/ShipAttackHandler.js",
+        "js/handlers/commands/ShipCreateHandler.js",
+        "js/handlers/commands/AssetRemovedHandler.js",
+        "js/handlers/commands/HeroInitHandler.js",
+        "js/handlers/commands/ShipMoveHandler.js",
+        "js/handlers/commands/ShipDestroyedHandler.js",
+        "js/handlers/commands/ShipRemovedHandler.js",
+        "js/handlers/commands/GateInitHandler.js",
+        "js/handlers/commands/ShipSelectedHandler.js",
+        "js/handlers/commands/MessagesHandler.js",
+        "js/handlers/commands/HeroDiedHandler.js",
+        "js/handlers/commands/HeroUpdateHitpointsHandler.js",
+        "js/handlers/commands/AssetCreatedHandler.js",
+        "js/Api.js",
+        "js/ControlFactory.js",
+        "js/worker.js"
+      ],
+      "css": [
+        "css/style.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+
+  "background": {
+    "scripts": ["js/background/filter.js"]
+  },
+
+  "web_accessible_resources": [
+    "res/injectables/*"
+  ],
+
+  "options_ui": {
+    "page": "html/settings.html",
+    "open_in_tab": false
+  },
+
+  "permissions": [
+    "<all_urls>",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ]
+}
