@@ -4,7 +4,7 @@ Created by Freshek on 09.10.2017
 
 class AttackWindow {
   createWindow() {
-    this.attackWindow = WindowFactory.createWindow({width: 300, text: "Attack Details"});
+    this.attackWindow = WindowFactory.createWindow({width: 350, text: "Attack Details"});
 
     this.targetNameTxt = jQuery("<h4>");
     this.targetNameTxt.text("Target: -");
