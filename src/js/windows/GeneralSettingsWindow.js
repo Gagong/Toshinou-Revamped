@@ -4,7 +4,7 @@ Created by Freshek on 14.10.2017
 
 class GeneralSettingsWindow {
   createWindow() {
-    this.botSettingsWindow = WindowFactory.createWindow({width: 300, text: "General"});
+    this.botSettingsWindow = WindowFactory.createWindow({width: 350, text: "General"});
 
     let controls = [
       {
