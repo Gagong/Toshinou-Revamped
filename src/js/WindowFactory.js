@@ -9,7 +9,7 @@ class WindowFactory {
     static createWindow(params) {
 
         if (!window.mainFrameWindow) {
-            window.mainFrameWindow = this.windowsStructure({text: "Windows", isMain: true})[0];
+            window.mainFrameWindow = this.windowsStructure({text: "Windows | 10.0.6300 | v.0.05 | 26.03.18", isMain: true})[0];
 
             if (window.globalSettings.windowsToTabs) {
                 $(window.mainFrameWindow).addClass('tabs');

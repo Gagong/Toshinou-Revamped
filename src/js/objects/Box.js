@@ -7,7 +7,7 @@ class Box extends Movable {
     super(x, y);
     this.hash = hash;
     this.type = type;
-    /*console.log(this.type);*/
+    /*console.log(this);*/
   }
 
   toString() {
@@ -21,6 +21,6 @@ class Box extends Movable {
 
   isCollectable() {
     var type = this.type;
-    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "FROM_SHIP");
+    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "HYBRID_ALLOY_BOX"/* || type == "FROM_SHIP" || "PIRATE_BOOTY"*/);
   }
 }

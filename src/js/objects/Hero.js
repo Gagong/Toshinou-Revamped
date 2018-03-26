@@ -8,6 +8,7 @@ class Hero extends Movable {
     this.factionId = factionId;
     this.targetShip = null;
     this.id = id;
+    /*console.log(this);*/
   }
 
   move(pos) {

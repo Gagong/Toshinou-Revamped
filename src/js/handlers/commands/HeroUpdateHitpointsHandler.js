@@ -10,7 +10,7 @@ class HeroUpdateHitpointsHandler {
   constructor() {
     this._handler = (e, a) => {
       var parsedJson = JSON.parse(e.detail);
-      console.log(parsedJson);
+      /*console.log(parsedJson);*/
 
       window.hero.maxHp = parsedJson[Variables.hpUpdateMaxHp];
       window.hero.hp = parsedJson[Variables.hpUpdateHp];

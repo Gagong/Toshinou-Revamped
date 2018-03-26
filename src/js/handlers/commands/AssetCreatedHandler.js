@@ -12,6 +12,7 @@ class AssetCreatedHandler {
   constructor() {
     this._handler = function(e, a) {
       let parsedCmd = JSON.parse(e.detail);
+      /*console.log(parsedCmd);*/
 
       let typeObj = parsedCmd.type;
       let type = parseInt(typeObj[Object.keys(typeObj)[0]]);

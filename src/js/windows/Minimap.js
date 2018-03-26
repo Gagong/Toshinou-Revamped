@@ -79,7 +79,12 @@ class Minimap {
         ct.fillStyle = "rgb(76, 76, 76)";
 
       this._fillCircle(ct, bs.position.x / 70 - 1.5, bs.position.y / 70 - 1.5, 3);
-      ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / 70 + 1, bs.position.y / 70 + 13);
+      if (bs.clanTag != "") {
+        ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / 70 + 1, bs.position.y / 70 + 13);
+      }
+      else {
+        ct.fillText(bs.name, bs.position.x / 70 + 1, bs.position.y / 70 + 13);
+      }
 
       for (let prop in this._api.battlestation.modules) {
         let mod = this._api.battlestation.modules[prop];

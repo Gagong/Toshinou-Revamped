@@ -76,4 +76,8 @@ class Variables {
   static get selectHp() {
     return "_-i1W";
   }
+
+  static get gateJumpId() {
+    return "_-K2A";
+  }
 }

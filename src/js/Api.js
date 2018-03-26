@@ -83,7 +83,6 @@ class Api {
     for (var property in this.boxes) {
       var box = this.boxes[property];
       var dist = box.distanceTo(window.hero.position);
-
       if (dist < minDist) {
         if ((box.isCollectable() && window.settings.collectBoxes) || (box.isMaterial() && window.settings.collectMaterials)) {
           finalBox = box;
@@ -107,35 +106,7 @@ class Api {
       var dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked && (ship.percentOfHp <= 20 || ship.percentOfHp == 100)) {
-          finalShip = ship;
-          minDist = dist;
-        }
-      }
-    }
-
-    return {ship: finalShip, distance: minDist};
-  }
-
-  findNearestGGShip(skipHpCheck) {
-    let minDist = 100000;
-    let finalShip = null;
-
-    if (!window.settings.killNpcs)
-      return {ship: null, distance: minDist};
-
-    for (let property in this.ships) {
-      let ship = this.ships[property];
-
-      if (ship.percentOfHp < 20 && !skipHpCheck) {
-        continue;
-      }
-
-      ship.update();
-      let dist = ship.distanceTo(window.hero.position);
-
-      if (dist < minDist) {
-        if (ship.isNpc) {
+        if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked/*&& (ship.percentOfHp <= 20 || ship.percentOfHp == 100)*/) {
           finalShip = ship;
           minDist = dist;
         }
@@ -151,7 +122,7 @@ class Api {
 
     this.gates.forEach(gate => {
       var dist = window.hero.distanceTo(gate.position);
-      if (dist < minDist) {
+      if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
         finalGate = gate;
         minDist = dist;
       }

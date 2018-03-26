@@ -10,8 +10,9 @@ class ResourseBoxInitHandler {
   constructor() {
     this._handler = function(e, a) {
       var box = JSON.parse(e.detail);
+      /*console.log(box);*/
 
-      if (box.hash.length == 5) {
+      if (box.hash.length == 7) {
         return;
       }
 
