@@ -167,14 +167,14 @@ function logic() {
       }
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd) {    
+    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 == api.lockedShip.maxShd*/) {    
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
       return;
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd) {
+    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 != api.lockedShip.maxShd*/) {
       notrightId = api.lockedShip.id;   
       api.targetShip = null;
       api.attacking = false;
@@ -195,7 +195,7 @@ function logic() {
     }
   }
 
-  for (var property in api.ships) {
+  /*for (var property in api.ships) {
     var shiprun = api.ships[property];
     if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
       api.targetShip = null;
@@ -203,6 +203,7 @@ function logic() {
       api.triedToLock = false;
       api.lockedShip = null;
       api.targetBoxHash = null;
+      window.movementDone = false;
       let gate = api.findNearestGate();
       if (gate.gate) {
         let x = gate.gate.position.x;
@@ -213,7 +214,7 @@ function logic() {
         return;
       }
     }     
-  }
+  }*/
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 2000) {
     api.targetShip = null;
