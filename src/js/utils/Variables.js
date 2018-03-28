@@ -9,6 +9,14 @@ class Variables {
     return "_-E4W";
   }
 
+  static get PalladiumType() {
+    return "_-11u";
+  }
+
+  static get PType() {
+    return "_-o1m";
+  }
+
   static get assetCreateX() {
     return "_-c4j";
   }

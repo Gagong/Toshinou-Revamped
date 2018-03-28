@@ -47,6 +47,7 @@
         "js/handlers/events/HeroPositionUpdateEventHandler.js",
         "js/handlers/commands/BoxInitHandler.js",
         "js/handlers/commands/ResourseBoxInitHandler.js",
+        "js/handlers/commands/PalladiumInitHandler.js",
         "js/handlers/commands/ShipAttackHandler.js",
         "js/handlers/commands/ShipCreateHandler.js",
         "js/handlers/commands/AssetRemovedHandler.js",

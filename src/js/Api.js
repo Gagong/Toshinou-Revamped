@@ -106,7 +106,7 @@ class Api {
       var dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
-        if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked/*&& (ship.percentOfHp <= 20 || ship.percentOfHp == 100)*/) {
+        if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
           finalShip = ship;
           minDist = dist;
         }

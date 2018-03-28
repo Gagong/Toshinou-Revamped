@@ -21,6 +21,6 @@ class Box extends Movable {
 
   isCollectable() {
     var type = this.type;
-    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "HYBRID_ALLOY_BOX"/* || type == "FROM_SHIP" || "PIRATE_BOOTY"*/);
+    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "HYBRID_ALLOY_BOX" || type == "AURUS_BOX" || type == "BIFENON" || type == "8"/* || type == "FROM_SHIP" || "PIRATE_BOOTY"*/);
   }
 }

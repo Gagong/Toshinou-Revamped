@@ -1,7 +1,7 @@
 class StatisticWindow {
 
     createWindow() {
-        this.botStatisticWindow = WindowFactory.createWindow({width: 350, text: "Statistic"});
+        this.botStatisticWindow = WindowFactory.createWindow({width: 320, text: "Statistic"});
         this.connected = false;
 
         let defaultStat = {

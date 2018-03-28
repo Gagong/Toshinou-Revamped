@@ -4,7 +4,7 @@ Created by Freshek on 14.10.2017
 
 class GeneralSettingsWindow {
   createWindow() {
-    this.botSettingsWindow = WindowFactory.createWindow({width: 350, text: "General"});
+    this.botSettingsWindow = WindowFactory.createWindow({width: 320, text: "General"});
 
     let controls = [
       {
@@ -121,6 +121,14 @@ class GeneralSettingsWindow {
         event: function () {
           window.settings.reviveLimit = this.value;
           $('span:last-child', this.label).text(' (' + this.value + ')');
+        }
+      },
+      {
+        name: 'palladium',
+        labelText: 'Palladium Bot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.palladium = this.checked;
         }
       },
       {

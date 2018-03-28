@@ -2,17 +2,16 @@
 Created by Freshek on 07.10.2017
 */
 
-class ResourseBoxInitHandler {
+class PalladiumInitHandler {
   static get ID() {
-    return 15882;
+    return 11042;
   }
 
   constructor() {
     this._handler = function(e, a) {
       var box = JSON.parse(e.detail);
-      console.log(box);
-
-      if (box.hash.length == 7) {
+      /*console.log(box);*/
+      if (box.hash.length == 6) {
         return;
       }
 
@@ -20,7 +19,7 @@ class ResourseBoxInitHandler {
         return;
       }
 
-      var pBox = new Box(box.x, box.y, box.hash, box[Variables.resourseboxType]);
+      var pBox = new Box(box.x, box.y, box.hash, box[Variables.PalladiumType][Variables.PType]);
       a.boxes[box.hash] = pBox;
     };
   }

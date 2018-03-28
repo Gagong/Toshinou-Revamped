@@ -4,7 +4,7 @@ Created by Freshek on 28.10.2017
 
 class AutolockWindow {
   createWindow() {
-    this.autolockWindow = WindowFactory.createWindow({width: 350, text: "Autolocker"});
+    this.autolockWindow = WindowFactory.createWindow({width: 320, text: "Autolocker"});
 
     let options = [
       {

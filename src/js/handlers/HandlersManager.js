@@ -23,8 +23,8 @@ class HandlersManager {
       var id = parseInt(s[0]);
       var cmd = s[1];
 
-      if (window.gebug)
-        console.log(id + "|" + cmd);
+      /*if (window.gebug)*/
+        /*console.log(id + "|" + cmd);*/
 
       var h = self.handlers[id];
       if (h != null) {

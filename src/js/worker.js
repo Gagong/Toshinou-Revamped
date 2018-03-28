@@ -38,6 +38,7 @@ $(document).ready(function() {
 
   hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
   hm.registerCommand(ResourseBoxInitHandler.ID, new ResourseBoxInitHandler());
+  hm.registerCommand(PalladiumInitHandler.ID, new PalladiumInitHandler());
   hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
   hm.registerCommand(ShipCreateHandler.ID, new ShipCreateHandler());
   hm.registerCommand(ShipMoveHandler.ID, new ShipMoveHandler());
@@ -171,7 +172,6 @@ function logic() {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
-      return;
     }
 
     if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 != api.lockedShip.maxShd*/) {
@@ -226,9 +226,13 @@ function logic() {
   var x;
   var y;
 
-  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
+  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium) {
     x = MathUtils.random(100, 20732);
     y = MathUtils.random(58, 12830);
+  }
+  else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.palladium) {
+    x = MathUtils.random(17873, 32264);
+    y = MathUtils.random(20982, 25515)
   }
 
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
