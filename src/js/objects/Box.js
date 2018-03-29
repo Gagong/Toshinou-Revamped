@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class Box extends Movable {
   constructor(x, y, hash, type) {
     super(x, y);

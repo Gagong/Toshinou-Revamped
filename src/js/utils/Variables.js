@@ -1,91 +1,86 @@
-/*
-Created by Freshek on 12.10.2017
-Thanks for the idea to iNk
-*/
-
 class Variables {
 
   static get resourseboxType() {
-    return "_-E4W";
+    return "_-X3s";
   }
 
   static get PalladiumType() {
-    return "_-11u";
+    return "_-T2x";
   }
 
   static get PType() {
-    return "_-o1m";
+    return "_-p3E";
   }
 
-  static get assetCreateX() {
-    return "_-c4j";
+  /*static get assetCreateX() { 
+    return "_-Fe";
   }
 
-  static get assetCreateY() {
-    return "_-43H";
-  }
+  static get assetCreateY() { 
+    return "_-v3s";
+  }*/
 
   static get boxType() {
-    return "_-U2f";
+    return "_-e11";
   }
 
   static get attackerId() {
-    return "_-R4g";
+    return "_-uU";
   }
 
   static get attackHp() {
-    return "_-W21";
+    return "_-v35";
   }
 
   static get attackShd() {
-    return "_-u3f";
+    return "_-r3e";
   }
 
   static get attackedId() {
-    return "_-Y4v";
+    return "_-1B";
   }
 
   static get moveDuration() {
-    return "_-E23";
+    return "_-P47";
   }
 
   static get shipDestoyedId() {
-    return "_-253";
+    return "_-I1L";
   }
 
   static get heroInitMaxHp() {
-    return "_-42K";
+    return "_-E4b";
   }
 
   static get heroInitMaxShd() {
-    return "_-q2Z";
+    return "_-p4N";
   }
 
   static get heroInitHp() {
-    return "_-34q";
+    return "_-r16";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-14B";
+    return "_-P1t";
   }
 
   static get hpUpdateHp() {
-    return "_-i1W";
+    return "_-O1D";
   }
 
   static get selectMaxHp() {
-    return "_-14B";
+    return "_-P1t";
   }
 
   static get selectMaxShd() {
-    return "_-q2Z";
+    return "_-p4N";
   }
 
   static get selectHp() {
-    return "_-i1W";
+    return "_-O1D";
   }
-
+  
   static get gateJumpId() {
-    return "_-K2A";
+    return "_-w28";
   }
 }

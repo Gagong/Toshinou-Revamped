@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 14.10.2017
-*/
-
 class Settings {
   constructor(collectBoxes, collectMaterials, moveRandomly, lockNpc, lockPlayers, killNpcs, runfromenemy, pause, palladium) {
     this._collectBoxes = collectBoxes === true;

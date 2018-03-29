@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 30.01.2018
-*/
-
 class Battlestation extends Movable {
   constructor(x, y, id, name, clanTag, factionId) {
     super(x, y);

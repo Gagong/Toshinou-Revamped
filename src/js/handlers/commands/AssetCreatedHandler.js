@@ -1,9 +1,3 @@
-/*
-Created by Freshek on 24.01.2018
-
-TODO: handle clan diplomacy
-*/
-
 class AssetCreatedHandler {
   static get ID() {
     return 23109;

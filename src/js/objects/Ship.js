@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 15.10.2017
-*/
-
 class Ship extends Movable {
   constructor(x, y, id, isnpc, name, factionId) {
     super(x, y);
@@ -37,11 +33,6 @@ class Ship extends Movable {
       this.position.set(this.target.x, this.target.y);
       return this.position;
     }
-
-    /*
-     * quick and dirty solution
-     * TODO atan2 instead of this
-     */
 
     var dx = this.target.x - this.position.x;
     var dy = this.target.y - this.position.y;

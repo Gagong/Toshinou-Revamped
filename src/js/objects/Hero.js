@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class Hero extends Movable {
   constructor(x, y, factionId, id) {
     super(x, y);

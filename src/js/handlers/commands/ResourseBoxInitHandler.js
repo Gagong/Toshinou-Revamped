@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class ResourseBoxInitHandler {
   static get ID() {
     return 15882;
@@ -10,7 +6,7 @@ class ResourseBoxInitHandler {
   constructor() {
     this._handler = function(e, a) {
       var box = JSON.parse(e.detail);
-      console.log(box);
+      /*console.log(box);*/
 
       if (box.hash.length == 7) {
         return;

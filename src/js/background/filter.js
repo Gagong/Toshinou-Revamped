@@ -1,11 +1,3 @@
-/*
-Created by Freshek on 08.02.2018
-
-An emergency filter for EventStream
-BP Sucks
-Lolis > BP
-*/
-
 let blacklist = [
   "main-frame",
   "minimized",

@@ -1,6 +1,3 @@
-/*
-Created by Freshek on 07.10.2017
-*/
 window.globalSettings = new GlobalSettings();
 window.debug = false;
 var api;

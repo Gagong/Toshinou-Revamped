@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 21.10.2017
-*/
-
 class JavaScriptChecker {
   static safetyCheck() {
     var jsHashes = {};

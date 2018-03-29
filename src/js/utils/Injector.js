@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 09.10.2017
-*/
-
 class Injector {
   static injectScriptFromResource(url) {
     var res = ResourcesManager.get(url);

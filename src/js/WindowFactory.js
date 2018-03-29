@@ -1,7 +1,3 @@
-/*
- Created by Freshek on 07.10.2017
- */
-
 const HEADER_HEIGHT = 40;
 
 class WindowFactory {
@@ -9,7 +5,7 @@ class WindowFactory {
     static createWindow(params) {
 
         if (!window.mainFrameWindow) {
-            window.mainFrameWindow = this.windowsStructure({text: "Windows | 10.0.6300 | v.005 | 26.03.18", isMain: true})[0];
+            window.mainFrameWindow = this.windowsStructure({text: "Windows | 10.0.6316 | v.006", isMain: true})[0];
 
             if (window.globalSettings.windowsToTabs) {
                 $(window.mainFrameWindow).addClass('tabs');

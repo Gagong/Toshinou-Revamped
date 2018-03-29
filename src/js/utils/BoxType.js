@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 28.10.2017
-*/
-
 class BoxType {
   static get bonusBox() {
     return "BONUS_BOX";

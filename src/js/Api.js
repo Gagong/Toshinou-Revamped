@@ -1,13 +1,10 @@
-/*
-Created by Freshek on 28.10.2017
-*/
 class Api {
   constructor() {
     this._blackListedBoxes = [];
     this.gates = [];
     this.boxes = {};
     this.ships = {};
-    this.battlestation = null; // let's consider that there isn't more than 1 cbs/map
+    this.battlestation = null;
     this.lastMovement = 0;
     this.isDisconected = false;
   }

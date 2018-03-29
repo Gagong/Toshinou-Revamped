@@ -1,7 +1,3 @@
-/*
- Created by Freshek on 31.10.2017
- */
-
 class GlobalSettings {
   constructor() {
     var self = this;

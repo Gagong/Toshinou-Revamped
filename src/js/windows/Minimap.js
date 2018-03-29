@@ -1,14 +1,10 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class Minimap {
   constructor(a) {
     this._api = a;
   }
 
   createWindow() {
-    this.minimap = WindowFactory.createWindow({width: 320, text: "Minimap"});
+    this.minimap = WindowFactory.createWindow({width: 312, text: "Minimap"});
 
     this.canvas = jQuery("<canvas/>", {
       width: 300,
