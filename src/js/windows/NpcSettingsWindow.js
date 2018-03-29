@@ -27,6 +27,8 @@ class NpcSettingsWindow {
     return [
       "-=[ Devourer ]=- ζ25",
       "-=[ Devourer ]=- ζ27",
+      "-={ demaNeR Escort }=-",
+      "-={ demaNeR Freighter }=-",
       "-=[ Streuner ]=-",
       "-=[ Aider Streuner ]=-",
       "-=[ Recruit Streuner ]=-",
