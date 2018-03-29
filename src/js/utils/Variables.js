@@ -1,7 +1,7 @@
 class Variables {
 
   static get resourseboxType() {
-    return "_-X3s";
+    return "_-e11";
   }
 
   static get PalladiumType() {
@@ -11,14 +11,6 @@ class Variables {
   static get PType() {
     return "_-p3E";
   }
-
-  /*static get assetCreateX() { 
-    return "_-Fe";
-  }
-
-  static get assetCreateY() { 
-    return "_-v3s";
-  }*/
 
   static get boxType() {
     return "_-e11";
@@ -83,4 +75,12 @@ class Variables {
   static get gateJumpId() {
     return "_-w28";
   }
+
+  /*static get assetCreateX() { 
+    return "_-Fe";
+  }
+
+  static get assetCreateY() { 
+    return "_-v3s";
+  }*/
 }
