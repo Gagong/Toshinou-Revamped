@@ -10,11 +10,6 @@ class Box extends Movable {
     return JSON.parse(this);
   }
 
-  isMaterial() {
-    var type = this.type.toLowerCase();
-    return (type == "mucosum" || type == "prismatium" || type == "scrapium" || type == "boltrum");
-  }
-
   isResourse() {
     var type = this.type;
     return (type == "0" || type == "1" || type == "2"); //Prometium - 0 | Endurium - 1 | Terbium - 2
@@ -43,5 +38,10 @@ class Box extends Movable {
   isCollectable() {
     var type = this.type;
     return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX");
+  }
+
+  isMaterial() {
+    var type = this.type;
+    return (type == "MUCOSUM" || type == "PRISMATIUM" || type == "SCRAPIUM" || type == "BOLTRUM");
   }
 }
