@@ -6,7 +6,7 @@ class HeroDiedHandler {
   constructor() {
     this._handler = function(e, a) {
       var parsedJson = JSON.parse(e.detail);
-      /*console.log(parsedCmd);*/
+      /*console.log(parsedJson);*/
       a.markHeroAsDead();
 
       window.setTimeout(function() {

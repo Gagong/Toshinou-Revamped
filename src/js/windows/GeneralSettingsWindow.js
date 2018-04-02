@@ -20,14 +20,6 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'collectMaterials',
-        labelText: 'Collect materials',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectMaterials = this.checked;
-        }
-      },
-      {
         name: 'moveRandomly',
         labelText: 'Move randomly',
         appendTo: this.botSettingsWindow,
@@ -127,14 +119,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
-      {
-        name: 'runfromenemy',
-        labelText: 'Flee from enemy',
+      /*{
+        name: 'betakilling',
+        labelText: 'Beta NPC killing algorithm',
         appendTo: this.botSettingsWindow,
         event: function() {
-          window.settings.runfromenemy = this.checked;
+          window.settings.betakilling = this.checked;
         }
-      }
+      }*/
     ];
 
     controls.forEach((control)=>{

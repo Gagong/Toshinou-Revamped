@@ -51,6 +51,7 @@ $(document).ready(function() {
   hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
+  /*hm.registerEvent("getVer", new GameVersionUpdateEventHandler());*/
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
 
   hm.listen();
@@ -69,6 +70,9 @@ function init() {
   window.generalSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
 
+  window.boxSettingsWindow = new BoxSettingsWindow();
+  window.boxSettingsWindow.createWindow();
+
   window.autolockWindow = new AutolockWindow();
   window.autolockWindow.createWindow();
 
@@ -79,6 +83,7 @@ function init() {
   window.statisticWindow.createWindow();
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
+  /*Injector.injectScriptFromResource("res/injectables/GameVersionUpdater.js");*/
 
   window.setInterval(logic, window.globalSettings.timerTick);
 

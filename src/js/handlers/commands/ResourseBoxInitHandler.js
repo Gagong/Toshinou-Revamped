@@ -16,7 +16,7 @@ class ResourseBoxInitHandler {
         return;
       }
 
-      var pBox = new Box(box.x, box.y, box.hash, box[Variables.resourseboxType]);
+      var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       a.boxes[box.hash] = pBox;
     };
   }

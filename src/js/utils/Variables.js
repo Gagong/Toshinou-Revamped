@@ -1,9 +1,5 @@
 class Variables {
 
-  static get resourseboxType() {
-    return "_-e11";
-  }
-
   static get PalladiumType() {
     return "_-T2x";
   }

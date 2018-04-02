@@ -6,8 +6,8 @@ class BoxInitHandler {
   constructor() {
     this._handler = function(e, a) {
       var box = JSON.parse(e.detail);
-      /*console.log(parsedCmd);*/
-      if (box.hash.length == 5) {
+      /*console.log(box);*/
+      if (box.hash.length == 7) {
         return;
       }
 
