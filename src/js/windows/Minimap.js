@@ -38,7 +38,7 @@ class Minimap {
     for (var property in this._api.boxes) {
       var box = this._api.boxes[property];
 
-      if (box == null)
+      if (box == null || box.isResourse())
         continue;
 
       ct.fillStyle = BoxType.getColor(box.type);

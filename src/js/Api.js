@@ -81,7 +81,7 @@ class Api {
       var box = this.boxes[property];
       var dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (!box.isCargo() && !box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) || ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) || (box.isPalladium() && window.settings.palladium)/* || (box.isCargo() && window.settings.cargobox)*/|| (box.isBooty() && window.settings.booty))) {
+        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) || ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) || (box.isPalladium() && window.settings.palladium) || (box.isCargo() && window.settings.cargobox) || (box.isBooty() && window.settings.booty && window.count > 0))) {
           finalBox = box;
           minDist = dist;
         }
@@ -120,6 +120,21 @@ class Api {
     this.gates.forEach(gate => {
       var dist = window.hero.distanceTo(gate.position);
       if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
+        finalGate = gate;
+        minDist = dist;
+      }
+    });
+
+    return {gate: finalGate, distance: minDist};
+  }
+
+  findNearestGatebyID(gate_id) {
+    var minDist = 100000;
+    var finalGate;
+
+    this.gates.forEach(gate => {
+      var dist = window.hero.distanceTo(gate.position);
+      if (dist < minDist && gate.gateId == gate_id) {
         finalGate = gate;
         minDist = dist;
       }

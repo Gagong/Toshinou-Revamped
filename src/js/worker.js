@@ -28,7 +28,7 @@ $(document).ready(function() {
   window.settings = new Settings();
   window.initialized = false;
   window.reviveCount = 0;
-
+  window.count = 0;
   window.movementDone = true;
 
   var hm = new HandlersManager(api);
@@ -113,6 +113,7 @@ function init() {
 
 function logic() {
   window.minimap.draw();
+  /*console.log(window.count);*/
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
@@ -127,6 +128,11 @@ function logic() {
     if (newgate.gate) {
       let x = newgate.gate.position.x;
       let y = newgate.gate.position.y;
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
+      api.targetBoxHash = null;
       api.move(x, y);
       window.movementDone = false;
     }

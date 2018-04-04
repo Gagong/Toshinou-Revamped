@@ -37,7 +37,7 @@ class BoxSettingsWindow {
       },*/
       {
         name: 'booty',
-        labelText: 'Green | Gold booty boxes <br> [WARNING!] <br> Enable this only if You have booty keys!',
+        labelText: 'Green | Gold booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.booty = this.checked;
