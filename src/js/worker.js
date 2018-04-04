@@ -112,6 +112,7 @@ function init() {
 }
 
 function logic() {
+  window.minimap.draw();
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
@@ -121,10 +122,16 @@ function logic() {
   if (api.heroDied && api.isDisconected)
     return;
 
-  if (window.settings.pause) 
+  if (window.settings.pause) {
+    let newgate = api.findNearestGate();
+    if (newgate.gate) {
+      let x = newgate.gate.position.x;
+      let y = newgate.gate.position.y;
+      api.move(x, y);
+      window.movementDone = false;
+    }
     return;
-
-  window.minimap.draw();
+  }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
     if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {

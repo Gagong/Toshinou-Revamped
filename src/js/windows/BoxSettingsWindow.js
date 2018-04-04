@@ -12,22 +12,6 @@ class BoxSettingsWindow {
         }
       },
       {
-        name: 'cargobox',
-        labelText: 'Cargo box',
-        appendTo: this.boxSettingsWindow,
-        event: function () {
-          window.settings.cargobox = this.checked;
-        }
-      },
-      {
-        name: 'palladiumbox',
-        labelText: 'Palladium',
-        appendTo: this.boxSettingsWindow,
-        event: function () {
-          window.settings.palladiumbox = this.checked;
-        }
-      },
-      {
         name: 'matherials',
         labelText: 'Matherials',
         appendTo: this.boxSettingsWindow,
@@ -36,8 +20,24 @@ class BoxSettingsWindow {
         }
       },
       {
+        name: 'cargobox',
+        labelText: 'Cargo box (Disabled ATM)',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.cargobox = this.checked;
+        }
+      },
+      /*{
+        name: 'palladiumbox',
+        labelText: 'Palladium',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.palladiumbox = this.checked;
+        }
+      },*/
+      {
         name: 'booty',
-        labelText: 'Booty keys SOON',
+        labelText: 'Green | Gold booty boxes <br> [WARNING!] <br> Enable this only if You have booty keys!',
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.booty = this.checked;

@@ -74,14 +74,14 @@ class Api {
     var minDist = 100000;
     var finalBox;
 
-    if (!window.settings.collectBoxes && !window.settings.collectMaterials)
+    if (!window.settings.bonusbox && !window.settings.matherials && !window.settings.palladium && !window.settings.cargobox && !window.settings.booty)
       return {box: null, distance: minDist};
 
     for (var property in this.boxes) {
       var box = this.boxes[property];
       var dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (window.settings.collectBoxes && !box.isResourse() && !box.isCargo() && ((box.isCollectable() && window.settings.bonusbox) || ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) || (box.isPalladium() && window.settings.palladium && window.settings.palladiumbox)/* || (box.isCargo() && window.settings.cargobox)*/)) {
+        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) || ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) || (box.isPalladium() && window.settings.palladium) || (box.isCargo() && window.settings.cargobox) || (box.isBooty() && window.settings.booty))) {
           finalBox = box;
           minDist = dist;
         }

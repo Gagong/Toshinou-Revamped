@@ -12,13 +12,21 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'palladium',
+        labelText: 'Palladium Bot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.palladium = this.checked;
+        }
+      },
+      /*{
         name: 'collectBoxes',
         labelText: 'Bonus Boxes',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.collectBoxes = this.checked;
         }
-      },
+      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -110,15 +118,7 @@ class GeneralSettingsWindow {
           window.settings.reviveLimit = this.value;
           $('span:last-child', this.label).text(' (' + this.value + ')');
         }
-      },
-      {
-        name: 'palladium',
-        labelText: 'Palladium Bot',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.palladium = this.checked;
-        }
-      },
+      }
       /*{
         name: 'betakilling',
         labelText: 'Beta NPC killing algorithm',

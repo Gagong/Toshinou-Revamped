@@ -1,6 +1,6 @@
 class Settings {
-  constructor(collectBoxes, moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, palladiumbox, matherials, booty) {
-    this._collectBoxes = collectBoxes === true;
+  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, booty) {
+    /*this._collectBoxes = collectBoxes === true;*/
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -13,7 +13,7 @@ class Settings {
     this._palladium = palladium === true;
     this._bonusbox = bonusbox === true;
     this._cargobox = cargobox === true;
-    this._palladiumbox = palladiumbox === true;
+    /*this._palladiumbox = palladiumbox === true;*/
     this._matherials = matherials === true;
     this._booty = booty === true;
   }
@@ -50,13 +50,13 @@ class Settings {
     this._cargobox = value === true;
   }
 
-  get Pall() {
+  /*get Pall() {
     return this._palladiumbox;
   }
 
   set Pall(value) {
     this._palladiumbox = value === true;
-  }
+  }*/
 
   get Matherials() {
     return this._matherials;
@@ -66,13 +66,13 @@ class Settings {
     this._matherials = value === true;
   }
 
-  get collectBoxes() {
+  /*get collectBoxes() {
     return this._collectBoxes;
   }
 
   set collectBoxes(value) {
     this._collectBoxes = value === true;
-  }
+  }*/
 
   get moveRandomly() {
     return this._moveRandomly;

@@ -4,7 +4,6 @@ class HeroPositionUpdateEventHandler {
       var positions = e.detail.split("|");
       /*console.log(positions);*/
       window.hero.setPosition(positions[0], positions[1]);
-      /*console.log(positions[2]);*/
     }
   }
 

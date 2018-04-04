@@ -20,10 +20,10 @@ class Box extends Movable {
     return (type == "8"); // Palladium - 8
   }
 
-  /*isBooty() {
+  isBooty() {
     var type = this.type;
-    return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_BLUE" || type == "PIRATE_BOOTY_RED" || type == "PIRATE_BOOTY_GOLD");
-  }*/
+    return (type == "PIRATE_BOOTY"/*|| type == "PIRATE_BOOTY_BLUE" || type == "PIRATE_BOOTY_RED"*/|| type == "PIRATE_BOOTY_GOLD");
+  }
 
   isCargo() {
     var type = this.type;
