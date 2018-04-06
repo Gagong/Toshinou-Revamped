@@ -19,14 +19,6 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
-      /*{
-        name: 'collectBoxes',
-        labelText: 'Bonus Boxes',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.collectBoxes = this.checked;
-        }
-      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -41,6 +33,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.killNpcs = this.checked;
+        }
+      },
+      {
+        name: 'runfromenemy',
+        labelText: 'Flee from enemy',
+        appendTo: this.botSettingsWindow,
+        event: function() {
+          window.settings.runfromenemy = this.checked;
         }
       },
       {
@@ -87,7 +87,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 10
+          value: 30,
         },
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;

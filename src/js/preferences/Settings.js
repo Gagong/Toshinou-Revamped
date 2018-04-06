@@ -1,6 +1,5 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, booty) {
-    /*this._collectBoxes = collectBoxes === true;*/
+  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, booty, runfromenemy) {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -13,9 +12,9 @@ class Settings {
     this._palladium = palladium === true;
     this._bonusbox = bonusbox === true;
     this._cargobox = cargobox === true;
-    /*this._palladiumbox = palladiumbox === true;*/
     this._matherials = matherials === true;
     this._booty = booty === true;
+    this._runfromenemy = runfromenemy === true;
   }
 
   get Booty() {
@@ -50,14 +49,6 @@ class Settings {
     this._cargobox = value === true;
   }
 
-  /*get Pall() {
-    return this._palladiumbox;
-  }
-
-  set Pall(value) {
-    this._palladiumbox = value === true;
-  }*/
-
   get Matherials() {
     return this._matherials;
   }
@@ -66,13 +57,13 @@ class Settings {
     this._matherials = value === true;
   }
 
-  /*get collectBoxes() {
-    return this._collectBoxes;
+  get Flee() {
+    return this._runfromenemy;
   }
 
-  set collectBoxes(value) {
-    this._collectBoxes = value === true;
-  }*/
+  set Flee(value) {
+    this._runfromenemy = value === true;
+  }
 
   get moveRandomly() {
     return this._moveRandomly;

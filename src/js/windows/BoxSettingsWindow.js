@@ -27,14 +27,6 @@ class BoxSettingsWindow {
           window.settings.cargobox = this.checked;
         }
       },
-      /*{
-        name: 'palladiumbox',
-        labelText: 'Palladium',
-        appendTo: this.boxSettingsWindow,
-        event: function () {
-          window.settings.palladiumbox = this.checked;
-        }
-      },*/
       {
         name: 'booty',
         labelText: 'Green | Gold booty boxes',

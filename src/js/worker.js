@@ -113,7 +113,6 @@ function init() {
 
 function logic() {
   window.minimap.draw();
-  /*console.log(window.count);*/
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
@@ -137,6 +136,25 @@ function logic() {
       window.movementDone = false;
     }
     return;
+  }
+
+  for (var property in api.ships) {
+    var shiprun = api.ships[property];
+    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
+      let gate = api.findNearestGate();
+      if (gate.gate) {
+        let x = newgate.gate.position.x;
+        let y = newgate.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+      }
+      return;
+    }     
   }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
@@ -209,27 +227,6 @@ function logic() {
       api.targetBoxHash = null;
     }
   }
-
-  /*for (var property in api.ships) {
-    var shiprun = api.ships[property];
-    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
-      api.targetShip = null;
-      api.attacking = false;
-      api.triedToLock = false;
-      api.lockedShip = null;
-      api.targetBoxHash = null;
-      window.movementDone = false;
-      let gate = api.findNearestGate();
-      if (gate.gate) {
-        let x = gate.gate.position.x;
-        let y = gate.gate.position.y;
-        api.isRepairing = true;
-        api.move(x, y);
-        window.movementDone = false;
-        return;
-      }
-    }     
-  }*/
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 2000) {
     api.targetShip = null;

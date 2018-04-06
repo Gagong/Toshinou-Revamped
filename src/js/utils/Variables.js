@@ -1,75 +1,75 @@
 class Variables {
 
   static get PalladiumType() {
-    return "_-T2x";
+    return "_-v4M";
   }
 
   static get PType() {
-    return "_-p3E";
+    return "_-F1O";
   }
 
   static get boxType() {
-    return "_-e11";
+    return "_-Lf";
   }
 
   static get attackerId() {
-    return "_-uU";
+    return "_-i2m";
   }
 
   static get attackHp() {
-    return "_-v35";
+    return "_-z4y";
   }
 
   static get attackShd() {
-    return "_-r3e";
+    return "_-s32";
   }
 
   static get attackedId() {
-    return "_-1B";
+    return "_-j0";
   }
 
   static get moveDuration() {
-    return "_-P47";
+    return "_-6J";
   }
 
   static get shipDestoyedId() {
-    return "_-I1L";
+    return "_-I2k";
   }
 
   static get heroInitMaxHp() {
-    return "_-E4b";
+    return "_-o3s";
   }
 
   static get heroInitMaxShd() {
-    return "_-p4N";
+    return "_-d1G";
   }
 
   static get heroInitHp() {
-    return "_-r16";
+    return "_-f2X";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-P1t";
+    return "_-Zu";
   }
 
   static get hpUpdateHp() {
-    return "_-O1D";
+    return "_-A3L";
   }
 
   static get selectMaxHp() {
-    return "_-P1t";
+    return "_-Zu";
   }
 
   static get selectMaxShd() {
-    return "_-p4N";
+    return "_-d1G";
   }
 
   static get selectHp() {
-    return "_-O1D";
+    return "_-A3L";
   }
   
   static get gateJumpId() {
-    return "_-w28";
+    return "_-b4o";
   }
 
   /*static get assetCreateX() { 
