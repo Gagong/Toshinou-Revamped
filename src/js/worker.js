@@ -143,8 +143,8 @@ function logic() {
     if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
       let gate = api.findNearestGate();
       if (gate.gate) {
-        let x = newgate.gate.position.x;
-        let y = newgate.gate.position.y;
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
