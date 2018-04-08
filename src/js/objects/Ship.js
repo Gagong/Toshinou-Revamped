@@ -1,11 +1,12 @@
 class Ship extends Movable {
-  constructor(x, y, id, isnpc, name, factionId) {
+  constructor(x, y, id, isnpc, name, factionId, clanDiplomacy) {
     super(x, y);
     this.id = id;
     this.isNpc = isnpc;
     this.name = name;
     this.factionId = factionId;
     this.isAttacked = false;
+    this.clanDiplomacy = clanDiplomacy;
     /*console.log(this);*/
   }
 
@@ -16,7 +17,7 @@ class Ship extends Movable {
   }
 
   get isEnemy() {
-    return window.hero.factionId != this.factionId;
+    return (window.hero.factionId != this.factionId && this.clanDiplomacy != 1 && this.clanDiplomacy != 2 || this.clanDiplomacy == 3);
   }
 
   get percentOfHp() {
