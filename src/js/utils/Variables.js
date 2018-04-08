@@ -71,6 +71,10 @@ class Variables {
   static get gateJumpId() {
     return "_-b4o";
   }
+  
+  static get clanDiplomacy() {
+    return "_-H49";
+  } 
 
   /*static get assetCreateX() { 
     return "_-Fe";
