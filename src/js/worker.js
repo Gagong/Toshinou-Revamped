@@ -177,12 +177,12 @@ function logic() {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       return;
-    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && !ship.isAttacked) {
+    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
       api.lockShip(ship.ship);
       api.triedToLock = true;
       api.targetShip = ship.ship;
       return;
-    } else if (ship.ship && window.settings.killNpcs && !ship.isAttacked) {
+    } else if (ship.ship && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
       ship.ship.update();
       api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
         api.targetShip = ship.ship;
@@ -200,19 +200,20 @@ function logic() {
         return;
       }
     }
-
-    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 == api.lockedShip.maxShd*/) {    
-      api.startLaserAttack();
-      api.lastAttack = $.now();
-      api.attacking = true;
-    }
-
-    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 != api.lockedShip.maxShd*/) {
+    
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd) {
       notrightId = api.lockedShip.id;   
       api.targetShip = null;
       api.attacking = false;
       api.triedToLock = false;
       api.lockedShip = null;
+      return;
+    }
+
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd) {    
+      api.startLaserAttack();
+      api.lastAttack = $.now();
+      api.attacking = true;
       return;
     }
   }
@@ -228,7 +229,7 @@ function logic() {
     }
   }
 
-  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 2000) {
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || $.now() - api.lastAttack > 20000) {
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
