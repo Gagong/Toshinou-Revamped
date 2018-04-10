@@ -119,9 +119,9 @@ function init() {
 }
 
 function logic() {
-  /*for colelcting bonus box when circling*/
   var collectBoxWhenCircle = false;
   var CircleBox = null;
+
   if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
     window.b1 = 42000 / 300;
     window.b2 = 26200 / 150;
@@ -374,12 +374,10 @@ function logic() {
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
-                if (nearestBox.box) {
-                    if (nearestBox.distance < 200) {                        
-                        CircleBox = nearestBox;
-                        collectBoxWhenCircle = true;
-                    }
-                }
+        if (nearestBox && nearestBox.box && nearestBox.distance < 200) {                      
+          CircleBox = nearestBox;
+          collectBoxWhenCircle = true;
+        }
         
       }
     } else {
@@ -392,13 +390,12 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    if (collectBoxWhenCircle == true && CircleBox != null) {
-            //console.log("kadir kutu toplama")
-            api.collectBox(CircleBox.box);
-            api.targetBoxHash = CircleBox.box.hash;
-            collectBoxWhenCircle = false;
-            CircleBox=null;
-        }
+    if (collectBoxWhenCircle && CircleBox) {
+      api.collectBox(CircleBox.box);
+      api.targetBoxHash = CircleBox.box.hash;
+      collectBoxWhenCircle = false;
+      CircleBox = null;
+    }
     window.movementDone = false;
   }
 
