@@ -33,6 +33,7 @@
         "js/windows/AttackWindow.js",
         "js/windows/GeneralSettingsWindow.js",
         "js/windows/BoxSettingsWindow.js",
+        "js/windows/GGSettingsWindow.js",
         "js/windows/AutolockWindow.js",
         "js/windows/NpcSettingsWindow.js",
         "js/windows/StatisticWindow.js",

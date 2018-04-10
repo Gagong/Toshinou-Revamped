@@ -1,11 +1,12 @@
 class Ship extends Movable {
-  constructor(x, y, id, isnpc, name, factionId, clanDiplomacy) {
+  constructor(x, y, id, isnpc, name, factionId, modifier, clanDiplomacy) {
     super(x, y);
     this.id = id;
     this.isNpc = isnpc;
     this.name = name;
     this.factionId = factionId;
     this.isAttacked = false;
+    this.modifier = modifier;
     this.clanDiplomacy = clanDiplomacy;
     /*console.log(this);*/
   }
@@ -42,7 +43,6 @@ class Ship extends Movable {
     var sy = dy / this.timeToTarget;
 
     this.lastUpdate = $.now();
-
     this.position.set(this.position.x + sx * diff, this.position.y + sy * diff);
   }
 }

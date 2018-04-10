@@ -71,7 +71,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'dontCircleWhenHpBelow15Percent',
-        labelText: "Don't circle when HP < 15%",
+        labelText: "Don't circle when HP < 20%",
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.dontCircleWhenHpBelow15Percent = this.checked;
@@ -119,14 +119,6 @@ class GeneralSettingsWindow {
           $('span:last-child', this.label).text(' (' + this.value + ')');
         }
       }
-      /*{
-        name: 'betakilling',
-        labelText: 'Beta NPC killing algorithm',
-        appendTo: this.botSettingsWindow,
-        event: function() {
-          window.settings.betakilling = this.checked;
-        }
-      }*/
     ];
 
     controls.forEach((control)=>{

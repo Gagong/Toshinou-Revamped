@@ -1,11 +1,10 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, booty, runfromenemy) {
+  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
     this._killNpcs = killNpcs === true;
     this._npcs = [];
-    /*this._betakilling = betakilling === true;*/
     this.npcCircleRadius = 500;
     this.reviveLimit = 5;
     this._pause = pause === true;
@@ -13,8 +12,71 @@ class Settings {
     this._bonusbox = bonusbox === true;
     this._cargobox = cargobox === true;
     this._matherials = matherials === true;
-    this._booty = booty === true;
     this._runfromenemy = runfromenemy === true;
+    this._zeta = zeta === true;
+    this._alpha = alpha === true;
+    this._beta = beta === true;
+    this._gamma = gamma === true;
+    this._booty = booty === true;
+    this._rbooty = rbooty === true;
+    this._bbooty = bbooty === true;
+    this._msqbooty = msqbooty === true;
+  }
+
+  get MSQBooty() {
+    return this._msqbooty;
+  }
+
+  set MSQBooty(value) {
+    this._msqbooty = value === true;
+  }
+
+  get BBooty() {
+    return this._bbooty;
+  }
+
+  set BBooty(value) {
+    this._bbooty = value === true;
+  }
+
+  get RBooty() {
+    return this._rbooty;
+  }
+
+  set RBooty(value) {
+    this._rbooty = value === true;
+  }
+
+  get Zeta() {
+    return this._zeta;
+  }
+
+  set Zeta(value) {
+    this._zeta = value === true;
+  }
+
+  get Alpha() {
+    return this._alpha;
+  }
+
+  set Alpha(value) {
+    this._alpha = value === true;
+  }
+
+  get Beta() {
+    return this._beta;
+  }
+
+  set Beta(value) {
+    this._beta = value === true;
+  }
+
+  get Gamma() {
+    return this._gamma;
+  }
+
+  set Gamma(value) {
+    this._gamma = value === true;
   }
 
   get Booty() {
@@ -96,14 +158,6 @@ class Settings {
   set killNpcs(value) {
     this._killNpcs = value === true;
   }
-
-  /*get betakilling() {
-    return this._betakilling;
-  }
-
-  set betakilling(value) {
-    this._betakilling = value === true;
-  }*/
 
   setNpc(name, val) {
     this._npcs[name] = val;

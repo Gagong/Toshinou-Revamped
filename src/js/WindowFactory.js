@@ -59,7 +59,7 @@ class WindowFactory {
 
     static windowsStructure(params) {
         const pane = jQuery('<div>', {
-            width: params.width || 400,
+            width: params.width || 330,
             height: (params.height + HEADER_HEIGHT) || '',
             'class': 'window',
             css: {

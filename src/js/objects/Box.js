@@ -22,7 +22,22 @@ class Box extends Movable {
 
   isBooty() {
     var type = this.type;
-    return (type == "PIRATE_BOOTY"/*|| type == "PIRATE_BOOTY_BLUE" || type == "PIRATE_BOOTY_RED"*/|| type == "PIRATE_BOOTY_GOLD");
+    return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD"); 
+  }
+
+  isMSQBooty() {
+    var type = this.type;
+    return (type == "MASQUE_BOOTY_BOX");
+  }
+
+  isBBooty() {
+    var type = this.type;
+    return (type == "PIRATE_BOOTY_BLUE");
+  }
+
+  isRBooty() {
+    var type = this.type;
+    return (type == "PIRATE_BOOTY_RED");
   }
 
   isCargo() {
@@ -32,7 +47,7 @@ class Box extends Movable {
 
   isDropRes() {
     var type = this.type;
-    return (type == "AURUS_BOX" || type == "BIFENON" || type == "HYBRID_ALLOY_BOX");
+    return (type == "AURUS_BOX" || type == "BIFENON" || type == "HYBRID_ALLOY_BOX" || type == "DEMANER_INVADER_BOX");
   }
 
   isCollectable() {

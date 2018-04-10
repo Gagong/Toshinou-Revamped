@@ -7,10 +7,14 @@ class Variables {
   static get PType() {
     return "_-F1O";
   }
-  
+
+  static get Gatetype() {
+    return "_-x1T";
+  }
+
   static get clanDiplomacy() {
     return "_-H49";
-  } 
+  }
 
   static get boxType() {
     return "_-Lf";
@@ -76,11 +80,11 @@ class Variables {
     return "_-b4o";
   }
 
-  /*static get assetCreateX() { 
-    return "_-Fe";
+  static get assetCreateX() { 
+    return "_-Q4a";
   }
 
   static get assetCreateY() { 
-    return "_-v3s";
-  }*/
+    return "_-B4";
+  }
 }

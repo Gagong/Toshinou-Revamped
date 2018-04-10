@@ -13,7 +13,7 @@ class BoxSettingsWindow {
       },
       {
         name: 'matherials',
-        labelText: 'Matherials',
+        labelText: 'Materials',
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.matherials = this.checked;
@@ -21,7 +21,7 @@ class BoxSettingsWindow {
       },
       {
         name: 'cargobox',
-        labelText: 'Cargo box (Disabled ATM)',
+        labelText: 'Cargo box',
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.cargobox = this.checked;
@@ -33,6 +33,30 @@ class BoxSettingsWindow {
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.booty = this.checked;
+        }
+      },
+      {
+        name: 'rbooty',
+        labelText: 'Red booty boxes',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.rbooty = this.checked;
+        }
+      },
+      {
+        name: 'bbooty',
+        labelText: 'Blue booty boxes',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.bbooty = this.checked;
+        }
+      },
+      {
+        name: 'msqbooty',
+        labelText: 'Apocalyptic booty boxes',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.msqbooty = this.checked;
         }
       }
     ]

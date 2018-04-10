@@ -7,6 +7,8 @@ class ShipSelectedHandler {
     this._handler = function(e, a) {
       var parsedJson = JSON.parse(e.detail);
 
+      /*console.log(parsedJson);*/
+
       var ship = a.ships[parsedJson.userId];
 
       ship.maxHp = parsedJson[Variables.selectMaxHp];

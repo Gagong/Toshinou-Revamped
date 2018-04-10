@@ -23,6 +23,14 @@ class BoxType {
     return "PIRATE_BOOTY_GOLD";
   }
 
+  static get pirateBootyMasque() {
+    return "MASQUE_BOOTY_BOX";
+  }
+
+  static get demanerBox() {
+    return "DEMANER_INVADER_BOX";
+  }
+
   static get giftBox() {
     return "GIFT_BOXES";
   }
@@ -35,7 +43,10 @@ class BoxType {
     ret[BoxType.pirateBootyRed] = "red";
     ret[BoxType.pirateBootyBlue] = "blue";
     ret[BoxType.pirateBootyGold] = "gold";
+    ret[BoxType.pirateBootyMasque] = "violet";
+    ret[BoxType.demanerBox] = "blueviolet"
     ret[BoxType.giftBox] = "blue";
+    
 
     return ret;
   }
@@ -45,6 +56,6 @@ class BoxType {
     if (color != null)
       return color;
     else
-      return "green";
+      return "lime";
   }
 }
