@@ -29,7 +29,7 @@ class GGSettingsWindow {
       },
       {
         name: 'zeta',
-        labelText: 'Move to GG Zeta<br>I am use this helper with Clickermann to jump in to the next GG wave.<br>Sorry, i am have not other GGs ATM.<br>If you have other GGs and wanna help me - PM me.',
+        labelText: "Move to GG Zeta<br>I'm using this helper with Clickermann to jump to the next GG wave.<br>Sorry, but I don't have other GG's atm.<br>If you have other GG's feel free to contact me, your help will be apreciated.",
         appendTo: this.GGSettingsWindow,
         event: function() {
           window.settings.zeta = this.checked;
