@@ -259,12 +259,12 @@ function logic() {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       return;
-    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && !ship.isAttacked) {
+    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
       api.lockShip(ship.ship);
       api.triedToLock = true;
       api.targetShip = ship.ship;
       return;
-    } else if (ship.ship && window.settings.killNpcs && !ship.isAttacked) {
+    } else if (ship.ship && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
       ship.ship.update();
       if (ship.ship.modifier.length == 0 || ship.ship.modifier.activated == false) {
         api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
@@ -288,6 +288,7 @@ function logic() {
         if (dist < 600) {
           api.lockShip(api.targetShip);
           api.triedToLock = true;
+          return;
         }
       }
       else {
@@ -297,8 +298,17 @@ function logic() {
         api.lockedShip = null;
       }
     }
-
-    if (!api.attacking && api.lockedShip) {
+    
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 != api.lockedShip.maxShd) {
+      notrightId = api.lockedShip.id;
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
+      return;
+    }  
+      
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 == api.lockedShip.maxShd) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
