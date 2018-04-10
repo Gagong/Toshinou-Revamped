@@ -36,7 +36,6 @@ $(document).ready(function() {
   var hm = new HandlersManager(api);
 
   hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
-  hm.registerCommand(ResourseBoxInitHandler.ID, new ResourseBoxInitHandler());
   hm.registerCommand(PalladiumInitHandler.ID, new PalladiumInitHandler());
   hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
   hm.registerCommand(ShipCreateHandler.ID, new ShipCreateHandler());

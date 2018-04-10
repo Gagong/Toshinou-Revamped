@@ -142,8 +142,8 @@ class Api {
           (box.isRBooty() && window.settings.rbooty && window.rcount > 0) || 
           (box.isBBooty() && window.settings.bbooty && window.bcount > 0) || 
           (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
-          finalBox = box;
-          minDist = dist;
+            finalBox = box;
+            minDist = dist;
         }
       }
     }
