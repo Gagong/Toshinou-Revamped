@@ -374,7 +374,7 @@ function logic() {
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
         let dist2 = api.targetShip.distanceTo(nearestBox.position);
-        if (nearestBox && nearestBox.box && (nearestBox.distance < 200 || (dist2 <= dist && dist2 <= window.settings.npcCircleRadius))) {                      
+        if (nearestBox && nearestBox.box && (nearestBox.distance < 300 || dist2 <= dist)) {                      
           CircleBox = nearestBox;
           collectBoxWhenCircle = true;
         }  
