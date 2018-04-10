@@ -373,11 +373,11 @@ function logic() {
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
-        if (nearestBox && nearestBox.box && nearestBox.distance < 200) {                      
+        let dist2 = api.targetShip.distanceTo(nearestBox.position);
+        if (nearestBox && nearestBox.box && (nearestBox.distance < 200 || (dist2 <= dist && dist2 <= window.settings.npcCircleRadius))) {                      
           CircleBox = nearestBox;
           collectBoxWhenCircle = true;
-        }
-        
+        }  
       }
     } else {
       api.targetShip = null;
