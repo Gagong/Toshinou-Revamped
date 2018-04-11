@@ -158,23 +158,18 @@ function logic() {
     return;
   }
 
-  for (var property in api.ships) {
-    var shiprun = api.ships[property];
-    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
-      let gate = api.findNearestGate();
-      if (gate.gate) {
-        let x = gate.gate.position.x;
-        let y = gate.gate.position.y;
-        api.targetShip = null;
-        api.attacking = false;
-        api.triedToLock = false;
-        api.lockedShip = null;
-        api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
-      }
+  var enemyresult=api.CheckForEnemy();
+  if (enemyresult.run) {
+  //console.log("runaway ");
+      let gate = api.findNearestGateForRunAway(enemyresult.enemy);
+    if (gate.gate) {
+      let x = gate.gate.position.x;
+      let y = gate.gate.position.y;
+      api.isRepairing = true;
+      api.move(x, y);
+      window.movementDone = false;
       return;
-    }     
+    }
   }
 
   if (window.settings.zeta) {
