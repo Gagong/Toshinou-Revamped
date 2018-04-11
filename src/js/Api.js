@@ -187,6 +187,24 @@ class Api {
 
     return {gate: finalGate, distance: minDist};
   }
+  
+  findNearestGateForRunAway(enemey){
+    var minDist = 100000;
+    var finalGate;
+    this.gates.forEach(gate => {
+    var enemeyDistance=enemy.distanceTo(gate.position);
+    var dist = window.hero.distanceTo(gate.position);
+    if (enemeyDistance<dist) {
+    continue;
+    }
+    if (dist < minDist) {
+    finalGate = gate;
+    minDist = dist;
+    }
+    });
+
+    return {gate: finalGate, distance: minDist}; 
+  }
 
   findNearestGatebyID(gate_id) {
     var minDist = 100000;
