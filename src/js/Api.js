@@ -225,4 +225,30 @@ class Api {
     this.heroDied = true;
     Injector.injectScript("window.heroDied = true;");
   }
+  
+  CheckForEnemy() {
+	var result={run:false,enemy:null,edist:100000};
+	var enemyDistance = 100000;
+		var enemyShip;
+	var kac = false;
+	for (var property in this.ships) {
+		var ship = this.ships[property];
+		ship.update();
+		if (!ship.isNpc && ship.isEnemy) {
+			var dist = ship.distanceTo(window.hero.position);
+			if (enemyDistance > dist) {
+				enemyDistance = dist;
+				result.edist=dist;
+				result.enemy=ship;
+			}
+		}
+	}
+	if (enemyDistance<2000) { // 2000 run away detect distance
+		result.run=true;
+		return result;
+	}
+	return result;
+}
+  
+  
 }
