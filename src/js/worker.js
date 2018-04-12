@@ -2,6 +2,7 @@ window.globalSettings = new GlobalSettings();
 window.debug = false;
 var api;
 var notrightId;
+var running;
 window.b1 = 70;
 window.b2 = 87.3;
 
@@ -138,6 +139,26 @@ function logic() {
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
   }
+  
+  var runFix;
+  var finalrunFix;
+  
+  if (!window.movementDone && running) {
+    for (var property in api.ships) {
+      let runShip = api.ships[property];
+	 
+	    if (runShip.isEnemy && !runShip.isNpc) {
+	      finalrunFix = runShip; 
+	    }  
+    }	
+    
+    let gate = api.findNearestGate();
+    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
+      window.movementDone = true;
+      running = false;	  
+      return;	   
+    }
+  }	 	 
 
   if (api.heroDied && api.isDisconected)
     return;
@@ -172,6 +193,7 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
+        running=true;
       }
       return;
     }     
