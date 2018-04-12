@@ -3,6 +3,7 @@ Toshinou
 A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.
 It does some pretty neat stuff and is still under heavy development.
 For more information join the Discord! https://discordapp.com/invite/6awg2te
+Official bot GitHub: https://github.com/freshstudio/Toshinou
 
 How to install/use?
 ----------
@@ -13,6 +14,7 @@ How to install/use?
 4. Install the addon through chrome://extensions
 5. Use any web proxy to replace the main.swf and preloader.swf
 6. Enjoy!
+EN guide: https://youtu.be/sZOrfItRd2w
 
 Issues
 ----------
