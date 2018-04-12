@@ -147,9 +147,9 @@ function logic() {
     for (var property in api.ships) {
       let runShip = api.ships[property];
 	 
-	    if (runShip.isEnemy && !runShip.isNpc) {
-	      finalrunFix = runShip; 
-	    }  
+      if (runShip.isEnemy && !runShip.isNpc) {
+	finalrunFix = runShip; 
+      }  
     }	
     
     let gate = api.findNearestGate();
