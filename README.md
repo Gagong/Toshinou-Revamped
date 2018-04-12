@@ -6,7 +6,7 @@ For more information join the Discord! https://discordapp.com/invite/6awg2te
 
 How to install/use?
 ----------
-### Chrome/Chromium
+### Chrome/Chromium/Opera
 1. Download and extract it
 2. Open any web proxy and locate the options
 3. Enable HTTPS decryption (you maybe have to trust the certification and restart the proxy)
