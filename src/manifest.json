@@ -9,7 +9,7 @@
     {
       "matches": ["*://*.darkorbit.com/indexInternal.es?action=internalMapRevolution"],
       "js": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.2.1.min.js",//Ненавижу казахов
         "js/libs/jquery-ui.min.js",
         "js/libs/konva.min.js",
         "js/libs/md5.min.js",
