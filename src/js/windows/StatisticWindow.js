@@ -12,6 +12,7 @@ class StatisticWindow {
             ammo: 0,
             experience: 0,
             honor: 0,
+            rank: 0,
             speed: 0,
         };
 
@@ -61,11 +62,17 @@ class StatisticWindow {
                 appendTo: this.botStatisticWindow
             },
             {
+                name: 'rank',
+                labelText: 'Rank Points: ',
+                spanText: '0',
+                appendTo: this.botStatisticWindow
+            },
+            {
                 name: 'speed',
                 labelText: 'Speed: ',
                 spanText: '0.00 uri/min.',
                 appendTo: this.botStatisticWindow
-            },
+            }
         ];
 
         if (window.globalSettings.showRuntime) {
@@ -152,6 +159,14 @@ class StatisticWindow {
         let htmlEl = this[el];
         $(window).on(event, (e)=> {
             let el = $('span:last-child', htmlEl);
+            if (detailEl == "experience") {
+                this.stats.rank += parseInt(e.detail[detailEl]) / 10000;
+                this.rank.text("Rank Points: " + Math.floor(this.stats.rank));
+            }
+            else if (detailEl == "honor") {
+                this.stats.rank += parseInt(e.detail[detailEl]) / 100;
+                this.rank.text("Rank Points: " + Math.floor(this.stats.rank));
+            }
             this.stats[detailEl] += parseInt(e.detail[detailEl]);
             let collected = this.stats[detailEl];
             el.text(collected);

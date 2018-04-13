@@ -5,7 +5,7 @@ class WindowFactory {
     static createWindow(params) {
 
         if (!window.mainFrameWindow) {
-            window.mainFrameWindow = this.windowsStructure({text: "Windows | 10.0.6329 | v.007", isMain: true})[0];
+            window.mainFrameWindow = this.windowsStructure({text: "Windows | 10.0.6341 | v.008", isMain: true})[0];
 
             if (window.globalSettings.windowsToTabs) {
                 $(window.mainFrameWindow).addClass('tabs');

@@ -31,6 +31,10 @@ class BoxType {
     return "DEMANER_INVADER_BOX";
   }
 
+  static get yurisBox() {
+    return "YURIS_BONUS_BOX";
+  }
+
   static get giftBox() {
     return "GIFT_BOXES";
   }
@@ -46,7 +50,7 @@ class BoxType {
     ret[BoxType.pirateBootyMasque] = "violet";
     ret[BoxType.demanerBox] = "blueviolet"
     ret[BoxType.giftBox] = "blue";
-    
+    ret[BoxType.yurisBox] = "blanchedalmond";
 
     return ret;
   }

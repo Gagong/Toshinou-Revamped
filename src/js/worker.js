@@ -2,7 +2,6 @@ window.globalSettings = new GlobalSettings();
 window.debug = false;
 var api;
 var notrightId;
-var running;
 window.b1 = 70;
 window.b2 = 87.3;
 
@@ -110,9 +109,9 @@ function init() {
 
       if (finalShip != null) {
         api.lockShip(finalShip);
-        api.startLaserAttack();
+        /*api.startLaserAttack();
         api.lastAttack = $.now();
-        api.attacking = true;
+        api.attacking = true;*/
       }
     }
   });
@@ -139,26 +138,6 @@ function logic() {
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
   }
-  
-  var runFix;
-  var finalrunFix;
-  
-  if (!window.movementDone && running) {
-    for (var property in api.ships) {
-      let runShip = api.ships[property];
-	 
-      if (runShip.isEnemy && !runShip.isNpc) {
-	finalrunFix = runShip; 
-      }  
-    }	
-    
-    let gate = api.findNearestGate();
-    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
-      window.movementDone = true;
-      running = false;	  
-      return;	   
-    }
-  }	 	 
 
   if (api.heroDied && api.isDisconected)
     return;
@@ -193,7 +172,6 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
-        running=true;
       }
       return;
     }     
@@ -323,16 +301,16 @@ function logic() {
       }
     }
     
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 != api.lockedShip.maxShd) {
+    /*if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 != api.lockedShip.maxShd) {
       notrightId = api.lockedShip.id;
       api.targetShip = null;
       api.attacking = false;
       api.triedToLock = false;
       api.lockedShip = null;
       return;
-    }  
+    }*/  
       
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 == api.lockedShip.maxShd) {
+    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd +1 == api.lockedShip.maxShd*/) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
@@ -395,8 +373,7 @@ function logic() {
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
-        let dist2 = api.targetShip.distanceTo(nearestBox.position);
-        if (nearestBox && nearestBox.box && (nearestBox.distance < 300 || dist2 <= dist)) {                      
+        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {                 
           CircleBox = nearestBox;
           collectBoxWhenCircle = true;
         }  
