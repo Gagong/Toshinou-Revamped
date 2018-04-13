@@ -4,6 +4,7 @@ var api;
 var notrightId;
 window.b1 = 70;
 window.b2 = 87.3;
+var running;
 
 $(document).ready(function() {
   api = new Api();
@@ -158,24 +159,25 @@ function logic() {
     return;
   }
 
-  for (var property in api.ships) {
-    var shiprun = api.ships[property];
-    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.runfromenemy) {
-      let gate = api.findNearestGate();
-      if (gate.gate) {
-        let x = gate.gate.position.x;
-        let y = gate.gate.position.y;
-        api.targetShip = null;
-        api.attacking = false;
-        api.triedToLock = false;
-        api.lockedShip = null;
-        api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
-      }
-      return;
-    }     
-  }
+  var runFix;
+  var finalrunFix;
+  
+  if (!window.movementDone && running) {
+    for (var property in api.ships) {
+      let runShip = api.ships[property];
+  
+      if (runShip.isEnemy && !runShip.isNpc) {
+        finalrunFix = runShip; 
+      }  
+    }  
+    
+    let gate = api.findNearestGate();
+    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
+      window.movementDone = true;
+      running = false;   
+      return;     
+    }
+  }     
 
   if (window.settings.zeta) {
     let zetagg = api.findNearestGatebyID(54);
@@ -395,6 +397,7 @@ function logic() {
       CircleBox = null;
     }
     window.movementDone = false;
+    running = true;
   }
 
   window.dispatchEvent(new CustomEvent("logicEnd"));
