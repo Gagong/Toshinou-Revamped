@@ -165,14 +165,24 @@ function logic() {
   if (!window.movementDone && running) {
     for (var property in api.ships) {
       let runShip = api.ships[property];
-  
-      if (runShip.isEnemy && !runShip.isNpc) {
-        finalrunFix = runShip; 
-      }  
-    }  
+	 
+	  if (runShip.isEnemy && !runShip.isNpc) {
+	    finalrunFix = runShip; 
+	  }  
+    }	
     
     let gate = api.findNearestGate();
-    if (runShip.isEnemy && !runShip.isNpc && window.settings.runfromenemy) {
+    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
+      window.movementDone = true;
+      running = false;	  
+      return;	   
+    }
+  }	 	 
+ 
+  for (var property in api.ships) {
+    let shiprun = api.ships[property];
+    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.killNpcs) {
+      let gate = api.findNearestGate();
       if (gate.gate) {
         let x = gate.gate.position.x;
         let y = gate.gate.position.y;
@@ -183,16 +193,11 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
+		running = true;
       }
-    }
-
-    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
-      window.movementDone = true;
-      running = false;   
-      return;     
-    }
-    return;
-  }     
+      return;
+    }     
+  }
 
   if (window.settings.zeta) {
     let zetagg = api.findNearestGatebyID(54);
