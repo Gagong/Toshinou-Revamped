@@ -172,11 +172,26 @@ function logic() {
     }  
     
     let gate = api.findNearestGate();
+    if (runShip.isEnemy && !runShip.isNpc && window.settings.runfromenemy) {
+      if (gate.gate) {
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+      }
+    }
+
     if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
       window.movementDone = true;
       running = false;   
       return;     
     }
+    return;
   }     
 
   if (window.settings.zeta) {
