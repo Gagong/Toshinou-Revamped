@@ -151,7 +151,7 @@ function logic() {
 
   if (window.settings.runfromenemy && running) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
-    return
+    return;
   }		
 
   if (window.settings.pause) {
@@ -164,7 +164,7 @@ function logic() {
   }
   
   if (window.settings.runfromenemy) {
-    var enemyresult=api.CheckForEnemy();
+    var enemyresult = api.CheckForEnemy();
   
     if (enemyresult.run) {
       let gate = api.findNearestGateForRunAway(enemyresult.enemy);
@@ -182,11 +182,13 @@ function logic() {
         setTimeout(() => {
           window.movementDone = true;
           running = false;
-        }, MathUtils.random(30000,35000));
-	  return;	
+        }, MathUtils.random(30000, 35000));
+	      return;	
       }
     }
   }	
+
+  // [1 - x-2; 2 - Alpha; 3 - Beta; 4 - Gamma; 5 - Delta; 70 - Kappa; 82 - Kuiper]
 
   if (window.settings.zeta) {
     let zetagg = api.findNearestGatebyID(54);
@@ -334,7 +336,7 @@ function logic() {
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
     } else {
-      if (box.type != ("MUCOSUM" || "PRISMATIUM" || "SCRAPIUM" || "BOLTRUM")) {
+      if (box.type != ("MUCOSUM" || "PRISMATIUM" || "SCRAPIUM" || "BOLTRUM" || "AURUS_BOX" || "BIFENON" || "HYBRID_ALLOY_BOX")) {
         delete api.boxes[api.targetBoxHash];
         api.blackListHash(api.targetBoxHash);
         api.targetBoxHash = null;
@@ -342,7 +344,9 @@ function logic() {
     }
   }
 
-  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 15000) || (api.targetShip && (api.targetShip.modifier.length != 0 || api.targetShip.modifier.activated == false))) {
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || 
+    ($.now() - api.lastAttack > 15000) || 
+    (api.targetShip && (api.targetShip.modifier.length != 0 || api.targetShip.modifier.activated == false))) {
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
