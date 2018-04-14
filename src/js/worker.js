@@ -193,7 +193,7 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
-		running = true;
+	running = true;
       }
       return;
     }     
