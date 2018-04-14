@@ -110,11 +110,17 @@ function init() {
 
       if (finalShip != null) {
         api.lockShip(finalShip);
+<<<<<<< HEAD
         if (window.settings.autoattack) {
           api.startLaserAttack();
           api.lastAttack = $.now();
           api.attacking = true;
         }
+=======
+        /*api.startLaserAttack();
+        api.lastAttack = $.now();
+        api.attacking = true;*/
+>>>>>>> 9f16c532fc98b24eefca7b69f166680952d0781e
       }
     }
   });
@@ -188,7 +194,11 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
+<<<<<<< HEAD
 		    running = true;
+=======
+	running = true;
+>>>>>>> 9f16c532fc98b24eefca7b69f166680952d0781e
       }
       return;
     }     
