@@ -3,7 +3,7 @@ class Battlestation extends Movable {
     super(x, y);
     this.id = id;
     this.name = name;
-    this.clanTag = clanTag;
+    this.clanTag = toString(clanTag);
     this.factionId = factionId;
     this.modules = {};
   }

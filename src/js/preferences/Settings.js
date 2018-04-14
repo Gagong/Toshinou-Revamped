@@ -1,8 +1,9 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
+  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
+    this._autoattack = autoattack === true;
     this._killNpcs = killNpcs === true;
     this._npcs = [];
     this.npcCircleRadius = 500;
@@ -21,6 +22,14 @@ class Settings {
     this._rbooty = rbooty === true;
     this._bbooty = bbooty === true;
     this._msqbooty = msqbooty === true;
+  }
+
+  get AA() {
+    return this._autoattack;
+  }
+
+  set AA(value) {
+    this._autoattack = value === true;
   }
 
   get MSQBooty() {

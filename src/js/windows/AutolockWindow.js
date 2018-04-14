@@ -19,6 +19,14 @@ class AutolockWindow {
           window.settings.lockPlayers = this.checked;
         }
       },
+      {
+        name: 'autoattack',
+        labelText: 'Attack locked target',
+        appendTo: this.autolockWindow,
+        event: function () {
+          window.settings.autoattack = this.checked;
+        }
+      },
     ];
 
     options.forEach((option)=>{
