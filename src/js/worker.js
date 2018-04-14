@@ -121,6 +121,11 @@ function init() {
 }
 
 function logic() {
+  if (window.settings.runfromenemy && running) {
+    window.dispatchEvent(new CustomEvent("logicEnd"));
+    return
+  }			
+	
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
@@ -174,10 +179,11 @@ function logic() {
     }
   }	 	 
  
-  for (var property in api.ships) {
-    let shiprun = api.ships[property];
-    if (shiprun.isEnemy && !shiprun.isNpc && window.settings.killNpcs) {
-      let gate = api.findNearestGate();
+  if (window.settings.runfromenemy) {
+    var enemyresult=api.CheckForEnemy();
+  
+    if (enemyresult.run) {
+      let gate = api.findNearestGateForRunAway(enemyresult.enemy);
       if (gate.gate) {
         let x = gate.gate.position.x;
         let y = gate.gate.position.y;
@@ -188,11 +194,15 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
-	running = true;
+        running = true;
+        setTimeout(() => {
+          window.movementDone = true;
+          running = false;
+        }, MathUtils.random(30000,35000));
+	  return;	
       }
-      return;
-    }     
-  }
+    }
+  }	
 
   if (window.settings.zeta) {
     let zetagg = api.findNearestGatebyID(54);
