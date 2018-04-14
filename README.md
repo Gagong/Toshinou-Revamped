@@ -11,8 +11,6 @@ Official bot Discord: https://discordapp.com/invite/6awg2te
 
 Official bot GitHub: https://github.com/freshstudio/Toshinou
 
-----------
-
 How to install/use?
 ----------
 ### Chrome/Chromium/Opera
