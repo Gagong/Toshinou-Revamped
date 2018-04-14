@@ -2,9 +2,16 @@ Toshinou
 ==========
 A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.
 It does some pretty neat stuff and is still under heavy development.
-For more information join the Discord! https://discordapp.com/invite/6awg2te
+
+Our bot Discord: https://discord.gg/mUKXk
+
+Our bot GitHub: https://github.com/HeRoBaNd/Toshinou-Buttman-Gagong
+
+Official bot Discord: https://discordapp.com/invite/6awg2te
 
 Official bot GitHub: https://github.com/freshstudio/Toshinou
+
+----------
 
 How to install/use?
 ----------
