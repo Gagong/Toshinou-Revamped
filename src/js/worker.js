@@ -340,9 +340,11 @@ function logic() {
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
     } else {
-      delete api.boxes[api.targetBoxHash];
-      api.blackListHash(api.targetBoxHash);
-      api.targetBoxHash = null;
+      if (box.type != ("MUCOSUM" || "PRISMATIUM" || "SCRAPIUM" || "BOLTRUM")) {
+        delete api.boxes[api.targetBoxHash];
+        api.blackListHash(api.targetBoxHash);
+        api.targetBoxHash = null;
+      }
     }
   }
 
