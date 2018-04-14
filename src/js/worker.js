@@ -120,12 +120,7 @@ function init() {
   });
 }
 
-function logic() {
-  if (window.settings.runfromenemy && running) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
-    return
-  }			
-	
+function logic() {	
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
@@ -147,8 +142,17 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if (api.heroDied && api.isDisconected)
+  if (api.heroDied && api.isDisconected) {
+    if(running) {
+      running = false;
+    }
     return;
+  }
+
+  if (window.settings.runfromenemy && running) {
+    window.dispatchEvent(new CustomEvent("logicEnd"));
+    return
+  }		
 
   if (window.settings.pause) {
     api.targetShip = null;
