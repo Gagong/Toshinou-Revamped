@@ -252,11 +252,16 @@ function logic() {
     }
   }
 
-  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent && api.lockedShip.percentOfHp > 15) {
     let gate = api.findNearestGate();
     if (gate.gate) {
       let x = gate.gate.position.x;
       let y = gate.gate.position.y;
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
+      api.targetBoxHash = null;	    
       api.isRepairing = true;
       api.move(x, y);
       window.movementDone = false;
