@@ -144,13 +144,6 @@ function logic() {
     return;
 
   if (window.settings.pause) {
-    /*let newgate = api.findNearestGate(); //removed by request
-    if (newgate.gate) {
-      let x = newgate.gate.position.x;
-      let y = newgate.gate.position.y;
-      api.move(x, y);
-      window.movementDone = false;
-    }*/
     api.targetShip = null;
     api.attacking = false;
     api.triedToLock = false;
