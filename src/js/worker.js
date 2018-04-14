@@ -158,27 +158,7 @@ function logic() {
     api.targetBoxHash = null;
     return;
   }
-
-  var runFix;
-  var finalrunFix;
   
-  if (!window.movementDone && running) {
-    for (var property in api.ships) {
-      let runShip = api.ships[property];
-	 
-	  if (runShip.isEnemy && !runShip.isNpc) {
-	    finalrunFix = runShip; 
-	  }  
-    }	
-    
-    let gate = api.findNearestGate();
-    if (finalrunFix == null && gate.gate && window.hero.position.x == gate.gate.position.x && window.hero.position.y == gate.gate.position.y) {
-      window.movementDone = true;
-      running = false;	  
-      return;	   
-    }
-  }	 	 
- 
   if (window.settings.runfromenemy) {
     var enemyresult=api.CheckForEnemy();
   
