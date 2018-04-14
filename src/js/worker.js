@@ -252,19 +252,19 @@ function logic() {
     }
   }
 
-  if (api.targetBoxHash == null && api.targetShip == null) {
-    if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
-      let gate = api.findNearestGate();
-      if (gate.gate) {
-        let x = gate.gate.position.x;
-        let y = gate.gate.position.y;
-        api.isRepairing = true;
-        api.move(x, y);
-        window.movementDone = false;
-        return;
-      }
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
+    let gate = api.findNearestGate();
+    if (gate.gate) {
+      let x = gate.gate.position.x;
+      let y = gate.gate.position.y;
+      api.isRepairing = true;
+      api.move(x, y);
+      window.movementDone = false;
+      return;
     }
+  }
 
+  if (api.targetBoxHash == null && api.targetShip == null) {
     var box = api.findNearestBox();
     var ship = api.findNearestShip();
 
