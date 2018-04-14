@@ -187,6 +187,24 @@ class Api {
 
     return {gate: finalGate, distance: minDist};
   }
+  
+  findNearestGateForRunAway(enemy) {
+    var minDist = 100000;
+    var finalGate;
+    this.gates.forEach(gate => {
+      var enemeyDistance = enemy.distanceTo(gate.position);
+      var dist = window.hero.distanceTo(gate.position);
+      if (enemeyDistance < dist) {
+        return;
+      }
+      if (dist < minDist) {
+        finalGate = gate;
+        minDist = dist;
+      }
+    });
+
+    return { gate: finalGate, distance: minDist };
+  }
 
   findNearestGatebyID(gate_id) {
     var minDist = 100000;
@@ -208,48 +226,27 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
-  /*findNearestGateForRunAway(enemey) { dont tested atm
-    var minDist = 100000;
-    var finalGate;
-    this.gates.forEach(gate => {
-      var enemeyDistance = enemy.distanceTo(gate.position);
-      var dist = window.hero.distanceTo(gate.position);
-      if (enemeyDistance < dist) {
-        return;
-      }
-      else if (dist < minDist) {
-        finalGate = gate;
-        minDist = dist;
-      }
-    });
-      return {gate: finalGate, distance: minDist}; 
-  }
-
   CheckForEnemy() {
-    var result = {
-      run : false,
-      enemy : null,
-      edist : 100000
-    };
-    var enemyDistance = 100000;
-    var enemyShip;
-    var kac = false;
-    for (var property in this.ships) {
-      var ship = this.ships[property];
-      ship.update();
-      if (!ship.isNpc && ship.isEnemy) {
-        var dist = ship.distanceTo(window.hero.position);
-        if (enemyDistance > dist) {
-          enemyDistance = dist;
-          result.edist = dist;
-          result.enemy = ship;
-        }
-      }
-    }
-    if (enemyDistance < 2000) { // 2000 run away detect distance
-      result.run = true;
-      return result;
-    }
-    return result;
-  }*/
+     var result = { run: false, enemy: null, edist: 100000 };
+     var enemyDistance = 100000;
+     var enemyShip;
+     for (var property in this.ships) {
+       var ship = this.ships[property];
+       ship.update();
+       if (!ship.isNpc && ship.isEnemy) {
+         var dist = ship.distanceTo(window.hero.position);
+         if (enemyDistance > dist) {
+           enemyDistance = dist;
+           result.edist = dist;
+           result.enemy = ship;
+         }
+       }
+     }
+     if (enemyDistance < 2000) { // 2000 run away detect distance
+       result.run = true;
+       return result;
+     }
+     return result;
+  }
+  
 }
