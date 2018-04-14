@@ -384,7 +384,7 @@ function logic() {
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
       if (window.settings.circleNpc) {
         let enemy = api.targetShip.position;
-        let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.1;
+        let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
