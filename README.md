@@ -4,8 +4,6 @@ A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.
 It does some pretty neat stuff and is still under heavy development.
 For more information join the Discord! https://discordapp.com/invite/6awg2te
 
-Updated by Gagong & Buttman.
-
 Official bot GitHub: https://github.com/freshstudio/Toshinou
 
 How to install/use?
