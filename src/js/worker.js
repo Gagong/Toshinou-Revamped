@@ -404,7 +404,6 @@ function logic() {
       CircleBox = null;
     }
     window.movementDone = false;
-    running = true;
   }
 
   window.dispatchEvent(new CustomEvent("logicEnd"));
