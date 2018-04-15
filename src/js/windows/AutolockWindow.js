@@ -22,11 +22,11 @@ class AutolockWindow {
         }
       },
       {
-        name: 'autoattack',
+        name: 'autoAttack',
         labelText: 'Attack locked target',
         appendTo: this.autolockWindow,
         event: function () {
-          window.settings.autoattack = this.checked;
+          window.settings.autoAttack = this.checked;
         }
       },
     ];

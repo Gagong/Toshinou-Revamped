@@ -20,22 +20,22 @@ class Box extends Movable {
     return (type == "8"); // Palladium - 8
   }
 
-  isBooty() {
+  isGreenOrGoldBooty() {
     var type = this.type;
     return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD");
   }
 
-  isMSQBooty() {
+  isMasqueBooty() {
     var type = this.type;
     return (type == "MASQUE_BOOTY_BOX");
   }
 
-  isBBooty() {
+  isBlueBooty() {
     var type = this.type;
     return (type == "PIRATE_BOOTY_BLUE");
   }
 
-  isRBooty() {
+  isRedBooty() {
     var type = this.type;
     return (type == "PIRATE_BOOTY_RED");
   }
