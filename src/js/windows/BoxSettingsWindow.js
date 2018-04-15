@@ -1,9 +1,11 @@
 class BoxSettingsWindow {
   createWindow() {
-    this.boxSettingsWindow = WindowFactory.createWindow({width: 320, text: "Box settings"});
+    this.boxSettingsWindow = WindowFactory.createWindow({
+      width: 320,
+      text: "Box settings"
+    });
 
-    let controls = [
-      {
+    let controls = [{
         name: 'bonusbox',
         labelText: 'Bonus box',
         appendTo: this.boxSettingsWindow,
@@ -61,7 +63,7 @@ class BoxSettingsWindow {
       }
     ]
 
-    controls.forEach((control)=>{
+    controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
   }

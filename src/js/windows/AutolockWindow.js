@@ -1,9 +1,11 @@
 class AutolockWindow {
   createWindow() {
-    this.autolockWindow = WindowFactory.createWindow({width: 320, text: "Autolocker"});
+    this.autolockWindow = WindowFactory.createWindow({
+      width: 320,
+      text: "Autolocker"
+    });
 
-    let options = [
-      {
+    let options = [{
         name: 'lockNpc',
         labelText: 'Autolock NPCs (key: x)',
         appendTo: this.autolockWindow,
@@ -29,7 +31,7 @@ class AutolockWindow {
       },
     ];
 
-    options.forEach((option)=>{
+    options.forEach((option) => {
       this[option.name] = ControlFactory.checkbox(option);
     });
 

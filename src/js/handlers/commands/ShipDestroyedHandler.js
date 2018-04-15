@@ -4,7 +4,7 @@ class ShipDestroyedHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       var parsed = JSON.parse(e.detail);
       var id = parsed[Variables.shipDestoyedId];
 

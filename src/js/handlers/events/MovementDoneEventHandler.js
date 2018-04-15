@@ -1,6 +1,6 @@
 class MovementDoneEventHandler {
   constructor() {
-    this._handler = function() {
+    this._handler = function () {
       window.movementDone = true;
     }
   }

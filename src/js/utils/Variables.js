@@ -59,32 +59,32 @@ class Variables {
   static get selectHp() {
     return "_-d0";
   }
-  
+
   static get clanDiplomacy() {
     return "_-T3H";
-  } 
-  
+  }
+
   static get PalladiumType() {
     return "_-M14";
   }
-  
+
   static get PType() {
     return "_-pK";
   }
-  
+
   static get Gatetype() {
     return "_-L3q";
   }
-  
+
   static get gateJumpId() {
     return "_-F1V";
   }
- 
-  static get assetCreateX() { 
+
+  static get assetCreateX() {
     return "_-Pq";
   }
-  
-  static get assetCreateY() { 
+
+  static get assetCreateY() {
     return "_-32U";
   }
 }

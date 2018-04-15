@@ -4,7 +4,7 @@ class ShipMoveHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       var shipMoveCmd = JSON.parse(e.detail);
 
       var ship = a.ships[shipMoveCmd.userId];

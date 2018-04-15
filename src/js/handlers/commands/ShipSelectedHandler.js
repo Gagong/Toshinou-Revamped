@@ -4,7 +4,7 @@ class ShipSelectedHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       var parsedJson = JSON.parse(e.detail);
 
       /*console.log(parsedJson);*/

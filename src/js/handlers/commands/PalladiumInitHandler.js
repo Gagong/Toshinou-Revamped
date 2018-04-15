@@ -4,7 +4,7 @@ class PalladiumInitHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       var box = JSON.parse(e.detail);
       /*console.log(box);*/
       if (box.hash.length == 6) {
@@ -24,4 +24,3 @@ class PalladiumInitHandler {
     return this._handler;
   }
 }
-

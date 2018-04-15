@@ -4,7 +4,7 @@ class ShipCreateHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       e.detail = e.wholeMessage.split("|").slice(1).join("");
 
       var shipCreateCmd = JSON.parse(e.detail);
