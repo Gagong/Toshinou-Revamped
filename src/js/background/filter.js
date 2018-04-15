@@ -9,16 +9,18 @@ let blacklist = [
   "content"
 ]
 
- chrome.webRequest.onBeforeRequest.addListener(
-   function (details) {
-     let result = false;
-     console.log("executed!");
-     blacklist.forEach(item => {
-       if (details.url.indexOf(item) != -1)
+chrome.webRequest.onBeforeRequest.addListener(
+  function (details) {
+    let result = false;
+    console.log("executed!");
+    blacklist.forEach(item => {
+      if (details.url.indexOf(item) != -1)
         result = true;
-     });
-     return {cancel: result};
-   },
-   {urls: ["https://*.bigpoint.net/*"]},
-   ["blocking"]
+    });
+    return {
+      cancel: result
+    };
+  }, {
+    urls: ["https://*.bigpoint.net/*"]
+  }, ["blocking"]
 );

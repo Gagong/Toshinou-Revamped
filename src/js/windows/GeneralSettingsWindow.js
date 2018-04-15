@@ -1,9 +1,11 @@
 class GeneralSettingsWindow {
   createWindow() {
-    this.botSettingsWindow = WindowFactory.createWindow({width: 320, text: "General"});
+    this.botSettingsWindow = WindowFactory.createWindow({
+      width: 320,
+      text: "General"
+    });
 
-    let controls = [
-      {
+    let controls = [{
         name: 'getPause',
         labelText: 'Pause Bot',
         appendTo: this.botSettingsWindow,
@@ -39,7 +41,7 @@ class GeneralSettingsWindow {
         name: 'runfromenemy',
         labelText: 'Flee from enemy',
         appendTo: this.botSettingsWindow,
-        event: function() {
+        event: function () {
           window.settings.runfromenemy = this.checked;
         }
       },
@@ -62,8 +64,7 @@ class GeneralSettingsWindow {
           max: 800,
           step: 1,
           value: 500,
-        }
-        ,
+        },
         event: function (ev) {
           window.settings.npcCircleRadius = this.value;
           $('span:last-child', this.label).text(' (' + this.value + 'px)');
@@ -121,7 +122,7 @@ class GeneralSettingsWindow {
       }
     ];
 
-    controls.forEach((control)=>{
+    controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
   }

@@ -1,99 +1,95 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .main-frame {
-    position: absolute;
-    left: 400px;
-    top: 50px;
+  position: absolute;
+  left: 400px;
+  top: 50px;
 }
 
 .minimized {
-    display: none;
+  display: none;
 }
 
 .movable {
-    position: absolute;
+  position: absolute;
 }
 
 .window {
-    color: #e8e1bf;
-    width: 300px;
-    background-color: transparent;
-    border: 1px solid rgb(40, 116, 144);
+  color: #e8e1bf;
+  width: 300px;
+  background-color: transparent;
+  border: 1px solid rgb(40, 116, 144);
 }
 
 .window .header, .main-frame .header, .tab .header {
-    width: 100%;
-    height: 40px;
-    background-color: rgb(22, 38, 47);
-    top: 0px; left: 0px;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 10px;
-    position: relative;
-    border-bottom: 1px solid rgb(40, 116, 144);
+  width: 100%;
+  height: 40px;
+  background-color: rgb(22, 38, 47);
+  top: 0px; left: 0px;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid rgb(40, 116, 144);
 }
 
 .movable>.header {
-    cursor: move;
+  cursor: move;
 }
 
 .window .minimize-btn, .main-frame .minimize-btn {
-    padding: 10px;
-    margin: 0px;
-    cursor: pointer;
-    position: absolute;
-    top:0px;
-    right: 0px;
-    height: 100%;
+  padding: 10px;
+  margin: 0px;
+  cursor: pointer;
+  position: absolute;
+  top:0px;
+  right: 0px;
+  height: 100%;
 }
 
 .window .content, .main-frame .content, .tab .content {
-    width: 100%;
-    background-color: rgba(22, 38, 47, 0.78);
-    overflow-y: auto;
-    padding: 5px;
+  width: 100%;
+  background-color: rgba(22, 38, 47, 0.78);
+  overflow-y: auto;
+  padding: 5px;
 }
 
-
 .tabs .headers{
-    display: flex;
-
+  display: flex;
 }
 
 .tabs .header {
-    cursor: pointer;
-    border-right: 1px solid;
-    max-width: 80px;
-
+  cursor: pointer;
+  border-right: 1px solid;
+  max-width: 80px;
 }
 
 .tabs .header:last-child {
-    border-right: none;
+  border-right: none;
 }
 
-
 .window .content canvas {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .tabs .content {
-    display: none;
+  display: none;
 }
 
 .tabs .content.active {
-    display: block;
+  display: block;
 }
 
 .btn {
-    display: inline-block;
-    padding: 5px 10px;
-    color: #e8e1bf;
-    background-color: #15262e;
-    border: 1px solid rgb(40, 116, 144);
+  display: inline-block;
+  padding: 5px 10px;
+  color: #e8e1bf;
+  background-color: #15262e;
+  border: 1px solid rgb(40, 116, 144);
 }
 
 .btn:hover {
-    background-color: rgb(40, 116, 144);
+  background-color: rgb(40, 116, 144);
 }

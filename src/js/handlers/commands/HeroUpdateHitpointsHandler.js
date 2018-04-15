@@ -14,6 +14,6 @@ class HeroUpdateHitpointsHandler {
   }
 
   get handler() {
-      return this._handler;
+    return this._handler;
   }
 }

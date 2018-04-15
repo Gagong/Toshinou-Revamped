@@ -4,7 +4,10 @@ class Minimap {
   }
 
   createWindow() {
-    this.minimap = WindowFactory.createWindow({width: 320, text: "Minimap"});
+    this.minimap = WindowFactory.createWindow({
+      width: 320,
+      text: "Minimap"
+    });
 
     this.canvas = jQuery("<canvas/>", {
       width: 300,
@@ -16,7 +19,7 @@ class Minimap {
 
     var self = this;
 
-    this.canvas.click(function(e) {
+    this.canvas.click(function (e) {
       var pos = self.minimap.position();
       var x = (e.clientX - pos.left) * (window.b1) - window.b3;
       var y = (e.clientY - pos.top) * (window.b2) - window.b3;
@@ -68,7 +71,7 @@ class Minimap {
         ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
       }
 
-      this._fillCircle(ct, pos.x / window.b1, pos.y / window.b2, 2); 
+      this._fillCircle(ct, pos.x / window.b1, pos.y / window.b2, 2);
     }
 
     if (this._api.battlestation) {
@@ -76,11 +79,9 @@ class Minimap {
 
       if (bs.factionId != window.hero.factionId && bs.factionId != 0) {
         ct.fillStyle = "rgb(255, 0, 0)";
-      }
-      else if (bs.factionId == 0) {
+      } else if (bs.factionId == 0) {
         ct.fillStyle = "rgb(76, 76, 76)";
-      }
-      else {
+      } else {
         ct.fillStyle = "rgb(0, 255, 0)";
       }
 
@@ -88,8 +89,7 @@ class Minimap {
 
       if (bs.clanTag != "") {
         ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
-      }
-      else {
+      } else {
         ct.fillStyle = "white";
         ct.fillText(bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
       }

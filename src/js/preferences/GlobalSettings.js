@@ -35,7 +35,7 @@ class GlobalSettings {
     return this._settings.timerTick;
   }
 
-  get speedFormat(){
+  get speedFormat() {
     return this._settings.speedFormat;
   }
 

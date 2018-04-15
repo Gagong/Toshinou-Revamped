@@ -67,7 +67,7 @@ class Api {
   }
 
   isEmptyObject(obj) {
-    if (obj == null) 
+    if (obj == null)
       return false;
     for (var i in obj) {
       if (obj.hasOwnProperty(i)) {
@@ -96,7 +96,7 @@ class Api {
     if (this.boxes[box.hash] == null)
       return;
 
-    if(MathUtils.random(1, 100) >= window.settings.collectionSensitivity){
+    if (MathUtils.random(1, 100) >= window.settings.collectionSensitivity) {
       return;
     }
 
@@ -128,26 +128,32 @@ class Api {
     var finalBox;
 
     if (!window.settings.bonusbox && !window.settings.matherials && !window.settings.palladium && !window.settings.cargobox && !window.settings.booty && !window.settings.rbooty && !window.settings.bbooty && !window.settings.msqbooty)
-      return {box: null, distance: minDist};
+      return {
+        box: null,
+        distance: minDist
+      };
 
     for (var property in this.boxes) {
       var box = this.boxes[property];
       var dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) || 
-          ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) || 
-          (box.isPalladium() && window.settings.palladium) || 
-          (box.isCargo() && window.settings.cargobox) || 
-          (box.isBooty() && window.settings.booty && window.count > 0) || 
-          (box.isRBooty() && window.settings.rbooty && window.rcount > 0) || 
-          (box.isBBooty() && window.settings.bbooty && window.bcount > 0) || 
-          (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
-            finalBox = box;
-            minDist = dist;
+        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) ||
+            ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) ||
+            (box.isPalladium() && window.settings.palladium) ||
+            (box.isCargo() && window.settings.cargobox) ||
+            (box.isBooty() && window.settings.booty && window.count > 0) ||
+            (box.isRBooty() && window.settings.rbooty && window.rcount > 0) ||
+            (box.isBBooty() && window.settings.bbooty && window.bcount > 0) ||
+            (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
+          finalBox = box;
+          minDist = dist;
         }
       }
     }
-    return {box: finalBox, distance: minDist};
+    return {
+      box: finalBox,
+      distance: minDist
+    };
   }
 
   findNearestShip() {
@@ -155,7 +161,10 @@ class Api {
     var finalShip;
 
     if (!window.settings.killNpcs)
-      return {ship: null, distance: minDist};
+      return {
+        ship: null,
+        distance: minDist
+      };
 
     for (var property in this.ships) {
       var ship = this.ships[property];
@@ -170,7 +179,10 @@ class Api {
       }
     }
 
-    return {ship: finalShip, distance: minDist};
+    return {
+      ship: finalShip,
+      distance: minDist
+    };
   }
 
   findNearestGate() {
@@ -185,9 +197,12 @@ class Api {
       }
     });
 
-    return {gate: finalGate, distance: minDist};
+    return {
+      gate: finalGate,
+      distance: minDist
+    };
   }
-  
+
   findNearestGateForRunAway(enemy) {
     var minDist = 100000;
     var finalGate;
@@ -203,7 +218,10 @@ class Api {
       }
     });
 
-    return { gate: finalGate, distance: minDist };
+    return {
+      gate: finalGate,
+      distance: minDist
+    };
   }
 
   findNearestGatebyID(gate_id) {
@@ -218,7 +236,10 @@ class Api {
       }
     });
 
-    return {gate: finalGate, distance: minDist};
+    return {
+      gate: finalGate,
+      distance: minDist
+    };
   }
 
   markHeroAsDead() {
@@ -227,26 +248,30 @@ class Api {
   }
 
   CheckForEnemy() {
-     var result = { run: false, enemy: null, edist: 100000 };
-     var enemyDistance = 100000;
-     var enemyShip;
-     for (var property in this.ships) {
-       var ship = this.ships[property];
-       ship.update();
-       if (!ship.isNpc && ship.isEnemy) {
-         var dist = ship.distanceTo(window.hero.position);
-         if (enemyDistance > dist) {
-           enemyDistance = dist;
-           result.edist = dist;
-           result.enemy = ship;
-         }
-       }
-     }
-     if (enemyDistance < 2000) { // 2000 run away detect distance
-       result.run = true;
-       return result;
-     }
-     return result;
+    var result = {
+      run: false,
+      enemy: null,
+      edist: 100000
+    };
+    var enemyDistance = 100000;
+    var enemyShip;
+    for (var property in this.ships) {
+      var ship = this.ships[property];
+      ship.update();
+      if (!ship.isNpc && ship.isEnemy) {
+        var dist = ship.distanceTo(window.hero.position);
+        if (enemyDistance > dist) {
+          enemyDistance = dist;
+          result.edist = dist;
+          result.enemy = ship;
+        }
+      }
+    }
+    if (enemyDistance < 2000) { // 2000 run away detect distance
+      result.run = true;
+      return result;
+    }
+    return result;
   }
-  
+
 }
