@@ -188,69 +188,102 @@ function logic() {
     }
   }	
 
-  // [1 - x-2; 2 - Alpha; 3 - Beta; 4 - Gamma; 5 - Delta; 70 - Kappa; 82 - Kuiper]
-
-  if (window.settings.zeta) {
-    let zetagg = api.findNearestGatebyID(54);
-    if (zetagg.gate) {
-      let x = zetagg.gate.position.x;
-      let y = zetagg.gate.position.y;
-      api.targetShip = null;
-      api.attacking = false;
-      api.triedToLock = false;
-      api.lockedShip = null;
-      api.targetBoxHash = null;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+  // [1 - x-2; 2 - Alpha; 3 - Beta; 4 - Gamma; 5 - Delta; 70 - Kappa; 74 - Hades 82 - Kuiper]
+  if (api.targetBoxHash == null && api.targetShip == null) {
+    if (window.settings.zeta) {
+      let zetagg = api.findNearestGatebyID(54);
+      if (zetagg.gate && window.hero.position.x != zetagg.gate.position.x && window.hero.position.y != zetagg.gate.position.y) {
+        let x = zetagg.gate.position.x;
+        let y = zetagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
     }
-  }
 
-  if (window.settings.alpha) {
-    let alphagg = api.findNearestGatebyID(2);
-    if (alphagg.gate) {
-      let x = alphagg.gate.position.x;
-      let y = alphagg.gate.position.y;
-      api.targetShip = null;
-      api.attacking = false;
-      api.triedToLock = false;
-      api.lockedShip = null;
-      api.targetBoxHash = null;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+    if (window.settings.kappa) {
+      let kappagg = api.findNearestGatebyID(70);
+      if (kappagg.gate && window.hero.position.x != kappagg.gate.position.x && window.hero.position.y != kappagg.gate.position.y) {
+        let x = kappagg.gate.position.x;
+        let y = kappagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
     }
-  }
 
-  if (window.settings.beta) {
-    let betagg = api.findNearestGatebyID(3);
-    if (betagg.gate) {
-      let x = betagg.gate.position.x;
-      let y = betagg.gate.position.y;
-      api.targetShip = null;
-      api.attacking = false;
-      api.triedToLock = false;
-      api.lockedShip = null;
-      api.targetBoxHash = null;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+    if (window.settings.delta) {
+      let deltagg = api.findNearestGatebyID(5);
+      if (deltagg.gate && window.hero.position.x != deltagg.gate.position.x && window.hero.position.y != deltagg.gate.position.y) {
+        let x = deltagg.gate.position.x;
+        let y = deltagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
     }
-  }
 
-  if (window.settings.gamma) {
-    let gammagg = api.findNearestGatebyID(4);
-    if (gammagg.gate) {
-      let x = gammagg.gate.position.x;
-      let y = gammagg.gate.position.y;
-      api.targetShip = null;
-      api.attacking = false;
-      api.triedToLock = false;
-      api.lockedShip = null;
-      api.targetBoxHash = null;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+    if (window.settings.alpha) {
+      let alphagg = api.findNearestGatebyID(2);
+      if (alphagg.gate && window.hero.position.x != alphagg.gate.position.x && window.hero.position.y != alphagg.gate.position.y) {
+        let x = alphagg.gate.position.x;
+        let y = alphagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
+    }
+
+    if (window.settings.beta) {
+      let betagg = api.findNearestGatebyID(3);
+      if (betagg.gate && window.hero.position.x != betagg.gate.position.x && window.hero.position.y != betagg.gate.position.y) {
+        let x = betagg.gate.position.x;
+        let y = betagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
+    }
+
+    if (window.settings.gamma) {
+      let gammagg = api.findNearestGatebyID(4);
+      if (gammagg.gate && window.hero.position.x != gammagg.gate.position.x && window.hero.position.y != gammagg.gate.position.y) {
+        let x = gammagg.gate.position.x;
+        let y = gammagg.gate.position.y;
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
     }
   }
 
