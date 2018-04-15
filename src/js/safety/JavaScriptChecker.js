@@ -24,11 +24,11 @@ class JavaScriptChecker {
 
     scripts.each(function () {
       if (this.src != null && this.src.length != 0 && !this.src.startsWith("https://www.googletagmanager.com/gtm.js")) {
-        var script = WebClient.get(this.src);
+        let script = WebClient.get(this.src);
 
-        var hash = md5(script);
+        let hash = md5(script);
 
-        var rSrc = this.src.substr(0, this.src.indexOf("?"));
+        let rSrc = this.src.substr(0, this.src.indexOf("?"));
 
         if (jsHashes[rSrc] != hash) {
           // console.log(this.src + " → " + hash);

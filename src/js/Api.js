@@ -69,7 +69,7 @@ class Api {
   isEmptyObject(obj) {
     if (obj == null)
       return false;
-    for (var i in obj) {
+    for (let i in obj) {
       if (obj.hasOwnProperty(i)) {
         return true;
       }
@@ -127,24 +127,24 @@ class Api {
     var minDist = 100000;
     var finalBox;
 
-    if (!window.settings.bonusbox && !window.settings.matherials && !window.settings.palladium && !window.settings.cargobox && !window.settings.booty && !window.settings.rbooty && !window.settings.bbooty && !window.settings.msqbooty)
+    if (!window.settings.bonusBox && !window.settings.material && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenAndGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
       return {
         box: null,
         distance: minDist
       };
 
-    for (var property in this.boxes) {
-      var box = this.boxes[property];
-      var dist = box.distanceTo(window.hero.position);
+    for (let property in this.boxes) {
+      let box = this.boxes[property];
+      let dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) ||
-            ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) ||
+        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusBox) ||
+            ((box.isMaterial() || box.isDropRes()) && window.settings.material) ||
             (box.isPalladium() && window.settings.palladium) ||
-            (box.isCargo() && window.settings.cargobox) ||
-            (box.isBooty() && window.settings.booty && window.count > 0) ||
-            (box.isRBooty() && window.settings.rbooty && window.rcount > 0) ||
-            (box.isBBooty() && window.settings.bbooty && window.bcount > 0) ||
-            (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
+            (box.isCargo() && window.settings.cargoBox) ||
+            (box.isGreenOrGoldBooty() && window.settings.greenAndGoldBooty && window.greenAndGoldBootyKeyCount > 0) ||
+            (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
+            (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
+            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
           finalBox = box;
           minDist = dist;
         }
@@ -166,10 +166,10 @@ class Api {
         distance: minDist
       };
 
-    for (var property in this.ships) {
-      var ship = this.ships[property];
+    for (let property in this.ships) {
+      let ship = this.ships[property];
       ship.update();
-      var dist = ship.distanceTo(window.hero.position);
+      let dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
         if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
@@ -190,7 +190,7 @@ class Api {
     var finalGate;
 
     this.gates.forEach(gate => {
-      var dist = window.hero.distanceTo(gate.position);
+      let dist = window.hero.distanceTo(gate.position);
       if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
         finalGate = gate;
         minDist = dist;
@@ -206,9 +206,10 @@ class Api {
   findNearestGateForRunAway(enemy) {
     var minDist = 100000;
     var finalGate;
+
     this.gates.forEach(gate => {
-      var enemeyDistance = enemy.distanceTo(gate.position);
-      var dist = window.hero.distanceTo(gate.position);
+      let enemeyDistance = enemy.distanceTo(gate.position);
+      let dist = window.hero.distanceTo(gate.position);
       if (enemeyDistance < dist) {
         return;
       }
@@ -229,7 +230,7 @@ class Api {
     var finalGate;
 
     this.gates.forEach(gate => {
-      var dist = window.hero.distanceTo(gate.position);
+      let dist = window.hero.distanceTo(gate.position);
       if (dist < minDist && gate.Gatetype == gate_id) {
         finalGate = gate;
         minDist = dist;
@@ -247,26 +248,28 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
-  CheckForEnemy() {
+  checkForEnemy() {
     var result = {
       run: false,
       enemy: null,
-      edist: 100000
+      enemyDist: 100000
     };
     var enemyDistance = 100000;
     var enemyShip;
-    for (var property in this.ships) {
-      var ship = this.ships[property];
+
+    for (let property in this.ships) {
+      let ship = this.ships[property];
       ship.update();
       if (!ship.isNpc && ship.isEnemy) {
-        var dist = ship.distanceTo(window.hero.position);
+        let dist = ship.distanceTo(window.hero.position);
         if (enemyDistance > dist) {
           enemyDistance = dist;
-          result.edist = dist;
+          result.enemyDist = dist;
           result.enemy = ship;
         }
       }
     }
+
     if (enemyDistance < 2000) { // 2000 run away detect distance
       result.run = true;
       return result;

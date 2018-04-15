@@ -20,9 +20,9 @@ class Minimap {
     var self = this;
 
     this.canvas.click(function (e) {
-      var pos = self.minimap.position();
-      var x = (e.clientX - pos.left) * (window.b1) - window.b3;
-      var y = (e.clientY - pos.top) * (window.b2) - window.b3;
+      let pos = self.minimap.position();
+      let x = (e.clientX - pos.left) * (window.b1) - window.b3;
+      let y = (e.clientY - pos.top) * (window.b2) - window.b3;
       Injector.injectScript('document.getElementById("preloader").moveShip(' + x + ',' + y + ');');
     });
   }
@@ -42,8 +42,8 @@ class Minimap {
     ct.fillStyle = 'green';
     this._fillCircle(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, 2);
 
-    for (var property in this._api.boxes) {
-      var box = this._api.boxes[property];
+    for (let property in this._api.boxes) {
+      let box = this._api.boxes[property];
 
       if (box == null || box.isResourse())
         continue;
@@ -52,14 +52,14 @@ class Minimap {
       this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1);
     }
 
-    for (var property in this._api.ships) {
-      var ship = this._api.ships[property];
+    for (let property in this._api.ships) {
+      let ship = this._api.ships[property];
 
       if (ship == null)
         continue;
 
       ship.update();
-      var pos = ship.position;
+      let pos = ship.position;
 
       if (ship.isNpc) {
         ct.fillStyle = "rgb(255, 0, 245)";
@@ -103,7 +103,7 @@ class Minimap {
     ct.strokeStyle = "white";
     ct.lineWidth = 1;
     this._api.gates.forEach(gate => {
-      var pos = gate.position;
+      let pos = gate.position;
       this._strokeCircle(ct, pos.x / window.b1, pos.y / window.b2, 4);
     });
   }

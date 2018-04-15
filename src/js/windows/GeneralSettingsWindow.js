@@ -38,11 +38,11 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'runfromenemy',
+        name: 'runFromEnemy',
         labelText: 'Flee from enemy',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.runfromenemy = this.checked;
+          window.settings.runFromEnemy = this.checked;
         }
       },
       {
