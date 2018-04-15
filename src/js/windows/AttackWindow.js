@@ -1,6 +1,9 @@
 class AttackWindow {
   createWindow() {
-    this.attackWindow = WindowFactory.createWindow({width: 320, text: "Attack Details"});
+    this.attackWindow = WindowFactory.createWindow({
+      width: 320,
+      text: "Attack Details"
+    });
 
     this.targetNameTxt = jQuery("<h4>");
     this.targetNameTxt.text("Target: -");

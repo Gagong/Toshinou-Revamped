@@ -4,7 +4,7 @@ class HeroInitHandler {
   }
 
   constructor(f) {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       e.detail = e.wholeMessage.split("|").slice(1).join("");
       a.ships = [];
       a.boxes = {};

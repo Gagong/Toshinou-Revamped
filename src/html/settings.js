@@ -36,7 +36,7 @@ function restore() {
     if (items.showRuntime)
       $("#showRuntime").prop('checked', true);
     if (items.speedFormat) {
-      let sel =`#speedFormat_${items.speedFormat}`;
+      let sel = `#speedFormat_${items.speedFormat}`;
       $(sel).prop('checked', true);
     }
     if (items.windowsToTabs) {

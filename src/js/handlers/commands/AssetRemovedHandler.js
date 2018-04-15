@@ -4,7 +4,7 @@ class AssetRemovedHandler {
   }
 
   constructor() {
-    this._handler = function(e, a) {
+    this._handler = function (e, a) {
       var parsedCmd = JSON.parse(e.detail);
       /*console.log(parsedCmd);*/
 
