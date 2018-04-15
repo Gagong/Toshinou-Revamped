@@ -6,7 +6,7 @@ window.b1 = 70;
 window.b2 = 87.3;
 var running;
 
-$(document).ready(function() {
+$(document).ready(function () {
   api = new Api();
 
   var preloader = $("#preloader").attr("wmode", "opaque");
@@ -16,7 +16,15 @@ $(document).ready(function() {
 
   if (check !== true) {
     var warning = jQuery("<div>");
-    warning.css({top: 0, left: 0, position: "absolute", width: "100%", height: "100%", backgroundColor: "gray", textAlign: "center"});
+    warning.css({
+      top: 0,
+      left: 0,
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      backgroundColor: "gray",
+      textAlign: "center"
+    });
 
     jQuery("<h1>").text("The tool detected changes in the game.").appendTo(warning);
     jQuery("<h2>").text("Loading stopped! Your account has to stay safe.").appendTo(warning);
@@ -90,7 +98,7 @@ function init() {
 
   window.setInterval(logic, window.globalSettings.timerTick);
 
-  $(document).keyup(function(e) {
+  $(document).keyup(function (e) {
     var key = e.key;
 
     if (key == "x" || key == "z") {
@@ -120,7 +128,7 @@ function init() {
   });
 }
 
-function logic() {	
+function logic() {
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
@@ -128,8 +136,7 @@ function logic() {
     window.b1 = 42000 / 300;
     window.b2 = 26200 / 150;
     window.b3 = 700;
-  }
-  else {
+  } else {
     window.b1 = 21000 / 300;
     window.b2 = 13100 / 150;
     window.b3 = 350;
@@ -143,7 +150,7 @@ function logic() {
   }
 
   if (api.heroDied && api.isDisconected) {
-    if(running) {
+    if (running) {
       running = false;
     }
     return;
@@ -152,7 +159,7 @@ function logic() {
   if (window.settings.runfromenemy && running) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
-  }		
+  }
 
   if (window.settings.pause) {
     api.targetShip = null;
@@ -162,10 +169,10 @@ function logic() {
     api.targetBoxHash = null;
     return;
   }
-  
+
   if (window.settings.runfromenemy) {
     var enemyresult = api.CheckForEnemy();
-  
+
     if (enemyresult.run) {
       let gate = api.findNearestGateForRunAway(enemyresult.enemy);
       if (gate.gate) {
@@ -183,10 +190,10 @@ function logic() {
           window.movementDone = true;
           running = false;
         }, MathUtils.random(30000, 35000));
-	      return;	
+        return;
       }
     }
-  }	
+  }
 
   // [1 - x-2; 2 - Alpha; 3 - Beta; 4 - Gamma; 5 - Delta; 70 - Kappa; 74 - Hades 82 - Kuiper]
   if (api.targetBoxHash == null && api.targetShip == null) {
@@ -296,7 +303,7 @@ function logic() {
       api.attacking = false;
       api.triedToLock = false;
       api.lockedShip = null;
-      api.targetBoxHash = null;	    
+      api.targetBoxHash = null;
       api.isRepairing = true;
       api.move(x, y);
       window.movementDone = false;
@@ -323,8 +330,7 @@ function logic() {
         api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
         api.targetShip = ship.ship;
         return;
-      }
-      else {
+      } else {
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
@@ -343,15 +349,14 @@ function logic() {
           api.triedToLock = true;
           return;
         }
-      }
-      else {
+      } else {
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
       }
     }
-    
+
     /*if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 != api.lockedShip.maxShd) {
       notrightId = api.lockedShip.id;
       api.targetShip = null;
@@ -359,9 +364,9 @@ function logic() {
       api.triedToLock = false;
       api.lockedShip = null;
       return;
-    }*/  
-      
-    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd +1 == api.lockedShip.maxShd*/) {
+    }*/
+
+    if (!api.attacking && api.lockedShip /* && api.lockedShip.shd +1 == api.lockedShip.maxShd*/ ) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
@@ -382,8 +387,8 @@ function logic() {
     }
   }
 
-  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || 
-    ($.now() - api.lastAttack > 15000) || 
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) ||
+    ($.now() - api.lastAttack > 15000) ||
     (api.targetShip && (api.targetShip.modifier.length != 0 || api.targetShip.modifier.activated == false))) {
     api.targetShip = null;
     api.attacking = false;
@@ -397,8 +402,7 @@ function logic() {
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium) {
     x = MathUtils.random(100, 20732);
     y = MathUtils.random(58, 12830);
-  }
-  else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.palladium) {
+  } else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.palladium) {
     x = MathUtils.random(17873, 32264);
     y = MathUtils.random(20982, 25515)
   }
@@ -428,10 +432,10 @@ function logic() {
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
-        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {                 
+        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
           CircleBox = nearestBox;
           collectBoxWhenCircle = true;
-        }  
+        }
       }
     } else {
       api.targetShip = null;

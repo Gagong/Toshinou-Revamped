@@ -22,7 +22,7 @@ class Box extends Movable {
 
   isBooty() {
     var type = this.type;
-    return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD"); 
+    return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD");
   }
 
   isMSQBooty() {

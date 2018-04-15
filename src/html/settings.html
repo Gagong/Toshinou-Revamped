@@ -2,51 +2,59 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-  </head>
 
-  <body>
-    <form>
-      <h4>Appearance</h4>
-      <label>Header color
-        <input type="color" id="headerColor" value="#16262f"></label>
-      <label> | opacity
-        <input type="range" id="headerOpacity" min="0" max="1" step="0.01" value="0.9"></label>
-      <br>
-      <label>Window background color
-        <input type="color" id="windowColor" value="#16262f"></label>
-      <label> | opacity
-        <input type="range" id="windowOpacity" min="0" max="1" step="0.01" value="0.8"></label>
-      <br>
+<head>
+  <meta charset="utf-8">
+</head>
 
-      <input type="checkbox" id="windowsToTabs" /><label for="windowsToTabs">Tabs instead of windows</label>
+<body>
+  <form>
+    <h4>Appearance</h4>
+    <label>Header color
+      <input type="color" id="headerColor" value="#16262f">
+    </label>
+    <label> | opacity
+      <input type="range" id="headerOpacity" min="0" max="1" step="0.01" value="0.9">
+    </label>
+    <br>
+    <label>Window background color
+      <input type="color" id="windowColor" value="#16262f">
+    </label>
+    <label> | opacity
+      <input type="range" id="windowOpacity" min="0" max="1" step="0.01" value="0.8">
+    </label>
+    <br>
 
-      <hr>
-      <h4>Advanced (beginners, go away!)</h4>
-      <label>Logic tick (ms)
-        <input type="number" id="timerTick" min="50" max="20000" value="300"></label>
-      <br>
-      <hr>
-      <h4>Statistic window</h4>
-      <input type="checkbox" id="showRuntime" /><label for="showRuntime">Show runtime</label>
-      <br>
+    <input type="checkbox" id="windowsToTabs" />
+    <label for="windowsToTabs">Tabs instead of windows</label>
 
-      <h5>Speed format</h5>
-      <input type="radio" id="speedFormat_min" name="speedFormat" value="min">
-      <label for="speedFormat_min">uri/min.</label><br>
+    <hr>
+    <h4>Advanced (beginners, go away!)</h4>
+    <label>Logic tick (ms)
+      <input type="number" id="timerTick" min="50" max="20000" value="300">
+    </label>
+    <br>
+    <hr>
+    <h4>Statistic window</h4>
+    <input type="checkbox" id="showRuntime" />
+    <label for="showRuntime">Show runtime</label>
+    <br>
 
-      <input type="radio" id="speedFormat_hour" name="speedFormat" value="hour" checked>
-      <label for="speedFormat_hour">uri/hour</label>
+    <h5>Speed format</h5>
+    <input type="radio" id="speedFormat_min" name="speedFormat" value="min">
+    <label for="speedFormat_min">uri/min.</label>
+    <br>
 
-      <hr>
+    <input type="radio" id="speedFormat_hour" name="speedFormat" value="hour" checked>
+    <label for="speedFormat_hour">uri/hour</label>
 
+    <hr>
 
+    <input type="submit" value="save">
+  </form>
 
-      <input type="submit" value="save">
-    </form>
+  <script src="/js/libs/jquery-3.2.1.min.js"></script>
+  <script src="settings.js"></script>
+</body>
 
-    <script src="/js/libs/jquery-3.2.1.min.js"></script>
-    <script src="settings.js"></script>
-  </body>
 </html>
