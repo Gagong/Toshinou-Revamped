@@ -49,7 +49,7 @@ class Minimap {
         continue;
 
       ct.fillStyle = BoxType.getColor(box.type);
-      this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1);
+      this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1.2);
     }
 
     for (let property in this._api.ships) {

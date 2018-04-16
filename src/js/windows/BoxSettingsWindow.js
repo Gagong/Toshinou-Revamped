@@ -60,6 +60,14 @@ class BoxSettingsWindow {
         event: function () {
           window.settings.masqueBooty = this.checked;
         }
+      },
+      {
+        name: 'blackBooty',
+        labelText: 'Obsidian booty boxes',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.blackBooty = this.checked;
+        }
       }
     ]
 

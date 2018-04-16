@@ -1,5 +1,27 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, autoAttack, killNpcs, pause, palladium, bonusBox, cargoBox, material, runFromEnemy, zeta, alpha, beta, gamma, delta, kappa, greenAndGoldBooty, redBooty, blueBooty, masqueBooty) {
+  constructor(moveRandomly, 
+              lockNpc, 
+              lockPlayers, 
+              autoAttack, 
+              killNpcs, 
+              pause, 
+              palladium, 
+              bonusBox, 
+              cargoBox, 
+              material, 
+              runFromEnemy, 
+              zeta, 
+              alpha, 
+              beta, 
+              gamma, 
+              delta, 
+              kappa, 
+              greenAndGoldBooty, 
+              redBooty, 
+              blueBooty, 
+              masqueBooty, 
+              blackBooty) 
+  {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -24,6 +46,7 @@ class Settings {
     this._redBooty = redBooty === true;
     this._blueBooty = blueBooty === true;
     this._masqueBooty = masqueBooty === true;
+    this._blackBooty = blackBooty === true;
   }
 
   get autoAttack() {
@@ -40,6 +63,14 @@ class Settings {
 
   set masqueBooty(value) {
     this._masqueBooty = value === true;
+  }
+
+  get blackBooty() {
+    return this._blackBooty;
+  }
+
+  set blackBooty(value) {
+    this._blackBooty = value === true;
   }
 
   get blueBooty() {

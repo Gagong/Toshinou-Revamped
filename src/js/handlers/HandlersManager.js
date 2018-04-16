@@ -13,16 +13,16 @@ class HandlersManager {
   }
 
   listen() {
-    var self = this;
+    let self = this;
     $(document).on("commandRec", function (e) {
-      var s = e.detail.split("|");
-      var id = parseInt(s[0]);
-      var cmd = s[1];
+      let s = e.detail.split("|");
+      let id = parseInt(s[0]);
+      let cmd = s[1];
 
       /*if (window.gebug)*/
       /*console.log(id + "|" + cmd);*/
 
-      var h = self.handlers[id];
+      let h = self.handlers[id];
       if (h != null) {
         h({
           detail: cmd,

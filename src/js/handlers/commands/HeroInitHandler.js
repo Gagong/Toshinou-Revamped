@@ -18,7 +18,7 @@ class HeroInitHandler {
       a.battlestation = null;
       Injector.injectScript("window.heroDied = false;");
 
-      var heroJson = JSON.parse(e.detail);
+      let heroJson = JSON.parse(e.detail);
       /*console.log(heroJson);*/
 
       if (window.hero == null) {

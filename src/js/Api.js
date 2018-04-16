@@ -127,7 +127,15 @@ class Api {
     var minDist = 100000;
     var finalBox;
 
-    if (!window.settings.bonusBox && !window.settings.material && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenAndGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
+    if (!window.settings.bonusBox && 
+        !window.settings.material && 
+        !window.settings.palladium && 
+        !window.settings.cargoBox && 
+        !window.settings.greenAndGoldBooty && 
+        !window.settings.redBooty && 
+        !window.settings.blueBooty && 
+        !window.settings.masqueBooty &&
+        !window.settings.blackBooty)
       return {
         box: null,
         distance: minDist
@@ -144,7 +152,8 @@ class Api {
             (box.isGreenOrGoldBooty() && window.settings.greenAndGoldBooty && window.greenAndGoldBootyKeyCount > 0) ||
             (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
             (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
-            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
+            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0) ||
+            (box.isBlackBooty() && window.settings.blackBooty && window.blackBootyKeyCount > 0))) {
           finalBox = box;
           minDist = dist;
         }

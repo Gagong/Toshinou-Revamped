@@ -379,7 +379,14 @@ function logic() {
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
     } else {
-      if (box.type != ("MUCOSUM" || "PRISMATIUM" || "SCRAPIUM" || "BOLTRUM" || "AURUS_BOX" || "BIFENON" || "HYBRID_ALLOY_BOX")) {
+
+      if (box.type != "MUCOSUM" && 
+          box.type != "PRISMATIUM" && 
+          box.type != "SCRAPIUM" && 
+          box.type != "BOLTRUM" && 
+          box.type != "AURUS_BOX" && 
+          box.type != "BIFENON" && 
+          box.type != "HYBRID_ALLOY_BOX")) {
         delete api.boxes[api.targetBoxHash];
         api.blackListHash(api.targetBoxHash);
         api.targetBoxHash = null;

@@ -64,11 +64,11 @@ class Variables {
     return "_-T3H";
   }
 
-  static get PalladiumType() {
+  static get Resourse() {
     return "_-M14";
   }
 
-  static get PType() {
+  static get ResourseType() {
     return "_-pK";
   }
 
