@@ -1,6 +1,6 @@
 class GlobalSettings {
   constructor() {
-    var self = this;
+    let self = this;
     chrome.storage.local.get({
       headerColor: "#191919",
       headerOpacity: "0.9",

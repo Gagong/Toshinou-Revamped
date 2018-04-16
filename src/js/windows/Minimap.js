@@ -17,7 +17,7 @@ class Minimap {
     this.ctx = this.canvas.get(0).getContext("2d");
     this.canvas.appendTo(this.minimap);
 
-    var self = this;
+    let self = this;
 
     this.canvas.click(function (e) {
       let pos = self.minimap.position();
@@ -29,7 +29,7 @@ class Minimap {
 
   draw() {
 
-    var ct = this.ctx;
+    let ct = this.ctx;
     ct.font = "10px Arial";
 
     ct.clearRect(0, 0, this.canvas.width() + 2, this.canvas.height() + 2);
@@ -77,7 +77,7 @@ class Minimap {
     if (this._api.battlestation) {
       let bs = this._api.battlestation;
 
-      if (bs.factionId != window.hero.factionId && bs.factionId != 0) {
+      if (bs.isEnemy && bs.factionId != 0) {
         ct.fillStyle = "rgb(255, 0, 0)";
       } else if (bs.factionId == 0) {
         ct.fillStyle = "rgb(76, 76, 76)";
@@ -88,10 +88,10 @@ class Minimap {
       this._fillCircle(ct, (bs.position.x) / window.b1, bs.position.y / window.b2, 3);
 
       if (bs.clanTag != "") {
-        ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
+        ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / window.b1 - 30, bs.position.y / window.b2 - 8);
       } else {
         ct.fillStyle = "white";
-        ct.fillText(bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
+        ct.fillText(bs.name, bs.position.x / window.b1 - 20, bs.position.y / window.b2 - 5);
       }
 
       for (let prop in this._api.battlestation.modules) {

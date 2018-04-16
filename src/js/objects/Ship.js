@@ -29,18 +29,18 @@ class Ship extends Movable {
     if (this.target == null)
       return;
 
-    var diff = $.now() - this.lastUpdate;
+    let diff = $.now() - this.lastUpdate;
 
     if (diff > this.timeToTarget) {
       this.position.set(this.target.x, this.target.y);
       return this.position;
     }
 
-    var dx = this.target.x - this.position.x;
-    var dy = this.target.y - this.position.y;
+    let dx = this.target.x - this.position.x;
+    let dy = this.target.y - this.position.y;
 
-    var sx = dx / this.timeToTarget;
-    var sy = dy / this.timeToTarget;
+    let sx = dx / this.timeToTarget;
+    let sy = dy / this.timeToTarget;
 
     this.lastUpdate = $.now();
     this.position.set(this.position.x + sx * diff, this.position.y + sy * diff);

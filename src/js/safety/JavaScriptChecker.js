@@ -1,6 +1,6 @@
 class JavaScriptChecker {
   static safetyCheck() {
-    var jsHashes = {};
+    let jsHashes = {};
 
     jsHashes["https://www.googletagmanager.com/gtm.js"] = "f3680923db0f5a1bb7d2a5831c404880";
     jsHashes["https://darkorbit-22.bpsecure.com/js/function.js"] = "8fd87941fb7d1b7ced05590b0e15c0f3";
@@ -15,9 +15,9 @@ class JavaScriptChecker {
     jsHashes["https://darkorbit-22.bpsecure.com/resources/js/internalMapRevolution.js"] = "0041b761cda1300c6619fae60e26a88a";
     jsHashes["https://assets.bpsecure.com/bpid/bpid.js"] = "9b176f19cbd4ee92cf8ec378493282cd";
 
-    var scripts = $("script");
+    let scripts = $("script");
 
-    var result = true;
+    let result = true;
 
     if (scripts.length != 20)
       result = false;

@@ -64,6 +64,10 @@ class Variables {
     return "_-T3H";
   }
 
+  static get BSclanDiplomacy() {
+    return "_-f26";
+  }
+
   static get Resourse() {
     return "_-M14";
   }

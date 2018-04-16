@@ -386,7 +386,7 @@ function logic() {
           box.type != "BOLTRUM" && 
           box.type != "AURUS_BOX" && 
           box.type != "BIFENON" && 
-          box.type != "HYBRID_ALLOY_BOX")) {
+          box.type != "HYBRID_ALLOY_BOX") {
         delete api.boxes[api.targetBoxHash];
         api.blackListHash(api.targetBoxHash);
         api.targetBoxHash = null;
