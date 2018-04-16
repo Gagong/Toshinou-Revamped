@@ -51,20 +51,27 @@ class DragAndDrop {
   }
 
   _moveThis(e) {
-
     let newX = e.pageX - this.shiftX;
     let newY = e.pageY - this.shiftY;
 
-    let xTobig = (newX + this.parent.clientWidth >= window.innerWidth || newX < 0);
-    let yTobig = (newY + this.parent.clientHeight >= window.innerHeight || newY < 0);
+    let xTobig = (newX + this.parent.clientWidth + 2 > window.innerWidth || newX < 0);
+    let yTobig = (newY + this.parent.clientHeight + 2 > window.innerHeight || newY < 0);
 
     if (!xTobig) {
       this.parent.style.left = newX + 'px';
-    }
-    if (!yTobig) {
-      this.parent.style.top = newY + 'px';
+    } else if (newX < 0) {
+      this.parent.style.left = '0px';
+    } else if (newX + this.parent.clientWidth > window.innerWidth) {
+      this.parent.style.left = (window.innerWidth - this.parent.clientWidth - 2) + 'px';
     }
 
+    if (!yTobig) {
+      this.parent.style.top = newY + 'px';
+    } else if (newY < 0) {
+      this.parent.style.top = '0px';
+    } else if (newY + this.parent.clientHeight > window.innerHeight) {
+      this.parent.style.top = (window.innerHeight - this.parent.clientHeight - 2) + 'px';
+    }
   }
 
   on() {
