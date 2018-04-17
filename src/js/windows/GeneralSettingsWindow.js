@@ -46,6 +46,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'avoidAttackedNPCs',
+        labelText: 'Avoid attacked NPCs (dont use with PET)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.avoidAttackedNPCs = this.checked;
+        }
+      },                                 
+      {
         name: 'npcCircle',
         labelText: 'Circle (Beta)',
         appendTo: this.botSettingsWindow,
