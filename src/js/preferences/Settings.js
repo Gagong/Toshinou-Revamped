@@ -1,5 +1,5 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
+  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, avoidAttackedNPCs, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -14,6 +14,7 @@ class Settings {
     this._cargobox = cargobox === true;
     this._matherials = matherials === true;
     this._runfromenemy = runfromenemy === true;
+    this._avoidAttackedNPCs = avoidAttackedNPCs === true;
     this._zeta = zeta === true;
     this._alpha = alpha === true;
     this._beta = beta === true;
@@ -144,6 +145,14 @@ class Settings {
     this._moveRandomly = value === true;
   }
 
+  get avoidAttackedNPCs() {
+    return this._avoidAttackedNPCs;
+  }
+
+  set avoidAttackedNPCs(value) {
+    this._avoidAttackedNPCs = value === true;
+  }
+  
   get lockNpc() {
     return this._lockNpc;
   }
