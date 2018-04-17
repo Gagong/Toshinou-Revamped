@@ -324,16 +324,16 @@ function logic() {
       }
     }
 
-    /*if (!api.attacking && api.lockedShip && api.lockedShip.shd +1 != api.lockedShip.maxShd) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNPCs) {
       notrightId = api.lockedShip.id;
       api.targetShip = null;
       api.attacking = false;
       api.triedToLock = false;
       api.lockedShip = null;
       return;
-    }*/
+    }
 
-    if (!api.attacking && api.lockedShip /* && api.lockedShip.shd +1 == api.lockedShip.maxShd*/ ) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNPCs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNPCs) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
