@@ -212,7 +212,7 @@ class Api {
       if (enemeyDistance < dist) {
         return;
       }
-      if (dist < minDist) {
+      if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
         finalGate = gate;
         minDist = dist;
       }
