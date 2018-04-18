@@ -11,7 +11,6 @@ class Settings {
     this._pause = pause === true;
     this._palladium = palladium === true;
     this._bonusbox = bonusbox === true;
-    this._cargobox = cargobox === true;
     this._matherials = matherials === true;
     this._runfromenemy = runfromenemy === true;
     this._avoidAttackedNPCs = avoidAttackedNPCs === true;
