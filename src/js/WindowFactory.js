@@ -33,7 +33,7 @@ class WindowFactory {
     let allHeaders = $('.headers', window.mainFrameWindow);
     let tabsCount = $('.header', allHeaders).length;
 
-    let header = jQuery('<h4>', {
+    let header = jQuery('<h5>', {
       'class': 'header',
       'title': params.text || 'Untitled',
       'text': params.text[0] || 'U'
@@ -88,6 +88,7 @@ class WindowFactory {
       css: {
         maxHeight: params.maxHeight || '',
         backgroundColor: ColorConverter.combine(contentColor.r, contentColor.g, contentColor.b, window.globalSettings.windowOpacity),
+        fontSize: '14px',
       },
     }).appendTo(pane);
 
