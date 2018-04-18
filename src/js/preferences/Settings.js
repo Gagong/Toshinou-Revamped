@@ -1,26 +1,5 @@
 class Settings {
-  constructor(moveRandomly, 
-              lockNpc, 
-              lockPlayers, 
-              autoAttack, 
-              killNpcs, 
-              pause, 
-              palladium, 
-              bonusBox, 
-              cargoBox, 
-              material, 
-              runFromEnemy, 
-              zeta, 
-              alpha, 
-              beta, 
-              gamma, 
-              delta, 
-              kappa, 
-              greenAndGoldBooty, 
-              redBooty, 
-              blueBooty, 
-              masqueBooty, 
-              blackBooty) 
+  constructor(moveRandomly, lockNpc, lockPlayers, autoAttack, killNpcs, pause, palladium, bonusBox, cargoBox, material, runFromEnemy, alpha, beta, gamma, delta, zeta, kappa, hades, kuiper, greenAndGoldBooty, redBooty, blueBooty, masqueBooty, blackBooty) 
   {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
@@ -36,12 +15,14 @@ class Settings {
     this._cargoBox = cargoBox === true;
     this._material = material === true;
     this._runFromEnemy = runFromEnemy === true;
-    this._zeta = zeta === true;
     this._alpha = alpha === true;
     this._beta = beta === true;
     this._gamma = gamma === true;
     this._delta = delta === true;
+    this._zeta = zeta === true;
     this._kappa = kappa === true;
+    this._hades = hades === true;
+    this._kuiper = kuiper === true;
     this._greenAndGoldBooty = greenAndGoldBooty === true;
     this._redBooty = redBooty === true;
     this._blueBooty = blueBooty === true;
@@ -89,30 +70,6 @@ class Settings {
     this._redBooty = value === true;
   }
 
-  get kappa() {
-    return this._kappa;
-  }
-
-  set kappa(value) {
-    this._kappa = value === true;
-  }
-
-  get delta() {
-    return this._delta;
-  }
-
-  set delta(value) {
-    this._delta = value === true;
-  }
-
-  get zeta() {
-    return this._zeta;
-  }
-
-  set zeta(value) {
-    this._zeta = value === true;
-  }
-
   get alpha() {
     return this._alpha;
   }
@@ -135,6 +92,46 @@ class Settings {
 
   set gamma(value) {
     this._gamma = value === true;
+  }
+  
+  get delta() {
+    return this._delta;
+  }
+
+  set delta(value) {
+    this._delta = value === true;
+  }
+
+  get zeta() {
+    return this._zeta;
+  }
+
+  set zeta(value) {
+    this._zeta = value === true;
+  }
+  
+  get kappa() {
+    return this._kappa;
+  }
+
+  set kappa(value) {
+    this._kappa = value === true;
+  }
+  
+  get hades() {
+    return this._hades;
+  }
+
+  set hades(value) {
+    this._hades = value === true;
+  }
+  
+  get kuiper() {
+    return this._kuiper;
+  }
+
+  set kuiper(value) {
+    this._kuiper = value === true;
   }
 
   get greenOrGoldBooty() {

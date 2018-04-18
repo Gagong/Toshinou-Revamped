@@ -53,6 +53,22 @@ class GGSettingsWindow {
           window.settings.kappa = this.checked;
         }
       },
+      {
+        name: 'hades',
+        labelText: 'Move to GG Hades',
+        appendTo: this.GGSettingsWindow,
+        event: function () {
+          window.settings.hades = this.checked;
+        }
+      },
+      {
+        name: 'kuiper',
+        labelText: 'Move to GG Kuiper',
+        appendTo: this.GGSettingsWindow,
+        event: function () {
+          window.settings.kuiper = this.checked;
+        }
+      },
     ]
 
     let info = [{
