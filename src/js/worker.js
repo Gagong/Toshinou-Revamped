@@ -154,7 +154,6 @@ function init() {
     } else {
       cntBtnPlay.html("Stop");
       cntBtnPlay.removeClass('in_play').addClass('in_stop');
-      running = true;
       window.settings.pause = false;
     }
 
