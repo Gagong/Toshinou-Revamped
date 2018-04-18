@@ -41,6 +41,7 @@ $(document).ready(function () {
   window.reviveCount = 0;
   window.count = 0;
   window.movementDone = true;
+  window.statusPlayBot = false;
 
   var hm = new HandlersManager(api);
 
@@ -129,6 +130,10 @@ function init() {
 }
 
 function logic() {
+  if (!window.statusPlayBot) {
+    return;
+  }
+
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
