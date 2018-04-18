@@ -1,5 +1,5 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, avoidAttackedNPCs, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
+  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, avoidAttackedNPCs, alpha, beta, gamma, delta, zeta, kappa, hades, kuiper, booty, rbooty, bbooty, msqbooty) {
     this._moveRandomly = moveRandomly === true;
     this._lockNpc = lockNpc === true;
     this._lockPlayers = lockPlayers === true;
@@ -15,10 +15,14 @@ class Settings {
     this._matherials = matherials === true;
     this._runfromenemy = runfromenemy === true;
     this._avoidAttackedNPCs = avoidAttackedNPCs === true;
-    this._zeta = zeta === true;
     this._alpha = alpha === true;
     this._beta = beta === true;
     this._gamma = gamma === true;
+    this._delta = delta === true;
+    this._zeta = zeta === true;
+    this._kappa = kappa === true;
+    this._hades = hades === true;
+    this._kuiper = kuiper === true;
     this._booty = booty === true;
     this._rbooty = rbooty === true;
     this._bbooty = bbooty === true;
@@ -57,14 +61,6 @@ class Settings {
     this._rbooty = value === true;
   }
 
-  get Zeta() {
-    return this._zeta;
-  }
-
-  set Zeta(value) {
-    this._zeta = value === true;
-  }
-
   get Alpha() {
     return this._alpha;
   }
@@ -87,6 +83,46 @@ class Settings {
 
   set Gamma(value) {
     this._gamma = value === true;
+  }
+  
+  get Delta() {
+    return this._delta;
+  }
+
+  set Delta(value) {
+    this._delta = value === true;
+  }
+  
+  get Zeta() {
+    return this._zeta;
+  }
+
+  set Zeta(value) {
+    this._zeta = value === true;
+  }
+  
+  get Kappa() {
+    return this._kappa;
+  }
+
+  set Kappa(value) {
+    this._kappa = value === true;
+  }
+  
+  get Hades() {
+    return this._hades;
+  }
+
+  set Hades(value) {
+    this._hades = value === true;
+  }
+  
+  get Kuiper() {
+    return this._kuiper;
+  }
+
+  set Kuiper(value) {
+    this._kuiper = value === true;
   }
 
   get Booty() {
