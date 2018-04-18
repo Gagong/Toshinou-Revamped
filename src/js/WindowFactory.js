@@ -104,28 +104,6 @@ class WindowFactory {
       $("body").append(cntMiniWindow);
 
       cntMiniWindow.draggable();
-
-      cntMiniWindow.on('click', () => {
-        if (window.statusMiniWindow) {
-          window.mainWindow.slideUp();
-        } else {
-          window.mainWindow.slideDown();
-        }
-
-        window.statusMiniWindow = !window.statusMiniWindow;
-      });
-
-      cntBtnPlay.find(".btn_play").on('click', (e) => {
-        if (window.statusPlayBot) {
-          cntBtnPlay.find(".btn_play").html("Play");
-          cntBtnPlay.find(".btn_play").removeClass('in_stop').addClass('in_play');
-        } else {
-          cntBtnPlay.find(".btn_play").html("Stop");
-          cntBtnPlay.find(".btn_play").removeClass('in_play').addClass('in_stop');
-        }
-
-        window.statusPlayBot = !window.statusPlayBot;
-      });
     }
 
     const minimizeBtn = jQuery('<span>', {

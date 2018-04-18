@@ -127,13 +127,42 @@ function init() {
       }
     }
   });
+
+  window.settings.pause = true;
+  $(document).on('click', '.cnt_minimize_window', () => {
+    if (window.statusMiniWindow) {
+      window.mainWindow.slideUp();
+    } else {
+      window.mainWindow.slideDown();
+    }
+
+    window.statusMiniWindow = !window.statusMiniWindow;
+  });
+
+  let cntBtnPlay = $('.cnt_btn_play .btn_play');
+  cntBtnPlay.on('click', (e) => {
+    if (window.statusPlayBot) {
+      cntBtnPlay.html("Play");
+      cntBtnPlay.removeClass('in_stop').addClass('in_play');
+      api.targetShip = null;
+      api.attacking = false;
+      api.triedToLock = false;
+      api.lockedShip = null;
+      api.targetBoxHash = null;
+      running = false;
+      window.settings.pause = true;
+    } else {
+      cntBtnPlay.html("Stop");
+      cntBtnPlay.removeClass('in_play').addClass('in_stop');
+      running = true;
+      window.settings.pause = false;
+    }
+
+    window.statusPlayBot = !window.statusPlayBot;
+  });
 }
 
 function logic() {
-  if (!window.statusPlayBot) {
-    return;
-  }
-
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
