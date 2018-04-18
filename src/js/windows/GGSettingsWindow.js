@@ -39,7 +39,7 @@ class GGSettingsWindow {
       },
       {
         name: 'zeta',
-        labelText: 'Move to GG Zeta',
+        labelText: "Move to GG Zeta",
         appendTo: this.GGSettingsWindow,
         event: function () {
           window.settings.zeta = this.checked;
