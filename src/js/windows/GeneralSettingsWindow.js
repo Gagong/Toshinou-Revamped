@@ -6,14 +6,6 @@ class GeneralSettingsWindow {
     });
 
     let controls = [{
-        name: 'getPause',
-        labelText: 'Pause Bot',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.pause = this.checked;
-        }
-      },
-      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -52,7 +44,7 @@ class GeneralSettingsWindow {
         event: function () {
           window.settings.avoidAttackedNPCs = this.checked;
         }
-      },                                 
+      },
       {
         name: 'npcCircle',
         labelText: 'Circle (Beta)',

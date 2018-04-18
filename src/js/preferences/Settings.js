@@ -152,7 +152,7 @@ class Settings {
   set avoidAttackedNPCs(value) {
     this._avoidAttackedNPCs = value === true;
   }
-  
+
   get lockNpc() {
     return this._lockNpc;
   }
@@ -187,9 +187,5 @@ class Settings {
 
   setPause(value) {
     this._pause = value === true;
-  }
-
-  getPause() {
-    return this._pause;
   }
 }

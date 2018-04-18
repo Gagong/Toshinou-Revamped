@@ -64,7 +64,7 @@ class WindowFactory {
 
   static windowsStructure(params) {
     const pane = jQuery('<div>', {
-      width: params.width || 330,
+      width: params.width || 340,
       height: (params.height + HEADER_HEIGHT) || '',
       'class': 'window',
       css: {
@@ -90,6 +90,21 @@ class WindowFactory {
         backgroundColor: ColorConverter.combine(contentColor.r, contentColor.g, contentColor.b, window.globalSettings.windowOpacity),
       },
     }).appendTo(pane);
+
+    if (params.isMain) {
+
+      window.mainWindow = pane;
+      window.statusMiniWindow = true; // true main window is showing, false no showing
+
+      /*Btn */
+      let cntBtnPlay = jQuery('<div class="cnt_btn_play"><button class="btn_play in_play btn">Play</button></div>');
+      header.prepend(cntBtnPlay);
+
+      let cntMiniWindow = jQuery('<div class="cnt_minimize_window">B</div>');
+      $("body").append(cntMiniWindow);
+
+      cntMiniWindow.draggable();
+    }
 
     const minimizeBtn = jQuery('<span>', {
       text: '_',
