@@ -64,6 +64,7 @@ $(document).ready(function () {
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
   hm.registerEvent("isDisconnected", new HeroDisconnectedEventHandler());
+  hm.registerEvent("isConneceted", new HeroConnectedEventHandler());
 
   hm.listen();
 });
@@ -174,12 +175,16 @@ function logic() {
     if (running) {
       running = false;
     }
-    console.log(api.isDisconnected);
-    if (!api.reconnectTime || $.now() - api.reconnectTime > 8000) {
-      api.reconnect();
-      console.log('Reconnecting');  
-    }
-    return;
+    if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || api.reconnectTime && $.now() - api.reconnectTime > 12000))
+      /* 
+       * Buttman has concerns about it being unsafe
+       * due to not clicking on the button
+       * but then again we dont click on anything...
+       * So, whatever... Use at your own risk.
+       */
+
+      //api.reconnect(); // Uncomment this for reconnect to work.
+      return;
   }
 
 
@@ -201,7 +206,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-  
+
 
   if (window.settings.runfromenemy && running) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
@@ -209,11 +214,7 @@ function logic() {
   }
 
   if (window.settings.pause) {
-    api.targetShip = null;
-    api.attacking = false;
-    api.triedToLock = false;
-    api.lockedShip = null;
-    api.targetBoxHash = null;
+    window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
   }
 

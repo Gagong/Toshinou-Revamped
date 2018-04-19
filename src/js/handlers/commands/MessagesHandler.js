@@ -21,8 +21,7 @@ class MessagesHandler {
       s = JSON.parse(s.join('|'));
       let message = s.message.split('|');
 
-      /*if ("KIK" == message[1]) {
-        a.isDisconected = true;
+      if ("KIK" == message[1]) {
         this.connection({
           connected: false,
           status: 'off'
@@ -30,12 +29,11 @@ class MessagesHandler {
       }
 
       if ("A" == message[1]) {
-        a.isDisconected = true;
         this.connection({
           connected: true,
           status: 'on'
         });
-      }*/
+      }
 
       if (_events.hasOwnProperty(message[3])) {
         this[_events[message[3]]](message);

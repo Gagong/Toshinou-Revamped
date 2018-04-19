@@ -46,6 +46,7 @@
         "js/objects/CBS/BattlestationModule.js",
         "js/handlers/HandlersManager.js",
         "js/handlers/events/HeroDisconnectedEventHandler.js",
+        "js/handlers/events/HeroConnectedEventHandler.js",
         "js/handlers/events/MovementDoneEventHandler.js",
         "js/handlers/events/HeroPositionUpdateEventHandler.js",
         "js/handlers/commands/BoxInitHandler.js",

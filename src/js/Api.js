@@ -7,6 +7,8 @@ class Api {
     this.battlestation = null;
     this.lastMovement = 0;
     this.isDisconnected = false;
+    this.disconnectTime = null;
+    this.reconnectTime = null;
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
