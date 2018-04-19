@@ -64,7 +64,7 @@ $(document).ready(function () {
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
   hm.registerEvent("isDisconnected", new HeroDisconnectedEventHandler());
-  hm.registerEvent("isConneceted", new HeroConnectedEventHandler());
+  hm.registerEvent("isConnected", new HeroConnectedEventHandler());
 
   hm.listen();
 });
@@ -176,14 +176,7 @@ function logic() {
       running = false;
     }
     if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || api.reconnectTime && $.now() - api.reconnectTime > 12000))
-      /* 
-       * Buttman has concerns about it being unsafe
-       * due to not clicking on the button
-       * but then again we dont click on anything...
-       * So, whatever... Use at your own risk.
-       */
-
-      //api.reconnect(); // Uncomment this for reconnect to work.
+      api.reconnect();
       return;
   }
 
