@@ -91,13 +91,12 @@ class Api {
     this.lockShip(ship);
   }
 
-  /*reconnect() {
+  reconnect() {
       var scr = 'document.getElementById("preloader").reconnect();';
       Injector.injectScript(scr);
       
       this.reconnectTime = $.now();
-      api.isDisconnected = false;
-  }*/ //commented until fix
+  }
 
   collectBox(box) {
     if (!(box instanceof Box))
