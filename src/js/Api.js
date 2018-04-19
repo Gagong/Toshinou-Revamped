@@ -6,7 +6,7 @@ class Api {
     this.ships = {};
     this.battlestation = null;
     this.lastMovement = 0;
-    this.isDisconected = false;
+    this.isDisconnected = false;
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -87,6 +87,14 @@ class Api {
     this.lockTime = $.now();
 
     this.lockShip(ship);
+  }
+
+  reconnect() {
+      var scr = 'document.getElementById("preloader").reconnect();';
+      Injector.injectScript(scr);
+      
+      this.reconnectTime = $.now();
+      api.isDisconnected = false;
   }
 
   collectBox(box) {

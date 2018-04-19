@@ -63,6 +63,7 @@ $(document).ready(function () {
 
   hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
   hm.registerEvent("movementDone", new MovementDoneEventHandler());
+  hm.registerEvent("isDisconnected", new HeroDisconnectedEventHandler());
 
   hm.listen();
 });
@@ -98,7 +99,7 @@ function init() {
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.globalSettings.timerTick);
-
+  api.reconnectTime = null;
   $(document).keyup(function (e) {
     var key = e.key;
 
@@ -165,6 +166,24 @@ function logic() {
   var collectBoxWhenCircle = false;
   var CircleBox = null;
 
+  if (api.heroDied) {
+    return;
+  }
+
+  if (api.isDisconnected) {
+    if (running) {
+      running = false;
+    }
+    console.log(api.isDisconnected);
+    if (!api.reconnectTime || $.now() - api.reconnectTime > 8000) {
+      api.reconnect();
+      console.log('Reconnecting');  
+    }
+    return;
+  }
+
+
+
   if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
     window.b1 = 42000 / 300;
     window.b2 = 26200 / 150;
@@ -182,12 +201,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if (api.heroDied && api.isDisconected) {
-    if (running) {
-      running = false;
-    }
-    return;
-  }
+  
 
   if (window.settings.runfromenemy && running) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
