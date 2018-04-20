@@ -6,7 +6,7 @@ class WindowFactory {
 
     if (!window.mainFrameWindow) {
       window.mainFrameWindow = this.windowsStructure({
-        text: "Windows | 10.0.6341 | v.008",
+        text: "Windows | 10.0.6355 | v.009",
         isMain: true
       })[0];
 
@@ -94,9 +94,8 @@ class WindowFactory {
     if (params.isMain) {
 
       window.mainWindow = pane;
-      window.statusMiniWindow = true; // true main window is showing, false no showing
+      window.statusMiniWindow = true;
 
-      /*Btn */
       let cntBtnPlay = jQuery('<div class="cnt_btn_play"><button class="btn_play in_play btn">Play</button></div>');
       header.prepend(cntBtnPlay);
 

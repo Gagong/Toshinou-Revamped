@@ -39,7 +39,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'avoidAttackedNPCs',
-        labelText: 'Avoid attacked NPCs (dont use with PET)',
+        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.avoidAttackedNPCs = this.checked;
@@ -47,7 +47,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'npcCircle',
-        labelText: 'Circle (Beta)',
+        labelText: 'Circle',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.circleNpc = this.checked;
@@ -55,7 +55,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'npcCircleRadius',
-        labelText: ' Circle radius <span> (500px)</span>',
+        labelText: 'Circle radius <span> (500px)</span>',
         type: 'range',
         appendTo: this.botSettingsWindow,
         labelBefore: true,

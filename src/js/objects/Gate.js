@@ -4,6 +4,5 @@ class Gate extends Movable {
     this.factionId = factionId;
     this.gateId = gateId;
     this.Gatetype = Gatetype;
-    /*console.log(this);*/
   }
 }

@@ -5,8 +5,8 @@ class ShipRemovedHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      var parsed = JSON.parse(e.detail);
-      var id = parsed.userId;
+      let parsed = JSON.parse(e.detail);
+      let id = parsed.userId;
 
       if (a.targetShip && id == a.targetShip.id) {
         a.targetShip = null;
@@ -15,7 +15,7 @@ class ShipRemovedHandler {
         a.lockedShip = null;
       }
 
-      var ship = a.ships[id];
+      let ship = a.ships[id];
 
       if (ship != null) {
         delete a.ships[id];

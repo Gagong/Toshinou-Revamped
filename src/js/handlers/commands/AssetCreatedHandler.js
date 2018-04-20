@@ -6,7 +6,6 @@ class AssetCreatedHandler {
   constructor() {
     this._handler = function (e, a) {
       let parsedCmd = JSON.parse(e.detail);
-      /*console.log(parsedCmd);*/
 
       let typeObj = parsedCmd.type;
       let type = parseInt(typeObj[Object.keys(typeObj)[0]]);
@@ -16,7 +15,7 @@ class AssetCreatedHandler {
 
       if (type == 35 || type == 36) { // cbs
         if (api.battlestation == null) {
-          api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId);
+          api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.BSclanDiplomacy].type);
         } else {
           api.battlestation.setPosition(x, y);
           api.battlestation.id = parsedCmd.assetId;

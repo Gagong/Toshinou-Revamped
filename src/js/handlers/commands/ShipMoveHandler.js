@@ -5,9 +5,9 @@ class ShipMoveHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      var shipMoveCmd = JSON.parse(e.detail);
+      let shipMoveCmd = JSON.parse(e.detail);
 
-      var ship = a.ships[shipMoveCmd.userId];
+      let ship = a.ships[shipMoveCmd.userId];
 
       if (ship != null)
         ship.setTarget(shipMoveCmd.x, shipMoveCmd.y, shipMoveCmd[Variables.moveDuration]);

@@ -64,11 +64,11 @@ class Variables {
     return "_-4e";
   }
 
-  static get PalladiumType() {
+  static get Resourse() {
     return "_-J3b";
   }
 
-  static get PType() {
+  static get ResourseType() {
     return "_-R2O";
   }
 
@@ -86,5 +86,9 @@ class Variables {
 
   static get assetCreateY() {
     return "_-c42";
+  }
+
+  static get BSclanDiplomacy() {
+    return "_-S3Q";
   }
 }
