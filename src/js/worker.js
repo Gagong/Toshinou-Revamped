@@ -150,7 +150,7 @@ function init() {
       api.triedToLock = false;
       api.lockedShip = null;
       api.targetBoxHash = null;
-      running = false;
+      window.fleeingFromEnemy = false;
       window.settings.pause = true;
     } else {
       cntBtnPlay.html("Stop");
@@ -171,8 +171,8 @@ function logic() {
   }
 
   if (api.isDisconnected) {
-    if (running) {
-      running = false;
+    if (window.fleeingFromEnemy) {
+      window.fleeFromEnemy = false;
     }
     if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || api.reconnectTime && $.now() - api.reconnectTime > 12000) && window.reviveCount < window.settings.reviveLimit)
       api.reconnect();
