@@ -107,12 +107,12 @@ class Settings {
     this._gamma = value === true;
   }
 
-  get booty() {
-    return this._booty;
+  get greenOrGoldBooty() {
+    return this._greenOrGoldBooty;
   }
 
-  set booty(value) {
-    this._booty = value === true;
+  set greenOrGoldBooty(value) {
+    this._greenOrGoldBooty = value === true;
   }
 
   get palladium() {
