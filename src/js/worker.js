@@ -217,8 +217,8 @@ function logic() {
     if (enemyresult.run) {
       let gate = api.findNearestGateForRunAway(enemyresult.enemy);
       if (gate.gate) {
-        let x = gate.gate.position.x;
-        let y = gate.gate.position.y;
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
@@ -339,8 +339,8 @@ function logic() {
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
     let gate = api.findNearestGate();
     if (gate.gate) {
-      let x = gate.gate.position.x;
-      let y = gate.gate.position.y;
+      let x = gate.gate.position.x + MathUtils.random(-100, 100);
+      let y = gate.gate.position.y + MathUtils.random(-100, 100);
       api.targetShip = null;
       api.attacking = false;
       api.triedToLock = false;
