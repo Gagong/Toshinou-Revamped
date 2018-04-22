@@ -30,19 +30,19 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'runfromenemy',
+        name: 'fleeFromEnemy',
         labelText: 'Flee from enemy',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.runfromenemy = this.checked;
+          window.settings.fleeFromEnemy = this.checked;
         }
       },
       {
-        name: 'avoidAttackedNPCs',
+        name: 'avoidAttackedNpcs',
         labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.avoidAttackedNPCs = this.checked;
+          window.settings.avoidAttackedNpcs = this.checked;
         }
       },
       {

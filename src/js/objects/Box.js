@@ -9,7 +9,7 @@ class Box extends Movable {
     return JSON.parse(this);
   }
 
-  isResourse() {
+  isResource() {
     let type = this.type;
     return (type == "0" || type == "1" || type == "2"); //Prometium - 0 | Endurium - 1 | Terbium - 2
   }
@@ -19,27 +19,27 @@ class Box extends Movable {
     return (type == "8"); // Palladium - 8
   }
 
-  isBooty() {
+  isGreenOrGoldBooty() {
     let type = this.type;
     return (type == "PIRATE_BOOTY" || type == "PIRATE_BOOTY_GOLD");
   }
 
-  isMSQBooty() {
+  isMasqueBooty() {
     let type = this.type;
     return (type == "MASQUE_BOOTY_BOX");
   }
 
-  isBBooty() {
+  isBlueBooty() {
     let type = this.type;
     return (type == "PIRATE_BOOTY_BLUE");
   }
 
-  isRBooty() {
+  isRedBooty() {
     let type = this.type;
     return (type == "PIRATE_BOOTY_RED");
   }
 
-  isCargo() {
+  isCargoBox() {
     let type = this.type;
     return (type == "FROM_SHIP");
   }

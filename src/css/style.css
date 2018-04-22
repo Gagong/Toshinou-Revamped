@@ -110,8 +110,6 @@
   margin-top: -2px;
 }
 
-.btn_play {}
-
 .btn_play.in_play {
   border: 1px solid #21c13c;
   background: #2a46189c;

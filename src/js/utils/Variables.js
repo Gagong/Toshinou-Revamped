@@ -64,19 +64,19 @@ class Variables {
     return "_-gU";
   }
 
-  static get Resourse() {
+  static get resource() {
     return "_-8q";
   }
 
-  static get ResourseType() {
+  static get resourceType() {
     return "_-x4Y";
   }
 
-  static get Gatetype() {
+  static get gateType() {
     return "_-Q47";
   }
 
-  static get gateJumpId() {
+  static get gateId() {
     return "_-t2o";
   }
 
@@ -88,7 +88,7 @@ class Variables {
     return "_-91j";
   }
 
-  static get BSclanDiplomacy() {
+  static get battlestationClanDiplomacy() {
     return "_-p4G";
   }
 }

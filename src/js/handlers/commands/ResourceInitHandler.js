@@ -1,13 +1,13 @@
-class BoxInitHandler {
+class ResourceInitHandler {
   static get ID() {
-    return 32089;
+    return 11042;
   }
 
   constructor() {
     this._handler = function (e, a) {
       let box = JSON.parse(e.detail);
 
-      if (box.hash.length == 7) {
+      if (box.hash.length == 6) {
         return;
       }
 
@@ -15,7 +15,7 @@ class BoxInitHandler {
         return;
       }
 
-      let pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
+      let pBox = new Box(box.x, box.y, box.hash, box[Variables.resource][Variables.resourceType]);
       a.boxes[box.hash] = pBox;
     };
   }

@@ -4,10 +4,10 @@ class HeroPositionUpdateEventHandler {
       let positions = e.detail.split("|");
 
       window.hero.setPosition(positions[0], positions[1]);
-      window.count = parseInt(positions[2]);
-      window.msqbcount = parseInt(positions[3]);
-      window.bcount = parseInt(positions[4]);
-      window.rcount = parseInt(positions[5]);
+      window.greenAndGoldBootyKeyCount = parseInt(positions[2]);
+      window.masqueBootyKeyCount = parseInt(positions[3]);
+      window.blueBootyKeyCount = parseInt(positions[4]);
+      window.redBootyKeyCount = parseInt(positions[5]);
     }
   }
 

@@ -81,10 +81,10 @@ class Api {
   }
 
   reconnect() {
-      let scr = 'document.getElementById("preloader").reconnect();';
-      Injector.injectScript(scr);
-      
-      this.reconnectTime = $.now();
+    let scr = 'document.getElementById("preloader").reconnect();';
+    Injector.injectScript(scr);
+
+    this.reconnectTime = $.now();
   }
 
   collectBox(box) {
@@ -125,7 +125,7 @@ class Api {
     let minDist = 100000;
     let finalBox;
 
-    if (!window.settings.bonusbox && !window.settings.matherials && !window.settings.palladium && !window.settings.cargobox && !window.settings.booty && !window.settings.rbooty && !window.settings.bbooty && !window.settings.msqbooty)
+    if (!window.settings.bonusBox && !window.settings.materials && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenOrGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
       return {
         box: null,
         distance: minDist
@@ -135,14 +135,14 @@ class Api {
       let box = this.boxes[property];
       let dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) ||
-            ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) ||
+        if (!box.isResource() && ((box.isCollectable() && window.settings.bonusBox) ||
+            ((box.isMaterial() || box.isDropRes()) && window.settings.materials) ||
             (box.isPalladium() && window.settings.palladium) ||
-            (box.isCargo() && window.settings.cargobox) ||
-            (box.isBooty() && window.settings.booty && window.count > 0) ||
-            (box.isRBooty() && window.settings.rbooty && window.rcount > 0) ||
-            (box.isBBooty() && window.settings.bbooty && window.bcount > 0) ||
-            (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
+            (box.isCargoBox() && window.settings.cargoBox) ||
+            (box.isGreenOrGoldBooty() && window.settings.greenOrGoldBooty && window.greenOrGoldBootyKeyCount > 0) ||
+            (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
+            (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
+            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
           finalBox = box;
           minDist = dist;
         }
@@ -222,13 +222,13 @@ class Api {
     };
   }
 
-  findNearestGatebyID(gate_id) {
+  findNearestGatebyID(gateId) {
     let minDist = 100000;
     let finalGate;
 
     this.gates.forEach(gate => {
       let dist = window.hero.distanceTo(gate.position);
-      if (dist < minDist && gate.Gatetype == gate_id) {
+      if (dist < minDist && gate.gateType == gateId) {
         finalGate = gate;
         minDist = dist;
       }
@@ -245,7 +245,7 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
-  CheckForEnemy() {
+  checkForEnemy() {
     let result = {
       run: false,
       enemy: null,

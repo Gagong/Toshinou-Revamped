@@ -15,7 +15,7 @@ class AssetCreatedHandler {
 
       if (type == 35 || type == 36) { // cbs
         if (api.battlestation == null) {
-          api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.BSclanDiplomacy].type);
+          api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.battlestationClanDiplomacy].type);
         } else {
           api.battlestation.setPosition(x, y);
           api.battlestation.id = parsedCmd.assetId;

@@ -6,59 +6,59 @@ class BoxSettingsWindow {
     });
 
     let controls = [{
-        name: 'bonusbox',
+        name: 'bonusBox',
         labelText: 'Bonus box',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.bonusbox = this.checked;
+          window.settings.bonusBox = this.checked;
         }
       },
       {
-        name: 'matherials',
+        name: 'materials',
         labelText: 'Materials',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.matherials = this.checked;
+          window.settings.materials = this.checked;
         }
       },
       {
-        name: 'cargobox',
+        name: 'cargoBox',
         labelText: 'Cargo box',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.cargobox = this.checked;
+          window.settings.cargoBox = this.checked;
         }
       },
       {
-        name: 'booty',
+        name: 'greenOrGoldBooty',
         labelText: 'Green | Gold booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.booty = this.checked;
+          window.settings.greenOrGoldBooty = this.checked;
         }
       },
       {
-        name: 'rbooty',
+        name: 'redBooty',
         labelText: 'Red booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.rbooty = this.checked;
+          window.settings.redBooty = this.checked;
         }
       },
       {
-        name: 'bbooty',
+        name: 'blueBooty',
         labelText: 'Blue booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.bbooty = this.checked;
+          window.settings.blueBooty = this.checked;
         }
       },
       {
-        name: 'msqbooty',
+        name: 'masqueBooty',
         labelText: 'Apocalyptic booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.msqbooty = this.checked;
+          window.settings.masqueBooty = this.checked;
         }
       }
     ]

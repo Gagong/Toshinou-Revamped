@@ -1,38 +1,38 @@
 class Settings {
-  constructor(moveRandomly, lockNpc, lockPlayers, autoattack, killNpcs, pause, palladium, bonusbox, cargobox, matherials, runfromenemy, avoidAttackedNPCs, delta, kappa, zeta, alpha, beta, gamma, booty, rbooty, bbooty, msqbooty) {
+  constructor(moveRandomly, lockNpcs, lockPlayers, autoAttack, killNpcs, pause, palladium, bonusBox, cargoBox, materials, fleeFromEnemy, avoidAttackedNpcs, delta, kappa, zeta, alpha, beta, gamma, greenOrGoldBooty, redBooty, blueBooty, masqueBooty) {
     this._moveRandomly = moveRandomly === true;
-    this._lockNpc = lockNpc === true;
+    this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
-    this._autoattack = autoattack === true;
+    this._autoAttack = autoAttack === true;
     this._killNpcs = killNpcs === true;
     this._npcs = [];
     this.npcCircleRadius = 500;
     this.reviveLimit = 5;
     this._pause = pause === true;
     this._palladium = palladium === true;
-    this._bonusbox = bonusbox === true;
-    this._cargobox = cargobox === true;
-    this._matherials = matherials === true;
-    this._runfromenemy = runfromenemy === true;
-    this._avoidAttackedNPCs = avoidAttackedNPCs === true;
+    this._bonusBox = bonusBox === true;
+    this._cargoBox = cargoBox === true;
+    this._materials = materials === true;
+    this._fleeFromEnemy = fleeFromEnemy === true;
+    this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._zeta = zeta === true;
     this._delta = delta === true;
     this._kappa = kappa === true;
     this._alpha = alpha === true;
     this._beta = beta === true;
     this._gamma = gamma === true;
-    this._booty = booty === true;
-    this._rbooty = rbooty === true;
-    this._bbooty = bbooty === true;
-    this._msqbooty = msqbooty === true;
+    this._greenOrGoldBooty = greenOrGoldBooty === true;
+    this._redBooty = redBooty === true;
+    this._blueBooty = blueBooty === true;
+    this._masqueBooty = masqueBooty === true;
   }
 
-  get AA() {
-    return this._autoattack;
+  get autoAttack() {
+    return this._autoAttack;
   }
 
-  set AA(value) {
-    this._autoattack = value === true;
+  set autoAttack(value) {
+    this._autoAttack = value === true;
   }
 
   get kappa() {
@@ -51,108 +51,108 @@ class Settings {
     this._delta = value === true;
   }
 
-  get MSQBooty() {
-    return this._msqbooty;
+  get masqueBooty() {
+    return this._masqueBooty;
   }
 
-  set MSQBooty(value) {
-    this._msqbooty = value === true;
+  set masqueBooty(value) {
+    this._masqueBooty = value === true;
   }
 
-  get BBooty() {
-    return this._bbooty;
+  get blueBooty() {
+    return this._blueBooty;
   }
 
-  set BBooty(value) {
-    this._bbooty = value === true;
+  set blueBooty(value) {
+    this._blueBooty = value === true;
   }
 
-  get RBooty() {
-    return this._rbooty;
+  get redBooty() {
+    return this._redBooty;
   }
 
-  set RBooty(value) {
-    this._rbooty = value === true;
+  set redBooty(value) {
+    this._redBooty = value === true;
   }
 
-  get Zeta() {
+  get zeta() {
     return this._zeta;
   }
 
-  set Zeta(value) {
+  set zeta(value) {
     this._zeta = value === true;
   }
 
-  get Alpha() {
+  get alpha() {
     return this._alpha;
   }
 
-  set Alpha(value) {
+  set alpha(value) {
     this._alpha = value === true;
   }
 
-  get Beta() {
+  get beta() {
     return this._beta;
   }
 
-  set Beta(value) {
+  set beta(value) {
     this._beta = value === true;
   }
 
-  get Gamma() {
+  get gamma() {
     return this._gamma;
   }
 
-  set Gamma(value) {
+  set gamma(value) {
     this._gamma = value === true;
   }
 
-  get Booty() {
+  get booty() {
     return this._booty;
   }
 
-  set Booty(value) {
+  set booty(value) {
     this._booty = value === true;
   }
 
-  get Palladium() {
+  get palladium() {
     return this._palladium;
   }
 
-  set Palladium(value) {
+  set palladium(value) {
     this._palladium = value === true;
   }
 
-  get Bonus() {
-    return this._bonusbox;
+  get bonusBox() {
+    return this._bonusBox;
   }
 
-  set Bonus(value) {
-    this._bonusbox = value === true;
+  set bonusBox(value) {
+    this._bonusBox = value === true;
   }
 
-  get Cargo() {
-    return this._cargobox;
+  get cargoBox() {
+    return this._cargoBox;
   }
 
-  set Cargo(value) {
-    this._cargobox = value === true;
+  set cargoBox(value) {
+    this._cargoBox = value === true;
   }
 
-  get Matherials() {
-    return this._matherials;
+  get materials() {
+    return this._materials;
   }
 
-  set Matherials(value) {
-    this._matherials = value === true;
+  set materials(value) {
+    this._materials = value === true;
   }
 
-  get Flee() {
-    return this._runfromenemy;
+  get fleeFromEnemy() {
+    return this._fleeFromEnemy;
   }
 
-  set Flee(value) {
-    this._runfromenemy = value === true;
+  set fleeFromEnemy(value) {
+    this._fleeFromEnemy = value === true;
   }
 
   get moveRandomly() {
@@ -163,20 +163,20 @@ class Settings {
     this._moveRandomly = value === true;
   }
 
-  get avoidAttackedNPCs() {
-    return this._avoidAttackedNPCs;
+  get avoidAttackedNpcs() {
+    return this._avoidAttackedNpcs;
   }
 
-  set avoidAttackedNPCs(value) {
-    this._avoidAttackedNPCs = value === true;
+  set avoidAttackedNpcs(value) {
+    this._avoidAttackedNpcs = value === true;
   }
 
-  get lockNpc() {
-    return this._lockNpc;
+  get lockNpcs() {
+    return this._lockNpcs;
   }
 
-  set lockNpc(value) {
-    this._lockNpc = value === true;
+  set lockNpcs(value) {
+    this._lockNpcs = value === true;
   }
 
   get lockPlayers() {

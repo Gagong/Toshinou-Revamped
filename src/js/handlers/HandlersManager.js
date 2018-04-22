@@ -19,9 +19,6 @@ class HandlersManager {
       let id = parseInt(s[0]);
       let cmd = s[1];
 
-      /*if (window.gebug)*/
-      /*console.log(id + "|" + cmd);*/
-
       let h = self.handlers[id];
       if (h != null) {
         h({

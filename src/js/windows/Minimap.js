@@ -45,7 +45,7 @@ class Minimap {
     for (var property in this._api.boxes) {
       var box = this._api.boxes[property];
 
-      if (box == null || box.isResourse())
+      if (box == null || box.isResource())
         continue;
 
       ct.fillStyle = BoxType.getColor(box.type);
@@ -67,8 +67,7 @@ class Minimap {
         ct.fillStyle = "rgb(255, 0, 0)";
         if (ship.cloaked) {
           ct.fillText(ship.name + " | Cloaked", pos.x / window.b1 + 1, pos.y / window.b2 + 13);
-        }
-        else {
+        } else {
           ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
         }
       } else {

@@ -2,9 +2,6 @@ window.globalSettings = new GlobalSettings();
 window.debug = false;
 let api;
 let notrightId;
-window.b1 = 70;
-window.b2 = 87.3;
-let running;
 
 $(document).ready(function () {
   api = new Api();
@@ -42,11 +39,11 @@ $(document).ready(function () {
   window.count = 0;
   window.movementDone = true;
   window.statusPlayBot = false;
-
+  window.fleeingFromEnemy = false;
   let hm = new HandlersManager(api);
 
   hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
-  hm.registerCommand(ResourseInitHandler.ID, new ResourseInitHandler());
+  hm.registerCommand(ResourceInitHandler.ID, new ResourceInitHandler());
   hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
   hm.registerCommand(ShipCreateHandler.ID, new ShipCreateHandler());
   hm.registerCommand(ShipMoveHandler.ID, new ShipMoveHandler());
@@ -115,7 +112,7 @@ function init() {
         let ship = api.ships[property];
         let dist = ship.distanceTo(window.hero.position);
 
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z" && !ship.isNpc))) {
+        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z" && !ship.isNpc))) {
           finalShip = ship;
           finDist = dist;
         }
@@ -123,7 +120,7 @@ function init() {
 
       if (finalShip != null) {
         api.lockShip(finalShip);
-        if (window.settings.autoattack) {
+        if (window.settings.autoAttack) {
           api.startLaserAttack();
           api.lastAttack = $.now();
           api.attacking = true;
@@ -167,7 +164,7 @@ function init() {
 
 function logic() {
   let collectBoxWhenCircle = false;
-  let CircleBox = null;
+  let circleBox = null;
 
   if (api.heroDied) {
     return;
@@ -182,15 +179,6 @@ function logic() {
     return;
   }
 
-  if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
-    window.b1 = 42000 / 300;
-    window.b2 = 26200 / 150;
-    window.b3 = 700;
-  } else {
-    window.b1 = 21000 / 300;
-    window.b2 = 13100 / 150;
-    window.b3 = 350;
-  }
   window.minimap.draw();
 
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
@@ -199,9 +187,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-
-
-  if (window.settings.runfromenemy && running) {
+  if (window.settings.fleeFromEnemy && window.fleeingFromEnemy) {
     window.dispatchEvent(new CustomEvent("logicEnd"));
     return;
   }
@@ -211,11 +197,11 @@ function logic() {
     return;
   }
 
-  if (window.settings.runfromenemy) {
-    var enemyresult = api.CheckForEnemy();
+  if (window.settings.fleeFromEnemy) {
+    var enemyResult = api.checkForEnemy();
 
-    if (enemyresult.run) {
-      let gate = api.findNearestGateForRunAway(enemyresult.enemy);
+    if (enemyResult.run) {
+      let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if (gate.gate) {
         let x = gate.gate.position.x + MathUtils.random(-100, 100);
         let y = gate.gate.position.y + MathUtils.random(-100, 100);
@@ -226,10 +212,10 @@ function logic() {
         api.targetBoxHash = null;
         api.move(x, y);
         window.movementDone = false;
-        running = true;
+        window.fleeingFromEnemy = true;
         setTimeout(() => {
           window.movementDone = true;
-          running = false;
+          window.fleeingFromEnemy = false;
         }, MathUtils.random(30000, 35000));
         return;
       }
@@ -399,7 +385,7 @@ function logic() {
       }
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNPCs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
       notrightId = api.lockedShip.id;
       api.targetShip = null;
       api.attacking = false;
@@ -408,7 +394,7 @@ function logic() {
       return;
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNPCs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNPCs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
@@ -421,13 +407,13 @@ function logic() {
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
     } else {
-      if (box.type != "MUCOSUM" || 
-          box.type != "PRISMATIUM" || 
-          box.type != "SCRAPIUM" || 
-          box.type != "BOLTRUM" || 
-          box.type != "AURUS_BOX" || 
-          box.type != "BIFENON" || 
-          box.type != "HYBRID_ALLOY_BOX") {
+      if (box.type != "MUCOSUM" ||
+        box.type != "PRISMATIUM" ||
+        box.type != "SCRAPIUM" ||
+        box.type != "BOLTRUM" ||
+        box.type != "AURUS_BOX" ||
+        box.type != "BIFENON" ||
+        box.type != "HYBRID_ALLOY_BOX") {
         delete api.boxes[api.targetBoxHash];
         api.blackListHash(api.targetBoxHash);
         api.targetBoxHash = null;
@@ -481,7 +467,7 @@ function logic() {
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
         if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
-          CircleBox = nearestBox;
+          circleBox = nearestBox;
           collectBoxWhenCircle = true;
         }
       }
@@ -495,11 +481,11 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    if (collectBoxWhenCircle && CircleBox) {
-      api.collectBox(CircleBox.box);
-      api.targetBoxHash = CircleBox.box.hash;
+    if (collectBoxWhenCircle && circleBox) {
+      api.collectBox(circleBox.box);
+      api.targetBoxHash = circleBox.box.hash;
       collectBoxWhenCircle = false;
-      CircleBox = null;
+      circleBox = null;
     }
     window.movementDone = false;
   }
