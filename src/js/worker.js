@@ -582,13 +582,8 @@ function logic() {
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
-        if (dist > window.settings.npcCircleRadius + 100) {
-          x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
-          y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-        } else {
-          x = enemy.x;
-          y = enemy.y;
-        };
+        x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
+        y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         let nearestBox = api.findNearestBox();
         if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
           circleBox = nearestBox;
