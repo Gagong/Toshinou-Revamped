@@ -222,14 +222,14 @@ function logic() {
     }
   }
 
-
   if (api.targetBoxHash == null && api.targetShip == null) {
+    let pos = window.hero.position;
     if (window.settings.zeta) {
       let ggZeta = api.findNearestGatebyID(54);
-      if (ggZeta.gate && window.hero.position.x != ggZeta.gate.position.x && window.hero.position.y != ggZeta.gate.position.y) {
+      if (ggZeta.gate) {
         let x = ggZeta.gate.position.x;
         let y = ggZeta.gate.position.y;
-        if (window.hero.position.x == ggZeta.gate.position.x && window.hero.position.y == ggZeta.gate.position.y) {
+        if (window.hero.position.distanceTo(ggZeta.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -237,7 +237,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggZeta.gate.position.x && window.hero.position.y != ggZeta.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -247,10 +247,10 @@ function logic() {
 
     if (window.settings.kappa) {
       let ggKappa = api.findNearestGatebyID(70);
-      if (ggKappa.gate && window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
+      if (ggKappa.gate) {
         let x = ggKappa.gate.position.x;
         let y = ggKappa.gate.position.y;
-        if (window.hero.position.x == ggKappa.gate.position.x && window.hero.position.y == ggKappa.gate.position.y) {
+        if (window.hero.position.distanceTo(ggKappa.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -258,7 +258,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -268,10 +268,10 @@ function logic() {
 
     if (window.settings.delta) {
       let ggDelta = api.findNearestGatebyID(5);
-      if (ggDelta.gate && window.hero.position.x != ggDelta.gate.position.x && window.hero.position.y != ggDelta.gate.position.y) {
+      if (ggDelta.gate) {
         let x = ggDelta.gate.position.x;
         let y = ggDelta.gate.position.y;
-        if (window.hero.position.x == ggDelta.gate.position.x && window.hero.position.y == ggDelta.gate.position.y) {
+        if (window.hero.position.distanceTo(ggDelta.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -279,7 +279,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggDelta.gate.position.x && window.hero.position.y != ggDelta.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -289,10 +289,10 @@ function logic() {
 
     if (window.settings.alpha) {
       let ggAlpha = api.findNearestGatebyID(2);
-      if (ggAlpha.gate && window.hero.position.x != ggAlpha.gate.position.x && window.hero.position.y != ggAlpha.gate.position.y) {
+      if (ggAlpha.gate) {
         let x = ggAlpha.gate.position.x;
         let y = ggAlpha.gate.position.y;
-        if (window.hero.position.x == ggAlpha.gate.position.x && window.hero.position.y == ggAlpha.gate.position.y) {
+        if (window.hero.position.distanceTo(ggAlpha.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -300,7 +300,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggAlpha.gate.position.x && window.hero.position.y != ggAlpha.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -310,10 +310,10 @@ function logic() {
 
     if (window.settings.beta) {
       let ggBeta = api.findNearestGatebyID(3);
-      if (ggBeta.gate && window.hero.position.x != ggBeta.gate.position.x && window.hero.position.y != ggBeta.gate.position.y) {
+      if (ggBeta.gate) {
         let x = ggBeta.gate.position.x;
         let y = ggBeta.gate.position.y;
-        if (window.hero.position.x == ggBeta.gate.position.x && window.hero.position.y == ggBeta.gate.position.y) {
+        if (window.hero.position.distanceTo(ggBeta.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -321,7 +321,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggBeta.gate.position.x && window.hero.position.y != ggBeta.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -331,10 +331,10 @@ function logic() {
 
     if (window.settings.gamma) {
       let ggGamma = api.findNearestGatebyID(4);
-      if (ggGamma.gate && window.hero.position.x != ggGamma.gate.position.x && window.hero.position.y != ggGamma.gate.position.y) {
+      if (ggGamma.gate) {
         let x = ggGamma.gate.position.x;
         let y = ggGamma.gate.position.y;
-        if (window.hero.position.x == ggGamma.gate.position.x && window.hero.position.y == ggGamma.gate.position.y) {
+        if (window.hero.position.distanceTo(ggGamma.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -342,7 +342,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggGamma.gate.position.x && window.hero.position.y != ggGamma.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -352,10 +352,10 @@ function logic() {
 
     if (window.settings.epsilon) {
       let ggEpsilon = api.findNearestGatebyID(53);
-      if (ggEpsilon.gate && window.hero.position.x != ggEpsilon.gate.position.x && window.hero.position.y != ggEpsilon.gate.position.y) {
+      if (ggEpsilon.gate) {
         let x = ggEpsilon.gate.position.x;
         let y = ggEpsilon.gate.position.y;
-        if (window.hero.position.x == ggEpsilon.gate.position.x && window.hero.position.y == ggEpsilon.gate.position.y) {
+        if (window.hero.position.distanceTo(ggEpsilon.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -363,7 +363,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggEpsilon.gate.position.x && window.hero.position.y != ggEpsilon.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -373,10 +373,10 @@ function logic() {
 
     if (window.settings.kuiper) {
       let ggKuiper = api.findNearestGatebyID(82);
-      if (ggKuiper.gate && window.hero.position.x != ggKuiper.gate.position.x && window.hero.position.y != ggKuiper.gate.position.y) {
+      if (ggKuiper.gate) {
         let x = ggKuiper.gate.position.x;
         let y = ggKuiper.gate.position.y;
-        if (window.hero.position.x == ggKuiper.gate.position.x && window.hero.position.y == ggKuiper.gate.position.y) {
+        if (window.hero.position.distanceTo(ggKuiper.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -384,7 +384,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggKuiper.gate.position.x && window.hero.position.y != ggKuiper.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -394,10 +394,10 @@ function logic() {
 
     if (window.settings.lambda) {
       let ggLambda = api.findNearestGatebyID(71);
-      if (ggLambda.gate && window.hero.position.x != ggLambda.gate.position.x && window.hero.position.y != ggLambda.gate.position.y) {
+      if (ggLambda.gate) {
         let x = ggLambda.gate.position.x;
         let y = ggLambda.gate.position.y;
-        if (window.hero.position.x == ggLambda.gate.position.x && window.hero.position.y == ggLambda.gate.position.y) {
+        if (window.hero.position.distanceTo(ggLambda.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -405,7 +405,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggLambda.gate.position.x && window.hero.position.y != ggLambda.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -415,10 +415,10 @@ function logic() {
 
     if (window.settings.hades) {
       let ggHades = api.findNearestGatebyID(74);
-      if (ggHades.gate && window.hero.position.x != ggHades.gate.position.x && window.hero.position.y != ggHades.gate.position.y) {
+      if (ggHades.gate) {
         let x = ggHades.gate.position.x;
         let y = ggHades.gate.position.y;
-        if (window.hero.position.x == ggHades.gate.position.x && window.hero.position.y == ggHades.gate.position.y) {
+        if (window.hero.position.distanceTo(ggHades.gate.position) < 200) {
           api.jumpGate();
         }
         api.targetShip = null;
@@ -426,7 +426,7 @@ function logic() {
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        if (window.hero.position.x != ggHades.gate.position.x && window.hero.position.y != ggHades.gate.position.y) {
+        if (pos.x != x && pos.y != y) {
           api.move(x, y);
           window.movementDone = false;
         }
@@ -435,8 +435,7 @@ function logic() {
     }
   }
 
-  if (window.X1Map == true) {
-    window.dispatchEvent(new CustomEvent("logicEnd"));
+  if (window.X1Map) {
     return;
   }
 
@@ -583,8 +582,13 @@ function logic() {
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
-        x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
-        y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+        if (dist > window.settings.npcCircleRadius + 100) {
+          x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
+          y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+        } else {
+          x = enemy.x;
+          y = enemy.y;
+        };
         let nearestBox = api.findNearestBox();
         if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
           circleBox = nearestBox;
