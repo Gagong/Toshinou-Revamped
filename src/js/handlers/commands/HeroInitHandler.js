@@ -40,6 +40,12 @@ class HeroInitHandler {
         window.b3 = 350;
       }
 
+      if (window.hero.mapId == 1 || window.hero.mapId == 5 || window.hero.mapId == 9) {
+        window.X1Map = true;
+      } else {
+        window.X1Map = false;
+      }
+
       f();
       window.initialized = true;
     }

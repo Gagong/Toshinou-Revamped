@@ -222,7 +222,6 @@ function logic() {
     }
   }
 
-  // [1 - x-2; 2 - Alpha; 3 - Beta; 4 - Gamma; 5 - Delta; 70 - Kappa; 82 - Kuiper]
 
   if (api.targetBoxHash == null && api.targetShip == null) {
     if (window.settings.zeta) {
@@ -230,13 +229,18 @@ function logic() {
       if (ggZeta.gate && window.hero.position.x != ggZeta.gate.position.x && window.hero.position.y != ggZeta.gate.position.y) {
         let x = ggZeta.gate.position.x;
         let y = ggZeta.gate.position.y;
+        if (window.hero.position.x == ggZeta.gate.position.x && window.hero.position.y == ggZeta.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggZeta.gate.position.x && window.hero.position.y != ggZeta.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
@@ -246,13 +250,18 @@ function logic() {
       if (ggKappa.gate && window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
         let x = ggKappa.gate.position.x;
         let y = ggKappa.gate.position.y;
+        if (window.hero.position.x == ggKappa.gate.position.x && window.hero.position.y == ggKappa.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
@@ -262,13 +271,18 @@ function logic() {
       if (ggDelta.gate && window.hero.position.x != ggDelta.gate.position.x && window.hero.position.y != ggDelta.gate.position.y) {
         let x = ggDelta.gate.position.x;
         let y = ggDelta.gate.position.y;
+        if (window.hero.position.x == ggDelta.gate.position.x && window.hero.position.y == ggDelta.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggDelta.gate.position.x && window.hero.position.y != ggDelta.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
@@ -278,13 +292,18 @@ function logic() {
       if (ggAlpha.gate && window.hero.position.x != ggAlpha.gate.position.x && window.hero.position.y != ggAlpha.gate.position.y) {
         let x = ggAlpha.gate.position.x;
         let y = ggAlpha.gate.position.y;
+        if (window.hero.position.x == ggAlpha.gate.position.x && window.hero.position.y == ggAlpha.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggAlpha.gate.position.x && window.hero.position.y != ggAlpha.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
@@ -294,13 +313,18 @@ function logic() {
       if (ggBeta.gate && window.hero.position.x != ggBeta.gate.position.x && window.hero.position.y != ggBeta.gate.position.y) {
         let x = ggBeta.gate.position.x;
         let y = ggBeta.gate.position.y;
+        if (window.hero.position.x == ggBeta.gate.position.x && window.hero.position.y == ggBeta.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggBeta.gate.position.x && window.hero.position.y != ggBeta.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
@@ -310,16 +334,110 @@ function logic() {
       if (ggGamma.gate && window.hero.position.x != ggGamma.gate.position.x && window.hero.position.y != ggGamma.gate.position.y) {
         let x = ggGamma.gate.position.x;
         let y = ggGamma.gate.position.y;
+        if (window.hero.position.x == ggGamma.gate.position.x && window.hero.position.y == ggGamma.gate.position.y) {
+          api.jumpGate();
+        }
         api.targetShip = null;
         api.attacking = false;
         api.triedToLock = false;
         api.lockedShip = null;
         api.targetBoxHash = null;
-        api.move(x, y);
-        window.movementDone = false;
+        if (window.hero.position.x != ggGamma.gate.position.x && window.hero.position.y != ggGamma.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
         return;
       }
     }
+
+    if (window.settings.epsilon) {
+      let ggEpsilon = api.findNearestGatebyID(53);
+      if (ggEpsilon.gate && window.hero.position.x != ggEpsilon.gate.position.x && window.hero.position.y != ggEpsilon.gate.position.y) {
+        let x = ggEpsilon.gate.position.x;
+        let y = ggEpsilon.gate.position.y;
+        if (window.hero.position.x == ggEpsilon.gate.position.x && window.hero.position.y == ggEpsilon.gate.position.y) {
+          api.jumpGate();
+        }
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        if (window.hero.position.x != ggEpsilon.gate.position.x && window.hero.position.y != ggEpsilon.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
+        return;
+      }
+    }
+
+    if (window.settings.kuiper) {
+      let ggKuiper = api.findNearestGatebyID(82);
+      if (ggKuiper.gate && window.hero.position.x != ggKuiper.gate.position.x && window.hero.position.y != ggKuiper.gate.position.y) {
+        let x = ggKuiper.gate.position.x;
+        let y = ggKuiper.gate.position.y;
+        if (window.hero.position.x == ggKuiper.gate.position.x && window.hero.position.y == ggKuiper.gate.position.y) {
+          api.jumpGate();
+        }
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        if (window.hero.position.x != ggKuiper.gate.position.x && window.hero.position.y != ggKuiper.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
+        return;
+      }
+    }
+
+    if (window.settings.lambda) {
+      let ggLambda = api.findNearestGatebyID(71);
+      if (ggLambda.gate && window.hero.position.x != ggLambda.gate.position.x && window.hero.position.y != ggLambda.gate.position.y) {
+        let x = ggLambda.gate.position.x;
+        let y = ggLambda.gate.position.y;
+        if (window.hero.position.x == ggLambda.gate.position.x && window.hero.position.y == ggLambda.gate.position.y) {
+          api.jumpGate();
+        }
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        if (window.hero.position.x != ggLambda.gate.position.x && window.hero.position.y != ggLambda.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
+        return;
+      }
+    }
+
+    if (window.settings.hades) {
+      let ggHades = api.findNearestGatebyID(74);
+      if (ggHades.gate && window.hero.position.x != ggHades.gate.position.x && window.hero.position.y != ggHades.gate.position.y) {
+        let x = ggHades.gate.position.x;
+        let y = ggHades.gate.position.y;
+        if (window.hero.position.x == ggHades.gate.position.x && window.hero.position.y == ggHades.gate.position.y) {
+          api.jumpGate();
+        }
+        api.targetShip = null;
+        api.attacking = false;
+        api.triedToLock = false;
+        api.lockedShip = null;
+        api.targetBoxHash = null;
+        if (window.hero.position.x != ggHades.gate.position.x && window.hero.position.y != ggHades.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
+        return;
+      }
+    }
+  }
+
+  if (window.X1Map == true) {
+    window.dispatchEvent(new CustomEvent("logicEnd"));
+    return;
   }
 
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
@@ -333,8 +451,10 @@ function logic() {
       api.lockedShip = null;
       api.targetBoxHash = null;
       api.isRepairing = true;
-      api.move(x, y);
-      window.movementDone = false;
+      if (window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
+          api.move(x, y);
+          window.movementDone = false;
+        }
       return;
     }
   }

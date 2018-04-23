@@ -1,5 +1,30 @@
 class Settings {
-  constructor(moveRandomly, lockNpcs, lockPlayers, autoAttack, killNpcs, pause, palladium, bonusBox, cargoBox, materials, fleeFromEnemy, avoidAttackedNpcs, delta, kappa, zeta, alpha, beta, gamma, greenOrGoldBooty, redBooty, blueBooty, masqueBooty) {
+  constructor(moveRandomly, 
+    lockNpcs, 
+    lockPlayers, 
+    autoAttack, 
+    killNpcs, 
+    pause, 
+    palladium, 
+    bonusBox, 
+    cargoBox, 
+    materials, 
+    fleeFromEnemy, 
+    avoidAttackedNpcs, 
+    delta,
+    kuiper,
+    lambda,
+    hades,
+    epsilon, 
+    kappa, 
+    zeta, 
+    alpha, 
+    beta, 
+    gamma, 
+    greenOrGoldBooty, 
+    redBooty, 
+    blueBooty, 
+    masqueBooty) { //Fuck this shit...
     this._moveRandomly = moveRandomly === true;
     this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
@@ -15,6 +40,10 @@ class Settings {
     this._materials = materials === true;
     this._fleeFromEnemy = fleeFromEnemy === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
+    this._epsilon = epsilon === true;
+    this._kuiper = kuiper === true;
+    this._hades = hades === true;
+    this._lambda = lambda === true;
     this._zeta = zeta === true;
     this._delta = delta === true;
     this._kappa = kappa === true;
@@ -33,6 +62,38 @@ class Settings {
 
   set autoAttack(value) {
     this._autoAttack = value === true;
+  }
+
+  get kuiper() {
+    return this._kuiper;
+  }
+
+  set kuiper(value) {
+    this._kuiper = value === true;
+  }
+
+  get lambda() {
+    return this._lambda;
+  }
+
+  set lambda(value) {
+    this._lambda = value === true;
+  }
+
+  get hades() {
+    return this._hades;
+  }
+
+  set hades(value) {
+    this._hades = value === true;
+  }
+
+  get epsilon() {
+    return this._epsilon;
+  }
+
+  set epsilon(value) {
+    this._epsilon = value === true;
   }
 
   get kappa() {

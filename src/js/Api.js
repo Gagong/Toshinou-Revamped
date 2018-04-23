@@ -121,6 +121,14 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").laserAttack()');
   }
 
+  jumpGate() {
+    Injector.injectScript('document.getElementById("preloader").jumpGate();');
+  }
+
+  /*changeConfig() {
+    Injector.injectScript('document.getElementById("preloader").changeConfig();');
+  }*/
+
   findNearestBox() {
     let minDist = 100000;
     let finalBox;
