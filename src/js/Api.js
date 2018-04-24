@@ -9,6 +9,7 @@ class Api {
     this.isDisconnected = false;
     this.disconnectTime = null;
     this.reconnectTime = null;
+    this.jumpTime = $.now();
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -81,9 +82,8 @@ class Api {
   }
 
   reconnect() {
-    let scr = 'document.getElementById("preloader").reconnect();';
-    Injector.injectScript(scr);
-
+    if (this.disconnectTime && $.now() - this.disconnectTime > 20000 && (!this.reconnectTime || this.reconnectTime && $.now() - this.reconnectTime > 12000) && window.reviveCount < window.settings.reviveLimit)
+    Injector.injectScript('document.getElementById("preloader").reconnect();');
     this.reconnectTime = $.now();
   }
 
@@ -104,7 +104,7 @@ class Api {
   }
 
   move(x, y) {
-    if (!isNaN(x) && !isNaN(y)) {
+    if (!isNaN(x) && !isNaN(y) && x != window.hero.position.x && window.hero.position.y != y) {
       window.hero.move(new Vector2D(x, y));
     }
   }
@@ -128,6 +128,32 @@ class Api {
   /*changeConfig() {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
+
+  resetTarget() {
+    this.targetShip = null;
+    this.attacking = false;
+    this.triedToLock = false;
+    this.lockedShip = null;
+    this.targetBoxHash = null;
+  }
+
+  jumpInGG(id, settings) { //Usage: api.jumpInGG(70, window.settings.kappa);
+    if (settings) {
+      let gate = this.findNearestGatebyID(id);
+      if (gate.gate) {
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+          this.jumpGate();
+          this.jumpTime = $.now();
+        }
+        this.resetTarget();
+        this.move(x, y);
+        window.movementDone = false;
+        return;
+      }
+    }
+  }
 
   findNearestBox() {
     let minDist = 100000;
