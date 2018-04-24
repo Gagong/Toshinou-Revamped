@@ -450,7 +450,7 @@ function logic() {
       api.lockedShip = null;
       api.targetBoxHash = null;
       api.isRepairing = true;
-      if (window.hero.position.x != ggKappa.gate.position.x && window.hero.position.y != ggKappa.gate.position.y) {
+      if (window.hero.position.x != gate.gate.position.x && window.hero.position.y != gate.gate.position.y) {
           api.move(x, y);
           window.movementDone = false;
         }
