@@ -19,7 +19,6 @@ let blacklist = [
 chrome.webRequest.onBeforeRequest.addListener(
   function (details) {
     let result = false;
-    console.log("executed!");
     blacklist.forEach(item => {
       if (details.url.indexOf(item) != -1)
         result = true;

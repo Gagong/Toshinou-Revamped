@@ -6,7 +6,9 @@ class Api {
     this.ships = {};
     this.battlestation = null;
     this.lastMovement = 0;
-    this.isDisconected = false;
+    this.isDisconnected = false;
+    this.disconnectTime = null;
+    this.reconnectTime = null;
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -59,22 +61,11 @@ class Api {
       return;
 
     ship.update();
-    var pos = ship.position;
-    var scr = 'document.getElementById("preloader").lockShip(' + ship.id + ',' + Math.round(pos.x) + ',' + Math.round(pos.y) + ',' + Math.round(window.hero.position.x) + ',' + Math.round(window.hero.position.y) + ');';
+    let pos = ship.position;
+    let scr = 'document.getElementById("preloader").lockShip(' + ship.id + ',' + Math.round(pos.x) + ',' + Math.round(pos.y) + ',' + Math.round(window.hero.position.x) + ',' + Math.round(window.hero.position.y) + ');';
     Injector.injectScript(scr);
 
     this.lockTime = $.now();
-  }
-
-  isEmptyObject(obj) {
-    if (obj == null)
-      return false;
-    for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        return true;
-      }
-    }
-    return false;
   }
 
   lockNpc(ship) {
@@ -87,6 +78,13 @@ class Api {
     this.lockTime = $.now();
 
     this.lockShip(ship);
+  }
+
+  reconnect() {
+    let scr = 'document.getElementById("preloader").reconnect();';
+    Injector.injectScript(scr);
+
+    this.reconnectTime = $.now();
   }
 
   collectBox(box) {
@@ -123,28 +121,36 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").laserAttack()');
   }
 
-  findNearestBox() {
-    var minDist = 100000;
-    var finalBox;
+  jumpGate() {
+    Injector.injectScript('document.getElementById("preloader").jumpGate();');
+  }
 
-    if (!window.settings.bonusbox && !window.settings.matherials && !window.settings.palladium && !window.settings.cargobox && !window.settings.booty && !window.settings.rbooty && !window.settings.bbooty && !window.settings.msqbooty)
+  /*changeConfig() {
+    Injector.injectScript('document.getElementById("preloader").changeConfig();');
+  }*/
+
+  findNearestBox() {
+    let minDist = 100000;
+    let finalBox;
+
+    if (!window.settings.bonusBox && !window.settings.materials && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenOrGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
       return {
         box: null,
         distance: minDist
       };
 
-    for (var property in this.boxes) {
-      var box = this.boxes[property];
-      var dist = box.distanceTo(window.hero.position);
+    for (let property in this.boxes) {
+      let box = this.boxes[property];
+      let dist = box.distanceTo(window.hero.position);
       if (dist < minDist) {
-        if (!box.isResourse() && ((box.isCollectable() && window.settings.bonusbox) ||
-            ((box.isMaterial() || box.isDropRes()) && window.settings.matherials) ||
+        if (!box.isResource() && ((box.isCollectable() && window.settings.bonusBox) ||
+            ((box.isMaterial() || box.isDropRes()) && window.settings.materials) ||
             (box.isPalladium() && window.settings.palladium) ||
-            (box.isCargo() && window.settings.cargobox) ||
-            (box.isBooty() && window.settings.booty && window.count > 0) ||
-            (box.isRBooty() && window.settings.rbooty && window.rcount > 0) ||
-            (box.isBBooty() && window.settings.bbooty && window.bcount > 0) ||
-            (box.isMSQBooty() && window.settings.msqbooty && window.msqbcount > 0))) {
+            (box.isCargoBox() && window.settings.cargoBox) ||
+            (box.isGreenOrGoldBooty() && window.settings.greenOrGoldBooty && window.greenOrGoldBootyKeyCount > 0) ||
+            (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
+            (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
+            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
           finalBox = box;
           minDist = dist;
         }
@@ -157,8 +163,8 @@ class Api {
   }
 
   findNearestShip() {
-    var minDist = 100000;
-    var finalShip;
+    let minDist = 100000;
+    let finalShip;
 
     if (!window.settings.killNpcs)
       return {
@@ -166,10 +172,10 @@ class Api {
         distance: minDist
       };
 
-    for (var property in this.ships) {
-      var ship = this.ships[property];
+    for (let property in this.ships) {
+      let ship = this.ships[property];
       ship.update();
-      var dist = ship.distanceTo(window.hero.position);
+      let dist = ship.distanceTo(window.hero.position);
 
       if (dist < minDist) {
         if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
@@ -186,11 +192,11 @@ class Api {
   }
 
   findNearestGate() {
-    var minDist = 100000;
-    var finalGate;
+    let minDist = 100000;
+    let finalGate;
 
     this.gates.forEach(gate => {
-      var dist = window.hero.distanceTo(gate.position);
+      let dist = window.hero.distanceTo(gate.position);
       if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
         finalGate = gate;
         minDist = dist;
@@ -204,11 +210,11 @@ class Api {
   }
 
   findNearestGateForRunAway(enemy) {
-    var minDist = 100000;
-    var finalGate;
+    let minDist = 100000;
+    let finalGate;
     this.gates.forEach(gate => {
-      var enemeyDistance = enemy.distanceTo(gate.position);
-      var dist = window.hero.distanceTo(gate.position);
+      let enemeyDistance = enemy.distanceTo(gate.position);
+      let dist = window.hero.distanceTo(gate.position);
       if (enemeyDistance < dist) {
         return;
       }
@@ -224,13 +230,13 @@ class Api {
     };
   }
 
-  findNearestGatebyID(gate_id) {
-    var minDist = 100000;
-    var finalGate;
+  findNearestGatebyID(gateId) {
+    let minDist = 100000;
+    let finalGate;
 
     this.gates.forEach(gate => {
-      var dist = window.hero.distanceTo(gate.position);
-      if (dist < minDist && gate.Gatetype == gate_id) {
+      let dist = window.hero.distanceTo(gate.position);
+      if (dist < minDist && gate.gateType == gateId) {
         finalGate = gate;
         minDist = dist;
       }
@@ -247,19 +253,19 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
-  CheckForEnemy() {
-    var result = {
+  checkForEnemy() {
+    let result = {
       run: false,
       enemy: null,
       edist: 100000
     };
-    var enemyDistance = 100000;
-    var enemyShip;
-    for (var property in this.ships) {
-      var ship = this.ships[property];
+    let enemyDistance = 100000;
+    let enemyShip;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
       ship.update();
       if (!ship.isNpc && ship.isEnemy) {
-        var dist = ship.distanceTo(window.hero.position);
+        let dist = ship.distanceTo(window.hero.position);
         if (enemyDistance > dist) {
           enemyDistance = dist;
           result.edist = dist;

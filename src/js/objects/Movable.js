@@ -1,7 +1,6 @@
 class Movable {
   constructor(x, y) {
     this.position = new Vector2D(x, y);
-    /*console.log(this);*/
   }
 
   setPosition(x, y) {

@@ -22,7 +22,6 @@ class MessagesHandler {
       let message = s.message.split('|');
 
       if ("KIK" == message[1]) {
-        a.isDisconected = true;
         this.connection({
           connected: false,
           status: 'off'
@@ -30,7 +29,6 @@ class MessagesHandler {
       }
 
       if ("A" == message[1]) {
-        a.isDisconected = true;
         this.connection({
           connected: true,
           status: 'on'

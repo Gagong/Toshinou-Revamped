@@ -6,14 +6,6 @@ class GeneralSettingsWindow {
     });
 
     let controls = [{
-        name: 'getPause',
-        labelText: 'Pause Bot',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.pause = this.checked;
-        }
-      },
-      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -38,24 +30,24 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'runfromenemy',
+        name: 'fleeFromEnemy',
         labelText: 'Flee from enemy',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.runfromenemy = this.checked;
+          window.settings.fleeFromEnemy = this.checked;
         }
       },
       {
-        name: 'avoidAttackedNPCs',
-        labelText: 'Avoid attacked NPCs (dont use with PET)',
+        name: 'avoidAttackedNpcs',
+        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.avoidAttackedNPCs = this.checked;
+          window.settings.avoidAttackedNpcs = this.checked;
         }
-      },                                 
+      },
       {
         name: 'npcCircle',
-        labelText: 'Circle (Beta)',
+        labelText: 'Circle',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.circleNpc = this.checked;
@@ -63,7 +55,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'npcCircleRadius',
-        labelText: ' Circle radius <span> (500px)</span>',
+        labelText: 'Circle radius <span> (500px)</span>',
         type: 'range',
         appendTo: this.botSettingsWindow,
         labelBefore: true,

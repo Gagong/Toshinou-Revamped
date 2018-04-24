@@ -45,11 +45,11 @@ class Minimap {
     for (var property in this._api.boxes) {
       var box = this._api.boxes[property];
 
-      if (box == null || box.isResourse())
+      if (box == null || box.isResource())
         continue;
 
       ct.fillStyle = BoxType.getColor(box.type);
-      this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1);
+      this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1.3);
     }
 
     for (var property in this._api.ships) {
@@ -65,7 +65,11 @@ class Minimap {
         ct.fillStyle = "rgb(255, 0, 245)";
       } else if (ship.isEnemy) {
         ct.fillStyle = "rgb(255, 0, 0)";
-        ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
+        if (ship.cloaked) {
+          ct.fillText(ship.name + " | Cloaked", pos.x / window.b1 + 1, pos.y / window.b2 + 13);
+        } else {
+          ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
+        }
       } else {
         ct.fillStyle = "rgb(0, 125, 255)";
         ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
@@ -77,7 +81,7 @@ class Minimap {
     if (this._api.battlestation) {
       let bs = this._api.battlestation;
 
-      if (bs.factionId != window.hero.factionId && bs.factionId != 0) {
+      if (bs.isEnemy && bs.factionId != 0) {
         ct.fillStyle = "rgb(255, 0, 0)";
       } else if (bs.factionId == 0) {
         ct.fillStyle = "rgb(76, 76, 76)";
@@ -88,10 +92,10 @@ class Minimap {
       this._fillCircle(ct, (bs.position.x) / window.b1, bs.position.y / window.b2, 3);
 
       if (bs.clanTag != "") {
-        ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
+        ct.fillText("[" + bs.clanTag + "] " + bs.name, bs.position.x / window.b1 - 30, bs.position.y / window.b2 - 8);
       } else {
         ct.fillStyle = "white";
-        ct.fillText(bs.name, bs.position.x / window.b1 + 1, bs.position.y / window.b2 + 13);
+        ct.fillText(bs.name, bs.position.x / window.b1 - 20, bs.position.y / window.b2 - 5);
       }
 
       for (let prop in this._api.battlestation.modules) {

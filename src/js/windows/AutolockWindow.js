@@ -6,11 +6,11 @@ class AutolockWindow {
     });
 
     let options = [{
-        name: 'lockNpc',
+        name: 'lockNpcs',
         labelText: 'Autolock NPCs (key: x)',
         appendTo: this.autolockWindow,
         event: function () {
-          window.settings.lockNpc = this.checked;
+          window.settings.lockNpcs = this.checked;
         }
       },
       {
@@ -22,11 +22,11 @@ class AutolockWindow {
         }
       },
       {
-        name: 'autoattack',
+        name: 'autoAttack',
         labelText: 'Attack locked target',
         appendTo: this.autolockWindow,
         event: function () {
-          window.settings.autoattack = this.checked;
+          window.settings.autoAttack = this.checked;
         }
       },
     ];

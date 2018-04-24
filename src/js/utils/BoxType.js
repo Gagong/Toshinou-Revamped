@@ -45,7 +45,7 @@ class BoxType {
     ret[BoxType.miniPumpkin] = "white";
     ret[BoxType.pirateBootyGreen] = "green";
     ret[BoxType.pirateBootyRed] = "red";
-    ret[BoxType.pirateBootyBlue] = "blue";
+    ret[BoxType.pirateBootyBlue] = "lightblue";
     ret[BoxType.pirateBootyGold] = "gold";
     ret[BoxType.pirateBootyMasque] = "violet";
     ret[BoxType.demanerBox] = "blueviolet"

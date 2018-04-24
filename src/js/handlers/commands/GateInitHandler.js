@@ -5,9 +5,9 @@ class GateInitHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      var parsedJson = JSON.parse(e.detail);
-      console.log(parsedJson);
-      a.gates.push(new Gate(parsedJson.x, parsedJson.y, parsedJson.factionId, parsedJson[Variables.gateJumpId], parsedJson[Variables.Gatetype]));
+      let parsedJson = JSON.parse(e.detail);
+
+      a.gates.push(new Gate(parsedJson.x, parsedJson.y, parsedJson.factionId, parsedJson[Variables.gateId], parsedJson[Variables.gateType]));
     }
   }
 
