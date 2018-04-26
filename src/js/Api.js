@@ -82,8 +82,9 @@ class Api {
   }
 
   reconnect() {
-    if (this.disconnectTime && $.now() - this.disconnectTime > 20000 && (!this.reconnectTime || this.reconnectTime && $.now() - this.reconnectTime > 12000) && window.reviveCount < window.settings.reviveLimit)
-    Injector.injectScript('document.getElementById("preloader").reconnect();');
+    let scr = 'document.getElementById("preloader").reconnect();';
+    Injector.injectScript(scr);
+    
     this.reconnectTime = $.now();
   }
 
