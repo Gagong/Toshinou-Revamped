@@ -283,7 +283,7 @@ function logic() {
       return;
     } */ //disabled for a while
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
+    if (!api.attacking && api.lockedShip /*&& api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs*/) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
@@ -311,7 +311,7 @@ function logic() {
   }
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) ||
-    ($.now() - api.lastAttack > 15000) ||
+    ($.now() - api.lastAttack > 10000) ||
     (api.targetShip && (api.targetShip.modifier.length != 0 || api.targetShip.modifier.activated == false))) {
     api.resetTarget();
   }
