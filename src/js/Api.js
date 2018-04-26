@@ -105,7 +105,7 @@ class Api {
   }
 
   move(x, y) {
-    if (!isNaN(x) && !isNaN(y) && x != window.hero.position.x && window.hero.position.y != y) {
+    if (!isNaN(x) && !isNaN(y)) {
       window.hero.move(new Vector2D(x, y));
     }
   }
