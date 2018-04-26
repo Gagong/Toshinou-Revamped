@@ -158,6 +158,10 @@ function logic() {
   let circleBox = null;
   let notrightId;
 
+  if (api.heroDied) {
+    return;
+  }
+
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
@@ -170,7 +174,7 @@ function logic() {
 
    window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
+  if (window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
     api.resetTarget();
     return;
   }
