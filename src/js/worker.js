@@ -325,7 +325,7 @@ function logic() {
 
   if (window.settings.palladium) {
     palladiumBlackList.forEach(npc => {
-      window.settings.setNpc(npc, false);
+      window.settings.setNpc(npc, true);
     });
     window.settings.moveRandomly = true;
     window.settings.killNpcs = true;
