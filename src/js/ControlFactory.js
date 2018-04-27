@@ -125,6 +125,13 @@ class ControlFactory {
       event.call(this, ev);
     });
 
+    if(type === "checkbox"){
+      label.click(function (ev){
+        input.prop('checked', !input.prop('checked'));
+        input.trigger("change");
+      });
+    }
+
     return {
       input,
       label
