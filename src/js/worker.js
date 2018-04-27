@@ -315,7 +315,7 @@ function logic() {
   }
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) ||
-    ($.now() - api.lastAttack > 15000) ||
+    ($.now() - api.lastAttack > 10000) ||
     (api.targetShip && (api.targetShip.modifier.length != 0 || api.targetShip.modifier.activated == false))) {
     api.resetTarget("enemy");
   }
@@ -379,7 +379,7 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    /*if (collectBoxWhenCircle && circleBox && api.targetBoxHash != null) {
+    /*if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       collectBoxWhenCircle = false;
       circleBox = null;
