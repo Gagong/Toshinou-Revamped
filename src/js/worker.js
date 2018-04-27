@@ -208,7 +208,7 @@ function logic() {
   /*api.findDevourerInShips();*/
 
   if (window.settings.fleeFromEnemy) {
-    var enemyResult = api.checkForEnemy();
+    let enemyResult = api.checkForEnemy();
 
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
@@ -299,18 +299,10 @@ function logic() {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
-    } else {
-      if (box.type != "MUCOSUM" ||
-        box.type != "PRISMATIUM" ||
-        box.type != "SCRAPIUM" ||
-        box.type != "BOLTRUM" ||
-        box.type != "AURUS_BOX" ||
-        box.type != "BIFENON" ||
-        box.type != "HYBRID_ALLOY_BOX") {
-        delete api.boxes[api.targetBoxHash];
-        api.blackListHash(api.targetBoxHash);
-        api.targetBoxHash = null;
-      }
+    } else if (box && box.type == "BONUS_BOX" || box.type == "FROM_SHIP") {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.resetTarget("box");
     }
   }
 
