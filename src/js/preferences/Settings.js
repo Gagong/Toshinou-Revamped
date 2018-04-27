@@ -24,7 +24,9 @@ class Settings {
     greenOrGoldBooty, 
     redBooty, 
     blueBooty, 
-    masqueBooty) { //Fuck this shit...
+    masqueBooty,
+    circleNpc) { //Fuck this shit...
+    this._circleNpc = circleNpc === true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
@@ -54,6 +56,14 @@ class Settings {
     this._redBooty = redBooty === true;
     this._blueBooty = blueBooty === true;
     this._masqueBooty = masqueBooty === true;
+  }
+
+  get circleNpc() {
+    return this._circleNpc;
+  }
+
+  set circleNpc(value) {
+    this._circleNpc = value === true;
   }
 
   get autoAttack() {

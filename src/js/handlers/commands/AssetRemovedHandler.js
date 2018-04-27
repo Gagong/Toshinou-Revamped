@@ -8,7 +8,7 @@ class AssetRemovedHandler {
       let parsedCmd = JSON.parse(e.detail);
 
       if (parsedCmd.hash == a.targetBoxHash) {
-        a.targetBoxHash = null;
+        a.resetTarget("box");
       }
 
       if (a.boxes.hasOwnProperty(parsedCmd.hash)) {

@@ -9,12 +9,8 @@ class HeroInitHandler {
       a.ships = [];
       a.boxes = {};
       a.gates = [];
-      a.targetShip = null;
-      a.attacking = false;
-      a.triedToLock = false;
-      a.lockedShip = null;
       a.heroDied = false;
-      a.targetBoxHash = null;
+      a.resetTarget("all");
       a.battlestation = null;
       Injector.injectScript("window.heroDied = false;");
 
@@ -29,6 +25,8 @@ class HeroInitHandler {
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
       window.hero.mapId = heroJson["mapId"]
+
+      /*console.log(heroJson["mapId"]);*/
 
       if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
         window.b1 = 42000 / 300;

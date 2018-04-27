@@ -82,9 +82,7 @@ class Api {
   }
 
   reconnect() {
-    let scr = 'document.getElementById("preloader").reconnect();';
-    Injector.injectScript(scr);
-    
+    Injector.injectScript('document.getElementById("preloader").reconnect();');
     this.reconnectTime = $.now();
   }
 
@@ -130,12 +128,21 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
-  resetTarget() {
-    this.targetShip = null;
-    this.attacking = false;
-    this.triedToLock = false;
-    this.lockedShip = null;
-    this.targetBoxHash = null;
+  resetTarget(target) {
+    if (target == "enemy") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+    } else if (target == "box") {
+      this.targetBoxHash = null;
+    } else if (target == "all") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+      this.targetBoxHash = null;
+    }
   }
 
   jumpInGG(id, settings) { //Usage: api.jumpInGG(70, window.settings.kappa);
@@ -148,8 +155,8 @@ class Api {
           this.jumpGate();
           this.jumpTime = $.now();
         }
-        this.resetTarget();
-        this.move(x, y);
+        this.resetTarget("all");
+        this.move(x, y, true);
         window.movementDone = false;
         return;
       }
@@ -188,6 +195,25 @@ class Api {
       distance: minDist
     };
   }
+
+  /*findDevourerInShips() {
+    let shipsCount = Object.keys(api.ships).length;
+
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27") {
+        if (shipsCount > 1 && window.settings.getNpc(ship.name)) {
+          window.settings.setNpc(ship.name, false);
+          this.resetTarget("enemy");
+          console.log("State: false!");
+        } else {
+          window.settings.setNpc(ship.name, true);
+          console.log("State: true!");
+        }
+      }
+      console.log(shipsCount, window.settings.getNpc(ship.name));
+    }
+  }*/
 
   findNearestShip() {
     let minDist = 100000;
