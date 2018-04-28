@@ -156,7 +156,7 @@ class Api {
           this.jumpTime = $.now();
         }
         this.resetTarget("all");
-        this.move(x, y, true);
+        this.move(x, y);
         window.movementDone = false;
         return;
       }

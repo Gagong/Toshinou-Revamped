@@ -211,7 +211,7 @@ function logic() {
     api.ggDeltaFix();
 
   if (window.settings.fleeFromEnemy) {
-    var enemyResult = api.checkForEnemy();
+    let enemyResult = api.checkForEnemy();
 
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
