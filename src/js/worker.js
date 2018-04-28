@@ -204,8 +204,12 @@ function logic() {
   if (window.X1Map) {
     return;
   }
+  
+  if (window.hero.mapId == 73)
+    api.ggZetaFix();
 
-  /*api.findDevourerInShips();*/
+  if (window.hero.mapId == 55)
+    api.ggDeltaFix();
 
   if (window.settings.fleeFromEnemy) {
     let enemyResult = api.checkForEnemy();
