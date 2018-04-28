@@ -196,24 +196,42 @@ class Api {
     };
   }
 
-  /*findDevourerInShips() {
+  ggDeltaFix() {
     let shipsCount = Object.keys(api.ships).length;
-
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27") {
-        if (shipsCount > 1 && window.settings.getNpc(ship.name)) {
-          window.settings.setNpc(ship.name, false);
-          this.resetTarget("enemy");
-          console.log("State: false!");
-        } else {
+      if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
+          ship.name == "-=[ Lordakium ]=- δ9" || 
+          ship.name == "-=[ Sibelon ]=- δ14" || 
+          ship.name == "-=[ Kristallon ]=- δ19")) {
+        if (shipsCount > 1) {
           window.settings.setNpc(ship.name, true);
-          console.log("State: true!");
+          if (this.targetShip == ship)
+            this.resetTarget("enemy");
+        } else {
+          window.settings.setNpc(ship.name, false);
+          this.targetShip = ship;
+        }
+      } 
+    }
+  }
+
+  ggZetaFix() {
+    let shipsCount = Object.keys(api.ships).length;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+        if (shipsCount > 1) {
+          window.settings.setNpc(ship.name, true);
+          if (this.targetShip == ship)
+            this.resetTarget("enemy");
+        } else {
+          window.settings.setNpc(ship.name, false);
+          this.targetShip = ship;
         }
       }
-      console.log(shipsCount, window.settings.getNpc(ship.name));
     }
-  }*/
+  }
 
   findNearestShip() {
     let minDist = 100000;
