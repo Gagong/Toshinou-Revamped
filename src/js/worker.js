@@ -204,7 +204,6 @@ function logic() {
   if (window.X1Map) {
     return;
   }
-  
   if (window.hero.mapId == 73)
     api.ggZetaFix();
 
@@ -212,7 +211,7 @@ function logic() {
     api.ggDeltaFix();
 
   if (window.settings.fleeFromEnemy) {
-    let enemyResult = api.checkForEnemy();
+    var enemyResult = api.checkForEnemy();
 
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);

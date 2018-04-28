@@ -156,44 +156,11 @@ class Api {
           this.jumpTime = $.now();
         }
         this.resetTarget("all");
-        this.move(x, y);
+        this.move(x, y, true);
         window.movementDone = false;
         return;
       }
     }
-  }
-
-  findNearestBox() {
-    let minDist = 100000;
-    let finalBox;
-
-    if (!window.settings.bonusBox && !window.settings.materials && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenOrGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
-      return {
-        box: null,
-        distance: minDist
-      };
-
-    for (let property in this.boxes) {
-      let box = this.boxes[property];
-      let dist = box.distanceTo(window.hero.position);
-      if (dist < minDist) {
-        if (!box.isResource() && ((box.isCollectable() && window.settings.bonusBox) ||
-            ((box.isMaterial() || box.isDropRes()) && window.settings.materials) ||
-            (box.isPalladium() && window.settings.palladium) ||
-            (box.isCargoBox() && window.settings.cargoBox) ||
-            (box.isGreenOrGoldBooty() && window.settings.greenOrGoldBooty && window.greenOrGoldBootyKeyCount > 0) ||
-            (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
-            (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
-            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
-          finalBox = box;
-          minDist = dist;
-        }
-      }
-    }
-    return {
-      box: finalBox,
-      distance: minDist
-    };
   }
 
   ggDeltaFix() {
@@ -231,6 +198,39 @@ class Api {
         }
       }
     }
+  }
+
+  findNearestBox() {
+    let minDist = 100000;
+    let finalBox;
+
+    if (!window.settings.bonusBox && !window.settings.materials && !window.settings.palladium && !window.settings.cargoBox && !window.settings.greenOrGoldBooty && !window.settings.redBooty && !window.settings.blueBooty && !window.settings.masqueBooty)
+      return {
+        box: null,
+        distance: minDist
+      };
+
+    for (let property in this.boxes) {
+      let box = this.boxes[property];
+      let dist = box.distanceTo(window.hero.position);
+      if (dist < minDist) {
+        if (!box.isResource() && ((box.isCollectable() && window.settings.bonusBox) ||
+            ((box.isMaterial() || box.isDropRes()) && window.settings.materials) ||
+            (box.isPalladium() && window.settings.palladium) ||
+            (box.isCargoBox() && window.settings.cargoBox) ||
+            (box.isGreenOrGoldBooty() && window.settings.greenOrGoldBooty && window.greenOrGoldBootyKeyCount > 0) ||
+            (box.isRedBooty() && window.settings.redBooty && window.redBootyKeyCount > 0) ||
+            (box.isBlueBooty() && window.settings.blueBooty && window.blueBootyKeyCount > 0) ||
+            (box.isMasqueBooty() && window.settings.masqueBooty && window.masqueBootyKeyCount > 0))) {
+          finalBox = box;
+          minDist = dist;
+        }
+      }
+    }
+    return {
+      box: finalBox,
+      distance: minDist
+    };
   }
 
   findNearestShip() {
