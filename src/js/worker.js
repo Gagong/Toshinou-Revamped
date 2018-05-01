@@ -290,13 +290,13 @@ function logic() {
       }
     }
 
-    /*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
       notrightId = api.lockedShip.id;
       api.resetTarget("enemy");
       return;
-    }*/
+    }
 
-    if (!api.attacking && api.lockedShip/* && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs*/) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
