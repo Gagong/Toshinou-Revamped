@@ -26,8 +26,6 @@ class HeroInitHandler {
       window.hero.shd = heroJson["shield"];
       window.hero.mapId = heroJson["mapId"]
 
-      /*console.log(heroJson["mapId"]);*/
-
       if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
         window.b1 = 42000 / 300;
         window.b2 = 26200 / 150;

@@ -11,6 +11,7 @@ class Settings {
     materials, 
     fleeFromEnemy, 
     avoidAttackedNpcs, 
+    kronos,
     delta,
     kuiper,
     lambda,
@@ -42,6 +43,7 @@ class Settings {
     this._materials = materials === true;
     this._fleeFromEnemy = fleeFromEnemy === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
+    this._kronos = kronos === true;
     this._epsilon = epsilon === true;
     this._kuiper = kuiper === true;
     this._hades = hades === true;
@@ -72,6 +74,14 @@ class Settings {
 
   set autoAttack(value) {
     this._autoAttack = value === true;
+  }
+
+  get kronos() {
+    return this._kronos;
+  }
+
+  set kuiper(value) {
+    this._kronos = value === true;
   }
 
   get kuiper() {

@@ -168,7 +168,7 @@ function logic() {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || api.reconnectTime && $.now() - api.reconnectTime > 12000) && window.reviveCount < window.reviveLimit) {
+    if (api.disconnectTime && $.now() - api.disconnectTime > 10000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.reviveLimit) {
       api.reconnect();
     }
     return;
@@ -187,7 +187,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if (api.targetBoxHash == null && api.targetShip == null) {
+  if (api.targetBoxHash == null) {
     api.jumpInGG(2, window.settings.alpha);
     api.jumpInGG(3, window.settings.beta);
     api.jumpInGG(4, window.settings.gamma);
@@ -196,14 +196,20 @@ function logic() {
     api.jumpInGG(54, window.settings.zeta);
     api.jumpInGG(70, window.settings.kappa);
     api.jumpInGG(71, window.settings.lambda);
+    api.jumpInGG(72, window.settings.kronos);
     api.jumpInGG(74, window.settings.hades);
     api.jumpInGG(82, window.settings.kuiper);
-    //api.jumpInGG(???, window.settings.kronos);
   }
 
   if (window.X1Map) {
     return;
   }
+
+  if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
+    api._blackListedBoxes = [];
+    api.resetBlackListTime = $.now();
+  }
+
   if (window.hero.mapId == 73)
     api.ggZetaFix();
 
@@ -302,7 +308,7 @@ function logic() {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
       api.collectTime = $.now();
-    } else if (box && box.type == "BONUS_BOX" || box.type == "FROM_SHIP") {
+    } else {
       delete api.boxes[api.targetBoxHash];
       api.blackListHash(api.targetBoxHash);
       api.resetTarget("box");

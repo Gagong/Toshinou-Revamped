@@ -70,6 +70,14 @@ class GGSettingsWindow {
         }
       },
       {
+        name: 'kronos',
+        labelText: 'Jump in GG Kronos',
+        appendTo: this.GGSettingsWindow,
+        event: function () {
+          window.settings.kronos = this.checked;
+        }
+      },
+      {
         name: 'hades',
         labelText: 'Jump in GG Hades',
         appendTo: this.GGSettingsWindow,
