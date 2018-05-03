@@ -1,6 +1,6 @@
 window.globalSettings = new GlobalSettings();
 let api;
-var notrightId;
+let notrightId;
 
 $(document).ready(function () {
   api = new Api();
