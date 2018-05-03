@@ -95,6 +95,8 @@ class NpcSettingsWindow {
       "-={ demaNeR Escort }=-",
       "-={ Demaner Corsair }=-",
       "-={ demaNeR Freighter }=-",
+      "-=[ Hitac 2.0 ]=-",
+      "-=[ Hitac-Minion ]=-"
     ];
   }
 }
