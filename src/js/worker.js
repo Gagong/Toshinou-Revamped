@@ -1,5 +1,6 @@
 window.globalSettings = new GlobalSettings();
 let api;
+var notrightId;
 
 $(document).ready(function () {
   api = new Api();
@@ -156,7 +157,6 @@ function init() {
 function logic() {
   let collectBoxWhenCircle = false;
   let circleBox = null;
-  let notrightId;
   let palladiumBlackList = [
     "-=[ Battleray ]=-",
     "( Uber Annihilator )", 
@@ -258,12 +258,12 @@ function logic() {
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       return;
-    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
+    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && ship.ship.id != notrightId) {
       api.lockShip(ship.ship);
       api.triedToLock = true;
       api.targetShip = ship.ship;
       return;
-    } else if (ship.ship && window.settings.killNpcs && !ship.isAttacked && ship.ship.id != notrightId) {
+    } else if (ship.ship && window.settings.killNpcs && ship.ship.id != notrightId) {
       ship.ship.update();
       if (ship.ship.modifier.length == 0 || ship.ship.modifier.activated == false) {
         api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
