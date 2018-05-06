@@ -16,7 +16,7 @@ class HeroDiedHandler {
           a.isRepairing = true;
           let event = new CustomEvent("deathCounter", {
             detail: {
-              death: window.reviveCount
+              death: 1,
             }
           });
           window.dispatchEvent(event);
