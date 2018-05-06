@@ -88,7 +88,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 30,
+          value: 10,
         },
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;
