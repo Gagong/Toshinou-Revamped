@@ -71,11 +71,11 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'dontCircleWhenHpBelow15Percent',
-        labelText: "Don't circle when HP < 20%",
+        name: 'dontCircleWhenHpBelow25Percent',
+        labelText: "Don't circle when HP < 25%",
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+          window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
       },
       {

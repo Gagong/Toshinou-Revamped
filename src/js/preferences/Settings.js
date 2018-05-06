@@ -26,7 +26,9 @@ class Settings {
     redBooty, 
     blueBooty, 
     masqueBooty,
-    circleNpc) { //Fuck this shit...
+    circleNpc,
+    dontCircleWhenHpBelow25Percent) { //Fuck this shit...
+    this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this._circleNpc = circleNpc === true;
     this._moveRandomly = moveRandomly === true;
     this._lockNpcs = lockNpcs === true;
@@ -58,6 +60,14 @@ class Settings {
     this._redBooty = redBooty === true;
     this._blueBooty = blueBooty === true;
     this._masqueBooty = masqueBooty === true;
+  }
+
+  get dontCircleWhenHpBelow25Percent() {
+    return this._dontCircleWhenHpBelow25Percent;
+  }
+
+  set dontCircleWhenHpBelow25Percent(value) {
+    this._dontCircleWhenHpBelow25Percent = value === true;
   }
 
   get circleNpc() {

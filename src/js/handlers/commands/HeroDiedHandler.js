@@ -14,6 +14,12 @@ class HeroDiedHandler {
           Injector.injectScript("document.getElementById('preloader').revive(1);");
           window.reviveCount++;
           a.isRepairing = true;
+          let event = new CustomEvent("deathCounter", {
+            detail: {
+              death: window.reviveCount
+            }
+          });
+          window.dispatchEvent(event);
         }
       }, 8000);
     }

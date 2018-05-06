@@ -16,6 +16,7 @@ class StatisticWindow {
       experience: 0,
       honor: 0,
       rank: 0,
+      death: 0,
       speed: 0,
     };
 
@@ -66,6 +67,12 @@ class StatisticWindow {
       {
         name: 'rank',
         labelText: 'Rank Points: ',
+        spanText: '0',
+        appendTo: this.botStatisticWindow
+      },
+      {
+        name: 'death',
+        labelText: 'Death count: ',
         spanText: '0',
         appendTo: this.botStatisticWindow
       },
@@ -125,6 +132,11 @@ class StatisticWindow {
         el: 'honor',
         detailEl: 'honor'
       },
+      {
+        event: 'deathCounter',
+        el: 'death',
+        detailEl: 'death'
+      }
     ];
 
     standardListeners.forEach((item) => {
@@ -143,7 +155,11 @@ class StatisticWindow {
         if ('startTime' == item) {
           el.html(this.stats[item].toLocaleString(navigator.languages[0]));
         } else {
-          el.html(this.stats[item]);
+          if ('death' == item) {
+            el.html(parseInt(window.reviveCount));
+          } else {
+            el.html(this.stats[item]);
+          }
         }
       });
     });
