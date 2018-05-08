@@ -139,9 +139,9 @@ class GeneralSettingsWindow {
       this[control.name] = ControlFactory.createControl(control);
     });
 
-    $(this.saveSettingsBtn).on('click', (e) => {
+    /*$(this.saveSettingsBtn).on('click', (e) => {
       chrome.storage.sync.set(window.settings);
       console.log("saved")
-    })
+    })*/
   }
 }

@@ -1,7 +1,6 @@
 window.globalSettings = new GlobalSettings();
 let api;
 let notrightId;
-let state = false;
 
 $(document).ready(function () {
   api = new Api();
@@ -185,7 +184,7 @@ function logic() {
       })
     }
     api.getSettingsTime = $.now();
-  }*/
+  }
 
   if ($.now() - api.setSettingsTime > 5000000 && window.settings.refresh) {
     let gate = api.findNearestGate();
@@ -201,7 +200,7 @@ function logic() {
       window.movementDone = false;
       return;
     }
-  }
+  }*/
 
   window.minimap.draw();
 
