@@ -1,73 +1,108 @@
 class Settings {
-  constructor(moveRandomly, 
-    lockNpcs, 
-    lockPlayers, 
-    autoAttack, 
-    killNpcs, 
-    pause, 
-    palladium, 
-    bonusBox, 
-    cargoBox, 
-    materials, 
-    fleeFromEnemy, 
-    avoidAttackedNpcs, 
-    kronos,
-    delta,
-    kuiper,
-    lambda,
-    hades,
-    epsilon, 
-    kappa, 
-    zeta, 
-    alpha, 
-    beta, 
-    gamma, 
-    greenOrGoldBooty, 
-    redBooty, 
-    blueBooty, 
-    masqueBooty,
-    circleNpc,
-    dontCircleWhenHpBelow25Percent) { //Fuck this shit...
-    this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
-    this._circleNpc = circleNpc === true;
-    this._moveRandomly = moveRandomly === true;
-    this._lockNpcs = lockNpcs === true;
-    this._lockPlayers = lockPlayers === true;
-    this._autoAttack = autoAttack === true;
-    this._killNpcs = killNpcs === true;
-    this._npcs = [];
-    this.npcCircleRadius = 500;
-    this.reviveLimit = 5;
+  constructor(pause, 
+    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, reviveAtGate,
+
+    bonusBox, materials, cargoBox, greenOrGoldBooty, redBooty, blueBooty, masqueBooty,
+
+    alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
+
+    lockNpcs, lockPlayers, autoAttack) 
+  {
     this._pause = pause === true;
+
     this._palladium = palladium === true;
-    this._bonusBox = bonusBox === true;
-    this._cargoBox = cargoBox === true;
-    this._materials = materials === true;
+    this._refresh = refresh === true;
+    this._moveRandomly = moveRandomly === true;
+    this._killNpcs = killNpcs === true;    
     this._fleeFromEnemy = fleeFromEnemy === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
-    this._kronos = kronos === true;
-    this._epsilon = epsilon === true;
-    this._kuiper = kuiper === true;
-    this._hades = hades === true;
-    this._lambda = lambda === true;
-    this._zeta = zeta === true;
-    this._delta = delta === true;
-    this._kappa = kappa === true;
-    this._alpha = alpha === true;
-    this._beta = beta === true;
-    this._gamma = gamma === true;
+    this._circleNpc = circleNpc === true;
+    this.npcCircleRadius = 500;
+    this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
+    this._reviveAtGate = reviveAtGate === true;
+    this.reviveLimit = 5;
+
+    this._bonusBox = bonusBox === true;
+    this._materials = materials === true;
+    this._cargoBox = cargoBox === true;
     this._greenOrGoldBooty = greenOrGoldBooty === true;
     this._redBooty = redBooty === true;
     this._blueBooty = blueBooty === true;
     this._masqueBooty = masqueBooty === true;
+
+    this._alpha = alpha === true;
+    this._beta = beta === true;
+    this._gamma = gamma === true;
+    this._delta = delta === true;
+    this._epsilon = epsilon === true;
+    this._zeta = zeta === true;
+    this._kappa = kappa === true;
+    this._lambda = lambda === true;
+    this._kronos = kronos === true;
+    this._hades = hades === true;
+    this._kuiper = kuiper === true;
+
+    this._lockNpcs = lockNpcs === true;
+    this._lockPlayers = lockPlayers === true;
+    this._autoAttack = autoAttack === true;
+
+    this._npcs = [];
   }
 
-  get dontCircleWhenHpBelow25Percent() {
-    return this._dontCircleWhenHpBelow25Percent;
+  get pause() {
+    return this._pause;
   }
 
-  set dontCircleWhenHpBelow25Percent(value) {
-    this._dontCircleWhenHpBelow25Percent = value === true;
+  set pause(value) {
+    this._pause = value === true;
+  }
+
+  get palladium() {
+    return this._palladium;
+  }
+
+  set palladium(value) {
+    this._palladium = value === true;
+  }
+
+  get refresh() {
+    return this._refresh;
+  }
+
+  set refresh(value) {
+    this._refresh = value === true;
+  }
+
+  get moveRandomly() {
+    return this._moveRandomly;
+  }
+
+  set moveRandomly(value) {
+    this._moveRandomly = value === true;
+  }
+
+  get killNpcs() {
+    return this._killNpcs;
+  }
+
+  set killNpcs(value) {
+    this._killNpcs = value === true;
+  }
+
+  get fleeFromEnemy() {
+    return this._fleeFromEnemy;
+  }
+
+  set fleeFromEnemy(value) {
+    this._fleeFromEnemy = value === true;
+  }
+
+  get avoidAttackedNpcs() {
+    return this._avoidAttackedNpcs;
+  }
+
+  set avoidAttackedNpcs(value) {
+    this._avoidAttackedNpcs = value === true;
   }
 
   get circleNpc() {
@@ -78,84 +113,52 @@ class Settings {
     this._circleNpc = value === true;
   }
 
-  get autoAttack() {
-    return this._autoAttack;
+  get dontCircleWhenHpBelow25Percent() {
+    return this._dontCircleWhenHpBelow25Percent;
   }
 
-  set autoAttack(value) {
-    this._autoAttack = value === true;
+  set dontCircleWhenHpBelow25Percent(value) {
+    this._dontCircleWhenHpBelow25Percent = value === true;
   }
 
-  get kronos() {
-    return this._kronos;
+  get reviveAtGate() {
+    return this._reviveAtGate;
   }
 
-  set kuiper(value) {
-    this._kronos = value === true;
+  set reviveAtGate(value) {
+    this._reviveAtGate = value === true;
   }
 
-  get kuiper() {
-    return this._kuiper;
+  get bonusBox() {
+    return this._bonusBox;
   }
 
-  set kuiper(value) {
-    this._kuiper = value === true;
+  set bonusBox(value) {
+    this._bonusBox = value === true;
   }
 
-  get lambda() {
-    return this._lambda;
+  get materials() {
+    return this._materials;
   }
 
-  set lambda(value) {
-    this._lambda = value === true;
+  set materials(value) {
+    this._materials = value === true;
   }
 
-  get hades() {
-    return this._hades;
+  get cargoBox() {
+    return this._cargoBox;
   }
 
-  set hades(value) {
-    this._hades = value === true;
+  set cargoBox(value) {
+    this._cargoBox = value === true;
   }
 
-  get epsilon() {
-    return this._epsilon;
+  get greenOrGoldBooty() {
+    return this._greenOrGoldBooty;
   }
 
-  set epsilon(value) {
-    this._epsilon = value === true;
-  }
-
-  get kappa() {
-    return this._kappa;
-  }
-
-  set kappa(value) {
-    this._kappa = value === true;
-  }
-
-  get delta() {
-    return this._delta;
-  }
-
-  set delta(value) {
-    this._delta = value === true;
-  }
-
-  get masqueBooty() {
-    return this._masqueBooty;
-  }
-
-  set masqueBooty(value) {
-    this._masqueBooty = value === true;
-  }
-
-  get blueBooty() {
-    return this._blueBooty;
-  }
-
-  set blueBooty(value) {
-    this._blueBooty = value === true;
+  set greenOrGoldBooty(value) {
+    this._greenOrGoldBooty = value === true;
   }
 
   get redBooty() {
@@ -166,12 +169,20 @@ class Settings {
     this._redBooty = value === true;
   }
 
-  get zeta() {
-    return this._zeta;
+  get blueBooty() {
+    return this._blueBooty;
   }
 
-  set zeta(value) {
-    this._zeta = value === true;
+  set blueBooty(value) {
+    this._blueBooty = value === true;
+  }
+
+  get masqueBooty() {
+    return this._masqueBooty;
+  }
+
+  set masqueBooty(value) {
+    this._masqueBooty = value === true;
   }
 
   get alpha() {
@@ -198,68 +209,68 @@ class Settings {
     this._gamma = value === true;
   }
 
-  get greenOrGoldBooty() {
-    return this._greenOrGoldBooty;
+  get delta() {
+    return this._delta;
   }
 
-  set greenOrGoldBooty(value) {
-    this._greenOrGoldBooty = value === true;
+  set delta(value) {
+    this._delta = value === true;
   }
 
-  get palladium() {
-    return this._palladium;
+  get epsilon() {
+    return this._epsilon;
   }
 
-  set palladium(value) {
-    this._palladium = value === true;
+  set epsilon(value) {
+    this._epsilon = value === true;
   }
 
-  get bonusBox() {
-    return this._bonusBox;
+  get zeta() {
+    return this._zeta;
   }
 
-  set bonusBox(value) {
-    this._bonusBox = value === true;
+  set zeta(value) {
+    this._zeta = value === true;
   }
 
-  get cargoBox() {
-    return this._cargoBox;
+  get kappa() {
+    return this._kappa;
   }
 
-  set cargoBox(value) {
-    this._cargoBox = value === true;
+  set kappa(value) {
+    this._kappa = value === true;
   }
 
-  get materials() {
-    return this._materials;
+  get lambda() {
+    return this._lambda;
   }
 
-  set materials(value) {
-    this._materials = value === true;
+  set lambda(value) {
+    this._lambda = value === true;
   }
 
-  get fleeFromEnemy() {
-    return this._fleeFromEnemy;
+  get kronos() {
+    return this._kronos;
   }
 
-  set fleeFromEnemy(value) {
-    this._fleeFromEnemy = value === true;
+  set kronos(value) {
+    this._kronos = value === true;
   }
 
-  get moveRandomly() {
-    return this._moveRandomly;
+  get hades() {
+    return this._hades;
   }
 
-  set moveRandomly(value) {
-    this._moveRandomly = value === true;
+  set hades(value) {
+    this._hades = value === true;
   }
 
-  get avoidAttackedNpcs() {
-    return this._avoidAttackedNpcs;
+  get kuiper() {
+    return this._kuiper;
   }
 
-  set avoidAttackedNpcs(value) {
-    this._avoidAttackedNpcs = value === true;
+  set kuiper(value) {
+    this._kuiper = value === true;
   }
 
   get lockNpcs() {
@@ -278,12 +289,12 @@ class Settings {
     this._lockPlayers = value === true;
   }
 
-  get killNpcs() {
-    return this._killNpcs;
+  get autoAttack() {
+    return this._autoAttack;
   }
 
-  set killNpcs(value) {
-    this._killNpcs = value === true;
+  set autoAttack(value) {
+    this._autoAttack = value === true;
   }
 
   setNpc(name, val) {
@@ -294,7 +305,4 @@ class Settings {
     return !this._npcs[name];
   }
 
-  setPause(value) {
-    this._pause = value === true;
-  }
 }

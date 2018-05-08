@@ -13,6 +13,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+      /*{
+        name: 'save',
+        labelText: 'Refresh',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.refresh = this.checked;
+        }
+      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -122,8 +130,18 @@ class GeneralSettingsWindow {
       }
     ];
 
+    /*this.saveSettingsBtn = ControlFactory.btn({
+      labelText: 'Save settings',
+      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
+    });*/
+
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
+
+    $(this.saveSettingsBtn).on('click', (e) => {
+      chrome.storage.sync.set(window.settings);
+      console.log("saved")
+    })
   }
 }

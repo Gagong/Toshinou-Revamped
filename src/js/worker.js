@@ -1,6 +1,7 @@
 window.globalSettings = new GlobalSettings();
 let api;
 let notrightId;
+let state = false;
 
 $(document).ready(function () {
   api = new Api();
@@ -40,6 +41,7 @@ $(document).ready(function () {
   window.statusPlayBot = false;
   window.fleeingFromEnemy = false;
   window.debug = false;
+  window.tickTime = window.globalSettings.timerTick;
   let hm = new HandlersManager(api);
 
   hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
@@ -96,7 +98,8 @@ function init() {
 
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
-  window.setInterval(logic, window.globalSettings.timerTick);
+  window.setInterval(logic, window.tickTime);
+
 
   $(document).keyup(function (e) {
     let key = e.key;
@@ -174,7 +177,33 @@ function logic() {
     return;
   }
 
-   window.minimap.draw();
+  /*if ($.now() - api.getSettingsTime > 60000) {
+    console.log("Getting settings...")
+    for (let key in window.settings) {
+      chrome.storage.sync.get(key, function(set) {
+        window.settings[key] = set[key];
+      })
+    }
+    api.getSettingsTime = $.now();
+  }*/
+
+  if ($.now() - api.setSettingsTime > 5000000 && window.settings.refresh) {
+    let gate = api.findNearestGate();
+    if (gate.gate) {
+      let x = gate.gate.position.x;
+      let y = gate.gate.position.y;
+      if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
+        window.location.reload();
+        state = true;
+      }
+      api.resetTarget("all");
+      api.move(x, y);
+      window.movementDone = false;
+      return;
+    }
+  }
+
+  window.minimap.draw();
 
   if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
     api.resetTarget("all");
