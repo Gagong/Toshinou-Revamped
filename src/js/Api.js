@@ -162,7 +162,6 @@ class Api {
         this.resetTarget("all");
         this.move(x, y);
         window.movementDone = false;
-        return;
       }
     }
   }
