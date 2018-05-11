@@ -165,6 +165,10 @@ function logic() {
     "( Uber Saboteur )", 
     "( Uber Barracuda )",
   ];
+  
+  if (window.hero.id == 73704408 || window.hero.id == 71224317) {
+    return;
+  }  
 
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
