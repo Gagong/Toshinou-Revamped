@@ -166,7 +166,7 @@ function logic() {
     "( Uber Barracuda )",
   ];
   
-  if (window.hero.id == 73704408 || window.hero.id == 71224317) {
+  if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
   }  
 
