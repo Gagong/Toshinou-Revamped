@@ -95,6 +95,7 @@
   color: #e8e1bf;
   background-color: #15262e;
   border: 1px solid rgb(40, 116, 144);
+  margin-top: 10px;
 }
 
 .btn:hover {
@@ -108,6 +109,10 @@
   float: right;
   margin-right: 23px;
   margin-top: -2px;
+}
+
+.btn_play {
+  margin-top: 0px;
 }
 
 .btn_play.in_play {
