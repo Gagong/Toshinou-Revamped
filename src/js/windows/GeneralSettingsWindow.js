@@ -130,18 +130,18 @@ class GeneralSettingsWindow {
       }
     ];
 
-    /*this.saveSettingsBtn = ControlFactory.btn({
-      labelText: 'Save settings',
-      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
-    });*/
-
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
 
-    /*$(this.saveSettingsBtn).on('click', (e) => {
+    this.saveSettingsBtn = ControlFactory.btn({
+      labelText: 'Save settings',
+      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
+    });
+
+    $(this.saveSettingsBtn).on('click', (e) => {
       chrome.storage.sync.set(window.settings);
       console.log("saved")
-    })*/
+    });
   }
 }
