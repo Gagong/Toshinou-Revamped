@@ -4,7 +4,7 @@ Created by Freshek on 31.10.2017
 
 function saveOptions(e) {
   e.preventDefault();
-  let elements = {
+  var elements = {
     headerColor: $("#headerColor").val(),
     headerOpacity: $("#headerOpacity").val(),
     windowColor: $("#windowColor").val(),
@@ -19,9 +19,9 @@ function saveOptions(e) {
 }
 
 function restore() {
-  let items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat", "windowsToTabs"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat", "windowsToTabs"];
 
-  let onGet = items => {
+  var onGet = items => {
 
     if (items.headerColor)
       $("#headerColor").val(items.headerColor);

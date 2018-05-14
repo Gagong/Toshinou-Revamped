@@ -51,6 +51,7 @@ class DragAndDrop {
   }
 
   _moveThis(e) {
+
     let newX = e.pageX - this.shiftX;
     let newY = e.pageY - this.shiftY;
 

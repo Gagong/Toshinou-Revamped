@@ -1,94 +1,94 @@
 class Variables {
 
   static get boxType() {
-    return "_-f3S";
+    return "_-P3V";
   }
 
   static get attackerId() {
-    return "_-t1i";
+    return "_-V8";
   }
 
   static get attackHp() {
-    return "_-D5";
+    return "_-E2w";
   }
 
   static get attackShd() {
-    return "_-33";
+    return "_-w2d";
   }
 
   static get attackedId() {
-    return "_-P48";
+    return "_-P4z";
   }
 
   static get moveDuration() {
-    return "_-q4v";
+    return "_-13Z";
   }
 
   static get shipDestoyedId() {
-    return "_-z4v";
+    return "_-D44";
   }
 
   static get heroInitMaxHp() {
-    return "_-o3V";
+    return "_-y3Z";
   }
 
   static get heroInitMaxShd() {
-    return "_-A4D";
+    return "_-W1F";
   }
 
   static get heroInitHp() {
-    return "_-Xz";
+    return "_-f1z";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-y4x";
+    return "_-z4k";
   }
 
   static get hpUpdateHp() {
-    return "_-d0";
+    return "_-p2K";
   }
 
   static get selectMaxHp() {
-    return "_-y4x";
+    return "_-z4k";
   }
 
   static get selectMaxShd() {
-    return "_-A4D";
+    return "_-W1F";
   }
 
   static get selectHp() {
-    return "_-d0";
+    return "_-p2K";
+  }
+  
+   static get clanDiplomacy() {
+    return "_-M2P";
   }
 
-  static get clanDiplomacy() {
-    return "_-T3H";
+  static get resource() {
+    return "_-qx";
   }
 
-  static get BSclanDiplomacy() {
-    return "_-f26";
+  static get resourceType() {
+    return "_-v2D";
   }
 
-  static get Resourse() {
-    return "_-M14";
+  static get gateType() {
+    return "_-W3g";
   }
 
-  static get ResourseType() {
-    return "_-pK";
-  }
-
-  static get Gatetype() {
-    return "_-L3q";
-  }
-
-  static get gateJumpId() {
-    return "_-F1V";
+  static get gateId() {
+    return "_-U1Y";
   }
 
   static get assetCreateX() {
-    return "_-Pq";
+    return "_-a1l";
   }
 
   static get assetCreateY() {
-    return "_-32U";
+    return "_-P1w";
+  }
+
+  static get battlestationClanDiplomacy() {
+    return "_-t24";
   }
 }

@@ -14,11 +14,11 @@ class BoxSettingsWindow {
         }
       },
       {
-        name: 'material',
+        name: 'materials',
         labelText: 'Materials',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.material = this.checked;
+          window.settings.materials = this.checked;
         }
       },
       {
@@ -30,11 +30,11 @@ class BoxSettingsWindow {
         }
       },
       {
-        name: 'greenAndGoldBooty',
+        name: 'greenOrGoldBooty',
         labelText: 'Green | Gold booty boxes',
         appendTo: this.boxSettingsWindow,
         event: function () {
-          window.settings.greenAndGoldBooty = this.checked;
+          window.settings.greenOrGoldBooty = this.checked;
         }
       },
       {
@@ -59,14 +59,6 @@ class BoxSettingsWindow {
         appendTo: this.boxSettingsWindow,
         event: function () {
           window.settings.masqueBooty = this.checked;
-        }
-      },
-      {
-        name: 'blackBooty',
-        labelText: 'Obsidian booty boxes',
-        appendTo: this.boxSettingsWindow,
-        event: function () {
-          window.settings.blackBooty = this.checked;
         }
       }
     ]

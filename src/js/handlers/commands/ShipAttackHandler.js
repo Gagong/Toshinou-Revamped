@@ -28,7 +28,7 @@ class ShipAttackHandler {
         api.lastAttack = $.now();
       }
 
-      let npcShd = shipAttackCmd[Variables.selectMaxShd];
+      let npcshd = shipAttackCmd[Variables.selectMaxShd];
 
       if (ship) {
         ship.hp = shipAttackCmd[Variables.attackHp];

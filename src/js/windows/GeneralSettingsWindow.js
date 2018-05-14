@@ -6,14 +6,6 @@ class GeneralSettingsWindow {
     });
 
     let controls = [{
-        name: 'getPause',
-        labelText: 'Pause Bot',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.pause = this.checked;
-        }
-      },
-      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -21,6 +13,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+      /*{
+        name: 'save',
+        labelText: 'Refresh',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.refresh = this.checked;
+        }
+      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -38,16 +38,24 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'runFromEnemy',
+        name: 'fleeFromEnemy',
         labelText: 'Flee from enemy',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.runFromEnemy = this.checked;
+          window.settings.fleeFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'avoidAttackedNpcs',
+        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.avoidAttackedNpcs = this.checked;
         }
       },
       {
         name: 'npcCircle',
-        labelText: 'Circle (Beta)',
+        labelText: 'Circle',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.circleNpc = this.checked;
@@ -55,7 +63,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'npcCircleRadius',
-        labelText: ' Circle radius <span> (500px)</span>',
+        labelText: 'Circle radius <span> (500px)</span>',
         type: 'range',
         appendTo: this.botSettingsWindow,
         labelBefore: true,
@@ -71,11 +79,11 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'dontCircleWhenHpBelow15Percent',
-        labelText: "Don't circle when HP < 20%",
+        name: 'dontCircleWhenHpBelow25Percent',
+        labelText: "Don't circle when HP < 25%",
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+          window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
       },
       {
@@ -88,7 +96,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 30,
+          value: 10,
         },
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;
@@ -125,5 +133,23 @@ class GeneralSettingsWindow {
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
+
+    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
+    this.botSettingsWindow.append(saveButton);
+
+    /*this.saveSettingsBtn = ControlFactory.btn({
+      labelText: 'Save settings',
+      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
+    });
+
+    this.loadSettingsBtn = ControlFactory.btn({
+      labelText: 'Load settings & refresh',
+      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
+    });
+
+    $(this.saveSettingsBtn).on('click', (e) => {
+      chrome.storage.sync.set(window.settings);
+      console.log("saved")
+    })*/
   }
 }

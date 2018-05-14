@@ -3,14 +3,13 @@ class Box extends Movable {
     super(x, y);
     this.hash = hash;
     this.type = type;
-    /*console.log(this);*/
   }
 
   toString() {
     return JSON.parse(this);
   }
 
-  isResourse() {
+  isResource() {
     let type = this.type;
     return (type == "0" || type == "1" || type == "2"); //Prometium - 0 | Endurium - 1 | Terbium - 2
   }
@@ -35,17 +34,12 @@ class Box extends Movable {
     return (type == "PIRATE_BOOTY_BLUE");
   }
 
-  isBlackBooty() {
-    let type = this.type;
-    return (type == "BLACK_BOOTY_BOX");
-  }
-
   isRedBooty() {
     let type = this.type;
     return (type == "PIRATE_BOOTY_RED");
   }
 
-  isCargo() {
+  isCargoBox() {
     let type = this.type;
     return (type == "FROM_SHIP");
   }
@@ -57,7 +51,7 @@ class Box extends Movable {
 
   isCollectable() {
     let type = this.type;
-    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "YURIS_BONUS_BOX");
+    return (type == "BONUS_BOX" || type == "MINI_PUMPKIN" || type == "TURKISH_FLAG" || type == "GIFT_BOXES" || type == "ICY_BOX" || type == "YURIS_BONUS_BOX" || type == "ID_MEXICO");
   }
 
   isMaterial() {

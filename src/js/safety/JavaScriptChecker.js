@@ -31,14 +31,13 @@ class JavaScriptChecker {
         let rSrc = this.src.substr(0, this.src.indexOf("?"));
 
         if (jsHashes[rSrc] != hash) {
-          // console.log(this.src + " → " + hash);
           result = false;
           return false;
         }
 
         if (script.indexOf("preloader") != -1) {
           result = false;
-          return false; // stops the loop
+          return false;
         }
       }
     });

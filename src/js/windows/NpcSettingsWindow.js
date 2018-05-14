@@ -29,11 +29,6 @@ class NpcSettingsWindow {
 
   get knownNpcList() {
     return [
-      "-=[ Devourer ]=- ζ25",
-      "-=[ Devourer ]=- ζ27",
-      "-={ demaNeR Escort }=-",
-      "-={ Demaner Corsair }=-",
-      "-={ demaNeR Freighter }=-",
       "-=[ Streuner ]=-",
       "-=[ Aider Streuner ]=-",
       "-=[ Recruit Streuner ]=-",
@@ -93,7 +88,15 @@ class NpcSettingsWindow {
       "-=[ Blighted Kristallon ]=-",
       "<=< Plagued Gygerthrall >=>",
       "-=[ Plagued Kristallin ]=-",
-      "-=[ Plague Rocket ]=-"
+      "-=[ Plague Rocket ]=-",
+      "..::{ Boss Lordakium }::... δ21",
+      "..::{ Boss Lordakium }::... δ23",
+      "..::{ Boss Lordakium }::... δ25",
+      "-={ demaNeR Escort }=-",
+      "-={ Demaner Corsair }=-",
+      "-={ demaNeR Freighter }=-",
+      "-=[ Hitac 2.0 ]=-",
+      "-=[ Hitac-Minion ]=-"
     ];
   }
 }

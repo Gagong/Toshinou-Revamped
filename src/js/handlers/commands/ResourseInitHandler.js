@@ -1,4 +1,4 @@
-class PalladiumInitHandler {
+class ResourseInitHandler {
   static get ID() {
     return 11042;
   }
@@ -6,7 +6,7 @@ class PalladiumInitHandler {
   constructor() {
     this._handler = function (e, a) {
       let box = JSON.parse(e.detail);
-      /*console.log(box);*/
+
       if (box.hash.length == 6) {
         return;
       }

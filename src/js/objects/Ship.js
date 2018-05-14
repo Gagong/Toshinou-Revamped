@@ -1,5 +1,5 @@
 class Ship extends Movable {
-  constructor(x, y, id, isnpc, name, factionId, modifier, clanDiplomacy) {
+  constructor(x, y, id, isnpc, name, factionId, modifier, clanDiplomacy, cloaked) {
     super(x, y);
     this.id = id;
     this.isNpc = isnpc;
@@ -8,7 +8,7 @@ class Ship extends Movable {
     this.isAttacked = false;
     this.modifier = modifier;
     this.clanDiplomacy = clanDiplomacy;
-    /*console.log(this);*/
+    this.cloaked = cloaked;
   }
 
   setTarget(targetX, targetY, time) {
