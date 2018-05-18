@@ -189,8 +189,6 @@ function logic() {
     "( Uber Barracuda )",
   ];
 
-  console.log(window.globalSettings.enableRefresh, window.globalSettings.enableNPCBlockList, window.globalSettings.refreshTime * 60000);
-
   let NPCSavingFix = [
     "-=[ Devolarium ]=-",
     "..::{ Boss Devolarium }::..",
