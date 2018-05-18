@@ -39,8 +39,22 @@
     <input type="checkbox" id="showRuntime" />
     <label for="showRuntime">Show runtime</label>
     <br>
-
-    <h5>Speed format</h5>
+    <hr>
+    <h4>Refresh page function settings</h4>
+    <input type="checkbox" id="enableRefresh" />
+    <label for="enableRefresh">Enable refresh function</label>
+    <br>
+    <br>
+    <input type="checkbox" id="enableNPCBlockList" />
+    <label for="enableNPCBlockList">Include npc black list into refresh page function</label>
+    <br>
+    <br>
+    <label>Refresh interval (min)
+      <input type="number" id="refreshTime" min="30" max="300" value="60">
+    </label>
+    <br>
+    <hr>
+    <h4>Speed format</h5>
     <input type="radio" id="speedFormat_min" name="speedFormat" value="min">
     <label for="speedFormat_min">uri/min.</label>
     <br>

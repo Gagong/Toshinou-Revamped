@@ -188,6 +188,25 @@ function logic() {
     "( Uber Saboteur )", 
     "( Uber Barracuda )",
   ];
+
+  console.log(window.globalSettings.enableRefresh, window.globalSettings.enableNPCBlockList, window.globalSettings.refreshTime * 60000);
+
+  let NPCSavingFix = [
+    "-=[ Devolarium ]=-",
+    "..::{ Boss Devolarium }::..",
+    "-=[ Sibelon ]=-",
+    "..::{ Boss Sibelon }::..",    
+    "..::{ Boss Lordakium }::...",
+    "-=[ Blighted Kristallon ]=-",
+    "..::{ Boss StreuneR }::..",
+    "<=< Icy >=>",
+    "<=< Ice Meteoroid >=>",
+    "<=< Super Ice Meteoroid >=>",
+    "-=[ Battleray ]=-",
+    "( Uber Barracuda )",
+    "( Uber Saboteur )",
+    "( Uber Annihilator )",
+  ];
   
   if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
@@ -203,13 +222,19 @@ function logic() {
     return;
   }
 
-  if ($.now() - api.getSettingsTime > 10000) {
-    api.getSettings();
-    if (window.newSettings.refresh) {
-      api.updateSettings();
+  if (window.globalSettings.enableRefresh) {
+    if (window.globalSettings.enableNPCBlockList) {
+      NPCSavingFix.forEach(npc => {
+        window.settings.setNpc(npc, true);
+      });
+    };
+    if ($.now() - api.getSettingsTime > 10000) {
+      api.getSettings();
+      if (window.newSettings.refresh)
+        api.updateSettings();
     }
   }
-
+  
   window.minimap.draw();
 
   if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
@@ -217,7 +242,7 @@ function logic() {
     return;
   }
 
-  if ($.now() - api.setSettingsTime > 3600000 && window.settings.refresh) {
+  if ($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 && window.settings.refresh) {
     let gate = api.findNearestGate();
     if (gate.gate) {
       let x = gate.gate.position.x;
