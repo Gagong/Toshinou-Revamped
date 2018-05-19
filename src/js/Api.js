@@ -257,7 +257,7 @@ class Api {
   }
 
   findNearestShip() {
-    let minDist = 100000;
+    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
     let finalShip;
 
     if (!window.settings.killNpcs)

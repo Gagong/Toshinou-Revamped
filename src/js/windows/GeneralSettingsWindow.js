@@ -126,7 +126,9 @@ class GeneralSettingsWindow {
       this[control.name] = ControlFactory.createControl(control);
     });
 
-    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
+    if (window.globalSettings.enableRefresh) {
+      let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
     this.botSettingsWindow.append(saveButton);
+    }
   }
 }
