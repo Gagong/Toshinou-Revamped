@@ -56,5 +56,6 @@ function restore() {
   chrome.storage.local.get(items, onGet);
 }
 
+$('.clearSettings').on("click", chrome.storage.sync.clear());
 $("form").on("submit", saveOptions);
 $(document).ready(restore);
