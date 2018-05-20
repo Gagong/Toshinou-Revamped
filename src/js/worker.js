@@ -276,6 +276,7 @@ function logic() {
 		if (gate.gate) {
 			x = gate.gate.position.x;
 			y = gate.gate.position.y;
+			api.isRepairing = true;
 		}else{
 			/*
 			flies to the opposite side of the map if it can't find a portal
@@ -294,7 +295,6 @@ function logic() {
 		y += MathUtils.random(-100, 100);
 
 		api.resetTarget("all");
-		api.isRepairing = true;
 		api.move(x, y);
 		window.movementDone = false;
 		return;
@@ -419,21 +419,6 @@ function logic() {
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
-	
-	if(attackNPCinCorner){
-		console.log(dist);
-		if (dist > 600) {
-			x = api.targetShip.position.x + MathUtils.random(-30, 30);
-			y = api.targetShip.position.y + MathUtils.random(-30, 30);
-		}else if(dist <= 500){
-			let enemy = api.targetShip.position;
-			let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
-			let s = Math.PI / 180;
-			f += s;
-			x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
-			y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-		}
-	}
 	
 	if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
