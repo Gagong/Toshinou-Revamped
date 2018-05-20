@@ -227,9 +227,7 @@ class Api {
 	
 	let shipsaround=shipsCount-shipsInCorner;
 	
-	return {
-		shipsaround:shipsaround
-	};
+	return shipsaround;
   }
   
   findNearestBox() {

@@ -270,18 +270,36 @@ function logic() {
     }
   }
 
-  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
-    let gate = api.findNearestGate();
-    if (gate.gate) {
-      let x = gate.gate.position.x + MathUtils.random(-100, 100);
-      let y = gate.gate.position.y + MathUtils.random(-100, 100);
-      api.resetTarget("all");
-      api.isRepairing = true;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
-    }
-  }
+	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
+		let gate = api.findNearestGate();
+		let x, y;
+		if (gate.gate) {
+			x = gate.gate.position.x;
+			y = gate.gate.position.y;
+		}else{
+			/*
+			flies to the opposite side of the map if it can't find a portal
+			doesn't account for map size or for whether or not you're in a GG
+			*/
+			let mapWidth = 21000, mapHeight = 13100;
+			let margin = 1000;
+
+			x = mapWidth  - hero.position.x;
+			y = mapHeight - hero.position.y;
+
+			x = Math.max(Math.min(mapWidth  - margin, x), margin);
+			y = Math.max(Math.min(mapHeight - margin, y), margin);
+		}
+		x += MathUtils.random(-100, 100);
+		y += MathUtils.random(-100, 100);
+
+		api.resetTarget("all");
+		api.isRepairing = true;
+		api.move(x, y);
+		window.movementDone = false;
+		return;
+
+	}
 
   if (api.targetBoxHash == null && api.targetShip == null) {
     let box = api.findNearestBox();
@@ -379,7 +397,7 @@ function logic() {
 	window.settings.resetTargetWhenHpBelow25Percent=true;
 	
 	let shipsaround=api.ggcountNPCaround();
-	
+	console.log(shipsaround);
 	if(shipsaround<=0){
 		attackNPCinCorner=true;
 	}else{
@@ -401,26 +419,34 @@ function logic() {
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
-    if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+	
+	if(attackNPCinCorner){
+		console.log(dist);
+		if (dist > 600) {
+			x = api.targetShip.position.x + MathUtils.random(-30, 30);
+			y = api.targetShip.position.y + MathUtils.random(-30, 30);
+		}else if(dist <= 500){
+			let enemy = api.targetShip.position;
+			let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+			let s = Math.PI / 180;
+			f += s;
+			x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
+			y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+		}
+	}
+	
+	if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
       api.lastMovement = $.now();
-    } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.dontCircleWhenHpBelow25Percent) {
+    }else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.dontCircleWhenHpBelow25Percent) {
       if (dist > 450) {
         x = api.targetShip.position.x + MathUtils.random(-30, 30);
         y = api.targetShip.position.y + MathUtils.random(-30, 30);
       }
-    } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
+    }else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
 		api.resetTarget("enemy");
-    } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && attackNPCinCorner) {
-      if (dist > 600) {
-        x = api.targetShip.position.x + MathUtils.random(-30, 30);
-        y = api.targetShip.position.y + MathUtils.random(-30, 30);
-      }else if(dist < 500 ){
-		x = api.targetShip.position.x + MathUtils.random(-200, 200);
-		y = api.targetShip.position.y + MathUtils.random(-200, 200);
-	  }
-    } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
+    }else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
