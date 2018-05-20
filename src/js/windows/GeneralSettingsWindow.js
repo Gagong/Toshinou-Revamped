@@ -13,6 +13,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+	  {
+        name: 'ggbot',
+        labelText: 'GG Bot (Testing)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.ggbot = this.checked;
+        }
+      },
       /*{
         name: 'save',
         labelText: 'Refresh',

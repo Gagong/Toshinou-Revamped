@@ -99,7 +99,7 @@ function init() {
 
   window.setInterval(logic, window.tickTime);
 
-
+  
   $(document).keyup(function (e) {
     let key = e.key;
 
@@ -157,6 +157,7 @@ function init() {
 }
 
 function logic() {
+  let attackNPCinCorner=false;
   let collectBoxWhenCircle = false;
   let circleBox = null;
   let palladiumBlackList = [
@@ -364,6 +365,27 @@ function logic() {
     window.settings.killNpcs = true;
     window.settings.circleNpc = true;
   }
+  
+  /*GG BOT for Alpha, Beta and Gamma Gates*/
+  if(window.settings.ggbot){
+	  
+	window.settings.alpha=true;
+	window.settings.beta=true;
+	window.settings.gamma=true;
+	
+	window.settings.moveRandomly = true;
+	window.settings.killNpcs = true;
+	window.settings.circleNpc = true;
+	window.settings.resetTargetWhenHpBelow25Percent=true;
+	
+	let shipsaround=api.ggcountNPCaround();
+	
+	if(shipsaround<=0){
+		attackNPCinCorner=true;
+	}else{
+		attackNPCinCorner=false;
+	}
+  }
 
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
     x = MathUtils.random(200, 20800);
@@ -390,6 +412,14 @@ function logic() {
       }
     } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
 		api.resetTarget("enemy");
+    } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && attackNPCinCorner) {
+      if (dist > 600) {
+        x = api.targetShip.position.x + MathUtils.random(-30, 30);
+        y = api.targetShip.position.y + MathUtils.random(-30, 30);
+      }else if(dist < 500 ){
+		x = api.targetShip.position.x + MathUtils.random(-200, 200);
+		y = api.targetShip.position.y + MathUtils.random(-200, 200);
+	  }
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
