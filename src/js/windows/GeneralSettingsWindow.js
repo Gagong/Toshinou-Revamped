@@ -86,6 +86,14 @@ class GeneralSettingsWindow {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
       },
+	  {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: "Reset Target when HP < 25%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
+        }
+      },
       {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',
