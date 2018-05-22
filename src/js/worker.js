@@ -272,32 +272,15 @@ function logic() {
 
 	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
 		let gate = api.findNearestGate();
-		let x, y;
 		if (gate.gate) {
-			x = gate.gate.position.x;
-			y = gate.gate.position.y;
-			api.isRepairing = true;
-		}else{
-			/*
-			flies to the opposite side of the map if it can't find a portal
-			doesn't account for map size or for whether or not you're in a GG
-			*/
-			let mapWidth = 21000, mapHeight = 13100;
-			let margin = 1000;
-
-			x = mapWidth  - hero.position.x;
-			y = mapHeight - hero.position.y;
-
-			x = Math.max(Math.min(mapWidth  - margin, x), margin);
-			y = Math.max(Math.min(mapHeight - margin, y), margin);
+		  let x = gate.gate.position.x + MathUtils.random(-100, 100);
+		  let y = gate.gate.position.y + MathUtils.random(-100, 100);
+		  api.resetTarget("all");
+		  api.isRepairing = true;
+		  api.move(x, y);
+		  window.movementDone = false;
+		  return;
 		}
-		x += MathUtils.random(-100, 100);
-		y += MathUtils.random(-100, 100);
-
-		api.resetTarget("all");
-		api.move(x, y);
-		window.movementDone = false;
-		return;
 
 	}
 
@@ -397,7 +380,6 @@ function logic() {
 	window.settings.resetTargetWhenHpBelow25Percent=true;
 	
 	let shipsaround=api.ggcountNPCaround();
-	console.log(shipsaround);
 	if(shipsaround<=0){
 		attackNPCinCorner=true;
 	}else{
