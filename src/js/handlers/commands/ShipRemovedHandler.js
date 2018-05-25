@@ -1,12 +1,16 @@
+/*
+Created by Freshek on 24.10.2017
+*/
+
 class ShipRemovedHandler {
   static get ID() {
-    return 3650;
+    return 4990;
   }
 
   constructor() {
-    this._handler = function (e, a) {
-      let parsed = JSON.parse(e.detail);
-      let id = parsed.userId;
+    this._handler = function(e, a) {
+      var parsed = JSON.parse(e.detail);
+      var id = parsed.userId;
 
       if (a.targetShip && id == a.targetShip.id) {
         a.targetShip = null;
@@ -15,7 +19,7 @@ class ShipRemovedHandler {
         a.lockedShip = null;
       }
 
-      let ship = a.ships[id];
+      var ship = a.ships[id];
 
       if (ship != null) {
         delete a.ships[id];

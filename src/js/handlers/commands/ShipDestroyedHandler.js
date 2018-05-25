@@ -1,12 +1,16 @@
+/*
+Created by Freshek on 24.10.2017
+*/
+
 class ShipDestroyedHandler {
   static get ID() {
-    return 10484;
+    return 30265;
   }
 
   constructor() {
-    this._handler = function (e, a) {
-      let parsed = JSON.parse(e.detail);
-      let id = parsed[Variables.shipDestoyedId];
+    this._handler = function(e, a) {
+      var parsed = JSON.parse(e.detail);
+      var id = parsed[Variables.shipDestoyedId];
 
       if (a.targetShip && id == a.targetShip.id) {
         a.targetShip = null;
@@ -15,7 +19,7 @@ class ShipDestroyedHandler {
         a.lockedShip = null;
       }
 
-      let ship = a.ships[id];
+      var ship = a.ships[id];
 
       if (ship != null) {
         delete a.ships[id];

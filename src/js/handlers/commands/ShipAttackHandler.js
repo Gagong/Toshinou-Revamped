@@ -1,12 +1,15 @@
+/*
+Created by Freshek on 07.10.2017
+*/
+
 class ShipAttackHandler {
   static get ID() {
-    return 9461;
+    return 4436;
   }
 
   constructor() {
-    this._handler = function (e, a) {
+    this._handler = function(e, a) {
       let shipAttackCmd = JSON.parse(e.detail);
-
 
       let attackerId = shipAttackCmd[Variables.attackerId];
       let attackedShipId = shipAttackCmd[Variables.attackedId];
@@ -28,16 +31,12 @@ class ShipAttackHandler {
         api.lastAttack = $.now();
       }
 
-      let npcshd = shipAttackCmd[Variables.selectMaxShd];
-
       if (ship) {
         ship.hp = shipAttackCmd[Variables.attackHp];
         ship.shd = shipAttackCmd[Variables.attackShd];
 
         if (attackerId != window.hero.id) {
           ship.isAttacked = true;
-        } else {
-          ship.isAttacked = false;
         }
       }
     }
