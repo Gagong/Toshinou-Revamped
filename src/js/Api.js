@@ -12,8 +12,8 @@ class Api {
     this.jumpTime = $.now();
     this.resetBlackListTime = $.now();
     this.blackListTimeOut = 150000;
-    //this.getSettingsTime = null;
-    //this.setSettingsTime = null;
+    this.getSettingsTime = $.now();
+    this.setSettingsTime = $.now();
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -132,6 +132,24 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
+  getSettings() {
+    for (let key in window.settings) {
+      chrome.storage.sync.get(key, function(set) {
+        window.newSettings[key] = set[key];
+      })
+    }
+    this.getSettingsTime = $.now();
+  }
+
+  setSettings() {
+    chrome.storage.sync.set(window.settings);
+    this.setSettingsTime = $.now();
+  }
+
+  updateSettings() {
+    window.settings = window.newSettings;
+  }
+
   resetTarget(target) {
     if (target == "enemy") {
       this.targetShip = null;
@@ -167,7 +185,7 @@ class Api {
   }
 
   ggDeltaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
@@ -187,7 +205,7 @@ class Api {
   }
 
   ggZetaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
@@ -239,7 +257,7 @@ class Api {
   }
 
   findNearestShip() {
-    let minDist = 100000;
+    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
     let finalShip;
 
     if (!window.settings.killNpcs)

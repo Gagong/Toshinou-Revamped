@@ -11,6 +11,9 @@ function saveOptions(e) {
     windowOpacity: $("#windowOpacity").val(),
     timerTick: $("#timerTick").val(),
     showRuntime: $("#showRuntime").prop('checked'),
+    enableRefresh: $("#enableRefresh").prop('checked'),
+    enableNPCBlockList: $("#enableNPCBlockList").prop('checked'),
+    refreshTime: $("#refreshTime").val(),
     speedFormat: $('input[name="speedFormat"]:checked').val(),
     windowsToTabs: $("#windowsToTabs").prop('checked'),
   };
@@ -19,7 +22,7 @@ function saveOptions(e) {
 }
 
 function restore() {
-  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat", "windowsToTabs"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "enableRefresh", "enableNPCBlockList", "refreshTime", "speedFormat", "windowsToTabs"];
 
   var onGet = items => {
 
@@ -35,6 +38,12 @@ function restore() {
       $("#timerTick").val(items.timerTick);
     if (items.showRuntime)
       $("#showRuntime").prop('checked', true);
+    if (items.enableRefresh)
+      $("#enableRefresh").prop('checked', true);
+    if (items.enableNPCBlockList)
+      $("#enableNPCBlockList").prop('checked', true);
+    if (items.refreshTime)
+      $("#refreshTime").val(items.refreshTime);
     if (items.speedFormat) {
       let sel = `#speedFormat_${items.speedFormat}`;
       $(sel).prop('checked', true);
@@ -47,5 +56,6 @@ function restore() {
   chrome.storage.local.get(items, onGet);
 }
 
+$('.clearSettings').on("click", chrome.storage.sync.clear());
 $("form").on("submit", saveOptions);
 $(document).ready(restore);

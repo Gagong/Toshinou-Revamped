@@ -95,6 +95,7 @@
   color: #e8e1bf;
   background-color: #15262e;
   border: 1px solid rgb(40, 116, 144);
+  margin-top: 10px;
 }
 
 .btn:hover {
@@ -110,12 +111,37 @@
   margin-top: -2px;
 }
 
+.btn_play {
+  margin-top: 0px;
+}
+
 .btn_play.in_play {
   border: 1px solid #21c13c;
   background: #2a46189c;
 }
 
 .btn_play.in_stop {
+  background: #962d2d9c;
+  border: 1px solid #c12121;
+}
+
+.saveButton {
+  display: inline-block;
+  width: auto;
+  margin: 0px;
+}
+
+.btn_save {
+  margin: 5px 5px 0px 0px;
+  float: left;
+}
+
+.btn_save.save {
+  border: 1px solid #21c13c;
+  background: #2a46189c;
+}
+
+.btn_save.saved {
   background: #962d2d9c;
   border: 1px solid #c12121;
 }
