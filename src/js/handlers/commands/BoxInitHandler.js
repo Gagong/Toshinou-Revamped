@@ -1,17 +1,13 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class BoxInitHandler {
   static get ID() {
     return 29869;
   }
 
   constructor() {
-    this._handler = function(e, a) {
-      var box = JSON.parse(e.detail);
+    this._handler = function (e, a) {
+      let box = JSON.parse(e.detail);
 
-      if (box.hash.length == 5) {
+      if (box.hash.length == 7) {
         return;
       }
 
@@ -19,7 +15,7 @@ class BoxInitHandler {
         return;
       }
 
-      var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
+      let pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       a.boxes[box.hash] = pBox;
     };
   }
