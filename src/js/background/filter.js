@@ -13,7 +13,10 @@ let blacklist = [
   "header",
   "tab",
   "minimize-btn",
-  "content"
+  "content",
+  "cnt_minimize_window",
+  "ui-draggable",
+  "ui-draggable-handle"
 ]
 
 chrome.webRequest.onBeforeRequest.addListener(
