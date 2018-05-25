@@ -185,7 +185,7 @@ class Api {
   }
 
   ggDeltaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
@@ -205,7 +205,7 @@ class Api {
   }
 
   ggZetaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
