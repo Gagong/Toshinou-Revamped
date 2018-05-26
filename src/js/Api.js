@@ -204,7 +204,7 @@ class Api {
       }
     }
   }
-
+  
   /*
   We count the NPCs that are on the map and that have more than 25% of HP
   */
@@ -225,7 +225,7 @@ class Api {
     let shipsaround=shipsCount-shipsInCorner;
     return shipsaround;
   }
-  
+
   findNearestBox() {
     let minDist = 100000;
     let finalBox;

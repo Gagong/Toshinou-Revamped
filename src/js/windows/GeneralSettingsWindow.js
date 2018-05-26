@@ -13,7 +13,7 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
-      {
+	  {
         name: 'ggbot',
         labelText: 'GG Bot (Testing)',
         appendTo: this.botSettingsWindow,
@@ -94,7 +94,7 @@ class GeneralSettingsWindow {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
       },
-      {
+	  {
         name: 'resetTargetWhenHpBelow25Percent',
         labelText: "Reset Target when HP < 25%",
         appendTo: this.botSettingsWindow,
