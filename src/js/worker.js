@@ -267,6 +267,7 @@ function logic() {
       }
     }
   }
+  
 
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
     let gate = api.findNearestGate();
@@ -360,8 +361,23 @@ function logic() {
       window.settings.setNpc(npc, true);
     });
     window.settings.moveRandomly = true;
-    window.settings.killNpcs = true;
+    //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
+    window.settings.npcCircleRadius = 612;
+
+    let shipsaround=api.ggcountNPCaround();
+    if(shipsaround>0){
+      let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+      if(percenlife < 99 && percenlife>70) {
+        window.settings.killNpcs = true;
+        collectBoxWhenCircle=true;
+      }else if(percenlife < 70) {
+        window.settings.killNpcs = true;
+        collectBoxWhenCircle=false;
+      }else{
+        window.settings.killNpcs = false;
+      }
+    }
   }
 
   if(window.settings.debug){
@@ -385,6 +401,35 @@ function logic() {
       attackNPCinCorner=false;
     }
   }
+  
+  /*Alejarse de CBS*/
+  if(api.battlestation!=null){
+     if(api.mattlestation.isEnemy){
+       if(window.settings.debug){
+         console.log("Enemy CBS");
+       }
+       if(api.checkForCBS()){
+         if(window.settings.debug){
+           console.log("ALERT CBS");
+         }
+         let gate = api.findNearestGateForRunAway(enemyResult.enemy);
+         if (gate.gate) {
+           let x = gate.gate.position.x + MathUtils.random(-100, 100);
+           let y = gate.gate.position.y + MathUtils.random(-100, 100);
+           api.resetTarget("all");
+           api.move(x, y);
+           window.movementDone = false;
+           window.fleeingFromEnemy = true;
+           setTimeout(() => {
+             window.movementDone = true;
+             window.fleeingFromEnemy = false;
+           }, MathUtils.random(30000, 35000));
+           return;
+          }
+       }
+     }
+  }
+  
   
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
     x = MathUtils.random(200, 20800);
@@ -422,11 +467,12 @@ function logic() {
         f += s;
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-        /*let nearestBox = api.findNearestBox();
-        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
-          circleBox = nearestBox;
-          collectBoxWhenCircle = true;
-        }*/
+        if(collectBoxWhenCircle){
+          let nearestBox = api.findNearestBox();
+          if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
+            circleBox = nearestBox;
+          }
+        }
       }
     } else {
       api.resetTarget("enemy");
@@ -435,11 +481,11 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    /*if (collectBoxWhenCircle && circleBox) {
+    if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       collectBoxWhenCircle = false;
       circleBox = null;
-    }*/
+    }
     window.movementDone = false;
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));

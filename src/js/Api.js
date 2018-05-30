@@ -346,6 +346,15 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let run= false;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<800){
+      run=true;
+    }
+	
+	return run;
+  }
   checkForEnemy() {
     let result = {
       run: false,
