@@ -5,12 +5,29 @@ class GeneralSettingsWindow {
       text: "General"
     });
 
-    let controls = [{
+    let controls = [
+      {
+        name: 'debug',
+        labelText: 'Debug',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.debug = this.checked;
+        }
+      },
+      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.palladium = this.checked;
+        }
+      },
+       {
+        name: 'ggbot',
+        labelText: 'GG Bot (Testing)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.ggbot = this.checked;
         }
       },
       /*{
@@ -43,6 +60,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.fleeFromEnemy = this.checked;
+        }
+      },
+	  {
+        name: 'fleefromcbs',
+        labelText: 'Flee from enemy CBS',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.fleefromcbs = this.checked;
         }
       },
       {
@@ -84,6 +109,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
+        }
+      },
+	  {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: "Reset Target when HP < 25%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
         }
       },
       {

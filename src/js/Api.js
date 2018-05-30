@@ -204,6 +204,22 @@ class Api {
       }
     }
   }
+  
+  /*
+  We count the NPCs that are on the map and that have more than 25% of HP
+  */
+  
+  ggcountNPCaround(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsaround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && ship.distanceTo(window.hero.position)<600) {
+        shipsaround++;
+      }
+    }
+    return shipsaround;
+  }
 
   findNearestBox() {
     let minDist = 100000;
@@ -330,6 +346,15 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let run= false;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<800){
+      run=true;
+    }
+	
+	return run;
+  }
   checkForEnemy() {
     let result = {
       run: false,
