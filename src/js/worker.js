@@ -403,12 +403,10 @@ function logic() {
   }
   
   /*Alejarse de CBS*/
-  if(api.battlestation!=null){
-     if(api.battlestation.isEnemy){
+  if(window.settings.fleefromcbs){
+    if(api.battlestation!=null){
+      if(api.battlestation.isEnemy){
        if(api.checkForCBS()){
-         if(window.settings.debug){
-           console.log("ALERT CBS");
-         }
          let gate = api.findNearestGate();
          if (gate.gate) {
            let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -425,8 +423,8 @@ function logic() {
           }
        }
      }
+    }
   }
-  
   
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
     x = MathUtils.random(200, 20800);

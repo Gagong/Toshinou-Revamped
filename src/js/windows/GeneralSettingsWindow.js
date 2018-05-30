@@ -62,6 +62,14 @@ class GeneralSettingsWindow {
           window.settings.fleeFromEnemy = this.checked;
         }
       },
+	  {
+        name: 'fleefromcbs',
+        labelText: 'Flee from enemy CBS',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.fleefromcbs = this.checked;
+        }
+      },
       {
         name: 'avoidAttackedNpcs',
         labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
