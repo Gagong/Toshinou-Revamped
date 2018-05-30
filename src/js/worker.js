@@ -405,14 +405,11 @@ function logic() {
   /*Alejarse de CBS*/
   if(api.battlestation!=null){
      if(api.battlestation.isEnemy){
-       if(window.settings.debug){
-         console.log("Enemy CBS");
-       }
        if(api.checkForCBS()){
          if(window.settings.debug){
            console.log("ALERT CBS");
          }
-         let gate = api.findNearestGateForRunAway(enemyResult.enemy);
+         let gate = api.findNearestGate();
          if (gate.gate) {
            let x = gate.gate.position.x + MathUtils.random(-100, 100);
            let y = gate.gate.position.y + MathUtils.random(-100, 100);
