@@ -404,7 +404,7 @@ function logic() {
   
   /*Alejarse de CBS*/
   if(api.battlestation!=null){
-     if(api.mattlestation.isEnemy){
+     if(api.battlestation.isEnemy){
        if(window.settings.debug){
          console.log("Enemy CBS");
        }
