@@ -5,7 +5,16 @@ class GeneralSettingsWindow {
       text: "General"
     });
 
-    let controls = [{
+    let controls = [
+      {
+        name: 'debug',
+        labelText: 'Debug',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.debug = this.checked;
+        }
+      },
+      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -13,7 +22,7 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
-	  {
+       {
         name: 'ggbot',
         labelText: 'GG Bot (Testing)',
         appendTo: this.botSettingsWindow,

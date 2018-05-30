@@ -364,6 +364,10 @@ function logic() {
     window.settings.circleNpc = true;
   }
 
+  if(window.settings.debug){
+    let shipsaround=api.ggcountNPCaround();
+    console.log(shipsaround);
+  }
     /*GG BOT for Alpha, Beta and Gamma Gates*/
   if(window.settings.ggbot){
     window.settings.alpha=true;

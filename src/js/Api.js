@@ -208,21 +208,16 @@ class Api {
   /*
   We count the NPCs that are on the map and that have more than 25% of HP
   */
+  
   ggcountNPCaround(){
     let shipsCount = Object.keys(api.ships).length;
-    let shipsInCorner = 0;
+    let shipsaround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship && ship.percentOfHp < 25) {
-        shipsInCorner++;
+      if (ship && ship.distanceTo(window.hero.position)<600) {
+        shipsaround++;
       }
     }
-    if(shipsInCorner>=shipsCount){
-      window.settings.resetTargetWhenHpBelow25Percent=false;
-    }else{
-      window.settings.resetTargetWhenHpBelow25Percent=true;
-    }
-    let shipsaround=shipsCount-shipsInCorner;
     return shipsaround;
   }
 
