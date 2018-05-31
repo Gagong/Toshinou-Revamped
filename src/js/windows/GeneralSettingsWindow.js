@@ -63,11 +63,11 @@ class GeneralSettingsWindow {
         }
       },
 	  {
-        name: 'fleeFromCBS',
-        labelText: 'Flee from enemy CBS',
+        name: 'dodgeTheCbs',
+        labelText: 'Dodge the CBS',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.fleeFromCBS = this.checked;
+          window.settings.dodgeTheCbs = this.checked;
         }
       },
       {

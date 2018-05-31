@@ -347,13 +347,17 @@ class Api {
   }
 
   checkForCBS(){
-    let run= false;
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+	result.cbsPos=this.battlestation.position;
     let dist = this.battlestation.distanceTo(window.hero.position);
-    if(dist<800){
-      run=true;
+    if(dist<1500){
+      result.walkAway=true;
     }
 	
-	return run;
+	return result;
   }
   checkForEnemy() {
     let result = {

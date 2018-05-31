@@ -402,25 +402,18 @@ function logic() {
     }
   }
   
-  /*Alejarse de CBS*/
-  if(window.settings.fleeFromCBS){
+  /*Dodge the CBS*/
+  if(window.settings.dodgeTheCbs){
     if(api.battlestation!=null){
       if(api.battlestation.isEnemy){
-       if(api.checkForCBS()){
-         let gate = api.findNearestGate();
-         if (gate.gate) {
-           let x = gate.gate.position.x + MathUtils.random(-100, 100);
-           let y = gate.gate.position.y + MathUtils.random(-100, 100);
-           api.resetTarget("all");
-           api.move(x, y);
-           window.movementDone = false;
-           window.fleeingFromEnemy = true;
-           setTimeout(() => {
-             window.movementDone = true;
-             window.fleeingFromEnemy = false;
-           }, MathUtils.random(30000, 35000));
-           return;
-          }
+       let result=api.checkForCBS();
+       if(result.walkAway){
+         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
+         let s = Math.PI / 180;
+         f += s;
+         x = result.cbsPos.x + 1800 * Math.sin(f);
+         y = result.cbsPos.y + 1800 * Math.cos(f);
+		 api.move(x, y);
        }
      }
     }
