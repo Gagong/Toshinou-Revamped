@@ -365,8 +365,8 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.npcCircleRadius = 612;
 
-    let shipsaround=api.ggcountNPCaround();
-    if(shipsaround>0){
+    let shipsAround=api.ggCountNpcAround();
+    if(shipsAround>0){
       let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
       if(percenlife < 99 && percenlife>70) {
         window.settings.killNpcs = true;
@@ -381,8 +381,8 @@ function logic() {
   }
 
   if(window.settings.debug){
-    let shipsaround=api.ggcountNPCaround();
-    console.log(shipsaround);
+    let shipsAround=api.ggCountNpcAround();
+    console.log(shipsAround);
   }
     /*GG BOT for Alpha, Beta and Gamma Gates*/
   if(window.settings.ggbot){
@@ -394,8 +394,8 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent=true;
     
-    let shipsaround=api.ggcountNPCaround();
-    if(shipsaround<=0){
+    let shipsAround=api.ggCountNpcAround();
+    if(shipsAround<=0){
       attackNPCinCorner=true;
     }else{
       attackNPCinCorner=false;
@@ -403,7 +403,7 @@ function logic() {
   }
   
   /*Alejarse de CBS*/
-  if(window.settings.fleefromcbs){
+  if(window.settings.fleeFromCBS){
     if(api.battlestation!=null){
       if(api.battlestation.isEnemy){
        if(api.checkForCBS()){

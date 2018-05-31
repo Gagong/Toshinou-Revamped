@@ -63,11 +63,11 @@ class GeneralSettingsWindow {
         }
       },
 	  {
-        name: 'fleefromcbs',
+        name: 'fleeFromCBS',
         labelText: 'Flee from enemy CBS',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.fleefromcbs = this.checked;
+          window.settings.fleeFromCBS = this.checked;
         }
       },
       {
