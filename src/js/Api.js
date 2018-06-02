@@ -12,8 +12,13 @@ class Api {
     this.jumpTime = $.now();
     this.resetBlackListTime = $.now();
     this.blackListTimeOut = 150000;
+<<<<<<< HEAD
     //this.getSettingsTime = null;
     //this.setSettingsTime = null;
+=======
+    this.getSettingsTime = $.now();
+    this.setSettingsTime = $.now();
+>>>>>>> upstream/beta
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -132,6 +137,7 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
+<<<<<<< HEAD
   resetTarget(target) {
     if (target == "enemy") {
       this.targetShip = null;
@@ -168,6 +174,62 @@ class Api {
 
   ggDeltaFix() {
     let shipsCount = Object.keys(api.ships).length;
+=======
+  getSettings() {
+    for (let key in window.settings) {
+      chrome.storage.sync.get(key, function(set) {
+        window.newSettings[key] = set[key];
+      })
+    }
+    this.getSettingsTime = $.now();
+  }
+
+  setSettings() {
+    chrome.storage.sync.set(window.settings);
+    this.setSettingsTime = $.now();
+  }
+
+  updateSettings() {
+    window.settings = window.newSettings;
+  }
+
+  resetTarget(target) {
+    if (target == "enemy") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+    } else if (target == "box") {
+      this.targetBoxHash = null;
+    } else if (target == "all") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+      this.targetBoxHash = null;
+    }
+  }
+
+  jumpInGG(id, settings) { //Usage: api.jumpInGG(70, window.settings.kappa);
+    if (settings) {
+      let gate = this.findNearestGatebyID(id);
+      if (gate.gate) {
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+          this.jumpGate();
+          this.jumpTime = $.now();
+        }
+        this.resetTarget("all");
+        this.move(x, y);
+        window.movementDone = false;
+      }
+    }
+  }
+
+  ggDeltaFix() {
+    let shipsCount = Object.keys(this.ships).length;
+>>>>>>> upstream/beta
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
@@ -187,7 +249,11 @@ class Api {
   }
 
   ggZetaFix() {
+<<<<<<< HEAD
     let shipsCount = Object.keys(api.ships).length;
+=======
+    let shipsCount = Object.keys(this.ships).length;
+>>>>>>> upstream/beta
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
@@ -204,6 +270,7 @@ class Api {
       }
     }
   }
+<<<<<<< HEAD
   
   /*
   We count the NPCs that are on the map and that have more than 25% of HP
@@ -220,6 +287,8 @@ class Api {
     }
     return shipsAround;
   }
+=======
+>>>>>>> upstream/beta
 
   findNearestBox() {
     let minDist = 100000;
@@ -255,7 +324,11 @@ class Api {
   }
 
   findNearestShip() {
+<<<<<<< HEAD
     let minDist = 100000;
+=======
+    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
+>>>>>>> upstream/beta
     let finalShip;
 
     if (!window.settings.killNpcs)
@@ -346,6 +419,7 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+<<<<<<< HEAD
   checkForCBS(){
     let result = {
       walkAway: false,
@@ -359,6 +433,8 @@ class Api {
 	
 	return result;
   }
+=======
+>>>>>>> upstream/beta
   checkForEnemy() {
     let result = {
       run: false,

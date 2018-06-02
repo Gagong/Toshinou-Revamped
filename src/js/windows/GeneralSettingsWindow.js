@@ -5,6 +5,7 @@ class GeneralSettingsWindow {
       text: "General"
     });
 
+<<<<<<< HEAD
     let controls = [
       {
         name: 'debug',
@@ -15,6 +16,9 @@ class GeneralSettingsWindow {
         }
       },
       {
+=======
+    let controls = [{
+>>>>>>> upstream/beta
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -62,6 +66,7 @@ class GeneralSettingsWindow {
           window.settings.fleeFromEnemy = this.checked;
         }
       },
+<<<<<<< HEAD
 	  {
         name: 'dodgeTheCbs',
         labelText: 'Dodge the CBS',
@@ -70,6 +75,8 @@ class GeneralSettingsWindow {
           window.settings.dodgeTheCbs = this.checked;
         }
       },
+=======
+>>>>>>> upstream/beta
       {
         name: 'avoidAttackedNpcs',
         labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
@@ -109,6 +116,7 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
+<<<<<<< HEAD
         }
       },
 	  {
@@ -117,6 +125,8 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.resetTargetWhenHpBelow25Percent = this.checked;
+=======
+>>>>>>> upstream/beta
         }
       },
       {
@@ -163,18 +173,28 @@ class GeneralSettingsWindow {
       }
     ];
 
+<<<<<<< HEAD
     /*this.saveSettingsBtn = ControlFactory.btn({
       labelText: 'Save settings',
       appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
     });*/
 
+=======
+>>>>>>> upstream/beta
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
 
+<<<<<<< HEAD
     /*$(this.saveSettingsBtn).on('click', (e) => {
       chrome.storage.sync.set(window.settings);
       console.log("saved")
     })*/
+=======
+    if (window.globalSettings.enableRefresh) {
+      let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
+    this.botSettingsWindow.append(saveButton);
+    }
+>>>>>>> upstream/beta
   }
 }
