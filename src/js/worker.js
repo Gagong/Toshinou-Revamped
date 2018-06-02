@@ -380,10 +380,6 @@ function logic() {
     }
   }
 
-  if(window.settings.debug){
-    let shipsAround=api.ggCountNpcAround();
-    console.log(shipsAround);
-  }
     /*GG BOT for Alpha, Beta and Gamma Gates*/
   if(window.settings.ggbot){
     window.settings.alpha=true;
@@ -413,7 +409,7 @@ function logic() {
          f += s;
          x = result.cbsPos.x + 1800 * Math.sin(f);
          y = result.cbsPos.y + 1800 * Math.cos(f);
-		 api.move(x, y);
+         api.move(x, y);
        }
      }
     }

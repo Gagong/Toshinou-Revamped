@@ -351,14 +351,14 @@ class Api {
       walkAway: false,
       cbsPos: null,
     };
-	result.cbsPos=this.battlestation.position;
+    result.cbsPos=this.battlestation.position;
     let dist = this.battlestation.distanceTo(window.hero.position);
     if(dist<1500){
       result.walkAway=true;
     }
-	
-	return result;
+    return result;
   }
+  
   checkForEnemy() {
     let result = {
       run: false,

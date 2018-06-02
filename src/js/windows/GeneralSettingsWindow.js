@@ -7,14 +7,6 @@ class GeneralSettingsWindow {
 
     let controls = [
       {
-        name: 'debug',
-        labelText: 'Debug',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.debug = this.checked;
-        }
-      },
-      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -62,7 +54,7 @@ class GeneralSettingsWindow {
           window.settings.fleeFromEnemy = this.checked;
         }
       },
-	  {
+      {
         name: 'dodgeTheCbs',
         labelText: 'Dodge the CBS',
         appendTo: this.botSettingsWindow,
@@ -111,7 +103,7 @@ class GeneralSettingsWindow {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
         }
       },
-	  {
+      {
         name: 'resetTargetWhenHpBelow25Percent',
         labelText: "Reset Target when HP < 25%",
         appendTo: this.botSettingsWindow,
