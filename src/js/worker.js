@@ -280,7 +280,7 @@ function logic() {
         f += s;
         let x = ship.ship.position.x + 2000 * Math.sin(f);
         let y = ship.ship.position.y + 2000 * Math.cos(f);
-        if(x>20800 && x<200 && y>12900 && y<200){//To avoid entering radiation
+        if(x>20800 && x<200 && y>12900 && y<300){//To avoid entering radiation
           x = MathUtils.random(200, 20800);
           y = MathUtils.random(200, 12900);
         }else{
@@ -412,8 +412,6 @@ function logic() {
     window.settings.killNpcs = true;
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent=true;
-    
-
   }
   
   /*Dodge the CBS*/
