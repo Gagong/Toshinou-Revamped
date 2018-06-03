@@ -108,7 +108,9 @@ class Api {
 
   move(x, y) {
     if (!isNaN(x) && !isNaN(y)) {
-      window.hero.move(new Vector2D(x, y));
+      if(x<41500 && x>0 && y<25700 && y>200){//To avoid entering radiation
+        window.hero.move(new Vector2D(x, y));
+      }
     }
   }
 

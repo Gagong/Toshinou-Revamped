@@ -6,6 +6,14 @@ class GGSettingsWindow {
     });
 
     let controls = [{
+        name: 'ggbot',
+        labelText: 'GG Bot (Testing)',
+        appendTo: this.GGSettingsWindow,
+        event: function () {
+          window.settings.ggbot = this.checked;
+        }
+	  }
+     ,{
         name: 'alpha',
         labelText: 'Jump in GG Alpha',
         appendTo: this.GGSettingsWindow,

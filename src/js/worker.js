@@ -268,17 +268,34 @@ function logic() {
     }
   }
   
-
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
-    let gate = api.findNearestGate();
-    if (gate.gate) {
-      let x = gate.gate.position.x + MathUtils.random(-100, 100);
-      let y = gate.gate.position.y + MathUtils.random(-100, 100);
+    if(window.settings.ggbot){
       api.resetTarget("all");
-      api.isRepairing = true;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+      let npcCount=api.ggCountNpcAround();
+      if(npcCount>0){
+        let ship = api.findNearestShip();
+        ship.ship.update();
+        let f = Math.atan2(window.hero.position.x - ship.ship.position.x, window.hero.position.y - ship.ship.position.y) + 0.5;
+        let s = Math.PI / 180;
+        f += s;
+        let x = ship.ship.position.x + 2000 * Math.sin(f);
+        let y = ship.ship.position.y + 2000 * Math.cos(f);
+        api.move(x, y);
+        return;
+      }else{
+        return;
+      }
+    }else{
+      let gate = api.findNearestGate();
+      if (gate.gate) {
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
+        api.resetTarget("all");
+        api.isRepairing = true;
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
     }
   }
 
@@ -364,6 +381,7 @@ function logic() {
     //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
     window.settings.npcCircleRadius = 612;
+    window.settings.avoidAttackedNpcs=true;
 
     let shipsAround=api.ggCountNpcAround();
     if(shipsAround>0){
@@ -390,12 +408,7 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent=true;
     
-    let shipsAround=api.ggCountNpcAround();
-    if(shipsAround<=0){
-      attackNPCinCorner=true;
-    }else{
-      attackNPCinCorner=false;
-    }
+
   }
   
   /*Dodge the CBS*/
@@ -429,7 +442,15 @@ function logic() {
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
-    if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+    if(window.settings.ggbot && api.targetShip.position.x==20999 && api.targetShip.position.y==13499){
+    //GG bottom right corner
+      x=20495;
+      y=13363;
+    }else if(window.settings.ggbot && api.targetShip.position.x==0 && api.targetShip.position.y==0){
+    //GG top left corner
+      x=514;
+      y=303;
+    }else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
       api.lastMovement = $.now();
