@@ -280,7 +280,12 @@ function logic() {
         f += s;
         let x = ship.ship.position.x + 2000 * Math.sin(f);
         let y = ship.ship.position.y + 2000 * Math.cos(f);
-        api.move(x, y);
+        if(x>20800 && x<200 && y>12900 && y<200){//To avoid entering radiation
+          x = MathUtils.random(200, 20800);
+          y = MathUtils.random(200, 12900);
+        }else{
+          api.move(x, y);
+        }
         return;
       }else{
         return;
