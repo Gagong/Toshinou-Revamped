@@ -220,7 +220,7 @@ class Api {
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship && ship.distanceTo(window.hero.position)<600) {
+      if (ship && ship.distanceTo(window.hero.position)<900) {
         shipsAround++;
       }
     }
