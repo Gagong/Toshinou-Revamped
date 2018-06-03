@@ -183,7 +183,9 @@ class Api {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
-      } 
+      }else{
+        window.settings.resetTargetWhenHpBelow25Percent=true;
+      }
     }
   }
 
@@ -203,6 +205,8 @@ class Api {
           this.targetShip = ship;
           //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
+      }else{
+        window.settings.resetTargetWhenHpBelow25Percent=true;
       }
     }
   }
