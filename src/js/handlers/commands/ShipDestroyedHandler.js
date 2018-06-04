@@ -1,6 +1,6 @@
 class ShipDestroyedHandler {
   static get ID() {
-    return 10484;
+    return 30265;
   }
 
   constructor() {
@@ -9,10 +9,7 @@ class ShipDestroyedHandler {
       let id = parsed[Variables.shipDestoyedId];
 
       if (a.targetShip && id == a.targetShip.id) {
-        a.targetShip = null;
-        a.attacking = false;
-        a.triedToLock = false;
-        a.lockedShip = null;
+        a.resetTarget("enemy");
       }
 
       let ship = a.ships[id];

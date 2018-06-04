@@ -1,6 +1,6 @@
 class HeroDiedHandler {
   static get ID() {
-    return 21407;
+    return 32193;
   }
 
   constructor() {
@@ -14,6 +14,12 @@ class HeroDiedHandler {
           Injector.injectScript("document.getElementById('preloader').revive(1);");
           window.reviveCount++;
           a.isRepairing = true;
+          let event = new CustomEvent("deathCounter", {
+            detail: {
+              death: 1,
+            }
+          });
+          window.dispatchEvent(event);
         }
       }, 8000);
     }

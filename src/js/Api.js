@@ -9,6 +9,11 @@ class Api {
     this.isDisconnected = false;
     this.disconnectTime = null;
     this.reconnectTime = null;
+    this.jumpTime = $.now();
+    this.resetBlackListTime = $.now();
+    this.blackListTimeOut = 150000;
+    //this.getSettingsTime = null;
+    //this.setSettingsTime = null;
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -81,9 +86,7 @@ class Api {
   }
 
   reconnect() {
-    let scr = 'document.getElementById("preloader").reconnect();';
-    Injector.injectScript(scr);
-
+    Injector.injectScript('document.getElementById("preloader").reconnect();');
     this.reconnectTime = $.now();
   }
 
@@ -128,6 +131,101 @@ class Api {
   /*changeConfig() {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
+
+  resetTarget(target) {
+    if (target == "enemy") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+    } else if (target == "box") {
+      this.targetBoxHash = null;
+    } else if (target == "all") {
+      this.targetShip = null;
+      this.attacking = false;
+      this.triedToLock = false;
+      this.lockedShip = null;
+      this.targetBoxHash = null;
+    }
+  }
+
+  jumpInGG(id, settings) { //Usage: api.jumpInGG(70, window.settings.kappa);
+    if (settings) {
+      let gate = this.findNearestGatebyID(id);
+      if (gate.gate) {
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+          this.jumpGate();
+          this.jumpTime = $.now();
+        }
+        this.resetTarget("all");
+        this.move(x, y);
+        window.movementDone = false;
+      }
+    }
+  }
+
+  ggDeltaFix() {
+    let shipsCount = Object.keys(api.ships).length;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
+          ship.name == "-=[ Lordakium ]=- δ9" || 
+          ship.name == "-=[ Sibelon ]=- δ14" || 
+          ship.name == "-=[ Kristallon ]=- δ19")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
+        if (shipsCount > 1) {
+          window.settings.setNpc(ship.name, true);
+          if (this.targetShip == ship)
+            this.resetTarget("enemy");
+        } else {
+          window.settings.setNpc(ship.name, false);
+          this.targetShip = ship;
+        }
+      }else{
+        window.settings.resetTargetWhenHpBelow25Percent=true;
+      }
+    }
+  }
+
+  ggZetaFix() {
+    let shipsCount = Object.keys(api.ships).length;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
+        if (shipsCount > 1) {
+          //window.settings.dontCircleWhenHpBelow25Percent = false;
+          window.settings.setNpc(ship.name, true);
+          if (this.targetShip == ship)
+            this.resetTarget("enemy");
+        } else {
+          window.settings.setNpc(ship.name, false);
+          this.targetShip = ship;
+          //window.settings.dontCircleWhenHpBelow25Percent = true;
+        }
+      }else{
+        window.settings.resetTargetWhenHpBelow25Percent=true;
+      }
+    }
+  }
+  
+  /*
+  We count the NPCs that are on the map and that have more than 25% of HP
+  */
+  
+  ggCountNpcAround(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsAround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && ship.distanceTo(window.hero.position)<900) {
+        shipsAround++;
+      }
+    }
+    return shipsAround;
+  }
 
   findNearestBox() {
     let minDist = 100000;
@@ -218,7 +316,8 @@ class Api {
       if (enemeyDistance < dist) {
         return;
       }
-      if (dist < minDist && gate.gateId != 150000450 && gate.gateId != 150000451 && gate.gateId != 150000449) {
+      
+      if (dist < minDist && gate.gateType != 84 && gate.gateType != 42 && gate.gateType != 43) {
         finalGate = gate;
         minDist = dist;
       }
@@ -253,6 +352,19 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+    result.cbsPos=this.battlestation.position;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<1500){
+      result.walkAway=true;
+    }
+    return result;
+  }
+  
   checkForEnemy() {
     let result = {
       run: false,

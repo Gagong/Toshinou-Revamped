@@ -1,6 +1,6 @@
 class HeroInitHandler {
   static get ID() {
-    return 7902;
+    return 3393;
   }
 
   constructor(f) {
@@ -9,12 +9,8 @@ class HeroInitHandler {
       a.ships = [];
       a.boxes = {};
       a.gates = [];
-      a.targetShip = null;
-      a.attacking = false;
-      a.triedToLock = false;
-      a.lockedShip = null;
       a.heroDied = false;
-      a.targetBoxHash = null;
+      a.resetTarget("all");
       a.battlestation = null;
       Injector.injectScript("window.heroDied = false;");
 
@@ -34,10 +30,12 @@ class HeroInitHandler {
         window.b1 = 42000 / 300;
         window.b2 = 26200 / 150;
         window.b3 = 700;
+        window.bigMap = true;
       } else {
         window.b1 = 21000 / 300;
         window.b2 = 13100 / 150;
         window.b3 = 350;
+        window.bigMap = false;
       }
 
       if (window.hero.mapId == 1 || window.hero.mapId == 5 || window.hero.mapId == 9) {

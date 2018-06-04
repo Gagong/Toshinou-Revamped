@@ -89,11 +89,14 @@ class NpcSettingsWindow {
       "<=< Plagued Gygerthrall >=>",
       "-=[ Plagued Kristallin ]=-",
       "-=[ Plague Rocket ]=-",
-      "-=[ Devourer ]=- ζ25",
-      "-=[ Devourer ]=- ζ27",
+      "..::{ Boss Lordakium }::... δ21",
+      "..::{ Boss Lordakium }::... δ23",
+      "..::{ Boss Lordakium }::... δ25",
       "-={ demaNeR Escort }=-",
       "-={ Demaner Corsair }=-",
       "-={ demaNeR Freighter }=-",
+      "-=[ Hitac 2.0 ]=-",
+      "-=[ Hitac-Minion ]=-"
     ];
   }
 }

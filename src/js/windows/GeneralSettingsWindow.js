@@ -5,7 +5,8 @@ class GeneralSettingsWindow {
       text: "General"
     });
 
-    let controls = [{
+    let controls = [
+      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -13,6 +14,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+      /*{
+        name: 'save',
+        labelText: 'Refresh',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.refresh = this.checked;
+        }
+      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -35,6 +44,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.fleeFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'dodgeTheCbs',
+        labelText: 'Dodge the CBS',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dodgeTheCbs = this.checked;
         }
       },
       {
@@ -71,11 +88,19 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'dontCircleWhenHpBelow15Percent',
-        labelText: "Don't circle when HP < 20%",
+        name: 'dontCircleWhenHpBelow25Percent',
+        labelText: "Don't circle when HP < 25%",
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.dontCircleWhenHpBelow15Percent = this.checked;
+          window.settings.dontCircleWhenHpBelow25Percent = this.checked;
+        }
+      },
+      {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: "Reset Target when HP < 25%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
         }
       },
       {
@@ -88,7 +113,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 30,
+          value: 10,
         },
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;
@@ -122,8 +147,18 @@ class GeneralSettingsWindow {
       }
     ];
 
+    /*this.saveSettingsBtn = ControlFactory.btn({
+      labelText: 'Save settings',
+      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
+    });*/
+
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
+
+    /*$(this.saveSettingsBtn).on('click', (e) => {
+      chrome.storage.sync.set(window.settings);
+      console.log("saved")
+    })*/
   }
 }

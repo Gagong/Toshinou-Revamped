@@ -1,6 +1,6 @@
 class ShipRemovedHandler {
   static get ID() {
-    return 3650;
+    return 4990;
   }
 
   constructor() {
@@ -9,10 +9,7 @@ class ShipRemovedHandler {
       let id = parsed.userId;
 
       if (a.targetShip && id == a.targetShip.id) {
-        a.targetShip = null;
-        a.attacking = false;
-        a.triedToLock = false;
-        a.lockedShip = null;
+        a.resetTarget("enemy");
       }
 
       let ship = a.ships[id];
