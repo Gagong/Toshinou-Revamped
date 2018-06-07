@@ -280,9 +280,9 @@ function logic() {
         f += s;
         let x = ship.ship.position.x + 2000 * Math.sin(f);
         let y = ship.ship.position.y + 2000 * Math.cos(f);
-        if(x>20800 && x<200 && y>12900 && y<300){//To avoid entering radiation
-          x = MathUtils.random(200, 20800);
-          y = MathUtils.random(200, 12900);
+        if(x>20800 && x<500 && y>12900 && y<500){//To avoid entering radiation
+          x = MathUtils.random(500, 20800);
+          y = MathUtils.random(500, 12900);
         }else{
           api.move(x, y);
         }
@@ -385,8 +385,6 @@ function logic() {
     window.settings.moveRandomly = true;
     //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
-    window.settings.npcCircleRadius = 612;
-    window.settings.avoidAttackedNpcs=true;
 
     let shipsAround=api.ggCountNpcAround();
     if(shipsAround>0){
