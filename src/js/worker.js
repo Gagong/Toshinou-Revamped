@@ -246,11 +246,12 @@ function logic() {
     window.settings.alpha=true;
     window.settings.beta=true;
     window.settings.gamma=true;
+    window.settings.kappa=true;
     window.settings.moveRandomly = true;
     window.settings.killNpcs = true;
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent=true;
-	window.settings.dontCircleWhenHpBelow25Percent=false;
+    window.settings.dontCircleWhenHpBelow25Percent=false;
   }
 
   if (window.hero.mapId == 73)
@@ -452,8 +453,9 @@ function logic() {
     if((api.targetShip.position.x==20999 && api.targetShip.position.y==13499) || 
       (api.targetShip.position.x==0 && api.targetShip.position.y==0)
      ){
-      if(window.hero.mapId == 73 && !api.allNPCInCorner()){
+      if((window.hero.mapId == 73 || window.hero.mapId == 74 ) && !api.allNPCInCorner()){
         api.resetTarget("enemy");
+        return;
       }
     }
     if(window.settings.ggbot && api.targetShip.position.x==20999 && api.targetShip.position.y==13499){
@@ -462,8 +464,8 @@ function logic() {
       y=13363;
     }else if(window.settings.ggbot && api.targetShip.position.x==0 && api.targetShip.position.y==0){
     //GG top left corner
-      x=436;
-      y=147;
+      x=450;
+      y=302;
     }else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
