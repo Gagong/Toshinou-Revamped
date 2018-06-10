@@ -183,8 +183,6 @@ class Api {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
-      }else{
-        window.settings.resetTargetWhenHpBelow25Percent=true;
       }
     }
   }
@@ -205,8 +203,6 @@ class Api {
           this.targetShip = ship;
           //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
-      }else{
-        window.settings.resetTargetWhenHpBelow25Percent=true;
       }
     }
   }
@@ -215,16 +211,35 @@ class Api {
   We count the NPCs that are on the map and that have more than 25% of HP
   */
   
-  ggCountNpcAround(){
+  ggCountNpcAround(distance){
     let shipsCount = Object.keys(api.ships).length;
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship && ship.distanceTo(window.hero.position)<900) {
+      if (ship && ship.distanceTo(window.hero.position)<distance) {
         shipsAround++;
       }
     }
     return shipsAround;
+  }
+
+  allNPCInCorner(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsInCorner = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if((ship.position.x==20999 && ship.position.y==13499) || 
+        (ship.position.x==0 && ship.position.y==0)
+      ){
+        shipsInCorner++;
+      }
+    }
+    
+    if(shipsInCorner==shipsCount){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   findNearestBox() {

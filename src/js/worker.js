@@ -212,7 +212,7 @@ function logic() {
     return;
   }
 
-  if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
+  if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
@@ -241,6 +241,18 @@ function logic() {
     api.resetBlackListTime = $.now();
   }
 
+  /*GG BOT for Alpha, Beta and Gamma Gates*/
+  if(window.settings.ggbot){
+    window.settings.alpha=true;
+    window.settings.beta=true;
+    window.settings.gamma=true;
+    window.settings.moveRandomly = true;
+    window.settings.killNpcs = true;
+    window.settings.circleNpc = true;
+    window.settings.resetTargetWhenHpBelow25Percent=true;
+	window.settings.dontCircleWhenHpBelow25Percent=false;
+  }
+
   if (window.hero.mapId == 73)
     api.ggZetaFix();
 
@@ -267,25 +279,26 @@ function logic() {
       }
     }
   }
-  
-  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
+
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
     if(window.settings.ggbot){
       api.resetTarget("all");
-      let npcCount=api.ggCountNpcAround();
+      let npcCount=api.ggCountNpcAround(1000);
       if(npcCount>0){
         let ship = api.findNearestShip();
         ship.ship.update();
         let f = Math.atan2(window.hero.position.x - ship.ship.position.x, window.hero.position.y - ship.ship.position.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
-        let x = ship.ship.position.x + 2000 * Math.sin(f);
-        let y = ship.ship.position.y + 2000 * Math.cos(f);
+        let x = 10890 + 4000 * Math.sin(f);
+        let y = 6750 + 4000 * Math.cos(f);
         if(x>20800 && x<500 && y>12900 && y<500){//To avoid entering radiation
           x = MathUtils.random(500, 20800);
           y = MathUtils.random(500, 12900);
         }else{
           api.move(x, y);
         }
+        api.isRepairing = true;
         return;
       }else{
         return;
@@ -386,7 +399,7 @@ function logic() {
     //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
 
-    let shipsAround=api.ggCountNpcAround();
+    let shipsAround=api.ggCountNpcAround(600);
     if(shipsAround>0){
       let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
       if(percenlife < 99 && percenlife>70) {
@@ -399,17 +412,6 @@ function logic() {
         window.settings.killNpcs = false;
       }
     }
-  }
-
-    /*GG BOT for Alpha, Beta and Gamma Gates*/
-  if(window.settings.ggbot){
-    window.settings.alpha=true;
-    window.settings.beta=true;
-    window.settings.gamma=true;
-    window.settings.moveRandomly = true;
-    window.settings.killNpcs = true;
-    window.settings.circleNpc = true;
-    window.settings.resetTargetWhenHpBelow25Percent=true;
   }
   
   /*Dodge the CBS*/
@@ -440,17 +442,28 @@ function logic() {
     y = MathUtils.random(20982, 25515)
   }
 
+  if(window.settings.cargoBox){
+    console.log("X: "+window.hero.position.x+" Y: "+window.hero.position.y);
+  }
+  
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
+    if((api.targetShip.position.x==20999 && api.targetShip.position.y==13499) || 
+      (api.targetShip.position.x==0 && api.targetShip.position.y==0)
+     ){
+      if(window.hero.mapId == 73 && !api.allNPCInCorner()){
+        api.resetTarget("enemy");
+      }
+    }
     if(window.settings.ggbot && api.targetShip.position.x==20999 && api.targetShip.position.y==13499){
     //GG bottom right corner
       x=20495;
       y=13363;
     }else if(window.settings.ggbot && api.targetShip.position.x==0 && api.targetShip.position.y==0){
     //GG top left corner
-      x=514;
-      y=303;
+      x=436;
+      y=147;
     }else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
