@@ -103,7 +103,7 @@ function init() {
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" || key == "z") {
+    if (key == "x" || key == "z" || key == "ч" || key == "я") {
       let maxDist = 1000;
       let finDist = 1000000;
       let finalShip;
