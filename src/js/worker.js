@@ -112,7 +112,7 @@ function init() {
         let ship = api.ships[property];
         let dist = ship.distanceTo(window.hero.position);
 
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z" && !ship.isNpc))) {
+        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
           finalShip = ship;
           finDist = dist;
         }
