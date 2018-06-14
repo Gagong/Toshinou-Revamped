@@ -157,7 +157,7 @@ function init() {
 }
 
 function logic() {
-  let collectBoxWhenCircle = false;
+  let collectBoxWhenCircle = true;
   let circleBox = null;
   let palladiumBlackList = [
     "-=[ Battleray ]=-",
@@ -247,6 +247,7 @@ function logic() {
     window.settings.beta=true;
     window.settings.gamma=true;
     window.settings.kappa=true;
+    window.settings.lambda=true;
     window.settings.moveRandomly = true;
     window.settings.killNpcs = true;
     window.settings.circleNpc = true;
