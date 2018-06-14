@@ -352,7 +352,6 @@ class Api {
     }
     if (enemyDistance < 2000) { // 2000 run away detect distance
       result.run = true;
-      return result;
     }
     return result;
   }
