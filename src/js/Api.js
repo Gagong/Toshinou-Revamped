@@ -12,8 +12,8 @@ class Api {
     this.jumpTime = $.now();
     this.resetBlackListTime = $.now();
     this.blackListTimeOut = 150000;
-    this.getSettingsTime = $.now();
-    this.setSettingsTime = $.now();
+    //this.getSettingsTime = null;
+    //this.setSettingsTime = null;
 
     /*this.maps = { //[id, X, Y]
       1 : {X : 21000, Y : 13100}, //1-1
@@ -132,24 +132,6 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
-  getSettings() {
-    for (let key in window.settings) {
-      chrome.storage.sync.get(key, function(set) {
-        window.newSettings[key] = set[key];
-      })
-    }
-    this.getSettingsTime = $.now();
-  }
-
-  setSettings() {
-    chrome.storage.sync.set(window.settings);
-    this.setSettingsTime = $.now();
-  }
-
-  updateSettings() {
-    window.settings = window.newSettings;
-  }
-
   resetTarget(target) {
     if (target == "enemy") {
       this.targetShip = null;
@@ -185,13 +167,14 @@ class Api {
   }
 
   ggDeltaFix() {
-    let shipsCount = Object.keys(this.ships).length;
+    let shipsCount = Object.keys(api.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
           ship.name == "-=[ Lordakium ]=- δ9" || 
           ship.name == "-=[ Sibelon ]=- δ14" || 
           ship.name == "-=[ Kristallon ]=- δ19")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship)
@@ -200,15 +183,16 @@ class Api {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
-      } 
+      }
     }
   }
 
   ggZetaFix() {
-    let shipsCount = Object.keys(this.ships).length;
+    let shipsCount = Object.keys(api.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           //window.settings.dontCircleWhenHpBelow25Percent = false;
           window.settings.setNpc(ship.name, true);
@@ -220,6 +204,41 @@ class Api {
           //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
       }
+    }
+  }
+  
+  /*
+  We count the NPCs that are on the map and that have more than 25% of HP
+  */
+  
+  ggCountNpcAround(distance){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsAround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && ship.distanceTo(window.hero.position)<distance) {
+        shipsAround++;
+      }
+    }
+    return shipsAround;
+  }
+
+  allNPCInCorner(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsInCorner = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if((ship.position.x==20999 && ship.position.y==13499) || 
+        (ship.position.x==0 && ship.position.y==0)
+      ){
+        shipsInCorner++;
+      }
+    }
+    
+    if(shipsInCorner==shipsCount){
+      return true;
+    }else{
+      return false;
     }
   }
 
@@ -257,7 +276,7 @@ class Api {
   }
 
   findNearestShip() {
-    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
+    let minDist = 100000;
     let finalShip;
 
     if (!window.settings.killNpcs)
@@ -348,6 +367,19 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+    result.cbsPos=this.battlestation.position;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<1500){
+      result.walkAway=true;
+    }
+    return result;
+  }
+  
   checkForEnemy() {
     let result = {
       run: false,
