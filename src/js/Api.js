@@ -174,6 +174,7 @@ class Api {
           ship.name == "-=[ Lordakium ]=- δ9" || 
           ship.name == "-=[ Sibelon ]=- δ14" || 
           ship.name == "-=[ Kristallon ]=- δ19")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship)
@@ -182,7 +183,7 @@ class Api {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
-      } 
+      }
     }
   }
 
@@ -191,6 +192,7 @@ class Api {
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           //window.settings.dontCircleWhenHpBelow25Percent = false;
           window.settings.setNpc(ship.name, true);
@@ -202,6 +204,41 @@ class Api {
           //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
       }
+    }
+  }
+  
+  /*
+  We count the NPCs that are on the map and that have more than 25% of HP
+  */
+  
+  ggCountNpcAround(distance){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsAround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && ship.distanceTo(window.hero.position)<distance) {
+        shipsAround++;
+      }
+    }
+    return shipsAround;
+  }
+
+  allNPCInCorner(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsInCorner = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if((ship.position.x==20999 && ship.position.y==13499) || 
+        (ship.position.x==0 && ship.position.y==0)
+      ){
+        shipsInCorner++;
+      }
+    }
+    
+    if(shipsInCorner==shipsCount){
+      return true;
+    }else{
+      return false;
     }
   }
 
@@ -330,6 +367,19 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+    result.cbsPos=this.battlestation.position;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<1500){
+      result.walkAway=true;
+    }
+    return result;
+  }
+  
   checkForEnemy() {
     let result = {
       run: false,
