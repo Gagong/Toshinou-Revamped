@@ -42,6 +42,8 @@
         "js/objects/Hero.js",
         "js/objects/Ship.js",
         "js/objects/Gate.js",
+        "js/objects/Portal.js",
+        "js/objects/Map.js",
         "js/objects/CBS/Battlestation.js",
         "js/objects/CBS/BattlestationModule.js",
         "js/handlers/HandlersManager.js",

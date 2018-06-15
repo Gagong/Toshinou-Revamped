@@ -166,6 +166,16 @@ class Api {
     }
   }
 
+  jumpAndGoBack(gate,repairing){
+    this.jumpGate();
+    this.jumpTime = $.now();
+    setTimeout(() => {
+      this.jumpGate();
+      this.jumpTime = $.now();
+    }, MathUtils.random(30000, 60000));
+    this.isRepairing=repairing;
+  }
+
   ggDeltaFix() {
     let shipsCount = Object.keys(api.ships).length;
     for (let property in this.ships) {
@@ -174,6 +184,7 @@ class Api {
           ship.name == "-=[ Lordakium ]=- δ9" || 
           ship.name == "-=[ Sibelon ]=- δ14" || 
           ship.name == "-=[ Kristallon ]=- δ19")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship)
@@ -182,7 +193,7 @@ class Api {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
-      } 
+      }
     }
   }
 
@@ -191,6 +202,7 @@ class Api {
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+        window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           //window.settings.dontCircleWhenHpBelow25Percent = false;
           window.settings.setNpc(ship.name, true);
@@ -202,6 +214,41 @@ class Api {
           //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
       }
+    }
+  }
+  
+  /*
+  We count the NPCs that are on the map and that have more than 25% of HP
+  */
+  
+  ggCountNpcAround(distance){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsAround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && ship.distanceTo(window.hero.position)<distance) {
+        shipsAround++;
+      }
+    }
+    return shipsAround;
+  }
+
+  allNPCInCorner(){
+    let shipsCount = Object.keys(api.ships).length;
+    let shipsInCorner = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if((ship.position.x==20999 && ship.position.y==13499) || 
+        (ship.position.x==0 && ship.position.y==0)
+      ){
+        shipsInCorner++;
+      }
+    }
+    
+    if(shipsInCorner==shipsCount){
+      return true;
+    }else{
+      return false;
     }
   }
 
@@ -330,6 +377,19 @@ class Api {
     Injector.injectScript("window.heroDied = true;");
   }
 
+  checkForCBS(){
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+    result.cbsPos=this.battlestation.position;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<1500){
+      result.walkAway=true;
+    }
+    return result;
+  }
+  
   checkForEnemy() {
     let result = {
       run: false,
@@ -352,21 +412,65 @@ class Api {
     }
     if (enemyDistance < 2000) { // 2000 run away detect distance
       result.run = true;
+      return result;
     }
     return result;
   }
 
-   checkForCBS(){
-    let result = {
-      walkAway: false,
-      cbsPos: null,
-    };
-    result.cbsPos=this.battlestation.position;
-    let dist = this.battlestation.distanceTo(window.hero.position);
-    if(dist<1500){
-      result.walkAway=true;
-    }
-    return result;
+  goToMap(idWorkMap){
+	let rute=this.calculateBestRute(idWorkMap);
+	var i;
+    /*for(i=0;i<rute.lenght;i++){
+	  console.log("Siguiente mapa:"+rute[i].map.mapid);
+	}*/
   }
 
+  calculateBestRute(idWorkMap){
+     //Creamos una array con los mapas
+     //Rellenamos la id de los portales de cada mapa
+     //Segun vayamos creando el objeto mapa y portal lo añadimos al array
+
+     //Cuando esta todo relleno cogemos y creamos un bucle que realice 5 caminos diferentes. Ponemos un maximo de 8 saltos.
+     //Elegimos el camino que menos saltos tenga y hacemos que el bot lo siga.
+     var rute = [];
+     var maps = [];
+     var portals11= [];
+     var portalTo12={};
+	 portalTo12=new Portal(150000156,2);
+     portals11.push(portalTo12);
+	 console.log("Total portales:"+portals11.lenght);
+	 var map11=new Map(1,portals11);
+     maps.push(map11);
+     var portals12= [];
+     portals12.push(new Portal(150000157,1));
+     portals12.push(new Portal(150000158,3));
+     portals12.push(new Portal(150000160,4));
+     maps.push(new Map(2,portals12));
+     var portals13=[];
+     portals13.push(new Portal(150000159,2));
+     maps.push(new Map(3,portals13));
+     var portals14=[];
+     portals14.push(new Portal(150000161,2));
+     maps.push(new Map(4,portals14));
+     console.log("Total mapas:"+maps.lenght);
+     let nextMap=window.hero.mapId;
+     //while (nextMap!=idWorkMap){
+       var i;
+		for(i=0;i<maps.lenght;i++){
+		   console.log("Mapa recorrido:"+maps[i].idMap);
+		   if(maps[i].idMap=nextMap){
+			 let map=maps[i];
+			 var portales=map.portals;
+			 rute.push(new Map(map.idMap,portales[0]));
+			 console.log("Mapa aniadido:"+map.idMap);
+		   }
+		}
+		if(rute.lenght>5){
+			nextMap=idWorkMap;
+		}
+	//}
+
+	 //return rute;
+  }
+  
 }

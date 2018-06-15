@@ -5,7 +5,8 @@ class GeneralSettingsWindow {
       text: "General"
     });
 
-    let controls = [{
+    let controls = [
+      {
         name: 'palladium',
         labelText: 'Palladium Bot',
         appendTo: this.botSettingsWindow,
@@ -46,11 +47,11 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'avoidAttackedNpcs',
-        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
+        name: 'jumpFromEnemy',
+        labelText: 'Jump And Return',
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.avoidAttackedNpcs = this.checked;
+          window.settings.jumpFromEnemy = this.checked;
         }
       },
       {
@@ -59,6 +60,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.dodgeTheCbs = this.checked;
+        }
+      },
+      {
+        name: 'avoidAttackedNpcs',
+        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.avoidAttackedNpcs = this.checked;
         }
       },
       {
@@ -92,6 +101,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.dontCircleWhenHpBelow25Percent = this.checked;
+        }
+      },
+      {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: "Reset Target when HP < 25%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
         }
       },
       {
