@@ -356,4 +356,17 @@ class Api {
     return result;
   }
 
+   checkForCBS(){
+    let result = {
+      walkAway: false,
+      cbsPos: null,
+    };
+    result.cbsPos=this.battlestation.position;
+    let dist = this.battlestation.distanceTo(window.hero.position);
+    if(dist<1500){
+      result.walkAway=true;
+    }
+    return result;
+  }
+
 }
