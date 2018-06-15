@@ -352,7 +352,6 @@ class Api {
     }
     if (enemyDistance < 2000) { // 2000 run away detect distance
       result.run = true;
-<<<<<<< HEAD
     }
     return result;
   }
@@ -366,8 +365,6 @@ class Api {
     let dist = this.battlestation.distanceTo(window.hero.position);
     if(dist<1500){
       result.walkAway=true;
-=======
->>>>>>> upstream/master
     }
     return result;
   }
