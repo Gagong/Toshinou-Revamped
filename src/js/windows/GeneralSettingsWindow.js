@@ -14,6 +14,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+      {
+        name: 'travelsystem',
+        labelText: 'Travel System',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.travelsystem = this.checked;
+        }
+      },
       /*{
         name: 'save',
         labelText: 'Refresh',

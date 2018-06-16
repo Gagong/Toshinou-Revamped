@@ -95,6 +95,9 @@ function init() {
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
 
+  window.MapSettingsWindow = new MapSettingsWindow();
+  window.MapSettingsWindow.createWindow();
+  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.tickTime);
@@ -157,10 +160,8 @@ function init() {
 }
 
 function logic() {
-  let idWorkMap=3;
-  let collectBoxWhenCircle = true;
+  let collectBoxWhenCircle = false;
   let circleBox = null;
-  let rutaCalculada = false;
   let palladiumBlackList = [
     "-=[ Battleray ]=-",
     "( Uber Annihilator )", 
@@ -234,16 +235,18 @@ function logic() {
     api.jumpInGG(82, window.settings.kuiper);
   }
 
-  /*if(window.hero.mapId!=idWorkMap && !rutaCalculada){
-    api.goToMap(idWorkMap);
-	rutaCalculada = true;
-    return;
-  }*/
-  
-  if(window.settings.circleNpc){
+  if(window.settings.redBooty){
     let gate=api.findNearestGate();
     console.log("ID Portal:"+gate.gate.gateId);
   }
+
+  if(window.settings.travelsystem && window.hero.mapId!=window.settings.workmap){
+    api.goToMap(window.settings.workmap);
+    return;
+  }else{
+    api.rute=null;
+  }
+  
 
   if (window.X1Map) {
     return;
@@ -329,7 +332,7 @@ function logic() {
         api.resetTarget("all");
         api.move(x, y);
         window.movementDone = false;
-        if (window.hero.position.distanceTo(gate.gate.position) < 200) {
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
           api.jumpAndGoBack(gate.gate,true);
         }
         return;
@@ -422,7 +425,7 @@ function logic() {
     let shipsAround=api.ggCountNpcAround(600);
     if(shipsAround>0){
       let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
-      if(percenlife < 99 && percenlife>70) {
+      if(percenlife < 98 && percenlife>70) {
         window.settings.killNpcs = true;
         collectBoxWhenCircle=true;
       }else if(percenlife < 70) {
@@ -462,10 +465,6 @@ function logic() {
     y = MathUtils.random(20982, 25515)
   }
 
-  if(window.settings.cargoBox){
-    console.log("X: "+window.hero.position.x+" Y: "+window.hero.position.y);
-  }
-  
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
