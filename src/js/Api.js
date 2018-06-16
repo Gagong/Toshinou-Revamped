@@ -438,7 +438,7 @@ class Api {
     if(this.rute==null){
         this.fillStarSystem();
         var mapSystem = {1:{2:1},2:{1:1,3:1,4:1},3:{2:1,7:1,4:1},4:{2:1,3:1,13:2,13:1},13:{4:1,14:2,15:2,16:2},5:{6:1},6:{5:1,7:1,8:1},7:{6:1,3:1,8:1},8:{6:1,7:1,14:2,11:1},14:{8:1,13:2,15:2,16:2},9:{10:1},10:{9:1,12:1,11:1},
-		11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1}},
+        11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1}},
         graph = new Graph(mapSystem);
         var imcompleteRute=graph.findShortestPath(window.hero.mapId, idWorkMap);
         this.rute=this.completeRute(imcompleteRute);
@@ -486,10 +486,10 @@ class Api {
      portals14.push(new Portal(150000186,13));
      portals14.push(new Portal(150000166,12));
      this.starSystem.push(new Map(4,portals14));
-	 var portals21=[];
-	 this.starSystem.push(new Map(5,portals21));
-	 var portals22=[];
-	 this.starSystem.push(new Map(6,portals22));
+     var portals21=[];
+     this.starSystem.push(new Map(5,portals21));
+     var portals22=[];
+     this.starSystem.push(new Map(6,portals22));
      var portals23=[];
      portals23.push(new Portal(150000163,3)); //2-3 | 1-3
      portals23.push(new Portal(150000180,8)); //2-3 | 2-4
@@ -501,10 +501,10 @@ class Api {
      portals24.push(new Portal(150000173,6)); //2-4 | 2-2
      portals24.push(new Portal(150000174,11)); //2-4 | 3-3
      this.starSystem.push(new Map(7,portals24));
-	 var portals31=[];
-	 this.starSystem.push(new Map(9,portals31));
-	 var portals32=[];
-	 this.starSystem.push(new Map(10,portals32));
+     var portals31=[];
+     this.starSystem.push(new Map(9,portals31));
+     var portals32=[];
+     this.starSystem.push(new Map(10,portals32));
      var portals33=[];
      portals33.push(new Portal(150000175,8)); //3-3 | 2-4
      portals33.push(new Portal(150000185,12)); //3-3 | 3-4
@@ -530,50 +530,56 @@ class Api {
      portals42.push(new Portal(150000189,8)); //4-2 | 2-4
      portals42.push(new Portal(150000193,13)); //4-2 | 4-1
      portals42.push(new Portal(150000194,15)); //4-2 | 4-3
-	 portals42.push(new Portal(150000276,16)); //4-2 | 4-4
+     portals42.push(new Portal(150000276,16)); //4-2 | 4-4
      this.starSystem.push(new Map(14,portals42));
-	 var portals44=[];
-	 portals44.push(new Portal(150000303,25)); //4-4 | 3-5
-	 portals44.push(new Portal(150000279,15)); //4-4 | 4-3
-	 portals44.push(new Portal(150000277,14)); //4-4 | 4-2
-	 portals44.push(new Portal(150000293,21)); //4-4 | 2-5
-	 portals44.push(new Portal(150000283,17)); //4-4 | 1-5
-	 portals44.push(new Portal(150000275,13)); //4-4 | 4-1
+     var portals44=[];
+     portals44.push(new Portal(150000303,25)); //4-4 | 3-5
+     portals44.push(new Portal(150000279,15)); //4-4 | 4-3
+     portals44.push(new Portal(150000277,14)); //4-4 | 4-2
+     portals44.push(new Portal(150000293,21)); //4-4 | 2-5
+     portals44.push(new Portal(150000283,17)); //4-4 | 1-5
+     portals44.push(new Portal(150000275,13)); //4-4 | 4-1
      this.starSystem.push(new Map(16,portals44));
-	 var portals45=[];
-	 this.starSystem.push(new Map(29,portals45));
-	 var portals15=[];
-	 portals15.push(new Portal(150000284,16)); //1-5 | 4-4
-	 portals15.push(new Portal(150000313,29)); //1-5 | 4-5
-	 portals15.push(new Portal(150000285,18)); //1-5 | 1-6
-	 portals15.push(new Portal(150000287,19)); //1-5 | 1-7
-	 this.starSystem.push(new Map(17,portals15));
-	 var portals16=[];
-	 this.starSystem.push(new Map(18,portals16));
-	 var portals17=[];
-	 this.starSystem.push(new Map(19,portals17));
-	 var portals18=[];
-	 this.starSystem.push(new Map(20,portals18));
-	 var portals25=[];
-	 this.starSystem.push(new Map(21,portals25));
-	 var portals26=[];
-	 this.starSystem.push(new Map(22,portals26));
-	 var portals27=[];
-	 this.starSystem.push(new Map(23,portals27));
-	 var portals28=[];
-	 this.starSystem.push(new Map(24,portals28));
-	 var portals35=[];
-	 portals35.push(new Portal(150000304,16)); //3-5 | 4-4
-	 portals35.push(new Portal(150000317,29)); //3-5 | 4-5
-	 portals35.push(new Portal(150000305,26)); //3-5 | 3-6
-	 portals35.push(new Portal(150000307,28)); //3-5 | 3-7
-	 this.starSystem.push(new Map(25,portals35));
-	 var portals36=[];
-	 this.starSystem.push(new Map(26,portals36));
-	 var portals37=[];
-	 this.starSystem.push(new Map(27,portals37));
-	 var portals38=[];
-	 this.starSystem.push(new Map(24,portals38));
+     var portals45=[];
+     this.starSystem.push(new Map(29,portals45));
+     var portals15=[];
+     portals15.push(new Portal(150000284,16)); //1-5 | 4-4
+     portals15.push(new Portal(150000313,29)); //1-5 | 4-5
+     portals15.push(new Portal(150000285,18)); //1-5 | 1-6
+     portals15.push(new Portal(150000287,19)); //1-5 | 1-7
+     this.starSystem.push(new Map(17,portals15));
+     var portals16=[];
+     portals16.push(new Portal(150000286,17)); //1-6 | 1-5
+     portals16.push(new Portal(150000289,20)); //1-6 | 1-8
+     this.starSystem.push(new Map(18,portals16));
+     var portals17=[];
+     portals17.push(new Portal(150000291,20)); //1-7 | 1-8
+     portals17.push(new Portal(150000288,17)); //1-7 | 1-5
+     this.starSystem.push(new Map(19,portals17));
+     var portals18=[];
+     portals18.push(new Portal(150000290,18)); //1-8 | 1-6
+     portals18.push(new Portal(150000292,19)); //1-8 | 1-7
+     this.starSystem.push(new Map(20,portals18));
+     var portals25=[];
+     this.starSystem.push(new Map(21,portals25));
+     var portals26=[];
+     this.starSystem.push(new Map(22,portals26));
+     var portals27=[];
+     this.starSystem.push(new Map(23,portals27));
+     var portals28=[];
+     this.starSystem.push(new Map(24,portals28));
+     var portals35=[];
+     portals35.push(new Portal(150000304,16)); //3-5 | 4-4
+     portals35.push(new Portal(150000317,29)); //3-5 | 4-5
+     portals35.push(new Portal(150000305,26)); //3-5 | 3-6
+     portals35.push(new Portal(150000307,28)); //3-5 | 3-7
+     this.starSystem.push(new Map(25,portals35));
+     var portals36=[];
+     this.starSystem.push(new Map(26,portals36));
+     var portals37=[];
+     this.starSystem.push(new Map(27,portals37));
+     var portals38=[];
+     this.starSystem.push(new Map(24,portals38));
   }
 
   completeRute(imcompleteRute){
