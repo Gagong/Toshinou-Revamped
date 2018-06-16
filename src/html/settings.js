@@ -10,7 +10,6 @@ function saveOptions(e) {
     windowColor: $("#windowColor").val(),
     windowOpacity: $("#windowOpacity").val(),
     timerTick: $("#timerTick").val(),
-    showRuntime: $("#showRuntime").prop('checked'),
     speedFormat: $('input[name="speedFormat"]:checked').val(),
     windowsToTabs: $("#windowsToTabs").prop('checked'),
   };
@@ -19,7 +18,7 @@ function saveOptions(e) {
 }
 
 function restore() {
-  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "speedFormat", "windowsToTabs"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "speedFormat", "windowsToTabs"];
 
   var onGet = items => {
 

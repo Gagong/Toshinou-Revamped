@@ -84,14 +84,12 @@ class StatisticWindow {
       }
     ];
 
-    if (window.globalSettings.showRuntime) {
-      options.push({
-        name: 'runtime',
-        labelText: 'Runtime: ',
-        spanText: '00:00:00',
-        appendTo: this.botStatisticWindow
-      });
-    }
+    options.push({
+      name: 'runtime',
+      labelText: 'Runtime: ',
+      spanText: '00:00:00',
+      appendTo: this.botStatisticWindow
+    });
 
     options.forEach((option) => {
       this[option.name] = ControlFactory.info(option);
@@ -170,11 +168,7 @@ class StatisticWindow {
 
     $(window).on('logicEnd', () => {
       if (this.connected) {
-
-        if (window.globalSettings.showRuntime) {
-          $('span:last-child', this.runtime).text(TimeHelper.diff(this.stats.startTime));
-        }
-
+        $('span:last-child', this.runtime).text(TimeHelper.diff(this.stats.startTime));
         $('span:last-child', this.speed).text(this.speedFormat(this.stats.uridium, this.stats.startTime));
       }
     });
