@@ -221,11 +221,6 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if(window.settings.redBooty){
-    let gate=api.findNearestGate();
-    console.log("ID Portal:"+gate.gate.gateId);
-  }
-
   if(window.settings.travelsystem && window.hero.mapId!=window.settings.workmap){
     api.goToMap(window.settings.workmap);
     return;

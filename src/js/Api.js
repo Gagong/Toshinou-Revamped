@@ -442,7 +442,7 @@ class Api {
         graph = new Graph(mapSystem);
         var imcompleteRute=graph.findShortestPath(window.hero.mapId, idWorkMap);
         this.rute=this.completeRute(imcompleteRute);
-        console.log(this.rute);
+        //console.log(this.rute);
     }else{
         let map=this.rute[0];
         let portal=map.portals[0];
