@@ -81,15 +81,14 @@ class StatisticWindow {
         labelText: 'Speed: ',
         spanText: '0.00 uri/min.',
         appendTo: this.botStatisticWindow
+      },
+      {
+        name: 'runtime',
+        labelText: 'Runtime: ',
+        spanText: '00:00:00',
+        appendTo: this.botStatisticWindow
       }
     ];
-
-    options.push({
-      name: 'runtime',
-      labelText: 'Runtime: ',
-      spanText: '00:00:00',
-      appendTo: this.botStatisticWindow
-    });
 
     options.forEach((option) => {
       this[option.name] = ControlFactory.info(option);
