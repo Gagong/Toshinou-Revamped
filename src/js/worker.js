@@ -231,7 +231,7 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if(window.settings.travelsystem && window.hero.mapId != window.settings.workmap){
+  if(window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
     api.goToMap(window.settings.workmap);
     return;
   }else{
