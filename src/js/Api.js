@@ -487,8 +487,12 @@ class Api {
      portals14.push(new Portal(150000166,12));
      this.starSystem.push(new Map(4,portals14));
      var portals21=[];
+	 portals22.push(new Portal(150000171,6)); //2-1 | 2-2
      this.starSystem.push(new Map(5,portals21));
      var portals22=[];
+	 portals22.push(new Portal(150000165,7)); //2-2 | 2-3
+	 portals22.push(new Portal(150000172,8)); //2-2 | 2-4
+	 portals22.push(new Portal(150000170,5)); //2-2 | 2-4
      this.starSystem.push(new Map(6,portals22));
      var portals23=[];
      portals23.push(new Portal(150000163,3)); //2-3 | 1-3
@@ -502,8 +506,12 @@ class Api {
      portals24.push(new Portal(150000174,11)); //2-4 | 3-3
      this.starSystem.push(new Map(7,portals24));
      var portals31=[];
+	 portals31.push(new Portal(150000179,10)); //3-1 | 3-2
      this.starSystem.push(new Map(9,portals31));
      var portals32=[];
+	 portals32.push(new Portal(150000177,11)); //3-2 | 3-3
+	 portals32.push(new Portal(150000169,12)); //3-2 | 3-4
+	 portals32.push(new Portal(150000178,9)); //3-2 | 3-1
      this.starSystem.push(new Map(10,portals32));
      var portals33=[];
      portals33.push(new Portal(150000175,8)); //3-3 | 2-4

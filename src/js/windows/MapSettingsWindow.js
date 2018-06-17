@@ -207,8 +207,8 @@ class MapSettingsWindow{
         }
       },
 	  {
-        name: '1-7',
-        labelText: '1-7',
+        name: '1-8',
+        labelText: '1-8',
         appendTo: this.MapSettingsWindow,
         event: function () {
           if(this.checked){
