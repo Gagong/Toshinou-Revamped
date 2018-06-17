@@ -145,6 +145,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'reviveAtBase',
+        labelText: 'Revive at base',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtBase = this.checked;
+        }
+      },
+      {
         name: 'reviveLimit',
         labelText: 'Revive limit <span> (5)</span>',
         type: 'range',
