@@ -95,6 +95,9 @@ function init() {
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
 
+  window.MapSettingsWindow = new MapSettingsWindow();
+  window.MapSettingsWindow.createWindow();
+  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.tickTime);
@@ -212,10 +215,22 @@ function logic() {
     return;
   }
 
-  if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
+  if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
+  }
+
+  if(window.settings.travelsystem && window.hero.mapId!=window.settings.workmap){
+    api.goToMap(window.settings.workmap);
+    return;
+  }else{
+    api.rute=null;
+  }
+  
+
+  if (window.X1Map) {
+    return;
   }
 
   if (api.targetBoxHash == null) {
@@ -232,13 +247,23 @@ function logic() {
     api.jumpInGG(82, window.settings.kuiper);
   }
 
-  if (window.X1Map) {
-    return;
-  }
-
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
     api._blackListedBoxes = [];
     api.resetBlackListTime = $.now();
+  }
+
+  /*GG BOT for Alpha, Beta and Gamma Gates*/
+  if(window.settings.ggbot){
+    window.settings.alpha=true;
+    window.settings.beta=true;
+    window.settings.gamma=true;
+    window.settings.kappa=true;
+    window.settings.lambda=true;
+    window.settings.moveRandomly = true;
+    window.settings.killNpcs = true;
+    window.settings.circleNpc = true;
+    window.settings.resetTargetWhenHpBelow25Percent=true;
+    window.settings.dontCircleWhenHpBelow25Percent=false;
   }
 
   if (window.hero.mapId == 73)
@@ -259,25 +284,54 @@ function logic() {
         api.move(x, y);
         window.movementDone = false;
         window.fleeingFromEnemy = true;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
+          api.jumpAndGoBack(gate.gate,true);
+        }
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
-        }, MathUtils.random(30000, 35000));
+        }, MathUtils.random(60000, 65000));
         return;
       }
     }
   }
 
-  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
-    let gate = api.findNearestGate();
-    if (gate.gate) {
-      let x = gate.gate.position.x + MathUtils.random(-100, 100);
-      let y = gate.gate.position.y + MathUtils.random(-100, 100);
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
+    if(window.settings.ggbot){
       api.resetTarget("all");
-      api.isRepairing = true;
-      api.move(x, y);
-      window.movementDone = false;
-      return;
+      let npcCount=api.ggCountNpcAround(1000);
+      if(npcCount>0){
+        let ship = api.findNearestShip();
+        ship.ship.update();
+        let f = Math.atan2(window.hero.position.x - ship.ship.position.x, window.hero.position.y - ship.ship.position.y) + 0.5;
+        let s = Math.PI / 180;
+        f += s;
+        let x = 10890 + 4000 * Math.sin(f);
+        let y = 6750 + 4000 * Math.cos(f);
+        if(x>20800 && x<500 && y>12900 && y<500){//To avoid entering radiation
+          x = MathUtils.random(500, 20800);
+          y = MathUtils.random(500, 12900);
+        }else{
+          api.move(x, y);
+        }
+        api.isRepairing = true;
+        return;
+      }else{
+        return;
+      }
+    }else{
+      let gate = api.findNearestGate();
+      if (gate.gate) {
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
+        api.resetTarget("all");
+        api.move(x, y);
+        window.movementDone = false;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
+          api.jumpAndGoBack(gate.gate,true);
+        }
+        return;
+      }
     }
   }
 
@@ -360,10 +414,41 @@ function logic() {
       window.settings.setNpc(npc, true);
     });
     window.settings.moveRandomly = true;
-    window.settings.killNpcs = true;
+    //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
-  }
 
+    let shipsAround=api.ggCountNpcAround(600);
+    if(shipsAround>0){
+      let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+      if(percenlife < 98 && percenlife>70) {
+        window.settings.killNpcs = true;
+        collectBoxWhenCircle=true;
+      }else if(percenlife < 70) {
+        window.settings.killNpcs = true;
+        collectBoxWhenCircle=false;
+      }else{
+        window.settings.killNpcs = false;
+      }
+    }
+  }
+  
+  /*Dodge the CBS*/
+  if(window.settings.dodgeTheCbs){
+    if(api.battlestation!=null){
+      if(api.battlestation.isEnemy){
+       let result=api.checkForCBS();
+       if(result.walkAway){
+         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
+         let s = Math.PI / 180;
+         f += s;
+         x = result.cbsPos.x + 1800 * Math.sin(f);
+         y = result.cbsPos.y + 1800 * Math.cos(f);
+         api.move(x, y);
+       }
+     }
+    }
+  }
+  
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
     x = MathUtils.random(200, 20800);
     y = MathUtils.random(200, 12900);
@@ -378,7 +463,23 @@ function logic() {
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
-    if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+    if((api.targetShip.position.x==20999 && api.targetShip.position.y==13499) || 
+      (api.targetShip.position.x==0 && api.targetShip.position.y==0)
+     ){
+      if((window.hero.mapId == 73 || window.hero.mapId == 74 ) && !api.allNPCInCorner()){
+        api.resetTarget("enemy");
+        return;
+      }
+    }
+    if(window.settings.ggbot && api.targetShip.position.x==20999 && api.targetShip.position.y==13499){
+    //GG bottom right corner
+      x=20495;
+      y=13363;
+    }else if(window.settings.ggbot && api.targetShip.position.x==0 && api.targetShip.position.y==0){
+    //GG top left corner
+      x=450;
+      y=302;
+    }else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
       api.lastMovement = $.now();
@@ -387,6 +488,8 @@ function logic() {
         x = api.targetShip.position.x + MathUtils.random(-30, 30);
         y = api.targetShip.position.y + MathUtils.random(-30, 30);
       }
+    }else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
+      api.resetTarget("enemy");
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
@@ -398,11 +501,12 @@ function logic() {
         f += s;
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-        /*let nearestBox = api.findNearestBox();
-        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
-          circleBox = nearestBox;
-          collectBoxWhenCircle = true;
-        }*/
+        if(collectBoxWhenCircle){
+          let nearestBox = api.findNearestBox();
+          if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
+            circleBox = nearestBox;
+          }
+        }
       }
     } else {
       api.resetTarget("enemy");
@@ -411,11 +515,11 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    /*if (collectBoxWhenCircle && circleBox) {
+    if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       collectBoxWhenCircle = false;
       circleBox = null;
-    }*/
+    }
     window.movementDone = false;
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));
