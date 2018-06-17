@@ -99,11 +99,12 @@ function init() {
 
   window.setInterval(logic, window.tickTime);
 
+  window.settings.pause = true;
 
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" || key == "z" || key == "ч" || key == "я") {
+    if (key == "x" || key == "z" || key == "ч" || key = "я") {
       let maxDist = 1000;
       let finDist = 1000000;
       let finalShip;
@@ -112,7 +113,7 @@ function init() {
         let ship = api.ships[property];
         let dist = ship.distanceTo(window.hero.position);
 
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
+        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key = "я") && !ship.isNpc))) {
           finalShip = ship;
           finDist = dist;
         }
@@ -126,10 +127,19 @@ function init() {
           api.attacking = true;
         }
       }
+    } else if (key == "p") {
+      if (!window.settings.pause) {
+        $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
+        api.resetTarget("all");
+        window.fleeingFromEnemy = false;
+        window.settings.pause = true;
+      } else {
+        $('.cnt_btn_play .btn_play').html("Stop").removeClass('in_play').addClass('in_stop');
+        window.settings.pause = false;
+      }
     }
   });
 
-  window.settings.pause = true;
   $(document).on('click', '.cnt_minimize_window', () => {
     if (window.statusMiniWindow) {
       window.mainWindow.slideUp();
