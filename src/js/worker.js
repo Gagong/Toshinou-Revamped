@@ -221,20 +221,6 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if (api.targetBoxHash == null) {
-    api.jumpInGG(2, window.settings.alpha);
-    api.jumpInGG(3, window.settings.beta);
-    api.jumpInGG(4, window.settings.gamma);
-    api.jumpInGG(5, window.settings.delta);
-    api.jumpInGG(53, window.settings.epsilon);
-    api.jumpInGG(54, window.settings.zeta);
-    api.jumpInGG(70, window.settings.kappa);
-    api.jumpInGG(71, window.settings.lambda);
-    api.jumpInGG(72, window.settings.kronos);
-    api.jumpInGG(74, window.settings.hades);
-    api.jumpInGG(82, window.settings.kuiper);
-  }
-
   if(window.settings.redBooty){
     let gate=api.findNearestGate();
     console.log("ID Portal:"+gate.gate.gateId);
@@ -250,6 +236,20 @@ function logic() {
 
   if (window.X1Map) {
     return;
+  }
+
+  if (api.targetBoxHash == null) {
+    api.jumpInGG(2, window.settings.alpha);
+    api.jumpInGG(3, window.settings.beta);
+    api.jumpInGG(4, window.settings.gamma);
+    api.jumpInGG(5, window.settings.delta);
+    api.jumpInGG(53, window.settings.epsilon);
+    api.jumpInGG(54, window.settings.zeta);
+    api.jumpInGG(70, window.settings.kappa);
+    api.jumpInGG(71, window.settings.lambda);
+    api.jumpInGG(72, window.settings.kronos);
+    api.jumpInGG(74, window.settings.hades);
+    api.jumpInGG(82, window.settings.kuiper);
   }
 
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
