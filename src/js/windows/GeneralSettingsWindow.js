@@ -54,6 +54,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'dodgeTheCbs',
+        labelText: 'Dodge the CBS',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dodgeTheCbs = this.checked;
+        }
+      },
+      {
         name: 'npcCircle',
         labelText: 'Circle',
         appendTo: this.botSettingsWindow,

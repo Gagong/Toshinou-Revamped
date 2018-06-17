@@ -374,6 +374,23 @@ function logic() {
     window.settings.circleNpc = true;
   }
 
+  /*Dodge the CBS*/
+  if(window.settings.dodgeTheCbs){
+    if(api.battlestation!=null){
+      if(api.battlestation.isEnemy){
+       let result=api.checkForCBS();
+       if(result.walkAway){
+         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
+         let s = Math.PI / 180;
+         f += s;
+         x = result.cbsPos.x + 1800 * Math.sin(f);
+         y = result.cbsPos.y + 1800 * Math.cos(f);
+         api.move(x, y);
+       }
+     }
+    }
+  }
+
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
     x = MathUtils.random(200, 20800);
     y = MathUtils.random(200, 12900);
