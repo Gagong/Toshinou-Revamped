@@ -1,6 +1,6 @@
 class Map {
-   constructor(idMap,portals){
-     this.idMap=idMap;
+   constructor(mapId,portals){
+     this.mapId=mapId;
      this.portals=portals;
    }
 }

@@ -231,13 +231,6 @@ function logic() {
     api.isRepairing = false;
   }
 
-  if(window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
-    api.goToMap(window.settings.workmap);
-    return;
-  }else{
-    api.rute = null;
-  }
-
     if (api.targetBoxHash == null) {
     api.jumpInGG(2, window.settings.alpha);
     api.jumpInGG(3, window.settings.beta);
@@ -281,20 +274,26 @@ function logic() {
 
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
-      if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
-        api.resetTarget("all");
-        api.move(x, y);
-        window.movementDone = false;
-        window.fleeingFromEnemy = true;
-        if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
-          api.jumpAndGoBack(gate.gate, true);
+      if(window.settings.jumpFromEnemy) {
+        if(api.jumpAndGoBack(gate.gate.gateId,false)) {
+          window.movementDone = false;
+          window.fleeingFromEnemy = true;
         }
+      }else{
+        if (gate.gate) {
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          api.resetTarget("all");
+          api.move(x, y);
+          window.movementDone = false;
+          window.fleeingFromEnemy = true;
+        }
+      }
+      if(window.fleeingFromEnemy){
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
-        }, MathUtils.random(60000, 65000));
+        }, MathUtils.random(40000, 50000));
         return;
       }
     }
@@ -332,15 +331,22 @@ function logic() {
         api.move(x, y);
         window.movementDone = false;
         if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
-          api.jumpAndGoBack(gate.gate, true);
+          api.jumpAndGoBack(gate.gate.gateId, true);
           window.fleeingFromEnemy = true;
           setTimeout(() => {
           window.fleeingFromEnemy = false;
-          }, MathUtils.random(60000, 65000));
+          }, MathUtils.random(40000, 50000));
         }
         return;
       }
     }
+  }
+
+  if(window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
+    api.goToMap(window.settings.workmap);
+    return;
+  }else{
+    api.rute = null;
   }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
