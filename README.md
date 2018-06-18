@@ -5,6 +5,16 @@ It does some pretty neat stuff and is still under heavy development.
 
 Discord Server: https://discord.gg/CkrnMXB
 
+Changes of the delta version - Test version (May have failures)
+----------
+- New function "Dodge CBS": Dodge clan bases on the map
+- Improved logic in GG
+- Repair in GG
+- Improved logic in palladium
+- New function "Jump And Return": When it escapes to a portal it jumps and returns. Same for repair
+- Map travel system
+- Revive at base
+
 How to install/use?
 ----------
 ### Chrome/Chromium/Opera
@@ -16,6 +26,7 @@ How to install/use?
 6. Enjoy!
 
 EN guide: https://youtu.be/sZOrfItRd2w
+ES guide: https://youtu.be/4kp8v413634
 
 Issues
 ----------
