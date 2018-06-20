@@ -245,10 +245,6 @@ function logic() {
     api.jumpInGG(82, window.settings.kuiper);
   }
 
-  if (window.X1Map) {
-    return;
-  }
-
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
     api._blackListedBoxes = [];
     api.resetBlackListTime = $.now();
@@ -275,8 +271,8 @@ function logic() {
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if(window.settings.jumpFromEnemy) {
+        window.movementDone = false;
         if(api.jumpAndGoBack(gate.gate.gateId,false)) {
-          window.movementDone = false;
           window.fleeingFromEnemy = true;
         }
       }else{
@@ -334,7 +330,7 @@ function logic() {
           api.jumpAndGoBack(gate.gate.gateId, true);
           window.fleeingFromEnemy = true;
           setTimeout(() => {
-          window.fleeingFromEnemy = false;
+            window.fleeingFromEnemy = false;
           }, MathUtils.random(40000, 50000));
         }
         return;
@@ -342,11 +338,15 @@ function logic() {
     }
   }
 
-  if(window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
+  if(!window.settings.palladium && !window.settings.ggbot && window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
     api.goToMap(window.settings.workmap);
     return;
   }else{
     api.rute = null;
+  }
+
+  if (window.X1Map) {
+    return;
   }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
@@ -429,6 +429,9 @@ function logic() {
     });
     window.settings.moveRandomly = true;
     window.settings.circleNpc = true;
+    window.settings.jumpFromEnemy = false;
+    window.settings.fleeFromEnemy = false;
+    window.settings.dodgeTheCbs = false;
 
     let shipsAround = api.ggCountNpcAround(600);
     if(shipsAround > 0){
@@ -499,7 +502,7 @@ function logic() {
         x = api.targetShip.position.x + MathUtils.random(-30, 30);
         y = api.targetShip.position.y + MathUtils.random(-30, 30);
       }
-    } else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
+    } else if (window.settings.ggbot && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
       api.resetTarget("enemy");
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
