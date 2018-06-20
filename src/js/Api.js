@@ -142,14 +142,13 @@ class Api {
     return hasJumped;
   }
 
-  jumpAndGoBack(gateId,repairing){
+  jumpAndGoBack(gateId){
     let hasJumped = this.jumpInGateByID(gateId);
     if(hasJumped) {
       setTimeout(() => {
         let gate = this.findNearestGate();
         this.jumpInGG(gate.gate.gateType, true);
       }, MathUtils.random(30000, 35000));
-      this.isRepairing = repairing;
     }
     return hasJumped;
   }

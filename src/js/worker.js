@@ -272,7 +272,7 @@ function logic() {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if(window.settings.jumpFromEnemy) {
         window.movementDone = false;
-        if(api.jumpAndGoBack(gate.gate.gateId,false)) {
+        if(api.jumpAndGoBack(gate.gate.gateId)) {
           window.fleeingFromEnemy = true;
         }
       }else{
@@ -321,19 +321,24 @@ function logic() {
     }else{
       let gate = api.findNearestGate();
       if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
         api.resetTarget("all");
-        api.move(x, y);
-        window.movementDone = false;
-        if (window.hero.position.distanceTo(gate.gate.position) < 200 && window.settings.jumpFromEnemy) {
-          api.jumpAndGoBack(gate.gate.gateId, true);
-          window.fleeingFromEnemy = true;
-          setTimeout(() => {
-            window.fleeingFromEnemy = false;
-          }, MathUtils.random(40000, 50000));
+        if (window.settings.jumpFromEnemy) {
+          if (api.jumpAndGoBack(gate.gate.gateId)) {
+            window.movementDone = false;
+            api.isRepairing = true;
+            window.settings.pause = true;
+            setTimeout(() => {
+              window.settings.pause = false;
+            }, MathUtils.random(40000, 50000));
+          }
+        }else{
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          api.move(x, y);
+          window.movementDone = false;
+          api.isRepairing = true;
+          return;
         }
-        return;
       }
     }
   }
