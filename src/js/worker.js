@@ -127,7 +127,7 @@ function init() {
           api.attacking = true;
         }
       }
-    } else if (key == "p") {
+    } else if (key == "Pause") {
       if (!window.settings.pause) {
         $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
         api.resetTarget("all");
