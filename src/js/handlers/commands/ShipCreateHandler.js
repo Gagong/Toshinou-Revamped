@@ -1,6 +1,6 @@
 class ShipCreateHandler {
   static get ID() {
-    return 29088;
+    return 19809;
   }
 
   constructor() {

@@ -1,6 +1,6 @@
 class HeroDiedHandler {
   static get ID() {
-    return 6669;
+    return 20873;
   }
 
   constructor() {
@@ -20,16 +20,7 @@ class HeroDiedHandler {
             }
           });
           window.dispatchEvent(event);
-        }else if (parsedJson.options.length >= 2 && window.settings.reviveAtBase && (window.settings.reviveLimit == 0 || window.settings.reviveLimit > window.reviveCount)) {
-		  Injector.injectScript("document.getElementById('preloader').revive(0);");
-          window.reviveCount++;
-          a.isRepairing = true;
-          let event = new CustomEvent("deathCounter", {
-            detail: {
-              death: 1,
-            }
-          });
-		}
+        }
       }, 8000);
     }
   }
