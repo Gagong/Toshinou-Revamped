@@ -86,9 +86,6 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
-
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
 
@@ -107,30 +104,7 @@ function init() {
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" || key == "z" || key == "ч" || key == "я") {
-      let maxDist = 1000;
-      let finDist = 1000000;
-      let finalShip;
-
-      for (let property in api.ships) {
-        let ship = api.ships[property];
-        let dist = ship.distanceTo(window.hero.position);
-
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
-          finalShip = ship;
-          finDist = dist;
-        }
-      }
-
-      if (finalShip != null) {
-        api.lockShip(finalShip);
-        if (window.settings.autoAttack) {
-          api.startLaserAttack();
-          api.lastAttack = $.now();
-          api.attacking = true;
-        }
-      }
-    } else if (key == "º") {
+    if (key == "º") {
       if (!window.settings.pause) {
         $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
         api.resetTarget("all");
@@ -172,16 +146,10 @@ function init() {
 function logic() {
   let collectBoxWhenCircle = false;
   let circleBox = null;
-  let palladiumBlackList = [
-    "-=[ Battleray ]=-",
-    "( Uber Annihilator )", 
-    "( Uber Saboteur )", 
-    "( Uber Barracuda )",
-  ];
   
   if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
-  }  
+  }
 
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
@@ -429,6 +397,12 @@ function logic() {
   let y;
 
   if (window.settings.palladium) {
+    let palladiumBlackList = [
+    "-=[ Battleray ]=-",
+    "( Uber Annihilator )", 
+    "( Uber Saboteur )", 
+    "( Uber Barracuda )",
+    ];
     palladiumBlackList.forEach(npc => {
       window.settings.setNpc(npc, true);
     });
