@@ -7,7 +7,6 @@ class GlobalSettings {
       windowColor: "#191919",
       windowOpacity: "0.8",
       timerTick: 300,
-      showRuntime: false,
       speedFormat: 'hour',
       windowsToTabs: false,
     }, items => {
@@ -37,10 +36,6 @@ class GlobalSettings {
 
   get speedFormat() {
     return this._settings.speedFormat;
-  }
-
-  get showRuntime() {
-    return this._settings.showRuntime;
   }
 
   get windowsToTabs() {
