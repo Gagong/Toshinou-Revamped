@@ -86,9 +86,6 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
-
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
 
@@ -104,30 +101,7 @@ function init() {
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" || key == "z" || key == "ч" || key == "я") {
-      let maxDist = 1000;
-      let finDist = 1000000;
-      let finalShip;
-
-      for (let property in api.ships) {
-        let ship = api.ships[property];
-        let dist = ship.distanceTo(window.hero.position);
-
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
-          finalShip = ship;
-          finDist = dist;
-        }
-      }
-
-      if (finalShip != null) {
-        api.lockShip(finalShip);
-        if (window.settings.autoAttack) {
-          api.startLaserAttack();
-          api.lastAttack = $.now();
-          api.attacking = true;
-        }
-      }
-    } else if (key == "Pause") {
+    if (key == "Pause") {
       if (!window.settings.pause) {
         $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
         api.resetTarget("all");
@@ -189,32 +163,6 @@ function logic() {
     }
     return;
   }
-
-  /*if ($.now() - api.getSettingsTime > 60000) {
-    console.log("Getting settings...")
-    for (let key in window.settings) {
-      chrome.storage.sync.get(key, function(set) {
-        window.settings[key] = set[key];
-      })
-    }
-    api.getSettingsTime = $.now();
-  }
-
-  if ($.now() - api.setSettingsTime > 5000000 && window.settings.refresh) {
-    let gate = api.findNearestGate();
-    if (gate.gate) {
-      let x = gate.gate.position.x;
-      let y = gate.gate.position.y;
-      if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-        window.location.reload();
-        state = true;
-      }
-      api.resetTarget("all");
-      api.move(x, y);
-      window.movementDone = false;
-      return;
-    }
-  }*/
 
   window.minimap.draw();
 
