@@ -417,6 +417,7 @@ function logic() {
 
     let shipsAround = api.ggCountNpcAround(600);
     if(shipsAround > 0){
+      api.battlerayFix();
       let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
       if(percenlife < 98 && percenlife > 70) {
         window.settings.killNpcs = true;
@@ -427,6 +428,8 @@ function logic() {
       }else{
         window.settings.killNpcs = false;
       }
+    }else{
+      window.settings.killNpcs = false;
     }
   }
   

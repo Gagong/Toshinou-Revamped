@@ -196,6 +196,25 @@ class Api {
     }
   }
 
+  battlerayFix() {
+    let shipsCount = this.ggCountNpcAround(600);
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
+        if (shipsCount > 1) {
+          window.settings.setNpc(ship.name, true);
+          if (this.targetShip == ship){
+            this.resetTarget("enemy");
+          }
+        } else {
+          window.settings.avoidAttackedNpcs=false;
+          window.settings.setNpc(ship.name, false);
+          this.targetShip = ship;
+        }
+      }
+    }
+  }
+
   ggCountNpcAround(distance){
     let shipsCount = Object.keys(api.ships).length;
     let shipsAround = 0;
