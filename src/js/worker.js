@@ -146,6 +146,7 @@ function init() {
 function logic() {
   let collectBoxWhenCircle = false;
   let circleBox = null;
+  let stopMov = false;
   
   if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
@@ -189,7 +190,7 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
+  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy) || stopMov) {
     return;
   }
 
@@ -238,13 +239,12 @@ function logic() {
 
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
-      if(window.settings.jumpFromEnemy) {
-        window.movementDone = false;
-        if(api.jumpAndGoBack(gate.gate.gateId)) {
-          window.fleeingFromEnemy = true;
-        }
-      }else{
-        if (gate.gate) {
+      if (gate.gate) {
+        if(window.settings.jumpFromEnemy) {
+          if(api.jumpAndGoBack(gate.gate.gateId)) {
+            stopMov = true;
+          }
+        }else{
           let x = gate.gate.position.x + MathUtils.random(-100, 100);
           let y = gate.gate.position.y + MathUtils.random(-100, 100);
           api.resetTarget("all");
@@ -257,6 +257,8 @@ function logic() {
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
+          stopMov = false;
+          api.rute = null;
         }, MathUtils.random(40000, 50000));
         return;
       }
@@ -294,9 +296,10 @@ function logic() {
           if (api.jumpAndGoBack(gate.gate.gateId)) {
             window.movementDone = false;
             api.isRepairing = true;
-            window.settings.pause = true;
+            stopMov = true;
             setTimeout(() => {
-              window.settings.pause = false;
+              stopMov = false;
+              api.rute = null;
             }, MathUtils.random(40000, 50000));
           }
         }else{

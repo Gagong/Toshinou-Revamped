@@ -148,7 +148,7 @@ class Api {
       setTimeout(() => {
         let gate = this.findNearestGate();
         this.jumpInGG(gate.gate.gateType, true);
-      }, MathUtils.random(30000, 35000));
+      }, MathUtils.random(10000, 15000));
     }
     return hasJumped;
   }
