@@ -6,7 +6,7 @@ class WindowFactory {
 
     if (!window.mainFrameWindow) {
       window.mainFrameWindow = this.windowsStructure({
-        text: "Windows | 10.0.6456 | v.013",
+        text: "Toshinou | Delta | v.014",
         isMain: true
       })[0];
 

@@ -1,6 +1,6 @@
 class HeroInitHandler {
   static get ID() {
-    return 3393;
+    return 5403;
   }
 
   constructor(f) {

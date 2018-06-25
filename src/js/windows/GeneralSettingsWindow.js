@@ -14,6 +14,14 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
+      {
+        name: 'travelsystem',
+        labelText: 'Travel System',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.travelsystem = this.checked;
+        }
+      },
       /*{
         name: 'save',
         labelText: 'Refresh',
@@ -44,6 +52,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.fleeFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'jumpFromEnemy',
+        labelText: 'Jump And Return',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.jumpFromEnemy = this.checked;
         }
       },
       {
@@ -126,6 +142,14 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.reviveAtGate = this.checked;
+        }
+      },
+      {
+        name: 'reviveAtBase',
+        labelText: 'Revive at base',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtBase = this.checked;
         }
       },
       {

@@ -86,50 +86,37 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
-
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
 
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
 
+  window.MapSettingsWindow = new MapSettingsWindow();
+  window.MapSettingsWindow.createWindow();
+  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.tickTime);
 
+  window.settings.pause = true;
 
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" || key == "z") {
-      let maxDist = 1000;
-      let finDist = 1000000;
-      let finalShip;
-
-      for (let property in api.ships) {
-        let ship = api.ships[property];
-        let dist = ship.distanceTo(window.hero.position);
-
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpcs && key == "x") || (ship.isEnemy && window.settings.lockPlayers && key == "z" && !ship.isNpc))) {
-          finalShip = ship;
-          finDist = dist;
-        }
-      }
-
-      if (finalShip != null) {
-        api.lockShip(finalShip);
-        if (window.settings.autoAttack) {
-          api.startLaserAttack();
-          api.lastAttack = $.now();
-          api.attacking = true;
-        }
+    if (key == "º") {
+      if (!window.settings.pause) {
+        $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
+        api.resetTarget("all");
+        window.fleeingFromEnemy = false;
+        window.settings.pause = true;
+      } else {
+        $('.cnt_btn_play .btn_play').html("Stop").removeClass('in_play').addClass('in_stop');
+        window.settings.pause = false;
       }
     }
   });
 
-  window.settings.pause = true;
   $(document).on('click', '.cnt_minimize_window', () => {
     if (window.statusMiniWindow) {
       window.mainWindow.slideUp();
@@ -159,16 +146,11 @@ function init() {
 function logic() {
   let collectBoxWhenCircle = false;
   let circleBox = null;
-  let palladiumBlackList = [
-    "-=[ Battleray ]=-",
-    "( Uber Annihilator )", 
-    "( Uber Saboteur )", 
-    "( Uber Barracuda )",
-  ];
+  let stopMov = false;
   
   if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
-  }  
+  }
 
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
@@ -208,17 +190,17 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
+  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy) || stopMov) {
     return;
   }
 
-  if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
+  if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
   }
 
-  if (api.targetBoxHash == null) {
+    if (api.targetBoxHash == null) {
     api.jumpInGG(2, window.settings.alpha);
     api.jumpInGG(3, window.settings.beta);
     api.jumpInGG(4, window.settings.gamma);
@@ -232,13 +214,18 @@ function logic() {
     api.jumpInGG(82, window.settings.kuiper);
   }
 
-  if (window.X1Map) {
-    return;
-  }
-
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
     api._blackListedBoxes = [];
     api.resetBlackListTime = $.now();
+  }
+
+  /*GG BOT for Alpha, Beta and Gamma Gates*/
+  if(window.settings.ggbot){
+    window.settings.moveRandomly = true;
+    window.settings.killNpcs = true;
+    window.settings.circleNpc = true;
+    window.settings.resetTargetWhenHpBelow25Percent = true;
+    window.settings.dontCircleWhenHpBelow25Percent = false;
   }
 
   if (window.hero.mapId == 73)
@@ -253,39 +240,50 @@ function logic() {
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
-        api.resetTarget("all");
-        api.move(x, y);
-        window.movementDone = false;
-        window.fleeingFromEnemy = true;
+        if(window.settings.jumpFromEnemy) {
+          if(api.jumpAndGoBack(gate.gate.gateId)) {
+            stopMov = true;
+          }
+        }else{
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          api.resetTarget("all");
+          api.move(x, y);
+          window.movementDone = false;
+          window.fleeingFromEnemy = true;
+        }
+      }
+      if(window.fleeingFromEnemy){
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
-        }, MathUtils.random(30000, 35000));
+          stopMov = false;
+          api.rute = null;
+        }, MathUtils.random(40000, 50000));
         return;
       }
     }
   }
-  
-  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent) {
+
+  if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
     if(window.settings.ggbot){
       api.resetTarget("all");
-      let npcCount=api.ggCountNpcAround();
-      if(npcCount>0){
+      let npcCount = api.ggCountNpcAround(1000);
+      if(npcCount > 0){
         let ship = api.findNearestShip();
         ship.ship.update();
         let f = Math.atan2(window.hero.position.x - ship.ship.position.x, window.hero.position.y - ship.ship.position.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
-        let x = ship.ship.position.x + 2000 * Math.sin(f);
-        let y = ship.ship.position.y + 2000 * Math.cos(f);
-        if(x>20800 && x<200 && y>12900 && y<300){//To avoid entering radiation
-          x = MathUtils.random(200, 20800);
-          y = MathUtils.random(200, 12900);
+        let x = 10890 + 4000 * Math.sin(f);
+        let y = 6750 + 4000 * Math.cos(f);
+        if(x > 20800 && x < 500 && y > 12900 && y < 500){//To avoid entering radiation
+          x = MathUtils.random(500, 20800);
+          y = MathUtils.random(500, 12900);
         }else{
           api.move(x, y);
         }
+        api.isRepairing = true;
         return;
       }else{
         return;
@@ -293,15 +291,38 @@ function logic() {
     }else{
       let gate = api.findNearestGate();
       if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
         api.resetTarget("all");
-        api.isRepairing = true;
-        api.move(x, y);
-        window.movementDone = false;
-        return;
+        if (window.settings.jumpFromEnemy) {
+          if (api.jumpAndGoBack(gate.gate.gateId)) {
+            window.movementDone = false;
+            api.isRepairing = true;
+            stopMov = true;
+            setTimeout(() => {
+              stopMov = false;
+              api.rute = null;
+            }, MathUtils.random(40000, 50000));
+          }
+        }else{
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          api.move(x, y);
+          window.movementDone = false;
+          api.isRepairing = true;
+          return;
+        }
       }
     }
+  }
+
+  if(!window.settings.palladium && !window.settings.ggbot && window.settings.travelsystem && (window.settings.workmap != null) &&  window.hero.mapId != window.settings.workmap){
+    api.goToMap(window.settings.workmap);
+    return;
+  }else{
+    api.rute = null;
+  }
+
+  if (window.X1Map) {
+    return;
   }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
@@ -379,46 +400,44 @@ function logic() {
   let y;
 
   if (window.settings.palladium) {
+    let palladiumBlackList = [
+    "-=[ Battleray ]=-",
+    "( Uber Annihilator )", 
+    "( Uber Saboteur )", 
+    "( Uber Barracuda )",
+    ];
     palladiumBlackList.forEach(npc => {
       window.settings.setNpc(npc, true);
     });
     window.settings.moveRandomly = true;
-    //window.settings.killNpcs = true;
     window.settings.circleNpc = true;
-    window.settings.npcCircleRadius = 612;
-    window.settings.avoidAttackedNpcs=true;
+    window.settings.jumpFromEnemy = false;
+    window.settings.fleeFromEnemy = false;
+    window.settings.dodgeTheCbs = false;
 
-    let shipsAround=api.ggCountNpcAround();
-    if(shipsAround>0){
-      let percenlife=MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
-      if(percenlife < 99 && percenlife>70) {
+    let shipsAround = api.ggCountNpcAround(600);
+    if(shipsAround > 0){
+      api.battlerayFix();
+      let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+      if(percenlife < 98 && percenlife > 70) {
         window.settings.killNpcs = true;
         collectBoxWhenCircle=true;
       }else if(percenlife < 70) {
         window.settings.killNpcs = true;
-        collectBoxWhenCircle=false;
+        collectBoxWhenCircle = false;
       }else{
         window.settings.killNpcs = false;
       }
+    }else{
+      window.settings.killNpcs = false;
     }
-  }
-
-    /*GG BOT for Alpha, Beta and Gamma Gates*/
-  if(window.settings.ggbot){
-    window.settings.alpha=true;
-    window.settings.beta=true;
-    window.settings.gamma=true;
-    window.settings.moveRandomly = true;
-    window.settings.killNpcs = true;
-    window.settings.circleNpc = true;
-    window.settings.resetTargetWhenHpBelow25Percent=true;
   }
   
   /*Dodge the CBS*/
   if(window.settings.dodgeTheCbs){
-    if(api.battlestation!=null){
+    if(api.battlestation != null){
       if(api.battlestation.isEnemy){
-       let result=api.checkForCBS();
+       let result = api.checkForCBS();
        if(result.walkAway){
          let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
          let s = Math.PI / 180;
@@ -445,15 +464,21 @@ function logic() {
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
-    if(window.settings.ggbot && api.targetShip.position.x==20999 && api.targetShip.position.y==13499){
+    if((api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499) || (api.targetShip.position.x == 0 && api.targetShip.position.y == 0)){
+      if((window.hero.mapId == 73 || window.hero.mapId == 74 ) && !api.allNPCInCorner()){
+        api.resetTarget("enemy");
+        return;
+      }
+    }
+    if(window.settings.ggbot && api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499){
     //GG bottom right corner
-      x=20495;
-      y=13363;
-    }else if(window.settings.ggbot && api.targetShip.position.x==0 && api.targetShip.position.y==0){
+      x = 20495;
+      y = 13363;
+    } else if(window.settings.ggbot && api.targetShip.position.x == 0 && api.targetShip.position.y == 0){
     //GG top left corner
-      x=514;
-      y=303;
-    }else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+      x = 450;
+      y = 302;
+    } else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
       x = api.targetShip.position.x - MathUtils.random(-50, 50);
       y = api.targetShip.position.y - MathUtils.random(-50, 50);
       api.lastMovement = $.now();
@@ -462,7 +487,7 @@ function logic() {
         x = api.targetShip.position.x + MathUtils.random(-30, 30);
         y = api.targetShip.position.y + MathUtils.random(-30, 30);
       }
-    }else if (api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
+    } else if (window.settings.ggbot && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id && window.settings.resetTargetWhenHpBelow25Percent) {
       api.resetTarget("enemy");
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
