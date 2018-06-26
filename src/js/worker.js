@@ -147,6 +147,7 @@ function logic() {
   let collectBoxWhenCircle = false;
   let circleBox = null;
   let stopMov = false;
+  window.settings.jumpFromEnemy = false;
   
   if (window.hero.id == 73704408 || window.hero.id == 71224317 || window.hero.id == 167910851) {
     return;
@@ -190,10 +191,24 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy) || stopMov) {
+  if (api.heroDied || window.settings.pause || stopMov) {
     return;
   }
 
+  if(window.settings.fleeFromEnemy && window.fleeingFromEnemy){
+     if(window.settings.jumpFromEnemy) {
+       if(api.jumpAndReturnNearbyGate()) {
+         stopMov = true;
+         setTimeout(() => {
+           stopMov = false;
+           api.rute = null;
+         }, MathUtils.random(40000, 50000));
+         return;
+       }
+     }else{
+       return;
+     }
+  }
   if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot) {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
@@ -240,26 +255,16 @@ function logic() {
     if (enemyResult.run) {
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if (gate.gate) {
-        if(window.settings.jumpFromEnemy) {
-          if(api.jumpAndGoBack(gate.gate.gateId)) {
-            stopMov = true;
-          }
-        }else{
-          let x = gate.gate.position.x + MathUtils.random(-100, 100);
-          let y = gate.gate.position.y + MathUtils.random(-100, 100);
-          api.resetTarget("all");
-          api.move(x, y);
-          window.movementDone = false;
-          window.fleeingFromEnemy = true;
-        }
-      }
-      if(window.fleeingFromEnemy){
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
+        api.resetTarget("all");
+        api.move(x, y);
+        window.movementDone = false;
+        window.fleeingFromEnemy = true;
         setTimeout(() => {
-          window.movementDone = true;
-          window.fleeingFromEnemy = false;
-          stopMov = false;
-          api.rute = null;
-        }, MathUtils.random(40000, 50000));
+           window.movementDone = true;
+           window.fleeingFromEnemy = false;
+         }, MathUtils.random(30000, 35000));
         return;
       }
     }

@@ -1,3 +1,5 @@
+//Created by andrewhayward - A JavaScript implementation of Dijkstra's algorithm - https://github.com/andrewhayward/dijkstra
+
 var Graph = (function (undefined) {
 
 	var extractKeys = function (obj) {
