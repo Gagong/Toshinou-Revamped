@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Toshinou",
+  "name": "Toshinou Revamped",
   "version": "1.0",
 
-  "description": "Cheat & Tool for DarkOrbit",
+  "description": "Bot for DarkOrbit",
 
   "content_scripts": [
     {
