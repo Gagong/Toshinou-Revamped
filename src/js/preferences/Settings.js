@@ -6,7 +6,9 @@ class Settings {
 
     ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
 
-    lockNpcs, lockPlayers, autoAttack) 
+    lockNpcs, lockPlayers, autoAttack,
+    
+    workmap) 
   {
     this._pause = pause === true;
 
@@ -52,6 +54,8 @@ class Settings {
     this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
     this._autoAttack = autoAttack === true;
+
+    this.__workmap = workmap === true;
 
     this._npcs = [];
   }
@@ -361,6 +365,14 @@ class Settings {
 
   set autoAttack(value) {
     this._autoAttack = value === true;
+  }
+
+  get workmap() {
+    return this._workmap;
+  }
+
+  set workmap(value) {
+    this._workmap = value === true;
   }
 
   setNpc(name, val) {
