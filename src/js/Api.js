@@ -210,14 +210,12 @@ class Api {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
         if (shipsCount > 1) {
-          //window.settings.dontCircleWhenHpBelow25Percent = false;
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship)
             this.resetTarget("enemy");
         } else {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
-          //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
       }
     }
@@ -368,7 +366,7 @@ class Api {
         }
       }
     }
-    if (enemyDistance < 2000) { // 2000 run away detect distance
+    if (enemyDistance < 2000) {
       result.run = true;
       return result;
     }

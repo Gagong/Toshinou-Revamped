@@ -7,7 +7,6 @@ class ShipAttackHandler {
     this._handler = function (e, a) {
       let shipAttackCmd = JSON.parse(e.detail);
 
-
       let attackerId = shipAttackCmd[Variables.attackerId];
       let attackedShipId = shipAttackCmd[Variables.attackedId];
 
@@ -16,7 +15,7 @@ class ShipAttackHandler {
       if (attackerId == window.hero.id) {
         window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
         window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
-        window.attackWindow.targetName(ship.name);
+        window.attackWindow.targetName(a.lockedShip.name);
       }
 
       if (attackedShipId == window.hero.id) {

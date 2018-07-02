@@ -6,7 +6,7 @@ class ResourceInitHandler {
   constructor() {
     this._handler = function (e, a) {
       let box = JSON.parse(e.detail);
-
+      
       if (box.hash.length == 6) {
         return;
       }

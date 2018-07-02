@@ -104,6 +104,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'reviveAtSpot',
+        labelText: 'Revive at spot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtSpot = this.checked;
+        }
+      },
+      {
         name: 'reviveLimit',
         labelText: 'Revive limit <span> (5)</span>',
         type: 'range',

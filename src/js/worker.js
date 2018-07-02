@@ -101,6 +101,7 @@ function init() {
 
   window.setInterval(logic, window.tickTime);
 
+
   $(document).keyup(function (e) {
     let key = e.key;
 
@@ -189,11 +190,7 @@ function logic() {
     "( Uber Barracuda )",
     "( Uber Saboteur )",
     "( Uber Annihilator )",
-  ];
-
-  if (heroId == 73704408 || heroId == 71224317 || heroId == 167910851 || heroId == 46885713 || heroId == 166113951 || heroId == 42039716) {
-    return;
-  }  
+  ];  
 
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
@@ -225,20 +222,25 @@ function logic() {
     return;
   }
 
-  if ($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 && window.settings.refresh && window.globalSettings.enableRefresh) {
-    let gate = api.findNearestGate();
-    if (gate.gate) {
-      let x = gate.gate.position.x;
-      let y = gate.gate.position.y;
-      if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-        window.location.reload();
-        state = true;
+  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.refresh && window.globalSettings.enableRefresh) {
+    if (api.Disconected && !state) {
+      window.location.reload();
+      state = true;
+    } else {
+      let gate = api.findNearestGate();
+      if (gate.gate) {
+        let x = gate.gate.position.x;
+        let y = gate.gate.position.y;
+        if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
+          window.location.reload();
+          state = true;
+        }
+        api.resetTarget("all");
+        api.move(x, y);
+        window.movementDone = false;
+        return;
       }
-      api.resetTarget("all");
-      api.move(x, y);
-      window.movementDone = false;
-      return;
-    }
+    }   
   }
 
   if (api.isRepairing && window.hero.hp !== window.hero.maxHp) {
@@ -417,11 +419,6 @@ function logic() {
         f += s;
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-        /*let nearestBox = api.findNearestBox();
-        if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
-          circleBox = nearestBox;
-          collectBoxWhenCircle = true;
-        }*/
       }
     } else {
       api.resetTarget("enemy");
@@ -430,11 +427,6 @@ function logic() {
 
   if (x && y) {
     api.move(x, y);
-    /*if (collectBoxWhenCircle && circleBox) {
-      api.collectBox(circleBox.box);
-      collectBoxWhenCircle = false;
-      circleBox = null;
-    }*/
     window.movementDone = false;
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));

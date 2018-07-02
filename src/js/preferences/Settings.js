@@ -1,6 +1,6 @@
 class Settings {
   constructor(pause, 
-    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, reviveAtGate,
+    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, reviveAtGate, reviveAtSpot,
 
     bonusBox, materials, cargoBox, greenOrGoldBooty, redBooty, blueBooty, masqueBooty,
 
@@ -20,6 +20,7 @@ class Settings {
     this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this._reviveAtGate = reviveAtGate === true;
+    this._reviveAtSpot = reviveAtSpot === true;
     this.reviveLimit = 5;
 
     this._bonusBox = bonusBox === true;
@@ -127,6 +128,14 @@ class Settings {
 
   set reviveAtGate(value) {
     this._reviveAtGate = value === true;
+  }
+
+  get reviveAtSpot() {
+    return this._reviveAtSpot;
+  }
+
+  set reviveAtSpot(value) {
+    this._reviveAtSpot = value === true;
   }
 
   get bonusBox() {

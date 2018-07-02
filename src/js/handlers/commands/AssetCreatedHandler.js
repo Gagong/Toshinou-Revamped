@@ -13,7 +13,7 @@ class AssetCreatedHandler {
       let x = parsedCmd[Variables.assetCreateX];
       let y = parsedCmd[Variables.assetCreateY];
 
-      if (type == 35 || type == 36) { // cbs
+      if (type == 35 || type == 36) {
         if (api.battlestation == null) {
           api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.battlestationClanDiplomacy].type);
         } else {
@@ -25,7 +25,7 @@ class AssetCreatedHandler {
         }
       }
 
-      if (type == 37) { // module
+      if (type == 37) {
         if (api.battlestation == null)
           api.battlestation = new Battlestation();
 
