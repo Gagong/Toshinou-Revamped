@@ -6,7 +6,7 @@ class WindowFactory {
 
     if (!window.mainFrameWindow) {
       window.mainFrameWindow = this.windowsStructure({
-        text: "Windows | Master | v.013",
+        text: "Windows | Beta | v.015",
         isMain: true
       })[0];
 

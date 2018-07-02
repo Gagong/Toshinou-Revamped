@@ -13,14 +13,6 @@ class GeneralSettingsWindow {
           window.settings.palladium = this.checked;
         }
       },
-      /*{
-        name: 'save',
-        labelText: 'Refresh',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.refresh = this.checked;
-        }
-      },*/
       {
         name: 'moveRandomly',
         labelText: 'Move randomly',
@@ -112,6 +104,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'reviveAtSpot',
+        labelText: 'Revive at spot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtSpot = this.checked;
+        }
+      },
+      {
         name: 'reviveLimit',
         labelText: 'Revive limit <span> (5)</span>',
         type: 'range',
@@ -130,18 +130,13 @@ class GeneralSettingsWindow {
       }
     ];
 
-    /*this.saveSettingsBtn = ControlFactory.btn({
-      labelText: 'Save settings',
-      appendTo: ControlFactory.emptyDiv(this.botSettingsWindow)
-    });*/
-
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
 
-    /*$(this.saveSettingsBtn).on('click', (e) => {
-      chrome.storage.sync.set(window.settings);
-      console.log("saved")
-    })*/
+    if (window.globalSettings.enableRefresh) {
+      let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
+    this.botSettingsWindow.append(saveButton);
+    }
   }
 }
