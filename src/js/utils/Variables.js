@@ -17,7 +17,7 @@ class Variables {
   }
 
   static get attackedId() {
-    return "_-w3W";
+    return "_-md";
   }
 
   static get moveDuration() {
@@ -30,6 +30,10 @@ class Variables {
 
   static get heroInitMaxHp() {
     return "_-F4G";
+  }
+
+  static get heroAttackedId() {
+    return "_-md";
   }
 
   static get heroInitMaxShd() {
