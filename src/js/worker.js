@@ -201,7 +201,7 @@ function logic() {
     return;
   }
 
-  if (window.globalSettings.enableRefresh) {
+  if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if (window.globalSettings.enableNPCBlockList) {
       NPCSavingFix.forEach(npc => {
         window.settings.setNpc(npc, true);
