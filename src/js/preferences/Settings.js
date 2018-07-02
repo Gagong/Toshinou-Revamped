@@ -55,7 +55,7 @@ class Settings {
     this._lockPlayers = lockPlayers === true;
     this._autoAttack = autoAttack === true;
 
-    this._workmap = workmap === true;
+    this._workmap = workmap;
 
     this._npcs = [];
   }
@@ -372,7 +372,7 @@ class Settings {
   }
 
   set workmap(value) {
-    this._workmap = value === true;
+    this._workmap = value;
   }
 
   setNpc(name, val) {
