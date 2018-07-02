@@ -55,7 +55,7 @@ class Settings {
     this._lockPlayers = lockPlayers === true;
     this._autoAttack = autoAttack === true;
 
-    this.__workmap = workmap === true;
+    this._workmap = workmap === true;
 
     this._npcs = [];
   }
