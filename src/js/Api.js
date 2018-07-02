@@ -12,6 +12,8 @@ class Api {
     this.jumpTime = $.now();
     this.resetBlackListTime = $.now();
     this.blackListTimeOut = 150000
+    this.getSettingsTime = $.now();
+    this.setSettingsTime = $.now();
     this.rute = null;
     this.starSystem = [];
   }
@@ -90,6 +92,24 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
+  getSettings() {
+    for (let key in window.settings) {
+      chrome.storage.sync.get(key, function(set) {
+        window.newSettings[key] = set[key];
+      })
+    }
+    this.getSettingsTime = $.now();
+  }
+
+  setSettings() {
+    chrome.storage.sync.set(window.settings);
+    this.setSettingsTime = $.now();
+  }
+
+  updateSettings() {
+    window.settings = window.newSettings;
+  }
+
   resetTarget(target) {
     if (target == "enemy") {
       this.targetShip = null;
@@ -166,7 +186,7 @@ class Api {
   }
 
   ggDeltaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
@@ -188,7 +208,7 @@ class Api {
   }
 
   ggZetaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
@@ -228,7 +248,7 @@ class Api {
   }
 
   ggCountNpcAround(distance){
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
@@ -240,7 +260,7 @@ class Api {
   }
 
   allNPCInCorner(){
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     let shipsInCorner = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
@@ -292,7 +312,7 @@ class Api {
   
 
   findNearestShip() {
-    let minDist = 100000;
+    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
     let finalShip;
 
     if (!window.settings.killNpcs) {
@@ -417,8 +437,9 @@ class Api {
         }
       }
     }
-    if (enemyDistance < 2000) { // 2000 run away detect distance
+    if (enemyDistance < 2000) {
       result.run = true;
+      return result;
     }
     return result;
   }
@@ -445,7 +466,6 @@ class Api {
         graph = new Graph(mapSystem);
         let imcompleteRute = graph.findShortestPath(window.hero.mapId, idWorkMap);
         this.rute = this.completeRute(imcompleteRute);
-        //console.log(this.rute);
     }else{
         let map = this.rute[0];
         let portal = map.portals[0];

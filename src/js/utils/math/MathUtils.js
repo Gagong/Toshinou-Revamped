@@ -1,4 +1,4 @@
-class MathUtils {
+ class MathUtils {
   static random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

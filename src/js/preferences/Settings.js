@@ -1,25 +1,31 @@
 class Settings {
   constructor(pause, 
-    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, reviveAtGate,
+    palladium, travelsystem, refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, reviveAtGate, reviveAtSpot, reviveAtBase,
 
     bonusBox, materials, cargoBox, greenOrGoldBooty, redBooty, blueBooty, masqueBooty,
 
-    alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
+    ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
 
     lockNpcs, lockPlayers, autoAttack) 
   {
     this._pause = pause === true;
 
     this._palladium = palladium === true;
+    this._travelsystem = travelsystem === true;
     this._refresh = refresh === true;
     this._moveRandomly = moveRandomly === true;
     this._killNpcs = killNpcs === true;    
     this._fleeFromEnemy = fleeFromEnemy === true;
+    this._jumpFromEnemy = jumpFromEnemy === true;
+    this._dodgeTheCbs = dodgeTheCbs === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
     this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
+    this._resetTargetWhenHpBelow25Percent = resetTargetWhenHpBelow25Percent === true;
     this._reviveAtGate = reviveAtGate === true;
+    this._reviveAtSpot = reviveAtSpot === true;
+    this._reviveAtBase = reviveAtBase === true;
     this.reviveLimit = 5;
 
     this._bonusBox = bonusBox === true;
@@ -30,6 +36,7 @@ class Settings {
     this._blueBooty = blueBooty === true;
     this._masqueBooty = masqueBooty === true;
 
+    this._ggbot = ggbot === true;
     this._alpha = alpha === true;
     this._beta = beta === true;
     this._gamma = gamma === true;
@@ -65,6 +72,14 @@ class Settings {
     this._palladium = value === true;
   }
 
+  get travelsystem() {
+    return this._travelsystem;
+  }
+
+  set travelsystem(value) {
+    this._travelsystem = value === true;
+  }
+
   get refresh() {
     return this._refresh;
   }
@@ -97,6 +112,22 @@ class Settings {
     this._fleeFromEnemy = value === true;
   }
 
+  get jumpFromEnemy() {
+    return this._jumpFromEnemy;
+  }
+
+  set jumpFromEnemy(value) {
+    this._jumpFromEnemy = value === true;
+  }
+
+  get dodgeTheCbs() {
+    return this._dodgeTheCbs;
+  }
+
+  set dodgeTheCbs(value) {
+    this._dodgeTheCbs = value === true;
+  }
+
   get avoidAttackedNpcs() {
     return this._avoidAttackedNpcs;
   }
@@ -121,6 +152,14 @@ class Settings {
     this._dontCircleWhenHpBelow25Percent = value === true;
   }
 
+  get resetTargetWhenHpBelow25Percent() {
+    return this._resetTargetWhenHpBelow25Percent;
+  }
+
+  set resetTargetWhenHpBelow25Percent(value) {
+    this._resetTargetWhenHpBelow25Percent = value === true;
+  }
+
   get reviveAtGate() {
     return this._reviveAtGate;
   }
@@ -128,6 +167,23 @@ class Settings {
   set reviveAtGate(value) {
     this._reviveAtGate = value === true;
   }
+
+  get reviveAtSpot() {
+    return this._reviveAtSpot;
+  }
+
+  set reviveAtSpot(value) {
+    this._reviveAtSpot = value === true;
+  }
+
+  get reviveAtBase() {
+    return this._reviveAtBase;
+  }
+
+  set reviveAtBase(value) {
+    this._reviveAtBase = value === true;
+  }
+
 
   get bonusBox() {
     return this._bonusBox;
@@ -183,6 +239,16 @@ class Settings {
 
   set masqueBooty(value) {
     this._masqueBooty = value === true;
+  }
+  
+  
+
+  get ggbot() {
+    return this._ggbot;
+  }
+
+  set ggbot(value) {
+    this._ggbot = value === true;
   }
 
   get alpha() {
@@ -305,4 +371,5 @@ class Settings {
     return !this._npcs[name];
   }
 
+  
 }

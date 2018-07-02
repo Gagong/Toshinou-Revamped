@@ -32,10 +32,6 @@ class Variables {
     return "_-F4G";
   }
 
-  static get heroAttackedId() {
-    return "_-md";
-  }
-
   static get heroInitMaxShd() {
     return "_-b2S";
   }
