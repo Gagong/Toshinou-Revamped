@@ -17,7 +17,7 @@ class Variables {
   }
 
   static get attackedId() {
-    return "_-w3W";
+    return "_-md";
   }
 
   static get moveDuration() {
