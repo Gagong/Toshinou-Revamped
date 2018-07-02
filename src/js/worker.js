@@ -222,7 +222,7 @@ function logic() {
   }
 
   if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.refresh && window.globalSettings.enableRefresh && !window.settings.ggbot) {
-    if (api.Disconected && !state) {
+    if ((api.Disconected && !state) || window.settings.palladium) {
       window.location.reload();
       state = true;
     } else {
