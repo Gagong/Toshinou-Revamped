@@ -15,7 +15,7 @@ class ShipAttackHandler {
       if (attackerId == window.hero.id) {
         window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
         window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
-        window.attackWindow.targetName(a.lockedShip.name);
+        window.attackWindow.targetName(ship.name);
       }
 
       if (attackedShipId == window.hero.id) {
