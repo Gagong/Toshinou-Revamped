@@ -153,6 +153,18 @@ class Api {
     return hasJumped;
   }
 
+  jumpAndReturnNearbyGate(){
+    let gate = this.findNearestGate();
+    let hasJumped = this.jumpInGateByID(gate.gate.gateId);
+    if(hasJumped) {
+      setTimeout(() => {
+        let gate = this.findNearestGate();
+        this.jumpInGG(gate.gate.gateType, true);
+      }, MathUtils.random(10000, 15000));
+    }
+    return hasJumped;
+  }
+
   ggDeltaFix() {
     let shipsCount = Object.keys(api.ships).length;
     for (let property in this.ships) {
