@@ -16,7 +16,7 @@ class ShipDestroyedHandler {
 
       if (ship != null) {
         delete a.ships[id];
-      }*/
+      }
     }
   }
 
