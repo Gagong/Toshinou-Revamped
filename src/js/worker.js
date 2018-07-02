@@ -221,7 +221,7 @@ function logic() {
     return;
   }
 
-  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.refresh && window.globalSettings.enableRefresh) {
+  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.refresh && window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if (api.Disconected && !state) {
       window.location.reload();
       state = true;
