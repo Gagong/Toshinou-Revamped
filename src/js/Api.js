@@ -16,6 +16,8 @@ class Api {
     this.setSettingsTime = $.now();
     this.rute = null;
     this.starSystem = [];
+    this.workmap = null;
+    this.statustravelsystem = false;
   }
 
   lockShip(ship) {
@@ -165,22 +167,16 @@ class Api {
   jumpAndGoBack(gateId){
     let hasJumped = this.jumpInGateByID(gateId);
     if(hasJumped) {
+      this.statustravelsystem = window.settings.travelsystem;
+      if (window.settings.workmap != null) {
+        this.workmap = window.settings.workmap;
+      } else {
+        this.workmap = window.hero.mapId;
+      }
+      window.settings.travelsystem = true;
       setTimeout(() => {
-        let gate = this.findNearestGate();
-        this.jumpInGG(gate.gate.gateType, true);
-      }, MathUtils.random(10000, 15000));
-    }
-    return hasJumped;
-  }
-
-  jumpAndReturnNearbyGate(){
-    let gate = this.findNearestGate();
-    let hasJumped = this.jumpInGateByID(gate.gate.gateId);
-    if(hasJumped) {
-      setTimeout(() => {
-        let gate = this.findNearestGate();
-        this.jumpInGG(gate.gate.gateType, true);
-      }, MathUtils.random(10000, 15000));
+        window.settings.travelsystem = this.statustravelsystem;
+      }, MathUtils.random(1200000, 1500000));
     }
     return hasJumped;
   }
