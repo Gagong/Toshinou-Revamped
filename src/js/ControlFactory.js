@@ -97,14 +97,12 @@ class ControlFactory {
   }) {
     let input = jQuery("<input>");
     input.attr("type", type);
-    input.attr("id", labelText);
 
     Object.keys(attrs).forEach((name) => {
       input.attr(name, attrs[name]);
     });
 
     let label = jQuery("<label>");
-    label.attr("for", labelText);
     label.html(labelText);
 
     if (labelBefore) {

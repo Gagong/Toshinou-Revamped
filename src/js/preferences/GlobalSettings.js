@@ -8,6 +8,9 @@ class GlobalSettings {
       windowOpacity: "0.8",
       timerTick: 300,
       showRuntime: false,
+      enableRefresh: false,
+      enableNPCBlockList: false,
+      refreshTime: 60,
       speedFormat: 'hour',
       windowsToTabs: false,
     }, items => {
@@ -41,6 +44,18 @@ class GlobalSettings {
 
   get showRuntime() {
     return this._settings.showRuntime;
+  }
+
+  get enableRefresh() {
+    return this._settings.enableRefresh;
+  }
+
+  get enableNPCBlockList() {
+    return this._settings.enableNPCBlockList;
+  }
+
+  get refreshTime() {
+    return this._settings.refreshTime;
   }
 
   get windowsToTabs() {

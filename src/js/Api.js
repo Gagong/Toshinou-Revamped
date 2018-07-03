@@ -12,8 +12,12 @@ class Api {
     this.jumpTime = $.now();
     this.resetBlackListTime = $.now();
     this.blackListTimeOut = 150000
+    this.getSettingsTime = $.now();
+    this.setSettingsTime = $.now();
     this.rute = null;
     this.starSystem = [];
+    this.workmap = null;
+    this.statustravelsystem = false;
   }
 
   lockShip(ship) {
@@ -90,6 +94,24 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
   }*/
 
+  getSettings() {
+    for (let key in window.settings) {
+      chrome.storage.sync.get(key, function(set) {
+        window.newSettings[key] = set[key];
+      })
+    }
+    this.getSettingsTime = $.now();
+  }
+
+  setSettings() {
+    chrome.storage.sync.set(window.settings);
+    this.setSettingsTime = $.now();
+  }
+
+  updateSettings() {
+    window.settings = window.newSettings;
+  }
+
   resetTarget(target) {
     if (target == "enemy") {
       this.targetShip = null;
@@ -145,28 +167,22 @@ class Api {
   jumpAndGoBack(gateId){
     let hasJumped = this.jumpInGateByID(gateId);
     if(hasJumped) {
+      this.statustravelsystem = window.settings.travelsystem;
+      if (window.settings.workmap != null) {
+        this.workmap = window.settings.workmap;
+      } else {
+        this.workmap = window.hero.mapId;
+      }
+      window.settings.travelsystem = true;
       setTimeout(() => {
-        let gate = this.findNearestGate();
-        this.jumpInGG(gate.gate.gateType, true);
-      }, MathUtils.random(10000, 15000));
-    }
-    return hasJumped;
-  }
-
-  jumpAndReturnNearbyGate(){
-    let gate = this.findNearestGate();
-    let hasJumped = this.jumpInGateByID(gate.gate.gateId);
-    if(hasJumped) {
-      setTimeout(() => {
-        let gate = this.findNearestGate();
-        this.jumpInGG(gate.gate.gateType, true);
-      }, MathUtils.random(10000, 15000));
+        window.settings.travelsystem = this.statustravelsystem;
+      }, MathUtils.random(1200000, 1500000));
     }
     return hasJumped;
   }
 
   ggDeltaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
@@ -188,7 +204,7 @@ class Api {
   }
 
   ggZetaFix() {
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
@@ -213,13 +229,12 @@ class Api {
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
-        if (shipsCount > 1) {
+        if (shipsCount > 1 && ship.percentOfHp() < 80) {
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship){
             this.resetTarget("enemy");
           }
         } else {
-          window.settings.avoidAttackedNpcs=false;
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
         }
@@ -228,7 +243,7 @@ class Api {
   }
 
   ggCountNpcAround(distance){
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
@@ -240,7 +255,7 @@ class Api {
   }
 
   allNPCInCorner(){
-    let shipsCount = Object.keys(api.ships).length;
+    let shipsCount = Object.keys(this.ships).length;
     let shipsInCorner = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
@@ -292,7 +307,7 @@ class Api {
   
 
   findNearestShip() {
-    let minDist = 100000;
+    let minDist = window.settings.palladium ? window.settings.npcCircleRadius : 100000;
     let finalShip;
 
     if (!window.settings.killNpcs) {
@@ -417,8 +432,9 @@ class Api {
         }
       }
     }
-    if (enemyDistance < 2000) { // 2000 run away detect distance
+    if (enemyDistance < 2000) {
       result.run = true;
+      return result;
     }
     return result;
   }
@@ -445,7 +461,6 @@ class Api {
         graph = new Graph(mapSystem);
         let imcompleteRute = graph.findShortestPath(window.hero.mapId, idWorkMap);
         this.rute = this.completeRute(imcompleteRute);
-        //console.log(this.rute);
     }else{
         let map = this.rute[0];
         let portal = map.portals[0];

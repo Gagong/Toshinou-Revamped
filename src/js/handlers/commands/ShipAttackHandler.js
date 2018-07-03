@@ -7,7 +7,6 @@ class ShipAttackHandler {
     this._handler = function (e, a) {
       let shipAttackCmd = JSON.parse(e.detail);
 
-
       let attackerId = shipAttackCmd[Variables.attackerId];
       let attackedShipId = shipAttackCmd[Variables.attackedId];
 
