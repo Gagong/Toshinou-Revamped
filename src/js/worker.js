@@ -275,11 +275,13 @@ function logic() {
     window.settings.dontCircleWhenHpBelow25Percent = false;
   }
 
-  if (window.hero.mapId == 73)
-    api.ggZetaFix();
-
-  if (window.hero.mapId == 55)
-    api.ggDeltaFix();
+  if (window.settings.ggbot) {
+    if (window.hero.mapId == 73) {
+      api.ggZetaFix();
+    }else if (window.hero.mapId == 55) {
+      api.ggDeltaFix();
+    }
+  }
 
   if (window.settings.fleeFromEnemy) {
     let enemyResult = api.checkForEnemy();
@@ -293,9 +295,9 @@ function logic() {
         api.move(x, y);
         window.movementDone = false;
         window.fleeingFromEnemy = true;
-        /*if (window.settings.jumpFromEnemy) {
+        if (window.settings.jumpFromEnemy) {
           api.jumpAndGoBack(gate.gate.gateId);
-        }*/
+        }
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
@@ -332,16 +334,16 @@ function logic() {
       let gate = api.findNearestGate();
       if (gate.gate) {
         api.resetTarget("all");
-        /*if (window.settings.jumpFromEnemy) {
+        if (window.settings.jumpFromEnemy) {
           api.jumpAndGoBack(gate.gate.gateId);
-        } else {*/
+        } else {
           let x = gate.gate.position.x + MathUtils.random(-100, 100);
           let y = gate.gate.position.y + MathUtils.random(-100, 100);
           api.move(x, y);
           window.movementDone = false;
           api.isRepairing = true;
           return;
-        //}
+        }
       }
     }
   }
