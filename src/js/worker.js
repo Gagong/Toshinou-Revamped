@@ -299,13 +299,13 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent = true;
     window.settings.dontCircleWhenHpBelow25Percent = false;
+
+    if (window.hero.mapId == 73) {
+      api.ggZetaFix();
+    }else if (window.hero.mapId == 55) {
+      api.ggDeltaFix();
+    }
   }
-
-  if (window.hero.mapId == 73)
-    api.ggZetaFix();
-
-  if (window.hero.mapId == 55)
-    api.ggDeltaFix();
 
   if (window.settings.fleeFromEnemy) {
     let enemyResult = api.checkForEnemy();
@@ -319,9 +319,9 @@ function logic() {
         api.move(x, y);
         window.movementDone = false;
         window.fleeingFromEnemy = true;
-        /*if (window.settings.jumpFromEnemy) {
+        if (window.settings.jumpFromEnemy) {
           api.jumpAndGoBack(gate.gate.gateId);
-        }*/
+        }
         setTimeout(() => {
           window.movementDone = true;
           window.fleeingFromEnemy = false;

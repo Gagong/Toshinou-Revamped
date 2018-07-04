@@ -1,6 +1,6 @@
 class Settings {
   constructor(pause, 
-    palladium, travelsystem, refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, reviveAtGate, reviveAtSpot, reviveAtBase,
+    palladium, travelsystem, refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, reviveAtGate, reviveAtSpot, reviveAtBase,
 
     bonusBox, materials, cargoBox, greenOrGoldBooty, redBooty, blueBooty, masqueBooty,
 
@@ -25,6 +25,7 @@ class Settings {
     this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this._resetTargetWhenHpBelow25Percent = resetTargetWhenHpBelow25Percent === true;
+    this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
     this._reviveAtGate = reviveAtGate === true;
     this._reviveAtSpot = reviveAtSpot === true;
     this._reviveAtBase = reviveAtBase === true;
@@ -162,6 +163,14 @@ class Settings {
 
   set resetTargetWhenHpBelow25Percent(value) {
     this._resetTargetWhenHpBelow25Percent = value === true;
+  }
+
+  get repairWhenHpIsLowerThanPercent() {
+    return this._repairWhenHpIsLowerThanPercent;
+  }
+
+  set repairWhenHpIsLowerThanPercent(value) {
+    this._repairWhenHpIsLowerThanPercent = value;
   }
 
   get reviveAtGate() {
@@ -382,6 +391,5 @@ class Settings {
   getNpc(name) {
     return !this._npcs[name];
   }
-
   
 }

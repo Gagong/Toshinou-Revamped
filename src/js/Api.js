@@ -166,13 +166,13 @@ class Api {
 
   jumpAndGoBack(gateId){
     let hasJumped = this.jumpInGateByID(gateId);
+    if (window.settings.workmap != null) {
+      this.workmap = window.settings.workmap;
+    } else {
+      this.workmap = window.hero.mapId;
+    }
     if(hasJumped) {
       this.statustravelsystem = window.settings.travelsystem;
-      if (window.settings.workmap != null) {
-        this.workmap = window.settings.workmap;
-      } else {
-        this.workmap = window.hero.mapId;
-      }
       window.settings.travelsystem = true;
       setTimeout(() => {
         window.settings.travelsystem = this.statustravelsystem;
@@ -225,11 +225,11 @@ class Api {
   }
 
   battlerayFix() {
-    let shipsCount = this.ggCountNpcAround(600);
+    let shipsCount = this.countNpcAroundByType("-=[ Interceptor ]=-", 600);
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
-        if (shipsCount > 1 && ship.percentOfHp() < 80) {
+        if (shipsCount > 1 && !ship.isAttacked) {
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship){
             this.resetTarget("enemy");
@@ -240,6 +240,18 @@ class Api {
         }
       }
     }
+  }
+
+  countNpcAroundByType(type, distance){
+    let shipsCount = Object.keys(this.ships).length;
+    let shipsAround = 0;
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      if (ship && (ship.distanceTo(window.hero.position) < distance) && (ship.name == type)) {
+        shipsAround++;
+      }
+    }
+    return shipsAround;
   }
 
   ggCountNpcAround(distance){
