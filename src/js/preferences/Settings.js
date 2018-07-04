@@ -58,7 +58,7 @@ class Settings {
 
     this._workmap = workmap;
 
-    this._npcs = [];
+    this._npcs = new Array();
   }
 
   get pause() {
@@ -385,6 +385,9 @@ class Settings {
   }
 
   setNpc(name, val) {
+  	if(this._npcs[name] = null){
+      this._npcs.push(name);
+    }
     this._npcs[name] = val;
   }
 
