@@ -464,7 +464,10 @@ function logic() {
         f += s;
         x = result.cbsPos.x + 1800 * Math.sin(f);
         y = result.cbsPos.y + 1800 * Math.cos(f);
+        api.resetTarget("all");
         api.move(x, y);
+        window.movementDone = false;
+        return;
       }
     }
   }
@@ -515,7 +518,7 @@ function logic() {
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         if(collectBoxWhenCircle){
           let nearestBox = api.findNearestBox();
-          if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
+          if (nearestBox && nearestBox.box && nearestBox.distance < 100) {
             circleBox = nearestBox;
           }
         }
@@ -526,11 +529,12 @@ function logic() {
   }
 
   if (x && y) {
-    api.move(x, y);
     if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       collectBoxWhenCircle = false;
       circleBox = null;
+    }else{
+      api.move(x, y);
     }
     window.movementDone = false;
   }
