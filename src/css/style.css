@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+.main-frame {
+  position: absolute;
+  left: 400px;
+  top: 50px;
+}
+
+.minimized {
+  display: none;
+}
+
+.movable {
+  position: absolute;
+}
+
+.window {
+  color: #e8e1bf;
+  width: 300px;
+  background-color: transparent;
+  border: 1px solid rgb(40, 116, 144);
+}
+
+.window .header,
+.main-frame .header,
+.tab .header {
+  width: 100%;
+  height: 40px;
+  background-color: rgb(22, 38, 47);
+  top: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid rgb(40, 116, 144);
+  font-size: 14px;
+}
+
+.movable>.header {
+  cursor: move;
+}
+
+.window .minimize-btn,
+.main-frame .minimize-btn {
+  padding: 10px;
+  margin: 0px;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+}
+
+.window .content,
+.main-frame .content,
+.tab .content {
+  width: 100%;
+  background-color: rgba(22, 38, 47, 0.78);
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.tabs .headers {
+  display: flex;
+}
+
+.tabs .header {
+  cursor: pointer;
+  border-right: 1px solid;
+  max-width: 80px;
+}
+
+.tabs .header:last-child {
+  border-right: none;
+}
+
+.window .content canvas {
+  max-width: 100%;
+}
+
+.tabs .content {
+  display: none;
+}
+
+.tabs .content.active {
+  display: block;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #e8e1bf;
+  background-color: #15262e;
+  border: 1px solid rgb(40, 116, 144);
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: rgb(40, 116, 144);
+}
+
+.cnt_btn_play {
+  display: inline-block;
+  width: auto;
+  margin: 0px;
+  float: right;
+  margin-right: 23px;
+  margin-top: -2px;
+}
+
+.btn_play {
+  margin-top: 0px;
+}
+
+.btn_play.in_play {
+  border: 1px solid #21c13c;
+  background: #2a46189c;
+}
+
+.btn_play.in_stop {
+  background: #962d2d9c;
+  border: 1px solid #c12121;
+}
+
+.saveButton {
+  display: inline-block;
+  width: auto;
+  margin: 0px;
+}
+
+.btn_save {
+  margin: 5px 5px 0px 0px;
+  float: left;
+}
+
+.btn_save.save {
+  border: 1px solid #21c13c;
+  background: #2a46189c;
+}
+
+.btn_save.saved {
+  background: #962d2d9c;
+  border: 1px solid #c12121;
+}
+
+.btn {
+  display: inline-block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: #e8e1bf;
+  background-color: #15262e;
+  border: 1px solid rgb(40, 116, 144);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(40, 116, 144);
+}
+
+.cnt_minimize_window {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  left: 14px;
+  top: 186px;
+  box-sizing: border-box;
+  border: 1px solid #287490;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #15242d;
+  cursor: pointer;
+}
