@@ -91,9 +91,6 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
-  window.autolockWindow = new AutolockWindow(); 
-  window.autolockWindow.createWindow();
-
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
 
@@ -112,27 +109,7 @@ function init() {
   $(document).keyup(function (e) {
     let key = e.key;
 
-    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) ||
-      key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
-      let maxDist = 1000;
-      let finDist = 1000000;
-      let finalShip;
-
-      for (let property in api.ships) {
-        let ship = api.ships[property];
-        let dist = ship.distanceTo(window.hero.position);
-
-        if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x" && (!window.settings.excludeNpcs || window.settings.getNpc(ship.name))) || (!ship.isNpc && ship.isEnemy && window.settings.lockPlayers && key == "z"))) {
-          finalShip = ship;
-          finDist = dist;
-        }
-      }
-
-      if (finalShip != null) {
-        api.lockShip(finalShip);
-        api.lastAutoLock = $.now();
-      }
-    } else if (key == "Pause") {
+    if (key == "Pause") {
       if (!window.settings.pause) {
         $('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
         api.resetTarget("all");
@@ -296,7 +273,9 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent = true;
     window.settings.dontCircleWhenHpBelow25Percent = false;
+  }
 
+  if (window.settings.ggbot) {
     if (window.hero.mapId == 73) {
       api.ggZetaFix();
     }else if (window.hero.mapId == 55) {
@@ -355,16 +334,16 @@ function logic() {
       let gate = api.findNearestGate();
       if (gate.gate) {
         api.resetTarget("all");
-        /*if (window.settings.jumpFromEnemy) {
+        if (window.settings.jumpFromEnemy) {
           api.jumpAndGoBack(gate.gate.gateId);
-        } else {*/
+        } else {
           let x = gate.gate.position.x + MathUtils.random(-100, 100);
           let y = gate.gate.position.y + MathUtils.random(-100, 100);
           api.move(x, y);
           window.movementDone = false;
           api.isRepairing = true;
           return;
-        //}
+        }
       }
     }
   }
@@ -550,7 +529,6 @@ function logic() {
   }
 
   if (x && y) {
-    api.move(x, y);
     if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       collectBoxWhenCircle = false;
