@@ -1,12 +1,11 @@
 class PalladiumInitHandler {
   static get ID() {
-    return 2277;
+    return 3074;
   }
 
   constructor() {
     this._handler = function (e, a) {
       var box = JSON.parse(e.detail);
-      /*console.log(box);*/
       if (box.hash.length == 6) {
         return;
       }
@@ -15,7 +14,7 @@ class PalladiumInitHandler {
         return;
       }
 
-      var pBox = new Box(box.x, box.y, box.hash, box[Variables.PalladiumType][Variables.PType]);
+      var pBox = new Box(box.x, box.y, box.hash, box[Variables.resource][Variables.resourceType]);
       a.boxes[box.hash] = pBox;
     };
   }

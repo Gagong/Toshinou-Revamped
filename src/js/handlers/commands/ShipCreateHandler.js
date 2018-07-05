@@ -1,6 +1,6 @@
 class ShipCreateHandler {
   static get ID() {
-    return 19809;
+    return 6609;
   }
 
   constructor() {
@@ -8,7 +8,6 @@ class ShipCreateHandler {
       e.detail = e.wholeMessage.split("|").slice(1).join("");
 
       let shipCreateCmd = JSON.parse(e.detail);
-
       a.ships[shipCreateCmd.userId] = new Ship(shipCreateCmd.x, shipCreateCmd.y, shipCreateCmd.userId, shipCreateCmd.npc, shipCreateCmd.userName, shipCreateCmd.factionId, shipCreateCmd.modifier, shipCreateCmd[Variables.clanDiplomacy].type, shipCreateCmd.cloaked);
     }
   }
