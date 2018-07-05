@@ -424,6 +424,7 @@ function logic() {
   let y;
 
   if (window.settings.palladium) {
+
     let palladiumBlackList = [
     "-=[ Battleray ]=-",
     "( Uber Annihilator )", 
@@ -518,7 +519,7 @@ function logic() {
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
         if(collectBoxWhenCircle){
           let nearestBox = api.findNearestBox();
-          if (nearestBox && nearestBox.box && nearestBox.distance < 100) {
+          if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
             circleBox = nearestBox;
           }
         }

@@ -1,12 +1,12 @@
 class PalladiumInitHandler {
   static get ID() {
-    return 2277;
+    return 3074;
   }
 
   constructor() {
     this._handler = function (e, a) {
       var box = JSON.parse(e.detail);
-      /*console.log(box);*/
+      console.log(box);
       if (box.hash.length == 6) {
         return;
       }
