@@ -1,6 +1,6 @@
 class HeroInitHandler {
   static get ID() {
-    return 10171;
+    return 5403;
   }
 
   constructor(f) {
@@ -43,6 +43,9 @@ class HeroInitHandler {
       } else {
         window.X1Map = false;
       }
+
+      if (window.hero.mapId == 20 || window.hero.mapId == 24 || window.hero.mapId == 28)
+        window.settings.setNpc("..::{ Boss StreuneR }::..", true);
 
       f();
       window.initialized = true;
