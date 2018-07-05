@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 07.10.2017
+*/
+
 class BoxInitHandler {
   static get ID() {
     return 30654;
@@ -5,17 +9,17 @@ class BoxInitHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      let box = JSON.parse(e.detail);
+      var box = JSON.parse(e.detail);
 
-      if (box.hash.length == 7) {
+      if (box.hash.length == 5) {
         return;
       }
 
-      if (a.isOnBlacklist(box.hash)) {
+      if (a.isBoxOnBlacklist(box.hash)) {
         return;
       }
 
-      let pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
+      var pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
       a.boxes[box.hash] = pBox;
     };
   }

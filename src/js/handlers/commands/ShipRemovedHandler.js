@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 24.10.2017
+*/
+
 class ShipRemovedHandler {
   static get ID() {
     return 25543;
@@ -5,14 +9,21 @@ class ShipRemovedHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      let parsed = JSON.parse(e.detail);
-      let id = parsed.userId;
+      var parsed = JSON.parse(e.detail);
+      var id = parsed.userId;
 
-      if (a.targetShip && id == a.targetShip.id) {
-        a.resetTarget("enemy");
+      if (a.targetShip && id == a.targetShip.id || a.lockedShip && id == a.lockedShip.id) {
+        a.targetShip = null;
+        a.attacking = false;
+        a.triedToLock = false;
+        a.lockedShip = null;
+        a.lastAutoLock = null;
+        window.attackWindow.hp("0");
+        window.attackWindow.shd("0");
+        window.attackWindow.targetName("None");
       }
 
-      let ship = a.ships[id];
+      var ship = a.ships[id];
 
       if (ship != null) {
         delete a.ships[id];

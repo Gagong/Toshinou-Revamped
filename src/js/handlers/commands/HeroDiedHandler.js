@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 13.11.2017
+*/
+
 class HeroDiedHandler {
   static get ID() {
     return 20873;
@@ -5,41 +9,22 @@ class HeroDiedHandler {
 
   constructor() {
     this._handler = function (e, a) {
-       let parsedJson = JSON.parse(e.detail);
+      var parsedJson = JSON.parse(e.detail);
+      a.markHeroAsDead();
 
-       a.markHeroAsDead();
-
-       window.setTimeout(function () {
-         if (parsedJson.options.length >= 2 && (window.settings.reviveLimit == 0 || window.settings.reviveLimit > window.reviveCount)) {
-           if (window.settings.reviveAtBase){
-             window.settings.reviveAtSpot = false;
-             window.settings.reviveAtGate = false;
-             Injector.injectScript("document.getElementById('preloader').revive(0);");
-           }
-           else if (window.settings.reviveAtGate){
-             window.settings.reviveAtSpot = false;
-             window.settings.reviveAtBase = false
-             Injector.injectScript("document.getElementById('preloader').revive(1);");
-           }
-           else if (window.settings.reviveAtSpot) {
-             window.settings.reviveAtBase = false;
-             window.settings.reviveAtGate = false;
-             Injector.injectScript("document.getElementById('preloader').revive(2);");
-           }
-           window.reviveCount++;
-           a.isRepairing = true;
-           let event = new CustomEvent("deathCounter", {
-             detail: {
-               death: 1,
-               }
-           });
-           window.dispatchEvent(event);
+      window.setTimeout(function () {
+        if (parsedJson.options.length >= 2 && window.settings.reviveAtGate && (window.settings.reviveLimit == 0 || window.settings.reviveLimit > window.reviveCount)) {
+          Injector.injectScript("document.getElementById('preloader').revive(1);");
+          window.reviveCount++;
+          a.isRepairing = true;
+          window.fleeingGate = null;
+          window.fleeingFromEnemy = null;
         }
       }, 8000);
     }
   }
 
-    get handler() {
-        return this._handler;
-    }
+  get handler() {
+    return this._handler;
+  }
 }

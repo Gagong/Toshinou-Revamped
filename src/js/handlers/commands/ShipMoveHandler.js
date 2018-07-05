@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 16.10.2017
+*/
+
 class ShipMoveHandler {
   static get ID() {
     return 17763;
@@ -5,9 +9,9 @@ class ShipMoveHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      let shipMoveCmd = JSON.parse(e.detail);
+      var shipMoveCmd = JSON.parse(e.detail);
 
-      let ship = a.ships[shipMoveCmd.userId];
+      var ship = a.ships[shipMoveCmd.userId];
 
       if (ship != null)
         ship.setTarget(shipMoveCmd.x, shipMoveCmd.y, shipMoveCmd[Variables.moveDuration]);

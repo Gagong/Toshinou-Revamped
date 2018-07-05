@@ -1,6 +1,10 @@
+/*
+Created by Freshek on 21.10.2017
+*/
+
 class SafetyChecker {
   static check() {
-    let jsCheck = JavaScriptChecker.safetyCheck();
+    var jsCheck = JavaScriptChecker.safetyCheck();
 
     if (!jsCheck) {
       return "GAME UPDATE - UNSAFE_JS";

@@ -2,7 +2,7 @@ class StatisticWindow {
 
   createWindow() {
     this.botStatisticWindow = WindowFactory.createWindow({
-      width: 320,
+      width: 300,
       text: "Statistic"
     });
     this.connected = false;
@@ -15,8 +15,6 @@ class StatisticWindow {
       ammo: 0,
       experience: 0,
       honor: 0,
-      rank: 0,
-      death: 0,
       speed: 0,
     };
 
@@ -65,33 +63,18 @@ class StatisticWindow {
         appendTo: this.botStatisticWindow
       },
       {
-        name: 'rank',
-        labelText: 'Rank Points: ',
-        spanText: '0',
-        appendTo: this.botStatisticWindow
-      },
-      {
-        name: 'death',
-        labelText: 'Death count: ',
-        spanText: '0',
-        appendTo: this.botStatisticWindow
-      },
-      {
         name: 'speed',
         labelText: 'Speed: ',
         spanText: '0.00 uri/min.',
         appendTo: this.botStatisticWindow
-      }
-    ];
-
-    if (window.globalSettings.showRuntime) {
-      options.push({
+      },
+      {
         name: 'runtime',
         labelText: 'Runtime: ',
         spanText: '00:00:00',
         appendTo: this.botStatisticWindow
-      });
-    }
+      }
+    ];
 
     options.forEach((option) => {
       this[option.name] = ControlFactory.info(option);
@@ -132,11 +115,6 @@ class StatisticWindow {
         el: 'honor',
         detailEl: 'honor'
       },
-      {
-        event: 'deathCounter',
-        el: 'death',
-        detailEl: 'death'
-      }
     ];
 
     standardListeners.forEach((item) => {
@@ -155,11 +133,7 @@ class StatisticWindow {
         if ('startTime' == item) {
           el.html(this.stats[item].toLocaleString(navigator.languages[0]));
         } else {
-          if ('death' == item) {
-            el.html(parseInt(window.reviveCount));
-          } else {
-            el.html(this.stats[item]);
-          }
+          el.html(this.stats[item]);
         }
       });
     });
@@ -168,16 +142,12 @@ class StatisticWindow {
       this.connected = e.detail.connected;
     });
 
-    $(window).on('logicEnd', () => {
+    window.setInterval(() => {
       if (this.connected) {
-
-        if (window.globalSettings.showRuntime) {
-          $('span:last-child', this.runtime).text(TimeHelper.diff(this.stats.startTime));
-        }
-
+        $('span:last-child', this.runtime).text(TimeHelper.diff(this.stats.startTime));
         $('span:last-child', this.speed).text(this.speedFormat(this.stats.uridium, this.stats.startTime));
       }
-    });
+    }, window.globalSettings.timerTick);
   }
 
   speedFormat(uri, startTime) {
@@ -204,13 +174,6 @@ class StatisticWindow {
     let htmlEl = this[el];
     $(window).on(event, (e) => {
       let el = $('span:last-child', htmlEl);
-      if (detailEl == "experience") {
-        this.stats.rank += parseInt(e.detail[detailEl]) / 10000;
-        this.rank.text("Rank Points: " + Math.floor(this.stats.rank));
-      } else if (detailEl == "honor") {
-        this.stats.rank += parseInt(e.detail[detailEl]) / 100;
-        this.rank.text("Rank Points: " + Math.floor(this.stats.rank));
-      }
       this.stats[detailEl] += parseInt(e.detail[detailEl]);
       let collected = this.stats[detailEl];
       el.text(collected);

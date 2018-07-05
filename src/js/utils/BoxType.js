@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 28.10.2017
+*/
+
 class BoxType {
   static get bonusBox() {
     return "BONUS_BOX";
@@ -23,18 +27,6 @@ class BoxType {
     return "PIRATE_BOOTY_GOLD";
   }
 
-  static get pirateBootyMasque() {
-    return "MASQUE_BOOTY_BOX";
-  }
-
-  static get demanerBox() {
-    return "DEMANER_INVADER_BOX";
-  }
-
-  static get yurisBox() {
-    return "YURIS_BONUS_BOX";
-  }
-
   static get giftBox() {
     return "GIFT_BOXES";
   }
@@ -45,12 +37,9 @@ class BoxType {
     ret[BoxType.miniPumpkin] = "white";
     ret[BoxType.pirateBootyGreen] = "green";
     ret[BoxType.pirateBootyRed] = "red";
-    ret[BoxType.pirateBootyBlue] = "lightblue";
+    ret[BoxType.pirateBootyBlue] = "blue";
     ret[BoxType.pirateBootyGold] = "gold";
-    ret[BoxType.pirateBootyMasque] = "violet";
-    ret[BoxType.demanerBox] = "blueviolet"
     ret[BoxType.giftBox] = "blue";
-    ret[BoxType.yurisBox] = "blanchedalmond";
 
     return ret;
   }
@@ -60,6 +49,6 @@ class BoxType {
     if (color != null)
       return color;
     else
-      return "lime";
+      return "green";
   }
 }

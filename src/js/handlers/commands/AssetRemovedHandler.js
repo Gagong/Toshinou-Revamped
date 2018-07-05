@@ -1,3 +1,7 @@
+/*
+Created by Freshek on 07.10.2017
+*/
+
 class AssetRemovedHandler {
   static get ID() {
     return 3339;
@@ -5,10 +9,10 @@ class AssetRemovedHandler {
 
   constructor() {
     this._handler = function (e, a) {
-      let parsedCmd = JSON.parse(e.detail);
+      var parsedCmd = JSON.parse(e.detail);
 
       if (parsedCmd.hash == a.targetBoxHash) {
-        a.resetTarget("box");
+        a.targetBoxHash = null;
       }
 
       if (a.boxes.hasOwnProperty(parsedCmd.hash)) {

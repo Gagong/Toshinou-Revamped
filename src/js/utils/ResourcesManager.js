@@ -1,8 +1,12 @@
+/*
+Created by Freshek on 09.10.2017
+*/
+
 class ResourcesManager {
   static get(name) {
-    let url = this.getUrl(name);
+    var url = this.getUrl(name);
 
-    let xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest(); //using XMLHR because I don't like the jquery implementation of Ajax
     xhr.open("GET", url, false);
     xhr.send(null);
 

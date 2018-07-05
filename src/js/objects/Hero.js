@@ -1,10 +1,13 @@
+/*
+Created by Freshek on 07.10.2017
+*/
+
 class Hero extends Movable {
-  constructor(x, y, factionId, id, mapId) {
+  constructor(x, y, factionId, id) {
     super(x, y);
     this.factionId = factionId;
     this.targetShip = null;
     this.id = id;
-    this.mapId = mapId;
   }
 
   move(pos) {
