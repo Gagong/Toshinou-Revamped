@@ -1,16 +1,14 @@
-/*
-Created by Freshek on 15.10.2017
-*/
-
 class Ship extends Movable {
-  constructor(x, y, id, isnpc, name, factionId, clanDiplomacy) {
+  constructor(x, y, id, isnpc, name, factionId, modifier, clanDiplomacy, cloaked) {
     super(x, y);
     this.id = id;
     this.isNpc = isnpc;
     this.name = name;
     this.factionId = factionId;
     this.isAttacked = false;
-    this.clanDiplomacy = clanDiplomacy.type;
+    this.modifier = modifier;
+    this.clanDiplomacy = clanDiplomacy;
+    this.cloaked = cloaked;
   }
 
   setTarget(targetX, targetY, time) {
@@ -31,26 +29,20 @@ class Ship extends Movable {
     if (this.target == null)
       return;
 
-    var diff = $.now() - this.lastUpdate;
+    let diff = $.now() - this.lastUpdate;
 
     if (diff > this.timeToTarget) {
       this.position.set(this.target.x, this.target.y);
       return this.position;
     }
 
-    /*
-     * quick and dirty solution
-     * TODO atan2 instead of this
-     */
+    let dx = this.target.x - this.position.x;
+    let dy = this.target.y - this.position.y;
 
-    var dx = this.target.x - this.position.x;
-    var dy = this.target.y - this.position.y;
-
-    var sx = dx / this.timeToTarget;
-    var sy = dy / this.timeToTarget;
+    let sx = dx / this.timeToTarget;
+    let sy = dy / this.timeToTarget;
 
     this.lastUpdate = $.now();
-
     this.position.set(this.position.x + sx * diff, this.position.y + sy * diff);
   }
 }

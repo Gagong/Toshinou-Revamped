@@ -1,11 +1,8 @@
-/*
-Created by Freshek on 04.11.2017
-*/
-
 class Gate extends Movable {
-  constructor(x, y, factionId, gateId) {
+  constructor(x, y, factionId, gateId, gateType) {
     super(x, y);
     this.factionId = factionId;
-    this.id = gateId;
+    this.gateId = gateId;
+    this.gateType = gateType;
   }
 }

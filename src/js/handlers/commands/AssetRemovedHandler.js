@@ -1,18 +1,14 @@
-/*
-Created by Freshek on 07.10.2017
-*/
-
 class AssetRemovedHandler {
   static get ID() {
-    return 3339;
+    return 32676;
   }
 
   constructor() {
     this._handler = function (e, a) {
-      var parsedCmd = JSON.parse(e.detail);
+      let parsedCmd = JSON.parse(e.detail);
 
       if (parsedCmd.hash == a.targetBoxHash) {
-        a.targetBoxHash = null;
+        a.resetTarget("box");
       }
 
       if (a.boxes.hasOwnProperty(parsedCmd.hash)) {

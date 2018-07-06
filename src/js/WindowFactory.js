@@ -1,17 +1,12 @@
-/*
- Created by Freshek on 07.10.2017
- */
-
 const HEADER_HEIGHT = 40;
 
 class WindowFactory {
 
   static createWindow(params) {
-    let manifestData = chrome.runtime.getManifest();
 
     if (!window.mainFrameWindow) {
       window.mainFrameWindow = this.windowsStructure({
-        text: "Toshiba Community v" + manifestData.version,
+        text: "Toshinou | Delta | v.015",
         isMain: true
       })[0];
 
@@ -22,38 +17,7 @@ class WindowFactory {
         }).appendTo(window.mainFrameWindow);
       }
 
-      const statusBtn = jQuery('<button>', {
-        class: 'btn',
-        text: window.settings.status ? 'Stop' : 'Start',
-      }).css({
-        'position': 'relative',
-        'top': '-5px',
-        'width': '75px',
-        'height': '29px',
-        'margin-right': '31px',
-        'line-height': '16px',
-        'font-size': '16px',
-        'float': 'right',
-      }).appendTo('.header');
 
-      jQuery(statusBtn).on('click', () => {
-        if (window.settings.status) {
-          window.settings.status = false;
-          $(statusBtn).text('Start');
-        } else {
-          window.settings.status = true;
-          $(statusBtn).text('Stop');
-          api.targetBoxHash = null;
-          api.targetShip = null;
-          api.attacking = false;
-          api.triedToLock = false;
-          api.lockedShip = null;
-          api.isRepairing = false;
-          window.fleeingFromEnemy = false;
-          window.fleeingGate = null;
-          window.pauseTime = null;
-        } 
-      });
     }
 
     if (window.globalSettings.windowsToTabs) {
@@ -100,7 +64,7 @@ class WindowFactory {
 
   static windowsStructure(params) {
     const pane = jQuery('<div>', {
-      width: params.width || 400,
+      width: params.width || 340,
       height: (params.height + HEADER_HEIGHT) || '',
       'class': 'window',
       css: {
@@ -126,6 +90,20 @@ class WindowFactory {
         backgroundColor: ColorConverter.combine(contentColor.r, contentColor.g, contentColor.b, window.globalSettings.windowOpacity),
       },
     }).appendTo(pane);
+
+    if (params.isMain) {
+
+      window.mainWindow = pane;
+      window.statusMiniWindow = true;
+
+      let cntBtnPlay = jQuery('<div class="cnt_btn_play"><button class="btn_play in_play btn">Play</button></div>');
+      header.prepend(cntBtnPlay);
+
+      let cntMiniWindow = jQuery('<div class="cnt_minimize_window">B</div>');
+      $("body").append(cntMiniWindow);
+
+      cntMiniWindow.draggable();
+    }
 
     const minimizeBtn = jQuery('<span>', {
       text: '_',

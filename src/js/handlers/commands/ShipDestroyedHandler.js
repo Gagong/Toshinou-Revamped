@@ -1,26 +1,22 @@
-/*
-Created by Freshek on 24.10.2017
-*/
-
 class ShipDestroyedHandler {
   static get ID() {
-    return 10317;
+    return 7403;
   }
 
   constructor() {
     this._handler = function (e, a) {
-      try {
-        delete a.ships[a.targetShip.id]
-        a.targetShip = null;
-        a.attacking = false;
-        a.triedToLock = false;
-        a.lockedShip = null;
-        a.lastAutoLock = null;
-        window.attackWindow.hp("0");
-        window.attackWindow.shd("0");
-        window.attackWindow.targetName("None");
+      let parsed = JSON.parse(e.detail);
+      let id = parsed[Variables.shipDestoyedId];
+
+      if (a.targetShip && id == a.targetShip.id) {
+        a.resetTarget("enemy");
       }
-      catch(e) {/*In case of it being removed already do nothing.*/}
+
+      let ship = a.ships[id];
+
+      if (ship != null) {
+        delete a.ships[id];
+      }
     }
   }
 

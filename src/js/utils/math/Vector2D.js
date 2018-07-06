@@ -1,7 +1,3 @@
-/*
-Created by Freshek on 13.10.2017
-*/
-
 class Vector2D {
   constructor(x, y) {
     this._x = parseInt(x);

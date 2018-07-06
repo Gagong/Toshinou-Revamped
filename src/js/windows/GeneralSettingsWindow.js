@@ -1,28 +1,33 @@
-/*
-Created by Freshek on 14.10.2017
-*/
-
 class GeneralSettingsWindow {
   createWindow() {
     this.botSettingsWindow = WindowFactory.createWindow({
-      width: 300,
+      width: 320,
       text: "General"
     });
 
-    let controls = [{
+    let controls = [
+      {
+        name: 'palladium',
+        labelText: 'Palladium Bot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.palladium = this.checked;
+        }
+      },
+      {
+        name: 'travelsystem',
+        labelText: 'Travel System',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.travelsystem = this.checked;
+        }
+      },
+      {
         name: 'moveRandomly',
         labelText: 'Move randomly',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.moveRandomly = this.checked;
-        }
-      },
-      {
-        name: 'fleeFromEnemy',
-        labelText: 'Flee from enemy',
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.fleeFromEnemy = this.checked;
         }
       },
       {
@@ -34,34 +39,48 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'fleeFromEnemy',
+        labelText: 'Flee from enemy',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.fleeFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'jumpFromEnemy',
+        labelText: 'Jump And Return',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.jumpFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'dodgeTheCbs',
+        labelText: 'Dodge the CBS',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dodgeTheCbs = this.checked;
+        }
+      },
+      {
+        name: 'avoidAttackedNpcs',
+        labelText: 'Avoid attacked NPCs<br>(Dont use with PET)',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.avoidAttackedNpcs = this.checked;
+        }
+      },
+      {
         name: 'npcCircle',
-        labelText: 'Circle (Beta)',
+        labelText: 'Circle',
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.circleNpc = this.checked;
         }
       },
-      // {
-      //   name: 'collectionSensitivity',
-      //   labelText: 'Collection sensitivity <span> (100%)</span>',
-      //   type: 'range',
-      //   appendTo: this.botSettingsWindow,
-      //   labelBefore: true,
-      //   attrs: {
-      //     min: 1,
-      //     max: 100,
-      //     step: 1,
-      //     value: 100,
-      //   }
-      //   ,
-      //   event: function (ev) {
-      //     window.settings.collectionSensitivity = this.value;
-      //     $('span:last-child', this.label).text(' (' + this.value + '%)');
-      //   }
-      // },
       {
         name: 'npcCircleRadius',
-        labelText: ' Circle radius <span> (500px)</span>',
+        labelText: 'Circle radius <span> (500px)</span>',
         type: 'range',
         appendTo: this.botSettingsWindow,
         labelBefore: true,
@@ -85,6 +104,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: "Reset Target when HP < 25%",
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
+        }
+      },
+      {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: ' Repair when HP < <span> (10%)</span>',
         type: 'range',
@@ -94,7 +121,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 10
+          value: 10,
         },
         event: function (ev) {
           window.settings.repairWhenHpIsLowerThanPercent = this.value;
@@ -107,6 +134,22 @@ class GeneralSettingsWindow {
         appendTo: this.botSettingsWindow,
         event: function () {
           window.settings.reviveAtGate = this.checked;
+        }
+      },
+      {
+        name: 'reviveAtSpot',
+        labelText: 'Revive at spot',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtSpot = this.checked;
+        }
+      },
+      {
+        name: 'reviveAtBase',
+        labelText: 'Revive at base',
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.reviveAtBase = this.checked;
         }
       },
       {
@@ -131,5 +174,10 @@ class GeneralSettingsWindow {
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
+
+    if (window.globalSettings.enableRefresh) {
+      let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">Save settings & Enable refresh</button></div>');
+    this.botSettingsWindow.append(saveButton);
+    }
   }
 }
