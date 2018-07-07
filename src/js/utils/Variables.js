@@ -1,94 +1,94 @@
 class Variables {
 
   static get boxType() {
-    return "_-f46";
+    return "_-H3D"; 
   }
 
   static get attackerId() {
-    return "_-h1C";
+    return "_-7y";
   }
 
   static get attackHp() {
-    return "_-k3J";
+    return "_-i37"; 
   }
 
   static get attackShd() {
-    return "_-ju";
+    return "_-64y"; 
   }
 
   static get attackedId() {
-    return "_-01H";
+    return "_-K3z";
   }
 
   static get moveDuration() {
-    return "_-ni";
+    return "_-j12"; 
   }
 
   static get shipDestoyedId() {
-    return "_-H2Q"; //
+    return "_-AY";
   }
 
   static get heroInitMaxHp() {
-    return "_-J3H";
+    return "_-af";
   }
 
   static get heroInitMaxShd() {
-    return "_-Jh";
+    return "_-8B";
   }
 
   static get heroInitHp() {
-    return "_-81E";
+    return "_-Y8";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-l3s";
+    return "_-74O";
   }
 
   static get hpUpdateHp() {
-    return "_-i4h";
+    return "_-h3B";
   }
 
   static get selectMaxHp() {
-    return "_-l3s";
+    return "_-74O"; 
   }
 
   static get selectMaxShd() {
-    return "_-Jh";
+    return "_-8B";
   }
 
   static get selectHp() {
-    return "_-i4h";
+    return "_-h3B";
   }
 
   static get clanDiplomacy() {
-    return "_-C24";
+    return "_-K5";
   }
 
   static get gateId() {
-    return "_-54n";
+    return "_-D1N";
   }
 
   static get gateType() {
-    return "_-pd"; 
+    return "_-L7";
   }
 
   static get resource() {
-    return "_-V4O"; 
+    return "_-3Q";
   }
 
   static get resourceType() {
-    return "_-317"; 
+    return "_-C4b";
   }
 
   static get assetCreateX() {
-    return "_-T4v"; 
+    return "_-F1C";
   }
 
   static get assetCreateY() {
-    return "_-qP"; 
+    return "_-m2l";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-84O";
+    return "_-92b";
   }
 }

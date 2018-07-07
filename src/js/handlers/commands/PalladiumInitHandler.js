@@ -1,6 +1,6 @@
 class PalladiumInitHandler {
   static get ID() {
-    return 3074;
+    return 1512;
   }
 
   constructor() {
