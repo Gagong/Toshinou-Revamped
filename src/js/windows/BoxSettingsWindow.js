@@ -6,6 +6,13 @@ class BoxSettingsWindow {
     });
 
     let controls = [{
+        name: 'collectBoxWhenCircle',
+        labelText: 'Collect Box When Circle',
+        appendTo: this.boxSettingsWindow,
+        event: function () {
+          window.settings.collectBoxWhenCircle = this.checked;
+        }
+      },{
         name: 'bonusBox',
         labelText: 'Bonus box',
         appendTo: this.boxSettingsWindow,

@@ -170,7 +170,6 @@ function init() {
 
 function logic() {
   let heroId = window.hero.id;
-  let collectBoxWhenCircle = false;
   let circleBox = null;
 
   let NPCSavingFix = [
@@ -443,10 +442,10 @@ function logic() {
       let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
       if (percenlife < 98 && percenlife > 70) {
         window.settings.killNpcs = true;
-        collectBoxWhenCircle=true;
+        window.settings.collectBoxWhenCircle = true;
       } else if (percenlife < 70) {
         window.settings.killNpcs = true;
-        collectBoxWhenCircle = false;
+        window.settings.collectBoxWhenCircle = false;
       } else {
         window.settings.killNpcs = false;
       }
@@ -517,7 +516,7 @@ function logic() {
         f += s;
         x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
         y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
-        if(collectBoxWhenCircle){
+        if(window.settings.collectBoxWhenCircle){
           let nearestBox = api.findNearestBox();
           if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
             circleBox = nearestBox;
@@ -532,7 +531,6 @@ function logic() {
   if (x && y) {
     if (collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
-      collectBoxWhenCircle = false;
       circleBox = null;
     }else{
       api.move(x, y);
