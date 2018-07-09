@@ -529,7 +529,7 @@ function logic() {
   }
 
   if (x && y) {
-    if (collectBoxWhenCircle && circleBox) {
+    if (window.settings.collectBoxWhenCircle && circleBox) {
       api.collectBox(circleBox.box);
       circleBox = null;
     }else{
