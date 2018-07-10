@@ -1,3 +1,5 @@
+BOT OFFLINE
+
 Toshinou
 ==========
 A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.
