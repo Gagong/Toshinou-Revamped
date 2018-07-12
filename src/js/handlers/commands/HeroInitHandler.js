@@ -1,6 +1,6 @@
 class HeroInitHandler {
   static get ID() {
-    return 15341;
+    return 2521;
   }
 
   constructor(f) {
@@ -25,6 +25,7 @@ class HeroInitHandler {
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
       window.hero.mapId = heroJson["mapId"];
+	  console.log(heroJson);
 
       if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
         window.b1 = 42000 / 300;

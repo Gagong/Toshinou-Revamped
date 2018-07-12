@@ -1,6 +1,6 @@
 class ShipSelectedHandler {
   static get ID() {
-    return 24285;
+    return 3202;
   }
 
   constructor() {
