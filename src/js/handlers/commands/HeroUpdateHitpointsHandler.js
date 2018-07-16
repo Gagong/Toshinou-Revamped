@@ -1,6 +1,6 @@
 class HeroUpdateHitpointsHandler {
   static get ID() {
-    return 1081;
+    return 1538;
   }
 
   constructor() {
