@@ -1,4 +1,4 @@
-Dm94 Release
+Release
 ==========
 Since no other dev is still in the project (or are missing) and that I do not have enough knowledge to avoid the anti-bots measures I will stop updating Toshinou Revamped. If in the future some dev decides to continue with the project I will help to add improvements. Thanks to everyone who has participated in this project
 
