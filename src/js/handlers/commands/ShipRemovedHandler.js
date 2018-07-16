@@ -1,6 +1,6 @@
 class ShipRemovedHandler {
   static get ID() {
-    return 25543;
+    return 5081;
   }
 
   constructor() {

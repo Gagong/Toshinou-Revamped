@@ -1,6 +1,6 @@
 class HeroInitHandler {
   static get ID() {
-    return 5403;
+    return 2521;
   }
 
   constructor(f) {
@@ -24,7 +24,7 @@ class HeroInitHandler {
       window.hero.hp = heroJson[Variables.heroInitHp];
       window.hero.maxShd = heroJson[Variables.heroInitMaxShd];
       window.hero.shd = heroJson["shield"];
-      window.hero.mapId = heroJson["mapId"]
+      window.hero.mapId = heroJson["mapId"];
 
       if (window.hero.mapId == 16 || window.hero.mapId == 29 || window.hero.mapId == 91 || window.hero.mapId == 93) {
         window.b1 = 42000 / 300;
@@ -43,9 +43,6 @@ class HeroInitHandler {
       } else {
         window.X1Map = false;
       }
-
-      if (window.hero.mapId == 20 || window.hero.mapId == 24 || window.hero.mapId == 28)
-        window.settings.setNpc("..::{ Boss StreuneR }::..", true);
 
       f();
       window.initialized = true;
