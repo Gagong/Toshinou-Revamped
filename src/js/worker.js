@@ -245,21 +245,7 @@ function logic() {
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
   }
-
-    if (window.settings.ggbot && api.targetBoxHash == null) {
-    api.jumpInGG(2, window.settings.alpha);
-    api.jumpInGG(3, window.settings.beta);
-    api.jumpInGG(4, window.settings.gamma);
-    api.jumpInGG(5, window.settings.delta);
-    api.jumpInGG(53, window.settings.epsilon);
-    api.jumpInGG(54, window.settings.zeta);
-    api.jumpInGG(70, window.settings.kappa);
-    api.jumpInGG(71, window.settings.lambda);
-    api.jumpInGG(72, window.settings.kronos);
-    api.jumpInGG(74, window.settings.hades);
-    api.jumpInGG(82, window.settings.kuiper);
-  }
-
+  
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
     api._blackListedBoxes = [];
     api.resetBlackListTime = $.now();
@@ -272,13 +258,23 @@ function logic() {
     window.settings.circleNpc = true;
     window.settings.resetTargetWhenHpBelow25Percent = true;
     window.settings.dontCircleWhenHpBelow25Percent = false;
-  }
-
-  if (window.settings.ggbot) {
     if (window.hero.mapId == 73) {
       api.ggZetaFix();
-    }else if (window.hero.mapId == 55) {
+    } else if (window.hero.mapId == 55) {
       api.ggDeltaFix();
+    }
+    if (api.targetBoxHash == null) {
+      api.jumpInGG(2, window.settings.alpha);
+      api.jumpInGG(3, window.settings.beta);
+      api.jumpInGG(4, window.settings.gamma);
+      api.jumpInGG(5, window.settings.delta);
+      api.jumpInGG(53, window.settings.epsilon);
+      api.jumpInGG(54, window.settings.zeta);
+      api.jumpInGG(70, window.settings.kappa);
+      api.jumpInGG(71, window.settings.lambda);
+      api.jumpInGG(72, window.settings.kronos);
+      api.jumpInGG(74, window.settings.hades);
+      api.jumpInGG(82, window.settings.kuiper);
     }
   }
 
@@ -464,7 +460,6 @@ function logic() {
         f += s;
         x = result.cbsPos.x + 1800 * Math.sin(f);
         y = result.cbsPos.y + 1800 * Math.cos(f);
-        api.resetTarget("all");
         api.move(x, y);
         window.movementDone = false;
         return;

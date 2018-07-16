@@ -387,8 +387,9 @@ class Settings {
   setNpc(name, val) {
     if(this._npcs[name] = null){
       this._npcs.push(name);
+    }else{
+      this._npcs[name] = val;
     }
-    this._npcs[name] = val;
   }
 
   getNpc(name) {
