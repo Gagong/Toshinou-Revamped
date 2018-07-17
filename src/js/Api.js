@@ -210,7 +210,6 @@ class Api {
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
         window.settings.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
-          //window.settings.dontCircleWhenHpBelow25Percent = false;
           window.settings.setNpc(ship.name, true);
           if (this.targetShip == ship) {
             this.resetTarget("enemy");
@@ -218,7 +217,6 @@ class Api {
         } else {
           window.settings.setNpc(ship.name, false);
           this.targetShip = ship;
-          //window.settings.dontCircleWhenHpBelow25Percent = true;
         }
       }
     }
@@ -486,6 +484,7 @@ class Api {
   }
 
   fillStarSystem(){
+     this.starSystem = [];
      let portals11 = [];
      portals11.push(new Portal(150000156,2));
      this.starSystem.push(new Map(1, portals11));

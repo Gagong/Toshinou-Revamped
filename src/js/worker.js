@@ -169,25 +169,7 @@ function init() {
 }
 
 function logic() {
-  let heroId = window.hero.id;
   let circleBox = null;
-
-  let NPCSavingFix = [
-    "-=[ Devolarium ]=-",
-    "..::{ Boss Devolarium }::..",
-    "-=[ Sibelon ]=-",
-    "..::{ Boss Sibelon }::..",    
-    "..::{ Boss Lordakium }::...",
-    "-=[ Blighted Kristallon ]=-",
-    "..::{ Boss StreuneR }::..",
-    "<=< Icy >=>",
-    "<=< Ice Meteoroid >=>",
-    "<=< Super Ice Meteoroid >=>",
-    "-=[ Battleray ]=-",
-    "( Uber Barracuda )",
-    "( Uber Saboteur )",
-    "( Uber Annihilator )",
-  ];
 
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
@@ -201,6 +183,22 @@ function logic() {
 
   if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if (window.globalSettings.enableNPCBlockList) {
+        let NPCSavingFix = [
+          "-=[ Devolarium ]=-",
+          "..::{ Boss Devolarium }::..",
+          "-=[ Sibelon ]=-",
+          "..::{ Boss Sibelon }::..",    
+          "..::{ Boss Lordakium }::...",
+          "-=[ Blighted Kristallon ]=-",
+          "..::{ Boss StreuneR }::..",
+          "<=< Icy >=>",
+          "<=< Ice Meteoroid >=>",
+          "<=< Super Ice Meteoroid >=>",
+          "-=[ Battleray ]=-",
+          "( Uber Barracuda )",
+          "( Uber Saboteur )",
+          "( Uber Annihilator )",
+        ];
       NPCSavingFix.forEach(npc => {
         window.settings.setNpc(npc, true);
       });
@@ -218,6 +216,7 @@ function logic() {
     api.resetTarget("all");
     return;
   }
+
 
   if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.refresh && window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if ((api.Disconected && !state) || window.settings.palladium) {
@@ -245,7 +244,7 @@ function logic() {
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
   }
-  
+
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
     api._blackListedBoxes = [];
     api.resetBlackListTime = $.now();
@@ -432,19 +431,15 @@ function logic() {
     window.settings.moveRandomly = true;
     window.settings.circleNpc = true;
 
-    let shipsAround = api.ggCountNpcAround(600);
-    if (shipsAround > 0) {
+    let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+    if (percenlife < 98 && percenlife > 70) {
       api.battlerayFix();
-      let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
-      if (percenlife < 98 && percenlife > 70) {
-        window.settings.killNpcs = true;
-        window.settings.collectBoxWhenCircle = true;
-      } else if (percenlife < 70) {
-        window.settings.killNpcs = true;
-        window.settings.collectBoxWhenCircle = false;
-      } else {
-        window.settings.killNpcs = false;
-      }
+      window.settings.killNpcs = true;
+      window.settings.collectBoxWhenCircle = true;
+    } else if (percenlife < 70) {
+      api.battlerayFix();
+      window.settings.killNpcs = true;
+      window.settings.collectBoxWhenCircle = false;
     } else {
       window.settings.killNpcs = false;
     }
@@ -461,6 +456,7 @@ function logic() {
         x = result.cbsPos.x + 1800 * Math.sin(f);
         y = result.cbsPos.y + 1800 * Math.cos(f);
         api.move(x, y);
+        api.resetTarget("all");
         window.movementDone = false;
         return;
       }

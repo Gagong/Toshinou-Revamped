@@ -5,4 +5,5 @@ window.setInterval(function () {
       detail: response
     }));
   }
-}, 300);
+
+}, window.tickTime);
