@@ -90,9 +90,9 @@ class Api {
     Injector.injectScript('document.getElementById("preloader").jumpGate();');
   }
 
-  /*changeConfig() {
+  changeConfig() {
     Injector.injectScript('document.getElementById("preloader").changeConfig();');
-  }*/
+  }
 
   getSettings() {
     for (let key in window.settings) {

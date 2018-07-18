@@ -212,7 +212,7 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause) {
+  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
     api.resetTarget("all");
     return;
   }
