@@ -1,0 +1,12 @@
+{
+    "EnabledGG": false,
+    "Versions": {
+        "game": "Server unaviable",
+        "cli": "Server unaviable",
+        "dope": "Server unaviable",
+        "game_remote": "Server unaviable"
+    },
+    "ProtocolOutOfDate": false,
+    "BreakingNews": ["Server restarting..."],
+    "Maintenance": null
+}
