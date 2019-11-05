@@ -21,4 +21,4 @@ print (createURL)
 
 
 print ('\nDownloading latest DOPE.cli...')
-wget.download(createURL, './DOPE/DOPE.cli')
+wget.download(createURL, 'DOPE.cli')
