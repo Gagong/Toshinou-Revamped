@@ -23,6 +23,6 @@ print (createURL)
 
 print ('\nDownloading latest DOPE.cli...')
 if os.path.exists('.\DOPE\DOPE.cli'):
-  print ('Removing old version...)
+  print ('Removing old version...')
   os.remove('.\DOPE\DOPE.cli')
 wget.download(createURL, 'DOPE.cli')
