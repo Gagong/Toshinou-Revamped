@@ -1,6 +1,7 @@
 import requests
 import json
 import wget
+import os
 
 link = 'https://powerofdark.space/api/status'
 
@@ -21,4 +22,7 @@ print (createURL)
 
 
 print ('\nDownloading latest DOPE.cli...')
+if os.path.exists('.\DOPE\DOPE.cli'):
+  print ('Removing old version...)
+  os.remove('.\DOPE\DOPE.cli')
 wget.download(createURL, 'DOPE.cli')
